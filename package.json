@@ -11,7 +11,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "testDB": "json-server --watch src/data/productData.json --port 9000",
+    "testdb": "json-server --watch src/data/products/productData.json --port 9000",
     "eject": "react-scripts eject"
   },
   "devDependencies": {

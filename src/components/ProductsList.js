@@ -8,7 +8,7 @@ class ProductsList extends Component {
 
   async componentDidMount() {
     try {
-      const res = await fetch(`http://localhost:9000`);
+      const res = await fetch(`http://localhost:9000/products`);
       const productData = await res.json();
       this.setState({ productData });
     } catch (err) {
@@ -17,9 +17,7 @@ class ProductsList extends Component {
   }
 
   render() {
-    return (
-      <ProductGrid>{this.state.productData.map(product => <Product key={product.id} product={product} />)}</ProductGrid>
-    );
+    return <ProductGrid>{this.state.productData.map(item => <Product key={item.id} product={item} />)}</ProductGrid>;
   }
 }
 
