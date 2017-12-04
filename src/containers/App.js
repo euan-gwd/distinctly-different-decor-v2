@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Switch, Link, Route } from 'react-router-dom';
 import logo from './logo.svg';
 import styled from 'styled-components';
@@ -6,36 +6,22 @@ import styled from 'styled-components';
 import ProductsList from '../components/ProductsList';
 import ProductDetail from '../components/ProductDetail';
 
-class App extends Component {
-  state = { productData: [] };
-
-  async componentDidMount() {
-    try {
-      const res = await fetch(`http://localhost:9000`);
-      const productData = await res.json();
-      this.setState({ productData });
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
-  render() {
-    return (
-      <AppContainer>
-        <Header>
-          <Link to="/">
-            <Logo src={logo} alt="logo" />
-          </Link>
-          <Title>Welcome to Custom React Starter Kit</Title>
-        </Header>
-        <Switch>
-          <Route exact path="/" component={ProductsList} />
-          <Route path="/:id" component={ProductDetail} />
-        </Switch>
-      </AppContainer>
-    );
-  }
-}
+const App = () => {
+  return (
+    <AppContainer>
+      <Header>
+        <Link to="/">
+          <Logo src={logo} alt="logo" />
+        </Link>
+        <Title>Welcome to Distinctly Different Decor</Title>
+      </Header>
+      <Switch>
+        <Route exact path="/" component={ProductsList} />
+        <Route path="/:id" component={ProductDetail} />
+      </Switch>
+    </AppContainer>
+  );
+};
 
 const AppContainer = styled.div`
   text-align: center;
