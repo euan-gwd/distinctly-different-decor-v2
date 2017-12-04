@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
+import { Switch, Link, Route } from 'react-router-dom';
 import logo from './logo.svg';
 import styled from 'styled-components';
+
+import ProductsList from '../components/ProductsList';
+import ProductDetail from '../components/ProductDetail';
 
 class App extends Component {
   state = { productData: [] };
@@ -19,12 +23,15 @@ class App extends Component {
     return (
       <AppContainer>
         <Header>
-          <Logo src={logo} alt="logo" />
+          <Link to="/">
+            <Logo src={logo} alt="logo" />
+          </Link>
           <Title>Welcome to Custom React Starter Kit</Title>
         </Header>
-        <Intro>
-          To get started, edit <code>src/components/App.js</code> and save to reload.
-        </Intro>
+        <Switch>
+          <Route exact path="/" component={ProductsList} />
+          <Route path="/:id" component={ProductDetail} />
+        </Switch>
       </AppContainer>
     );
   }
@@ -57,10 +64,6 @@ const Logo = styled.img`
 
 const Title = styled.h1`
   font-size: 1.5em;
-`;
-
-const Intro = styled.p`
-  font-size: large;
 `;
 
 export default App;
