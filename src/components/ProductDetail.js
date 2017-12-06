@@ -30,11 +30,9 @@ class ProductDetail extends Component {
     return (
       <ProductWrapper backdrop={imageBackDrop}>
         <ProductInfo>
-          {product.image ? (
-            <Overdrive id={`${product.id}`}>
-              <img src={imageThumb} alt={product.title} />
-            </Overdrive>
-          ) : null}
+          <Overdrive id={`${product.id}`}>
+            <img src={imageThumb} alt={product.title} />
+          </Overdrive>
           <div>
             <h1>{product.title}</h1>
             <h3>{product.description}</h3>
@@ -80,8 +78,8 @@ const ProductInfo = styled.div`
   }
 
   img {
-    max-width: 100%;
-    max-height: 100%;
+    width: 100%;
+    height: 100%;
     position: relative;
     top: -5rem;
   }
