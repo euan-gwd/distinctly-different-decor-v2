@@ -45,7 +45,7 @@ class ProductDetail extends Component {
                     props.history.push(`/`);
                   }}
                 >
-                  Back to Home
+                  Return to List
                 </HomeButton>
               )}
             />
@@ -93,6 +93,7 @@ const CartButton = styled.button`
   box-shadow: none;
   display: inline-block;
   font-size: 1.125rem;
+  font-family: -apple-system, 'Dosis', sans-serif;
   justify-content: center;
   line-height: 1.5;
   height: 2.25rem;

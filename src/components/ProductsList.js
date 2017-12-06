@@ -48,6 +48,7 @@ const Header = styled.div`
   padding: 10px;
   color: #131313;
   display: flex;
+  align-items: center;
 `;
 
 const Logo = styled.img`
@@ -58,4 +59,5 @@ const Logo = styled.img`
 const Title = styled.h1`
   font-size: 1.5em;
   flex-grow: 1;
+  font-family: -apple-system, 'Dosis', sans-serif;
 `;
