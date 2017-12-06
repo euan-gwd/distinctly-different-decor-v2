@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
 import styled from 'styled-components';
 import { formatPrice } from './helpers';
 
@@ -28,13 +29,23 @@ class ProductDetail extends Component {
     return (
       <ProductWrapper backdrop={imageBackDrop}>
         <ProductInfo>
-          {product.image !== undefined ? <img src={imageThumb} alt={product.title} /> : null}
+          {product.image ? <img src={imageThumb} alt={product.title} /> : null}
           <div>
             <h1>{product.title}</h1>
             <h3>{product.description}</h3>
             <p>{formatPrice(product.price)}</p>
             <CartButton>Add to Cart</CartButton>
-            <HomeButton>Back to Home</HomeButton>
+            <Route
+              render={props => (
+                <HomeButton
+                  onClick={() => {
+                    props.history.push(`/`);
+                  }}
+                >
+                  Back to Home
+                </HomeButton>
+              )}
+            />
           </div>
         </ProductInfo>
       </ProductWrapper>
@@ -58,9 +69,11 @@ const ProductInfo = styled.div`
   text-align: left;
   padding: 2rem 10%;
   display: flex;
+
   > div {
     margin-left: 20px;
   }
+
   img {
     width: 25%;
     height: 25%;
@@ -73,6 +86,7 @@ const CartButton = styled.button`
   border: 1px solid #23d160;
   border-radius: 1px;
   margin: 0 0.25rem;
+  padding: 0.25rem;
   box-shadow: none;
   display: inline-block;
   font-size: 1.125rem;
@@ -93,26 +107,11 @@ const CartButton = styled.button`
   }
 `;
 
-const HomeButton = styled.button`
+const HomeButton = CartButton.extend`
   border: 1px solid #deb887;
-  border-radius: 1px;
-  margin: 0 0.25rem;
-  box-shadow: none;
-  display: inline-block;
-  font-size: 1.125rem;
-  justify-content: center;
-  line-height: 1.5;
-  height: 2.25rem;
-  vertical-align: top;
-  user-select: none;
-  background-color: transparent;
   color: #deb887;
-  cursor: pointer;
-  text-align: center;
-  white-space: nowrap;
 
   &:hover {
     background-color: #deb887;
-    color: #fff;
   }
 `;
