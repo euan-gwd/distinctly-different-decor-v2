@@ -5,7 +5,8 @@
   "dependencies": {
     "amwic-react-scripts": "1.2.14",
     "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "react-dom": "^16.2.0",
+    "react-overdrive": "^0.0.9"
   },
   "scripts": {
     "start": "react-scripts start",

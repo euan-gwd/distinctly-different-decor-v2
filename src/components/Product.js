@@ -1,14 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import Overdrive from 'react-overdrive';
 
 const Product = ({ product }) => {
   const productImage = require(`../assets/products/${product.thumbnail}`);
   return (
     <Link to={`/${product.id}`}>
-      <div>
+      <Overdrive id={`${product.id}`}>
         <Poster src={productImage} alt={product.title} />
-      </div>
+      </Overdrive>
     </Link>
   );
 };
@@ -16,12 +17,13 @@ const Product = ({ product }) => {
 export default Product;
 
 const Poster = styled.img`
-  max-width : 100%;
+  max-width: 100%;
+  max-height: 100%;
   &:hover {
     transition: 0.5s;
     z-index: 3;
     transform-origin: center;
-    transform: scale(1.15);
+    transform: scale(1.25);
     transition: 0.5s;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);

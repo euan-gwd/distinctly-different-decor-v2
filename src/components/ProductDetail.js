@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import styled from 'styled-components';
+import Overdrive from 'react-overdrive';
 import { formatPrice } from './helpers';
 
 class ProductDetail extends Component {
@@ -29,7 +30,11 @@ class ProductDetail extends Component {
     return (
       <ProductWrapper backdrop={imageBackDrop}>
         <ProductInfo>
-          {product.image ? <img src={imageThumb} alt={product.title} /> : null}
+          {product.image ? (
+            <Overdrive id={`${product.id}`}>
+              <img src={imageThumb} alt={product.title} />
+            </Overdrive>
+          ) : null}
           <div>
             <h1>{product.title}</h1>
             <h3>{product.description}</h3>
@@ -75,8 +80,8 @@ const ProductInfo = styled.div`
   }
 
   img {
-    width: 25%;
-    height: 25%;
+    max-width: 100%;
+    max-height: 100%;
     position: relative;
     top: -5rem;
   }
