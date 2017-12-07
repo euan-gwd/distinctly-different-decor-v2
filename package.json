@@ -6,7 +6,8 @@
     "amwic-react-scripts": "1.2.14",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-overdrive": "^0.0.9"
+    "react-overdrive": "^0.0.9",
+    "react-select": "^1.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
