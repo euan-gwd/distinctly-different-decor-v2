@@ -13,7 +13,6 @@ class App extends Component {
     this.state.orders ? (orders = { ...this.state.orders }) : (orders = {});
     const timestamp = Date.now();
     orders[`order-${timestamp}`] = orderItem;
-    console.log(orders);
     this.setState({ orders });
   };
 

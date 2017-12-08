@@ -37,9 +37,8 @@ export default ProductsList;
 const ProductGrid = styled.div`
   display: grid;
   padding: 1rem;
-  grid-template-columns: repeat(5, minmax(50px, 1fr));
-  grid-row-gap: 1rem;
-  grid-column-gap: 0.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
+  grid-gap: 0.5rem;
 `;
 
 const Header = styled.div`

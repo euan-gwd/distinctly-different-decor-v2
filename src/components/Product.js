@@ -17,8 +17,9 @@ const Product = ({ product }) => {
 export default Product;
 
 const Poster = styled.img`
-  max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   &:hover {
     transition: 0.5s;
     z-index: 3;
