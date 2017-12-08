@@ -2,18 +2,16 @@ import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import styled from 'styled-components';
 
-import ProductsList from '../components/ProductsList';
-import ProductDetail from '../components/ProductDetail';
-
-let numberstamp = 0;
+import ProductsList from './ProductsList';
+import ProductDetail from './ProductDetail';
 
 class App extends Component {
   state = { orders: {} };
 
   addToOrder = orderItem => {
     const orders = { ...this.state.orders };
-    numberstamp++;
-    orders[`orderline-${numberstamp}`] = orderItem;
+    const timestamp = Date.now();
+    orders[`order-${timestamp}`] = orderItem;
     this.setState({ orders });
     console.log(this.state.orders);
   };

@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Overdrive from 'react-overdrive';
 import { formatPrice } from './helpers';
-import 'react-select/dist/react-select.css';
 
 class ProductDetail extends Component {
   state = { product: {}, orderQty: 0, orderSize: 'small', orderColor: 'black' };
@@ -18,9 +17,6 @@ class ProductDetail extends Component {
     }
   }
 
-  // handleQtyChange = event => {
-  //   this.setState({ orderQty: event.target.value });
-  // };
   handleInputChange = event => {
     const target = event.target;
     const value = target.value;
@@ -30,8 +26,7 @@ class ProductDetail extends Component {
     });
   };
 
-  handleSubmit = event => {
-    event.preventDefault();
+  handleAddToCart = () => {
     const orderItem = {
       orderSize: this.state.orderSize,
       orderColor: this.state.orderColor,
@@ -39,7 +34,6 @@ class ProductDetail extends Component {
       ...this.state.product
     };
     this.props.addToOrder(orderItem);
-    this.selectedItemForm.reset();
   };
 
   render() {
@@ -62,28 +56,26 @@ class ProductDetail extends Component {
             <h1>{product.title}</h1>
             <h3>{product.description}</h3>
             <p>{formatPrice(product.price)}</p>
-            <form ref={input => (this.selectedItemForm = input)} onSubmit={this.handleSubmit}>
-              <label>
-                Size:
-                <select value={this.state.orderSize} onChange={this.handleInputChange} name="orderSize">
-                  <option value="small">Small</option>
-                  <option value="medium">Medium</option>
-                  <option value="large">Large</option>
-                </select>
-              </label>
-              <label>
-                Color:
-                <select alue={this.state.orderColor} onChange={this.handleInputChange} name="orderColor">
-                  <option value="black">Black</option>
-                  <option value="colored">Colored</option>
-                </select>
-              </label>
-              <label>
-                Qty:
-                <input type="number" value={this.state.orderQty} onChange={this.handleInputChange} name="orderQty" />
-              </label>
-              <SubmitButton type="submit" value="Submit" />
-            </form>
+            <label>
+              Size:
+              <select value={this.state.orderSize} onChange={this.handleInputChange} name="orderSize">
+                <option value="small">Small</option>
+                <option value="medium">Medium</option>
+                <option value="large">Large</option>
+              </select>
+            </label>
+            <label>
+              Color:
+              <select alue={this.state.orderColor} onChange={this.handleInputChange} name="orderColor">
+                <option value="black">Black</option>
+                <option value="colored">Colored</option>
+              </select>
+            </label>
+            <label>
+              Qty:
+              <input type="number" value={this.state.orderQty} onChange={this.handleInputChange} name="orderQty" />
+            </label>
+            <CartButton onClick={this.handleAddToCart}>+Add to Cart</CartButton>
             <Link to="/">
               <HomeButton>Return to List</HomeButton>
             </Link>
@@ -155,31 +147,5 @@ const HomeButton = CartButton.extend`
 
   &:hover {
     background-color: #deb887;
-  }
-`;
-
-const SubmitButton = styled.input`
-  border: 1px solid #23d160;
-  border-radius: 1px;
-  margin: 0 0.25rem;
-  padding: 0.25rem;
-  box-shadow: none;
-  display: inline-block;
-  font-size: 1.125rem;
-  font-family: -apple-system, 'Dosis', sans-serif;
-  justify-content: center;
-  line-height: 1.5;
-  height: 2.25rem;
-  vertical-align: top;
-  user-select: none;
-  background-color: transparent;
-  color: #23d160;
-  cursor: pointer;
-  text-align: center;
-  white-space: nowrap;
-
-  &:hover {
-    background-color: #23d160;
-    color: #fff;
   }
 `;
