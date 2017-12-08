@@ -6,7 +6,9 @@
     "amwic-react-scripts": "1.2.16",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-overdrive": "^0.0.9"
+    "react-overdrive": "^0.0.9",
+    "semantic-ui-css": "^2.2.12",
+    "semantic-ui-react": "^0.77.0"
   },
   "scripts": {
     "start": "react-scripts start",

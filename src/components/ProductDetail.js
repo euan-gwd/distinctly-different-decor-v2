@@ -59,18 +59,18 @@ class ProductDetail extends Component {
             <OrderForm>
               <label>
                 Size:
-                <select value={this.state.orderSize} onChange={this.handleInputChange} name="orderSize">
+                <Select value={this.state.orderSize} onChange={this.handleInputChange} name="orderSize">
                   <option value="small">Small</option>
                   <option value="medium">Medium</option>
                   <option value="large">Large</option>
-                </select>
+                </Select>
               </label>
               <label>
                 Color:
-                <select value={this.state.orderColor} onChange={this.handleInputChange} name="orderColor">
+                <Select value={this.state.orderColor} onChange={this.handleInputChange} name="orderColor">
                   <option value="black">Black</option>
                   <option value="colored">Colored</option>
-                </select>
+                </Select>
               </label>
               <label>
                 How many Units:
@@ -165,4 +165,12 @@ const OrderForm = styled.form`
   align-items: center;
   justify-content: start;
   margin: 0.5rem 0;
+`;
+
+const Select = styled.select`
+  appearance: none;
+  display: block;
+  margin: 30px 0;
+  padding: 18px 50px 10px 10px;
+  background: url();
 `;
