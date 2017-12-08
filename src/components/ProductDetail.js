@@ -55,26 +55,34 @@ class ProductDetail extends Component {
           <div>
             <h1>{product.title}</h1>
             <h3>{product.description}</h3>
-            <p>{formatPrice(product.price)}</p>
-            <label>
-              Size:
-              <select value={this.state.orderSize} onChange={this.handleInputChange} name="orderSize">
-                <option value="small">Small</option>
-                <option value="medium">Medium</option>
-                <option value="large">Large</option>
-              </select>
-            </label>
-            <label>
-              Color:
-              <select alue={this.state.orderColor} onChange={this.handleInputChange} name="orderColor">
-                <option value="black">Black</option>
-                <option value="colored">Colored</option>
-              </select>
-            </label>
-            <label>
-              Qty:
-              <input type="number" value={this.state.orderQty} onChange={this.handleInputChange} name="orderQty" />
-            </label>
+            <p>{formatPrice(product.price)} per unit</p>
+            <OrderForm>
+              <label>
+                Size:
+                <select value={this.state.orderSize} onChange={this.handleInputChange} name="orderSize">
+                  <option value="small">Small</option>
+                  <option value="medium">Medium</option>
+                  <option value="large">Large</option>
+                </select>
+              </label>
+              <label>
+                Color:
+                <select value={this.state.orderColor} onChange={this.handleInputChange} name="orderColor">
+                  <option value="black">Black</option>
+                  <option value="colored">Colored</option>
+                </select>
+              </label>
+              <label>
+                How many Units:
+                <input
+                  type="number"
+                  value={this.state.orderQty}
+                  onChange={this.handleInputChange}
+                  name="orderQty"
+                  required
+                />
+              </label>
+            </OrderForm>
             <CartButton onClick={this.handleAddToCart}>+Add to Cart</CartButton>
             <Link to="/">
               <HomeButton>Return to List</HomeButton>
@@ -148,4 +156,13 @@ const HomeButton = CartButton.extend`
   &:hover {
     background-color: #deb887;
   }
+`;
+
+const OrderForm = styled.form`
+  display: grid;
+  grid-row-gap: 0.5rem;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: start;
+  margin: 0.5rem 0;
 `;

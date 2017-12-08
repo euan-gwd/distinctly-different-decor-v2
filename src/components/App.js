@@ -9,11 +9,12 @@ class App extends Component {
   state = { orders: {} };
 
   addToOrder = orderItem => {
-    const orders = { ...this.state.orders };
+    let orders = {};
+    this.state.orders ? (orders = { ...this.state.orders }) : (orders = {});
     const timestamp = Date.now();
     orders[`order-${timestamp}`] = orderItem;
+    console.log(orders);
     this.setState({ orders });
-    console.log(this.state.orders);
   };
 
   render() {
