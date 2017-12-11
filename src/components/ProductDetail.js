@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Overdrive from 'react-overdrive';
 import { formatPrice } from './helpers';
+import { Select, Input } from 'semantic-ui-react';
 
 class ProductDetail extends Component {
-  state = { product: {}, orderQty: 0, orderSize: 'small', orderColor: 'black' };
+  state = { product: {}, orderQty: '', orderSize: '', orderColor: '' };
 
   async componentDidMount() {
     try {
@@ -17,14 +18,11 @@ class ProductDetail extends Component {
     }
   }
 
-  handleInputChange = event => {
-    const target = event.target;
-    const value = target.value;
-    const name = target.name;
-    this.setState({
-      [name]: value
-    });
-  };
+  handleSizeChange = (e, { value }) => this.setState({ orderSize: value });
+
+  handleColorChange = (e, { value }) => this.setState({ orderColor: value });
+
+  handleQtyChange = (e, { value }) => this.setState({ orderQty: value });
 
   handleAddToCart = () => {
     const orderItem = {
@@ -37,7 +35,7 @@ class ProductDetail extends Component {
   };
 
   render() {
-    const { product } = this.state;
+    const { product, orderSize, orderColor, orderQty } = this.state;
     let imageBackDrop,
       imageThumb = null;
 
@@ -57,31 +55,22 @@ class ProductDetail extends Component {
             <h3>{product.description}</h3>
             <p>{formatPrice(product.price)} per unit</p>
             <OrderForm>
-              <label>
-                Size:
-                <Select value={this.state.orderSize} onChange={this.handleInputChange} name="orderSize">
-                  <option value="small">Small</option>
-                  <option value="medium">Medium</option>
-                  <option value="large">Large</option>
-                </Select>
-              </label>
-              <label>
-                Color:
-                <Select value={this.state.orderColor} onChange={this.handleInputChange} name="orderColor">
-                  <option value="black">Black</option>
-                  <option value="colored">Colored</option>
-                </Select>
-              </label>
-              <label>
-                How many Units:
-                <input
-                  type="number"
-                  value={this.state.orderQty}
-                  onChange={this.handleInputChange}
-                  name="orderQty"
-                  required
-                />
-              </label>
+              <Label>Size:</Label>
+              <Select
+                onChange={this.handleSizeChange}
+                options={sizeOptions}
+                placeholder="What size?"
+                value={orderSize}
+              />
+              <Label>Color:</Label>
+              <Select
+                onChange={this.handleColorChange}
+                options={colorOptions}
+                placeholder="What color?"
+                value={orderColor}
+              />
+              <Label>Qty:</Label>
+              <Input type="number" value={orderQty} onChange={this.handleQtyChange} placeholder="How Many?" />
             </OrderForm>
             <CartButton onClick={this.handleAddToCart}>+Add to Cart</CartButton>
             <Link to="/">
@@ -98,7 +87,7 @@ export default ProductDetail;
 
 const ProductWrapper = styled.div`
   position: relative;
-  padding-top: 60vh;
+  padding-top: 50vh;
   background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(0, 0, 255, 0.5)),
     url(${props => props.backdrop}) center no-repeat;
   background-size: cover;
@@ -117,7 +106,7 @@ const ProductInfo = styled.div`
 
   img {
     width: 100%;
-    height: 100%;
+    object-fit: cover;
     position: relative;
     top: -5rem;
   }
@@ -167,10 +156,23 @@ const OrderForm = styled.form`
   margin: 0.5rem 0;
 `;
 
-const Select = styled.select`
-  appearance: none;
+const Label = styled.label`
   display: block;
-  margin: 30px 0;
-  padding: 18px 50px 10px 10px;
-  background: url();
+  font-size: 1.125rem;
+  font-family: -apple-system, 'Dosis', sans-serif;
+  justify-content: center;
 `;
+
+const sizeOptions = [
+  { key: 's', text: 'Small', value: 'S' },
+  { key: 'm', text: 'Medium', value: 'M' },
+  { key: 'l', text: 'Large', value: 'L' }
+];
+
+const colorOptions = [
+  { key: 1, text: 'Red', value: 'Red' },
+  { key: 2, text: 'Green', value: 'Green' },
+  { key: 3, text: 'Blue', value: 'Blue' },
+  { key: 4, text: 'Yellow', value: 'Yellow' },
+  { key: 5, text: 'Black', value: 'Black' }
+];
