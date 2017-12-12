@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Link } from 'react-router-dom';
 import styled from 'styled-components';
-
+import logo from './logo.svg';
 import ProductsList from './ProductsList';
 import ProductDetail from './ProductDetail';
 
@@ -19,6 +19,12 @@ class App extends Component {
   render() {
     return (
       <AppContainer>
+        <AppHeader>
+          <Link to="/">
+            <Logo src={logo} alt="logo" />
+          </Link>
+          <Title>Welcome to Distinctly Different Decor</Title>
+        </AppHeader>
         <Switch>
           <Route exact path="/" component={ProductsList} />
           <Route path="/:id" render={props => <ProductDetail {...props} addToOrder={this.addToOrder} />} />
@@ -32,4 +38,28 @@ export default App;
 
 const AppContainer = styled.div`
   text-align: center;
+`;
+
+const AppHeader = styled.div`
+  background-color: #ededed;
+  height: 60px;
+  padding: 10px;
+  color: #131313;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 5;
+`;
+
+const Logo = styled.img`
+  height: 50px;
+  text-align: left;
+`;
+
+const Title = styled.h1`
+  font-size: 1.5em;
+  flex-grow: 1;
+  margin: 0;
 `;

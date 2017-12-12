@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import Overdrive from 'react-overdrive';
 import { formatPrice } from './helpers';
-import { Button, Form, Label } from 'semantic-ui-react';
+import { Button, Form, Label, Header } from 'semantic-ui-react';
 
 class ProductDetail extends Component {
   state = { product: {}, orderQty: '', orderSize: '', orderColor: '' };
@@ -59,9 +59,9 @@ class ProductDetail extends Component {
             <img src={imageThumb} alt={product.title} />
           </Overdrive>
           <div>
-            <h1>{product.title}</h1>
-            <h3>{product.description}</h3>
-            <p>{formatPrice(product.price)} per unit</p>
+            <Header as="h2">{product.title}</Header>
+            <Header.Subheader>{product.description}</Header.Subheader>
+            <p>{formatPrice(product.price)} each</p>
             <Form>
               <Form.Group inline required>
                 <Label size="large" color="violet" pointing="right">
@@ -95,8 +95,8 @@ class ProductDetail extends Component {
                   required
                 />
               </Form.Group>
-              <Form.Button onClick={this.handleAddToCart} basic color="green" animated="fade" fluid>
-                <Button.Content visible>Add Selected to Cart</Button.Content>
+              <Form.Button onClick={this.handleAddToCart} basic color="violet" animated="fade" fluid>
+                <Button.Content visible>Add Selected Item to Cart</Button.Content>
                 <Button.Content hidden>{formatPrice(product.price * orderQty)}</Button.Content>
               </Form.Button>
             </Form>
@@ -111,7 +111,7 @@ export default ProductDetail;
 
 const ProductWrapper = styled.div`
   position: relative;
-  padding-top: 45vh;
+  padding-top: 50vh;
   background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(0, 0, 255, 0.5)),
     url(${props => props.backdrop}) center no-repeat;
   background-size: cover;
@@ -121,7 +121,7 @@ const ProductWrapper = styled.div`
 const ProductInfo = styled.div`
   background: white;
   text-align: left;
-  padding: 2rem 10%;
+  padding: 1rem 10%;
   display: flex;
 
   > div {
