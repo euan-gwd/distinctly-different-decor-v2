@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Overdrive from 'react-overdrive';
 import { formatPrice } from './helpers';
-import { Select, Input } from 'semantic-ui-react';
+import { Button, Form, Label } from 'semantic-ui-react';
 
 class ProductDetail extends Component {
   state = { product: {}, orderQty: '', orderSize: '', orderColor: '' };
@@ -22,16 +21,25 @@ class ProductDetail extends Component {
 
   handleColorChange = (e, { value }) => this.setState({ orderColor: value });
 
-  handleQtyChange = (e, { value }) => this.setState({ orderQty: value });
+  handleQtyChange = (e, { value }) => {
+    if (value < 1) {
+      this.setState({ orderQty: '' });
+    } else {
+      this.setState({ orderQty: value });
+    }
+  };
 
   handleAddToCart = () => {
     const orderItem = {
       orderSize: this.state.orderSize,
       orderColor: this.state.orderColor,
       orderQty: this.state.orderQty,
+      orderItemTotal: this.state.product.price * this.state.orderQty,
       ...this.state.product
     };
-    this.props.addToOrder(orderItem);
+    if (this.state.orderSize && this.state.orderColor && this.state.orderQty !== 'undefined') {
+      this.props.addToOrder(orderItem);
+    }
   };
 
   render() {
@@ -54,28 +62,44 @@ class ProductDetail extends Component {
             <h1>{product.title}</h1>
             <h3>{product.description}</h3>
             <p>{formatPrice(product.price)} per unit</p>
-            <OrderForm>
-              <Label>Size:</Label>
-              <Select
-                onChange={this.handleSizeChange}
-                options={sizeOptions}
-                placeholder="What size?"
-                value={orderSize}
-              />
-              <Label>Color:</Label>
-              <Select
-                onChange={this.handleColorChange}
-                options={colorOptions}
-                placeholder="What color?"
-                value={orderColor}
-              />
-              <Label>Qty:</Label>
-              <Input type="number" value={orderQty} onChange={this.handleQtyChange} placeholder="How Many?" />
-            </OrderForm>
-            <CartButton onClick={this.handleAddToCart}>+Add to Cart</CartButton>
-            <Link to="/">
-              <HomeButton>Return to List</HomeButton>
-            </Link>
+            <Form>
+              <Form.Group inline required>
+                <Label size="large" color="violet" pointing="right">
+                  Size
+                </Label>
+                <Form.Radio label="Small" value="sm" checked={orderSize === 'sm'} onChange={this.handleSizeChange} />
+                <Form.Radio label="Medium" value="md" checked={orderSize === 'md'} onChange={this.handleSizeChange} />
+                <Form.Radio label="Large" value="lg" checked={orderSize === 'lg'} onChange={this.handleSizeChange} />
+              </Form.Group>
+              <Form.Group inline>
+                <Label size="large" color="violet" pointing="right">
+                  Color
+                </Label>
+                <Form.Select
+                  onChange={this.handleColorChange}
+                  options={colorOptions}
+                  placeholder="What color?"
+                  value={orderColor}
+                  required
+                />
+              </Form.Group>
+              <Form.Group inline>
+                <Label size="large" color="violet" pointing="right">
+                  Quantity
+                </Label>
+                <Form.Input
+                  type="number"
+                  value={orderQty}
+                  onChange={this.handleQtyChange}
+                  placeholder="How Many?"
+                  required
+                />
+              </Form.Group>
+              <Form.Button onClick={this.handleAddToCart} basic color="green" animated="fade" fluid>
+                <Button.Content visible>Add Selected to Cart</Button.Content>
+                <Button.Content hidden>{formatPrice(product.price * orderQty)}</Button.Content>
+              </Form.Button>
+            </Form>
           </div>
         </ProductInfo>
       </ProductWrapper>
@@ -87,7 +111,7 @@ export default ProductDetail;
 
 const ProductWrapper = styled.div`
   position: relative;
-  padding-top: 50vh;
+  padding-top: 45vh;
   background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(0, 0, 255, 0.5)),
     url(${props => props.backdrop}) center no-repeat;
   background-size: cover;
@@ -106,68 +130,12 @@ const ProductInfo = styled.div`
 
   img {
     width: 100%;
+    height: 100%;
     object-fit: cover;
     position: relative;
     top: -5rem;
   }
 `;
-
-const CartButton = styled.button`
-  border: 1px solid #23d160;
-  border-radius: 1px;
-  margin: 0 0.25rem;
-  padding: 0.25rem;
-  box-shadow: none;
-  display: inline-block;
-  font-size: 1.125rem;
-  font-family: -apple-system, 'Dosis', sans-serif;
-  justify-content: center;
-  line-height: 1.5;
-  height: 2.25rem;
-  vertical-align: top;
-  user-select: none;
-  background-color: transparent;
-  color: #23d160;
-  cursor: pointer;
-  text-align: center;
-  white-space: nowrap;
-
-  &:hover {
-    background-color: #23d160;
-    color: #fff;
-  }
-`;
-
-const HomeButton = CartButton.extend`
-  border: 1px solid #deb887;
-  color: #deb887;
-
-  &:hover {
-    background-color: #deb887;
-  }
-`;
-
-const OrderForm = styled.form`
-  display: grid;
-  grid-row-gap: 0.5rem;
-  box-sizing: border-box;
-  align-items: center;
-  justify-content: start;
-  margin: 0.5rem 0;
-`;
-
-const Label = styled.label`
-  display: block;
-  font-size: 1.125rem;
-  font-family: -apple-system, 'Dosis', sans-serif;
-  justify-content: center;
-`;
-
-const sizeOptions = [
-  { key: 's', text: 'Small', value: 'S' },
-  { key: 'm', text: 'Medium', value: 'M' },
-  { key: 'l', text: 'Large', value: 'L' }
-];
 
 const colorOptions = [
   { key: 1, text: 'Red', value: 'Red' },
