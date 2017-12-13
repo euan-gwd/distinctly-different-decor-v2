@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import Overdrive from 'react-overdrive';
 import { formatPrice } from './helpers';
-import { Button, Form, Label, Header } from 'semantic-ui-react';
+import { Button, Form, Label, Header, Segment } from 'semantic-ui-react';
 
 class ProductDetail extends Component {
   state = { product: {}, orderQty: '', orderSize: '', orderColor: '' };
@@ -21,13 +21,8 @@ class ProductDetail extends Component {
 
   handleColorChange = (e, { value }) => this.setState({ orderColor: value });
 
-  handleQtyChange = (e, { value }) => {
-    if (value < 1) {
-      this.setState({ orderQty: '' });
-    } else {
-      this.setState({ orderQty: value });
-    }
-  };
+  handleQtyChange = (e, { value }) =>
+    value < 1 ? this.setState({ orderQty: '' }) : this.setState({ orderQty: Number(value) });
 
   handleAddToCart = () => {
     const orderItem = {
@@ -40,6 +35,7 @@ class ProductDetail extends Component {
     if (this.state.orderSize && this.state.orderColor && this.state.orderQty !== 'undefined') {
       this.props.addToOrder(orderItem);
     }
+    this.setState({ orderQty: '', orderSize: '', orderColor: '' });
   };
 
   render() {
@@ -56,12 +52,16 @@ class ProductDetail extends Component {
       <ProductWrapper backdrop={imageBackDrop}>
         <ProductInfo>
           <Overdrive id={`${product.id}`}>
-            <img src={imageThumb} alt={product.title} />
+            <Segment>
+              <Label as="p" color="violet" ribbon>
+                {formatPrice(product.price)} each
+              </Label>
+              <img src={imageThumb} alt={product.title} />
+            </Segment>
           </Overdrive>
           <div>
             <Header as="h2">{product.title}</Header>
             <Header.Subheader>{product.description}</Header.Subheader>
-            <p>{formatPrice(product.price)} each</p>
             <Form>
               <Form.Group inline required>
                 <Label size="large" color="violet" pointing="right">
@@ -97,7 +97,7 @@ class ProductDetail extends Component {
               </Form.Group>
               <Form.Button onClick={this.handleAddToCart} basic color="violet" animated="fade" fluid>
                 <Button.Content visible>Add Selected Item to Cart</Button.Content>
-                <Button.Content hidden>{formatPrice(product.price * orderQty)}</Button.Content>
+                <Button.Content hidden>{'Selected Total ' + formatPrice(product.price * orderQty)}</Button.Content>
               </Form.Button>
             </Form>
           </div>
@@ -111,7 +111,7 @@ export default ProductDetail;
 
 const ProductWrapper = styled.div`
   position: relative;
-  padding-top: 50vh;
+  padding-top: 32.5vh;
   background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(0, 0, 255, 0.5)),
     url(${props => props.backdrop}) center no-repeat;
   background-size: cover;
@@ -133,7 +133,7 @@ const ProductInfo = styled.div`
     height: 100%;
     object-fit: cover;
     position: relative;
-    top: -5rem;
+    /* top: -5rem; */
   }
 `;
 

@@ -24,7 +24,7 @@ const Poster = styled.img`
     transition: 0.5s;
     z-index: 3;
     transform-origin: center;
-    transform: scale(1.25);
+    transform: scale(1.15);
     transition: 0.5s;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);

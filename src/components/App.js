@@ -38,28 +38,30 @@ export default App;
 
 const AppContainer = styled.div`
   text-align: center;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(0, 0, 255, 0.3));
+  min-height: 100vh;
 `;
 
 const AppHeader = styled.div`
-  background-color: #ededed;
-  height: 60px;
+  background-color: rgba(255, 255, 255, 0.5);
+  height: 80px;
   padding: 10px;
   color: #131313;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 5;
+  z-index: 2;
 `;
 
 const Logo = styled.img`
-  height: 50px;
+  height: 65px;
   text-align: left;
 `;
 
 const Title = styled.h1`
   font-size: 1.5em;
-  flex-grow: 1;
   margin: 0;
 `;

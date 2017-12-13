@@ -31,5 +31,9 @@ const ProductGrid = styled.div`
   padding: 1rem;
   grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
   grid-gap: 0.5rem;
-  padding-top: 70px;
+  padding-top: 80px;
+
+  @media screen and (min-width: 1025px) {
+    grid-template-columns: repeat(auto-fit, minmax(212px, 1fr));
+  }
 `;
