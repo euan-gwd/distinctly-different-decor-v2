@@ -62,13 +62,9 @@ class ProductDetail extends Component {
       <ProductWrapper backdrop={imageBackDrop}>
         <ProductInfo>
           <Overdrive id={`${product.id}`}>
-            <Image
-              src={imageThumb}
-              alt={product.title}
-              label={{ color: 'violet', ribbon: 'true', content: [Pricing] }}
-            />
+            <Image src={imageThumb} alt={product.title} label={{ color: 'violet', ribbon: true, content: [Pricing] }} />
           </Overdrive>
-          <Content>
+          <div>
             <Header as="h2">{product.title}</Header>
             <Header.Subheader>{product.description}</Header.Subheader>
             <Form>
@@ -109,7 +105,7 @@ class ProductDetail extends Component {
                 <Button.Content hidden>{'Selected Total ' + formatPrice(product.price * orderQty)}</Button.Content>
               </Form.Button>
             </Form>
-          </Content>
+          </div>
         </ProductInfo>
       </ProductWrapper>
     );
@@ -128,14 +124,21 @@ const ProductWrapper = styled.div`
 `;
 
 const ProductInfo = styled.div`
+  display: grid;
   background: white;
   text-align: left;
-  padding: 1rem 1rem 2rem 10%;
-  display: grid;
-  grid-template-columns: minmax(125px, 255px) 1fr;
-  grid-column-gap: 1rem;
-`;
+  margin: 0;
+  padding: 1rem 1rem 3rem;
+  grid-template-columns: minmax(125px, 255px);
+  grid-template-rows: 1fr 1fr;
+  justify-content: center;
 
-const Content = styled.div`
-  align-self: center;
+  @media screen and (min-width: 641px) {
+    margin: 0;
+    padding: 1rem 1rem 2rem 10%;
+    grid-template-columns: minmax(125px, 255px) 1fr;
+    grid-template-rows: 0;
+    grid-column-gap: 1rem;
+    height: 47vh;
+  }
 `;

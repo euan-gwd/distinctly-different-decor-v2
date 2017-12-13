@@ -29,9 +29,9 @@ class App extends Component {
           <Title>Welcome to Distinctly Different Decor</Title>
           <Menu secondary>
             <Menu.Item as="a">
-              <Icon size="big" name="shopping basket" />
+              <Icon size="big" name="shopping basket" color="violet" />
               {totalItemsInCart > 0 && (
-                <Label color="violet" attached="top right">
+                <Label color="red" attached="top right">
                   {totalItemsInCart}
                 </Label>
               )}
