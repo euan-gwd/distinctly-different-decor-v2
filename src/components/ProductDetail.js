@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import Overdrive from 'react-overdrive';
 import { formatPrice } from './helpers';
-import { Button, Form, Label, Header, Segment } from 'semantic-ui-react';
+import { Button, Form, Label, Header, Segment, Image } from 'semantic-ui-react';
 
 class ProductDetail extends Component {
   state = { product: {}, orderQty: '', orderSize: '', orderColor: '' };
@@ -62,14 +62,13 @@ class ProductDetail extends Component {
       <ProductWrapper backdrop={imageBackDrop}>
         <ProductInfo>
           <Overdrive id={`${product.id}`}>
-            <Segment>
-              <Label as="p" color="violet" ribbon>
-                {Pricing}
-              </Label>
-              <img src={imageThumb} alt={product.title} />
-            </Segment>
+            <Image
+              src={imageThumb}
+              alt={product.title}
+              label={{ color: 'violet', ribbon: 'true', content: [Pricing] }}
+            />
           </Overdrive>
-          <div>
+          <Content>
             <Header as="h2">{product.title}</Header>
             <Header.Subheader>{product.description}</Header.Subheader>
             <Form>
@@ -105,12 +104,12 @@ class ProductDetail extends Component {
                   required
                 />
               </Form.Group>
-              <Form.Button onClick={this.handleAddToCart} basic color="violet" animated="fade" fluid>
+              <Form.Button onClick={this.handleAddToCart} basic color="violet" animated="fade">
                 <Button.Content visible>Add Selected Item to Cart</Button.Content>
                 <Button.Content hidden>{'Selected Total ' + formatPrice(product.price * orderQty)}</Button.Content>
               </Form.Button>
             </Form>
-          </div>
+          </Content>
         </ProductInfo>
       </ProductWrapper>
     );
@@ -121,7 +120,7 @@ export default ProductDetail;
 
 const ProductWrapper = styled.div`
   position: relative;
-  padding-top: 32.5vh;
+  padding-top: 50vh;
   background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(0, 0, 255, 0.5)),
     url(${props => props.backdrop}) center no-repeat;
   background-size: cover;
@@ -131,17 +130,12 @@ const ProductWrapper = styled.div`
 const ProductInfo = styled.div`
   background: white;
   text-align: left;
-  padding: 1rem 10%;
-  display: flex;
+  padding: 1rem 1rem 2rem 10%;
+  display: grid;
+  grid-template-columns: minmax(125px, 255px) 1fr;
+  grid-column-gap: 1rem;
+`;
 
-  > div {
-    margin-left: 20px;
-  }
-
-  img {
-    width: 100%;
-    object-fit: cover;
-    position: relative;
-    /* top: -5rem; */
-  }
+const Content = styled.div`
+  align-self: center;
 `;
