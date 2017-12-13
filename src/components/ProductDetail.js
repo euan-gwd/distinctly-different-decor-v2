@@ -48,13 +48,23 @@ class ProductDetail extends Component {
       imageThumb = require(`../assets/products/${product.thumbnail}`);
     }
 
+    const colorOptions = [
+      { key: 1, text: 'Red', value: 'Red' },
+      { key: 2, text: 'Green', value: 'Green' },
+      { key: 3, text: 'Blue', value: 'Blue' },
+      { key: 4, text: 'Yellow', value: 'Yellow' },
+      { key: 5, text: 'Black', value: 'Black' }
+    ];
+
+    const Pricing = formatPrice(product.price) + ' each';
+
     return (
       <ProductWrapper backdrop={imageBackDrop}>
         <ProductInfo>
           <Overdrive id={`${product.id}`}>
             <Segment>
               <Label as="p" color="violet" ribbon>
-                {formatPrice(product.price)} each
+                {Pricing}
               </Label>
               <img src={imageThumb} alt={product.title} />
             </Segment>
@@ -135,11 +145,3 @@ const ProductInfo = styled.div`
     /* top: -5rem; */
   }
 `;
-
-const colorOptions = [
-  { key: 1, text: 'Red', value: 'Red' },
-  { key: 2, text: 'Green', value: 'Green' },
-  { key: 3, text: 'Blue', value: 'Blue' },
-  { key: 4, text: 'Yellow', value: 'Yellow' },
-  { key: 5, text: 'Black', value: 'Black' }
-];
