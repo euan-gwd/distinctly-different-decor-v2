@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, Route, Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { Icon, Label, Menu } from 'semantic-ui-react';
 import logo from './logo.svg';
 import ProductsList from './ProductsList';
 import ProductDetail from './ProductDetail';
@@ -17,6 +18,8 @@ class App extends Component {
   };
 
   render() {
+    const totalItemsInCart = Object.keys(this.state.orders).length;
+
     return (
       <AppContainer>
         <AppHeader>
@@ -24,11 +27,22 @@ class App extends Component {
             <Logo src={logo} alt="logo" />
           </Link>
           <Title>Welcome to Distinctly Different Decor</Title>
+          <Menu secondary>
+            <Menu.Item as="a">
+              <Icon size="big" name="shopping basket" />
+              {totalItemsInCart > 0 && (
+                <Label color="violet" attached="top right">
+                  {totalItemsInCart}
+                </Label>
+              )}
+            </Menu.Item>
+          </Menu>
         </AppHeader>
         <Switch>
           <Route exact path="/" component={ProductsList} />
-          <Route path="/:id" render={props => <ProductDetail {...props} addToOrder={this.addToOrder} />} />
+          <Route path="/products/:id" render={props => <ProductDetail {...props} addToOrder={this.addToOrder} />} />
         </Switch>
+        <AppFooter>&copy;2017 Distinctly Different Decor All Rights Reserved</AppFooter>
       </AppContainer>
     );
   }
@@ -45,15 +59,25 @@ const AppContainer = styled.div`
 const AppHeader = styled.div`
   background-color: rgba(255, 255, 255, 0.5);
   height: 80px;
-  padding: 10px;
+  padding: 0 20px;
   color: #131313;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 2;
+`;
+const AppFooter = styled.div`
+  background-color: rgba(255, 255, 255, 0.5);
+  height: 20px;
+  padding: 0 20px;
+  color: #131313;
+  text-align: right;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 `;
 
 const Logo = styled.img`
@@ -64,4 +88,5 @@ const Logo = styled.img`
 const Title = styled.h1`
   font-size: 1.5em;
   margin: 0;
+  flex-grow: 1;
 `;

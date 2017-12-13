@@ -6,7 +6,7 @@ import Overdrive from 'react-overdrive';
 const Product = ({ product }) => {
   const productImage = require(`../assets/products/${product.thumbnail}`);
   return (
-    <Link to={`/${product.id}`}>
+    <Link to={`/products/${product.id}`}>
       <Overdrive id={`${product.id}`}>
         <Poster src={productImage} alt={product.title} />
       </Overdrive>
