@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import Overdrive from 'react-overdrive';
 import { formatPrice } from './helpers';
-import { Button, Form, Label, Header, Segment, Image } from 'semantic-ui-react';
+import { Button, Form, Label, Header, Image } from 'semantic-ui-react';
 
 class ProductDetail extends Component {
   state = { product: {}, orderQty: '', orderSize: '', orderColor: '' };
