@@ -5,7 +5,7 @@ import { Icon, Label, Menu } from 'semantic-ui-react';
 import logo from './logo.svg';
 import ProductsList from './Product/ProductsList';
 import ProductDetail from './Product/ProductDetail';
-import CheckOutCart from './CheckOut/CheckOutCart';
+import Cart from './CheckOut/CheckOutCart';
 
 class App extends Component {
   state = { orders: {} };
@@ -30,7 +30,7 @@ class App extends Component {
           <Title>Welcome to Distinctly Different Decor</Title>
           <Menu secondary>
             <Link to="/cart">
-              <Menu.Item as="a">
+              <Menu.Item>
                 <Icon size="big" name="shopping basket" color="violet" />
                 {totalItemsInCart > 0 && (
                   <Label color="red" attached="top right">
@@ -44,7 +44,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={ProductsList} />
           <Route path="/products/:id" render={props => <ProductDetail {...props} addToOrder={this.addToOrder} />} />
-          <Route path="/cart" render={props => <CheckOutCart {...props} Orders={this.state.orders} />} />
+          <Route path="/cart" render={props => <Cart {...props} Orders={this.state.orders} />} />
         </Switch>
         <AppFooter>&copy;2017 Distinctly Different Decor All Rights Reserved</AppFooter>
       </AppContainer>

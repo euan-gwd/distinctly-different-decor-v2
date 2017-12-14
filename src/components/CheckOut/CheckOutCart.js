@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-class CheckOutCart extends Component {
+class Cart extends Component {
   render() {
     return <div>test</div>;
   }
 }
 
-export default CheckOutCart;
+export default Cart;
