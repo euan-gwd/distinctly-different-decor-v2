@@ -3,8 +3,8 @@ import { Switch, Route, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Icon, Label, Menu } from 'semantic-ui-react';
 import logo from './logo.svg';
-import ProductsList from './ProductsList';
-import ProductDetail from './ProductDetail';
+import ProductsList from './Product/ProductsList';
+import ProductDetail from './Product/ProductDetail';
 
 class App extends Component {
   state = { orders: {} };

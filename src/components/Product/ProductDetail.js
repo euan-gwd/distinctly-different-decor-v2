@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import Overdrive from 'react-overdrive';
-import { formatPrice } from './helpers';
+import { formatPrice } from '../helpers';
 import { Button, Form, Label, Header, Image } from 'semantic-ui-react';
 
 class ProductDetail extends Component {
@@ -44,9 +44,15 @@ class ProductDetail extends Component {
       imageThumb = null;
 
     if (product.image && product.thumbnail !== undefined) {
-      imageBackDrop = require(`../assets/products/${product.image}`);
-      imageThumb = require(`../assets/products/${product.thumbnail}`);
+      imageBackDrop = require(`../../assets/products/${product.image}`);
+      imageThumb = require(`../../assets/products/${product.thumbnail}`);
     }
+
+    const sizeOptions = [
+      { key: 'sm', text: 'Small', value: 'Small' },
+      { key: 'md', text: 'Medium', value: 'Medium' },
+      { key: 'lg', text: 'Large', value: 'Large' }
+    ];
 
     const colorOptions = [
       { key: 1, text: 'Red', value: 'Red' },
@@ -67,14 +73,18 @@ class ProductDetail extends Component {
           <div>
             <Header as="h2">{product.title}</Header>
             <Header.Subheader>{product.description}</Header.Subheader>
-            <Form>
+            <Form unstackable>
               <Form.Group inline required>
                 <Label size="large" color="violet" pointing="right">
                   Size
                 </Label>
-                <Form.Radio label="Small" value="sm" checked={orderSize === 'sm'} onChange={this.handleSizeChange} />
-                <Form.Radio label="Medium" value="md" checked={orderSize === 'md'} onChange={this.handleSizeChange} />
-                <Form.Radio label="Large" value="lg" checked={orderSize === 'lg'} onChange={this.handleSizeChange} />
+                <Form.Select
+                  onChange={this.handleSizeChange}
+                  options={sizeOptions}
+                  placeholder="What size?"
+                  value={orderSize}
+                  required
+                />
               </Form.Group>
               <Form.Group inline>
                 <Label size="large" color="violet" pointing="right">
@@ -116,7 +126,7 @@ export default ProductDetail;
 
 const ProductWrapper = styled.div`
   position: relative;
-  padding-top: 50vh;
+  padding-top: 45vh;
   background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(0, 0, 255, 0.5)),
     url(${props => props.backdrop}) center no-repeat;
   background-size: cover;

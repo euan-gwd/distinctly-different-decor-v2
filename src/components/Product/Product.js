@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Overdrive from 'react-overdrive';
 
 const Product = ({ product }) => {
-  const productImage = require(`../assets/products/${product.thumbnail}`);
+  const productImage = require(`../../assets/products/${product.thumbnail}`);
   return (
     <Link to={`/products/${product.id}`}>
       <Overdrive id={`${product.id}`}>
