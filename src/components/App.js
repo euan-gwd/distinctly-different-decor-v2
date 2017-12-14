@@ -5,6 +5,7 @@ import { Icon, Label, Menu } from 'semantic-ui-react';
 import logo from './logo.svg';
 import ProductsList from './Product/ProductsList';
 import ProductDetail from './Product/ProductDetail';
+import CheckOut from './CheckOut/CheckOut';
 
 class App extends Component {
   state = { orders: {} };
@@ -41,6 +42,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={ProductsList} />
           <Route path="/products/:id" render={props => <ProductDetail {...props} addToOrder={this.addToOrder} />} />
+          <Route path="/checkout" render={props => <CheckOut {...props} Orders={this.state.orders} />} />
         </Switch>
         <AppFooter>&copy;2017 Distinctly Different Decor All Rights Reserved</AppFooter>
       </AppContainer>
