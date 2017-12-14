@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Icon, Label, Menu } from 'semantic-ui-react';
 import logo from './logo.svg';
@@ -18,31 +18,27 @@ class App extends Component {
     this.setState({ orders });
   };
 
-  handleLogoClick = () => {
-    this.context.router.transitionTo(`/`);
-  };
-
-  handleCheckOutClick = () => {
-    this.context.router.transitionTo(`/cart`);
-  };
-
   render() {
     const totalItemsInCart = Object.keys(this.state.orders).length;
 
     return (
       <AppContainer>
         <AppHeader>
-          <Logo src={logo} alt="logo" onClick={this.handleLogoClick} />
+          <Link to="/">
+            <Logo src={logo} alt="logo" onClick={this.handleLogoClick} />
+          </Link>
           <Title>Welcome to Distinctly Different Decor</Title>
           <Menu secondary>
-            <Menu.Item as="a" onClick={this.handleLogoClick}>
-              <Icon size="big" name="shopping basket" color="violet" />
-              {totalItemsInCart > 0 && (
-                <Label color="red" attached="top right">
-                  {totalItemsInCart}
-                </Label>
-              )}
-            </Menu.Item>
+            <Link to="/cart">
+              <Menu.Item as="a">
+                <Icon size="big" name="shopping basket" color="violet" />
+                {totalItemsInCart > 0 && (
+                  <Label color="red" attached="top right">
+                    {totalItemsInCart}
+                  </Label>
+                )}
+              </Menu.Item>
+            </Link>
           </Menu>
         </AppHeader>
         <Switch>
