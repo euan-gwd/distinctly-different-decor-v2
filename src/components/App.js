@@ -17,7 +17,7 @@ class App extends Component {
   async componentDidMount() {
     try {
       //retrieve product list from firebase
-      firebase
+      await firebase
         .database()
         .ref('products')
         .on('value', res => {
@@ -29,7 +29,6 @@ class App extends Component {
           }
           this.setState({ inventory });
         });
-      // this.setState({ productData });
     } catch (err) {
       console.log(err);
     }
