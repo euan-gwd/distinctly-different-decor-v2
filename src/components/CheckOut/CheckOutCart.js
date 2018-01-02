@@ -6,7 +6,7 @@ import LineItem from './LineItem';
 
 class Cart extends Component {
   render() {
-    const { Orders } = this.props;
+    const { Orders, removeFromOrder } = this.props;
     const orderIds = Object.keys(this.props.Orders);
     const totalCost = orderIds.reduce((total, orderId) => {
       const lineItemTotal = Orders[orderId].orderItemTotal;
@@ -30,7 +30,9 @@ class Cart extends Component {
           </Table.Header>
           {Orders && (
             <Table.Body>
-              {Object.keys(this.props.Orders).map(key => <LineItem key={key} details={Orders[key]} index={key} />)}
+              {Object.keys(Orders).map(key => (
+                <LineItem key={key} details={Orders[key]} id={key} removeFromOrder={removeFromOrder} />
+              ))}
             </Table.Body>
           )}
           <Table.Footer fullWidth>

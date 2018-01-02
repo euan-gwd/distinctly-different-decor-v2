@@ -22,6 +22,12 @@ class App extends Component {
     this.setState({ orders });
   };
 
+  removeFromOrder = orderItem => {
+    const updateOrder = { ...this.state.orders };
+    delete updateOrder[orderItem];
+    this.setState({ orders: updateOrder });
+  };
+
   render() {
     const totalItemsInCart = Object.keys(this.state.orders).length;
 
@@ -48,7 +54,10 @@ class App extends Component {
         <Switch>
           <Route exact path="/" render={props => <ProductsList />} />
           <Route path="/products/:id" render={props => <ProductDetail {...props} addToOrder={this.addToOrder} />} />
-          <Route path="/cart" render={props => <Cart {...props} Orders={this.state.orders} />} />
+          <Route
+            path="/cart"
+            render={props => <Cart {...props} Orders={this.state.orders} removeFromOrder={this.removeFromOrder} />}
+          />
         </Switch>
         <AppFooter>&copy;2017 Distinctly Different Decor All Rights Reserved</AppFooter>
       </AppContainer>

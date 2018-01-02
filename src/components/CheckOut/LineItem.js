@@ -4,11 +4,11 @@ import { Table, Header, Image, Icon } from 'semantic-ui-react';
 
 class LineItem extends Component {
   render() {
-    const { details } = this.props;
+    const { details, id, removeFromOrder } = this.props;
     return (
       <Table.Row textAlign="center">
         <Table.Cell>
-          <Header as="h2" image>
+          <Header as="h4" image>
             <Image src={details.thumbnail} alt={details.title} rounded size="mini" />
           </Header>
         </Table.Cell>
@@ -18,7 +18,15 @@ class LineItem extends Component {
         <Table.Cell>{details.orderQty}</Table.Cell>
         <Table.Cell>{formatPrice(details.orderItemTotal)}</Table.Cell>
         <Table.Cell>
-          <Icon name="delete" size="mini" link color="red" />
+          <Icon
+            name="delete"
+            size="mini"
+            link
+            color="red"
+            onClick={() => {
+              removeFromOrder(id);
+            }}
+          />
         </Table.Cell>
       </Table.Row>
     );
