@@ -3,22 +3,11 @@ import styled from 'styled-components';
 import Product from './Product';
 
 class ProductsList extends Component {
-  state = { productData: [] };
-
-  async componentDidMount() {
-    try {
-      const res = await fetch(`http://localhost:9000/products`);
-      const productData = await res.json();
-      this.setState({ productData });
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
   render() {
+    const { productData } = this.props;
     return (
       <div>
-        <ProductGrid>{this.state.productData.map(item => <Product key={item.id} product={item} />)}</ProductGrid>
+        <ProductGrid>{productData.map(item => <Product key={item.id} product={item} />)}</ProductGrid>
       </div>
     );
   }

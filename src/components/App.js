@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import * as firebase from 'firebase';
+import config from '../firebase.config';
 import { Switch, Route, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Icon, Label, Menu } from 'semantic-ui-react';
@@ -7,8 +9,32 @@ import ProductsList from './Product/ProductsList';
 import ProductDetail from './Product/ProductDetail';
 import Cart from './CheckOut/CheckOutCart';
 
+firebase.initializeApp(config);
+
 class App extends Component {
-  state = { orders: {} };
+  state = { orders: {}, inventory: [] };
+
+  async componentDidMount() {
+    try {
+      //retrieve product list from firebase
+      firebase
+        .database()
+        .ref('products')
+        .on('value', res => {
+          const productsData = res.val();
+          const inventory = [];
+          for (let objKey in productsData) {
+            productsData[objKey].key = objKey;
+            inventory.push(productsData[objKey]);
+          }
+          console.log(inventory);
+          // this.setState({ scribes: productsDataDataArray });
+        });
+      // this.setState({ productData });
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   addToOrder = orderItem => {
     let orders = {};

@@ -6,10 +6,12 @@
     "amwic-react-scripts": "1.2.16",
     "eslint-config-prettier": "^2.9.0",
     "eslint-config-react-app": "^2.0.1",
+    "firebase": "^4.8.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-overdrive": "^0.0.9",
     "react-router-dom": "^4.2.2",
+    "rebase": "^0.3.0",
     "semantic-ui-css": "^2.2.12",
     "semantic-ui-react": "^0.77.1",
     "styled-components": "^2.4.0"
