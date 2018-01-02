@@ -8,13 +8,11 @@ class LineItem extends Component {
     return (
       <Table.Row textAlign="center">
         <Table.Cell>
-          <Header as="h4" image>
+          <Header as="h2" image>
             <Image src={details.thumbnail} alt={details.title} rounded size="mini" />
           </Header>
         </Table.Cell>
-        <Table.Cell>
-          <Header as="h4">{details.title}</Header>
-        </Table.Cell>
+        <Table.Cell>{details.title}</Table.Cell>
         <Table.Cell>{details.orderSize}</Table.Cell>
         <Table.Cell>{details.orderColor}</Table.Cell>
         <Table.Cell>{details.orderQty}</Table.Cell>

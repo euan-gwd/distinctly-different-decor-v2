@@ -1,14 +1,21 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import LineItem from './LineItem';
+import { formatPrice } from '../helpers';
 import { Table } from 'semantic-ui-react';
+import LineItem from './LineItem';
 
 class Cart extends Component {
   render() {
     const { Orders } = this.props;
+    const orderIds = Object.keys(this.props.Orders);
+    const totalCost = orderIds.reduce((total, orderId) => {
+      const lineItemTotal = Orders[orderId].orderItemTotal;
+      return total + lineItemTotal;
+    }, 0);
+
     return (
       <Wrapper>
-        <h3>Your Order</h3>
+        <h3>Please Confirm Your Order</h3>
         <Table selectable stackable color="violet">
           <Table.Header fullWidth>
             <Table.Row textAlign="center">
@@ -26,6 +33,17 @@ class Cart extends Component {
               {Object.keys(this.props.Orders).map(key => <LineItem key={key} details={Orders[key]} index={key} />)}
             </Table.Body>
           )}
+          <Table.Footer fullWidth>
+            <Table.Row textAlign="center">
+              <Table.HeaderCell />
+              <Table.HeaderCell />
+              <Table.HeaderCell />
+              <Table.HeaderCell />
+              <Table.HeaderCell>Total</Table.HeaderCell>
+              <Table.HeaderCell>{formatPrice(totalCost)}</Table.HeaderCell>
+              <Table.HeaderCell />
+            </Table.Row>
+          </Table.Footer>
         </Table>
       </Wrapper>
     );
