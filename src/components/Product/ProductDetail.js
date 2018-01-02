@@ -27,7 +27,7 @@ class ProductDetail extends Component {
 
   handleColorChange = (e, { value }) => this.setState({ orderColor: value });
 
-  handleQtyChange = (e, { value }) => (value < 1 ? this.setState({ orderQty: 0 }) : this.setState({ orderQty: value }));
+  handleQtyChange = (e, { value }) => this.setState({ orderQty: value });
 
   handleAddToCart = () => {
     const orderItem = {
@@ -37,7 +37,10 @@ class ProductDetail extends Component {
       orderItemTotal: this.state.product.price * this.state.orderQty,
       ...this.state.product
     };
-    if (this.state.orderSize && this.state.orderColor && this.state.orderQty !== 'undefined') {
+    if (
+      (this.state.orderSize && this.state.orderColor && this.state.orderQty !== 'undefined') ||
+      (this.state.orderSize && this.state.orderColor && this.state.orderQty !== '')
+    ) {
       this.props.addToOrder(orderItem);
     }
     this.setState({ orderQty: '', orderSize: '', orderColor: '' });
