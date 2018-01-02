@@ -45,13 +45,6 @@ class ProductDetail extends Component {
 
   render() {
     const { product, orderSize, orderColor, orderQty } = this.state;
-    let imageBackDrop,
-      imageThumb = null;
-
-    if (product.image && product.thumbnail !== undefined) {
-      imageBackDrop = require(`../../assets/products/${product.image}`);
-      imageThumb = require(`../../assets/products/${product.thumbnail}`);
-    }
 
     const sizeOptions = [
       { key: 'sm', text: 'Small', value: 'Small' },
@@ -92,10 +85,14 @@ class ProductDetail extends Component {
     const Pricing = formatPrice(product.price) + ' each';
 
     return (
-      <ProductWrapper backdrop={imageBackDrop}>
+      <ProductWrapper backdrop={product.image}>
         <ProductInfo>
           <Overdrive id={`${product.id}`}>
-            <Image src={imageThumb} alt={product.title} label={{ color: 'violet', ribbon: true, content: [Pricing] }} />
+            <Image
+              src={product.thumbnail}
+              alt={product.title}
+              label={{ color: 'violet', ribbon: true, content: [Pricing] }}
+            />
           </Overdrive>
           <div>
             <Header as="h2">{product.title}</Header>

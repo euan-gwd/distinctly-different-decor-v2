@@ -5,16 +5,12 @@ import { Table, Header, Image, Icon } from 'semantic-ui-react';
 class LineItem extends Component {
   render() {
     const { details } = this.props;
-    let imageThumb = null;
-    if (details.image !== undefined) {
-      imageThumb = require(`../../assets/products/${details.thumbnail}`);
-    }
 
     return (
       <Table.Row textAlign="center">
         <Table.Cell>
           <Header as="h4" image>
-            <Image src={imageThumb} alt={details.title} rounded size="mini" />
+            <Image src={details.thumbnail} alt={details.title} rounded size="mini" />
           </Header>
         </Table.Cell>
         <Table.Cell>
