@@ -39,7 +39,7 @@ class Cart extends Component {
               <Table.HeaderCell />
               <Table.HeaderCell />
               <Table.HeaderCell />
-              <Table.HeaderCell>Total</Table.HeaderCell>
+              <Table.HeaderCell>Total: </Table.HeaderCell>
               <Table.HeaderCell>{formatPrice(totalCost)}</Table.HeaderCell>
               <Table.HeaderCell />
             </Table.Row>

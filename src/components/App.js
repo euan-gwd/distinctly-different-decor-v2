@@ -12,27 +12,7 @@ import Cart from './CheckOut/CheckOutCart';
 firebase.initializeApp(config);
 
 class App extends Component {
-  state = { orders: {}, inventory: [] };
-
-  async componentDidMount() {
-    try {
-      //retrieve product list from firebase
-      await firebase
-        .database()
-        .ref('products')
-        .on('value', res => {
-          const productsData = res.val();
-          const inventory = [];
-          for (let objKey in productsData) {
-            productsData[objKey].key = objKey;
-            inventory.push(productsData[objKey]);
-          }
-          this.setState({ inventory });
-        });
-    } catch (err) {
-      console.log(err);
-    }
-  }
+  state = { orders: {} };
 
   addToOrder = orderItem => {
     let orders = {};
@@ -66,7 +46,7 @@ class App extends Component {
           </Menu>
         </AppHeader>
         <Switch>
-          <Route exact path="/" render={props => <ProductsList productData={this.state.inventory} />} />
+          <Route exact path="/" render={props => <ProductsList />} />
           <Route path="/products/:id" render={props => <ProductDetail {...props} addToOrder={this.addToOrder} />} />
           <Route path="/cart" render={props => <Cart {...props} Orders={this.state.orders} />} />
         </Switch>

@@ -1,14 +1,42 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import styled from 'styled-components';
+import * as firebase from 'firebase';
 import Product from './Product';
 
 class ProductsList extends Component {
+  state = { inventory: [], loaded: false };
+
+  async componentDidMount() {
+    try {
+      //retrieve product list from firebase
+      await firebase
+        .database()
+        .ref('products')
+        .on('value', res => {
+          const productsData = res.val();
+          const inventory = [];
+          for (let objKey in productsData) {
+            productsData[objKey].key = objKey;
+            inventory.push(productsData[objKey]);
+          }
+          this.setState({ inventory, loaded: true });
+        });
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   render() {
-    const { productData } = this.props;
     return (
-      <div>
-        <ProductGrid>{productData.map(item => <Product key={item.id} product={item} />)}</ProductGrid>
-      </div>
+      <Fragment>
+        {this.state.loaded ? (
+          <ProductGrid>{this.state.inventory.map(item => <Product key={item.id} product={item} />)}</ProductGrid>
+        ) : (
+          <div>
+            <Loader>Loading...</Loader>
+          </div>
+        )}
+      </Fragment>
     );
   }
 }
@@ -21,4 +49,54 @@ const ProductGrid = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
   grid-gap: 0.5rem;
   padding-top: 100px;
+`;
+
+const Loader = styled.div`
+  border-radius: 50%;
+  width: 2.5em;
+  height: 2.5em;
+  animation-fill-mode: both;
+  animation: load7 1.8s infinite ease-in-out;
+  color: lightslategray;
+  font-size: 10px;
+  margin: 80px auto;
+  position: relative;
+  text-indent: -9999em;
+  transform: translateZ(0);
+  animation-delay: -0.16s;
+
+  &::before,
+  &::after {
+    border-radius: 50%;
+    width: 2.5em;
+    height: 2.5em;
+    animation-fill-mode: both;
+    animation: load7 1.8s infinite ease-in-out;
+  }
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+  }
+
+  &::before {
+    left: -3.5em;
+    animation-delay: -0.32s;
+  }
+
+  &::after {
+    left: 3.5em;
+  }
+
+  @keyframes load7 {
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 2.5em 0 -1.3em;
+  }
+  40% {
+    box-shadow: 0 2.5em 0 0;
+  }
 `;
