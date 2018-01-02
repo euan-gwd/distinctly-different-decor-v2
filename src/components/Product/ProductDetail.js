@@ -21,8 +21,7 @@ class ProductDetail extends Component {
 
   handleColorChange = (e, { value }) => this.setState({ orderColor: value });
 
-  handleQtyChange = (e, { value }) =>
-    value < 1 ? this.setState({ orderQty: '' }) : this.setState({ orderQty: Number(value) });
+  handleQtyChange = (e, { value }) => (value < 1 ? this.setState({ orderQty: 0 }) : this.setState({ orderQty: value }));
 
   handleAddToCart = () => {
     const orderItem = {
@@ -62,6 +61,28 @@ class ProductDetail extends Component {
       { key: 5, text: 'Black', value: 'Black' }
     ];
 
+    const qtyOptions = [
+      { key: 1, text: '1', value: '1' },
+      { key: 2, text: '2', value: '2' },
+      { key: 3, text: '3', value: '3' },
+      { key: 4, text: '4', value: '4' },
+      { key: 5, text: '5', value: '5' },
+      { key: 6, text: '6', value: '6' },
+      { key: 7, text: '7', value: '7' },
+      { key: 8, text: '8', value: '8' },
+      { key: 9, text: '9', value: '9' },
+      { key: 10, text: '10', value: '10' },
+      { key: 20, text: '20', value: '20' },
+      { key: 30, text: '30', value: '30' },
+      { key: 40, text: '40', value: '40' },
+      { key: 50, text: '50', value: '50' },
+      { key: 60, text: '60', value: '60' },
+      { key: 70, text: '70', value: '70' },
+      { key: 80, text: '80', value: '80' },
+      { key: 90, text: '90', value: '90' },
+      { key: 100, text: '100', value: '100' }
+    ];
+
     const Pricing = formatPrice(product.price) + ' each';
 
     return (
@@ -73,48 +94,53 @@ class ProductDetail extends Component {
           <div>
             <Header as="h2">{product.title}</Header>
             <Header.Subheader>{product.description}</Header.Subheader>
-            <Form unstackable>
-              <Form.Group inline required>
-                <Label size="large" color="violet" pointing="right">
-                  Size
-                </Label>
-                <Form.Select
-                  onChange={this.handleSizeChange}
-                  options={sizeOptions}
-                  placeholder="What size?"
-                  value={orderSize}
-                  required
-                />
-              </Form.Group>
-              <Form.Group inline>
-                <Label size="large" color="violet" pointing="right">
-                  Color
-                </Label>
-                <Form.Select
-                  onChange={this.handleColorChange}
-                  options={colorOptions}
-                  placeholder="What color?"
-                  value={orderColor}
-                  required
-                />
-              </Form.Group>
-              <Form.Group inline>
-                <Label size="large" color="violet" pointing="right">
-                  Quantity
-                </Label>
-                <Form.Input
-                  type="number"
-                  value={orderQty}
-                  onChange={this.handleQtyChange}
-                  placeholder="How Many?"
-                  required
-                />
-              </Form.Group>
-              <Form.Button onClick={this.handleAddToCart} basic color="violet" animated="fade">
-                <Button.Content visible>Add Selected Item to Cart</Button.Content>
-                <Button.Content hidden>{'Selected Total ' + formatPrice(product.price * orderQty)}</Button.Content>
-              </Form.Button>
-            </Form>
+            <FormWrapper>
+              <Form unstackable>
+                <Form.Group inline required>
+                  <Label size="large" color="violet" pointing="right">
+                    Size
+                  </Label>
+                  <Form.Select
+                    upward
+                    onChange={this.handleSizeChange}
+                    options={sizeOptions}
+                    placeholder="What size?"
+                    value={orderSize}
+                    required
+                  />
+                </Form.Group>
+                <Form.Group inline>
+                  <Label size="large" color="violet" pointing="right">
+                    Color
+                  </Label>
+                  <Form.Select
+                    upward
+                    onChange={this.handleColorChange}
+                    options={colorOptions}
+                    placeholder="What color?"
+                    value={orderColor}
+                    required
+                  />
+                </Form.Group>
+                <Form.Group inline>
+                  <Label size="large" color="violet" pointing="right">
+                    Quantity
+                  </Label>
+                  <Form.Select
+                    upward
+                    onChange={this.handleQtyChange}
+                    options={qtyOptions}
+                    placeholder="How Many?"
+                    value={orderQty}
+                    required
+                  />
+                </Form.Group>
+                <Form.Button onClick={this.handleAddToCart} basic color="violet" animated="fade">
+                  <Button.Content visible>Add Selected Item to Cart</Button.Content>
+                  <Button.Content hidden>{'Selected Total ' + formatPrice(product.price * orderQty)}</Button.Content>
+                </Form.Button>
+              </Form>
+            </FormWrapper>
           </div>
         </ProductInfo>
       </ProductWrapper>
@@ -131,6 +157,7 @@ const ProductWrapper = styled.div`
     url(${props => props.backdrop}) center no-repeat;
   background-size: cover;
   background-origin: border-box;
+  min-height: 100vh;
 `;
 
 const ProductInfo = styled.div`
@@ -142,13 +169,21 @@ const ProductInfo = styled.div`
   grid-template-columns: minmax(125px, 255px);
   grid-template-rows: 1fr 1fr;
   justify-content: center;
+  height: 85vh;
+  min-height: 85vh;
 
   @media screen and (min-width: 641px) {
-    margin: 0;
-    padding: 1rem 1rem 2rem 10%;
+    margin: 0 0 3rem;
+    padding: 1rem 1rem 1rem 10%;
     grid-template-columns: minmax(125px, 255px) 1fr;
     grid-template-rows: 0;
     grid-column-gap: 1rem;
-    height: 47vh;
+    min-height: 47vh;
+    height: 285px;
   }
+`;
+
+const FormWrapper = styled.div`
+  margin: 1rem 0 0;
+  box-sizing: border-box;
 `;
