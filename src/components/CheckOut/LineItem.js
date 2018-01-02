@@ -5,7 +5,6 @@ import { Table, Header, Image, Icon } from 'semantic-ui-react';
 class LineItem extends Component {
   render() {
     const { details } = this.props;
-
     return (
       <Table.Row textAlign="center">
         <Table.Cell>

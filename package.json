@@ -1,6 +1,6 @@
 {
   "name": "ddd-website-rebuild",
-  "version": "0.5.0",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "amwic-react-scripts": "1.2.16",
@@ -11,7 +11,6 @@
     "react-dom": "^16.2.0",
     "react-overdrive": "^0.0.9",
     "react-router-dom": "^4.2.2",
-    "rebase": "^0.3.0",
     "semantic-ui-css": "^2.2.12",
     "semantic-ui-react": "^0.77.1",
     "styled-components": "^2.4.0"
@@ -20,10 +19,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "testdb": "json-server --watch src/assets/products/productData.json --port 9000",
     "eject": "react-scripts eject"
   },
-  "devDependencies": {
-    "json-server": "^0.12.1"
-  }
+  "devDependencies": {}
 }
