@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import * as firebase from 'firebase';
 import styled from 'styled-components';
 import Overdrive from 'react-overdrive';
 import { formatPrice } from '../helpers';
@@ -9,9 +10,14 @@ class ProductDetail extends Component {
 
   async componentDidMount() {
     try {
-      const res = await fetch(`http://localhost:9000/products/${this.props.match.params.id}`);
-      const product = await res.json();
-      this.setState({ product });
+      //retrieve selected product from firebase
+      await firebase
+        .database()
+        .ref(`products/${this.props.match.params.id}`)
+        .on('value', res => {
+          const product = res.val();
+          this.setState({ product });
+        });
     } catch (error) {
       console.log(error);
     }
