@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { formatPrice } from '../helpers';
-import { Table, Header, Image, Icon } from 'semantic-ui-react';
+import { Table, Image, Icon } from 'semantic-ui-react';
 
 class LineItem extends Component {
   render() {
@@ -8,9 +8,7 @@ class LineItem extends Component {
     return (
       <Table.Row textAlign="center">
         <Table.Cell>
-          <Header as="h4" image>
-            <Image src={details.thumbnail} alt={details.title} rounded size="mini" />
-          </Header>
+          <Image src={details.thumbnail} alt={details.title} rounded size="tiny" />
         </Table.Cell>
         <Table.Cell>{details.title}</Table.Cell>
         <Table.Cell>{details.orderSize}</Table.Cell>
