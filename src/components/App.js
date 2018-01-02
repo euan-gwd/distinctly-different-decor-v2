@@ -27,8 +27,7 @@ class App extends Component {
             productsData[objKey].key = objKey;
             inventory.push(productsData[objKey]);
           }
-          console.log(inventory);
-          // this.setState({ scribes: productsDataDataArray });
+          this.setState({ inventory });
         });
       // this.setState({ productData });
     } catch (err) {
@@ -68,7 +67,7 @@ class App extends Component {
           </Menu>
         </AppHeader>
         <Switch>
-          <Route exact path="/" component={ProductsList} />
+          <Route exact path="/" render={props => <ProductsList productData={this.state.inventory} />} />
           <Route path="/products/:id" render={props => <ProductDetail {...props} addToOrder={this.addToOrder} />} />
           <Route path="/cart" render={props => <Cart {...props} Orders={this.state.orders} />} />
         </Switch>
