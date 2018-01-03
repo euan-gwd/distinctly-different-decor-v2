@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { formatPrice } from '../helpers';
-import { Table, Image, Icon } from 'semantic-ui-react';
+import { Table, Image, Icon, Button } from 'semantic-ui-react';
 
 class LineItem extends Component {
   render() {
@@ -16,15 +16,20 @@ class LineItem extends Component {
         <Table.Cell>{details.orderQty}</Table.Cell>
         <Table.Cell>{formatPrice(details.orderItemTotal)}</Table.Cell>
         <Table.Cell>
-          <Icon
-            name="delete"
-            size="mini"
-            link
-            color="red"
+          <Button
             onClick={() => {
               removeFromOrder(id);
             }}
-          />
+            basic
+            negative="true"
+            animated="fade"
+            size="mini"
+          >
+            <Button.Content visible>
+              <Icon name="delete" />
+            </Button.Content>
+            <Button.Content hidden>Delete</Button.Content>
+          </Button>
         </Table.Cell>
       </Table.Row>
     );

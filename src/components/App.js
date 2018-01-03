@@ -46,7 +46,7 @@ class App extends Component {
           <Menu secondary>
             <Link to="/cart">
               <Menu.Item>
-                <Icon size="big" name="shopping basket" color="violet" />
+                <Icon size="large" name="shopping basket" color="violet" />
                 {totalItemsInCart > 0 && (
                   <Label color="red" attached="top right">
                     {totalItemsInCart}

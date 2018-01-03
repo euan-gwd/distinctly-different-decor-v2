@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { formatPrice } from '../helpers';
-import { Table, Icon } from 'semantic-ui-react';
+import { Table, Icon, Button } from 'semantic-ui-react';
 import LineItem from './LineItem';
 
 class Cart extends Component {
@@ -55,7 +55,7 @@ class Cart extends Component {
                 <Table.Cell />
                 <Table.Cell />
                 <Table.Cell>
-                  <Icon name="frown" size="large" color="violet" />
+                  <Icon name="frown" size="huge" color="violet" />
                 </Table.Cell>
                 <Table.Cell>Cart is Empty</Table.Cell>
                 <Table.Cell />
@@ -66,13 +66,19 @@ class Cart extends Component {
           )}
           <Table.Footer fullWidth>
             <Table.Row textAlign="center">
-              <Table.HeaderCell />
-              <Table.HeaderCell />
-              <Table.HeaderCell />
-              <Table.HeaderCell />
-              <Table.HeaderCell>Total: </Table.HeaderCell>
+              <Table.HeaderCell colSpan="4" />
+              <Table.HeaderCell>Total:</Table.HeaderCell>
               <Table.HeaderCell>{formatPrice(totalCost)}</Table.HeaderCell>
-              <Table.HeaderCell />
+              <Table.HeaderCell>
+                {totalOrders > 0 && (
+                  <Button onClick={this.handleConfirm} basic animated="fade" positive="true" size="mini">
+                    <Button.Content visible>
+                      <Icon name="check" />
+                    </Button.Content>
+                    <Button.Content hidden>Confirm</Button.Content>
+                  </Button>
+                )}
+              </Table.HeaderCell>
             </Table.Row>
           </Table.Footer>
         </Table>
