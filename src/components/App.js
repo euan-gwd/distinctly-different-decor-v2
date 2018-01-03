@@ -64,7 +64,6 @@ class App extends Component {
             render={props => <Cart {...props} Orders={this.state.orders} removeFromOrder={this.removeFromOrder} />}
           />
         </Switch>
-        <AppFooter>&copy;2017 Distinctly Different Decor All Rights Reserved</AppFooter>
       </AppContainer>
     );
   }
@@ -90,16 +89,6 @@ const AppHeader = styled.div`
   top: 0;
   width: 100%;
   z-index: 2;
-`;
-const AppFooter = styled.div`
-  background-color: rgba(255, 255, 255, 0.5);
-  height: 20px;
-  padding: 0 20px;
-  color: #131313;
-  text-align: right;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
 `;
 
 const Logo = styled.img`

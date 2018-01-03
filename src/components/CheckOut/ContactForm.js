@@ -104,4 +104,7 @@ const FormWrapper = styled.div`
   display: grid;
   grid-row-gap: 1rem;
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 `;

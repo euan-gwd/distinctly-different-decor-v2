@@ -89,6 +89,7 @@ class Cart extends Component {
           </Table.Footer>
         </Table>
         {showForm && <ContactForm />}
+        <AppFooter>&copy;2017 Distinctly Different Decor All Rights Reserved</AppFooter>
       </Wrapper>
     );
   }
@@ -101,4 +102,17 @@ const Wrapper = styled.div`
   padding: 100px 0 0;
   width: 75vw;
   box-sizing: border-box;
+`;
+
+const AppFooter = styled.div`
+  background-color: rgba(255, 255, 255, 0.5);
+  height: 20px;
+  padding: 0;
+  color: #131313;
+  text-align: right;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  z-index: 0;
 `;

@@ -36,6 +36,7 @@ class ProductsList extends Component {
             <Loader>Loading...</Loader>
           </div>
         )}
+        <AppFooter>&copy;2017 Distinctly Different Decor All Rights Reserved</AppFooter>
       </Fragment>
     );
   }
@@ -49,6 +50,19 @@ const ProductGrid = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
   grid-gap: 0.5rem;
   padding-top: 100px;
+`;
+
+const AppFooter = styled.div`
+  background-color: rgba(255, 255, 255, 0.5);
+  height: 20px;
+  padding: 0;
+  color: #131313;
+  text-align: right;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  z-index: 0;
 `;
 
 const Loader = styled.div`
