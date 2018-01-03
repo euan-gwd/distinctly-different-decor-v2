@@ -3,21 +3,35 @@ import styled from 'styled-components';
 import { Icon, Button, Form } from 'semantic-ui-react';
 
 class ContactForm extends Component {
-  state = {};
+  state = {
+    name: '',
+    email: '',
+    phone: '',
+    nameFieldError: false,
+    emailFieldError: false
+  };
+
+  handleNameChange = (e, { value }) => this.setState({ name: value, nameFieldError: false });
+  handlePhoneChange = (e, { value }) => this.setState({ phone: value });
+  handleEmailChange = (e, { value }) => this.setState({ email: value, emailFieldError: false });
+  handleSubmit = () => {
+    console.log('button clicked');
+  };
+
   render() {
     return (
       <FormWrapper>
-        <Form>
+        <Form onSubmit={this.handleSubmit}>
           <Form.Group inline>
-            <Form.Field>
+            <Form.Field required>
               <label>Name</label>
               <input type="text" placeholder="Name" />
             </Form.Field>
             <Form.Field>
               <label>Phone</label>
-              <input type="tel" placeholder="Phone" />
+              <input type="tel" placeholder="Phone (optional)" />
             </Form.Field>
-            <Form.Field>
+            <Form.Field required>
               <label>Email</label>
               <input type="email" placeholder="Email" />
             </Form.Field>

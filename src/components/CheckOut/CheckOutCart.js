@@ -77,7 +77,7 @@ class Cart extends Component {
               <Table.HeaderCell>{formatPrice(totalCost)}</Table.HeaderCell>
               <Table.HeaderCell>
                 {totalOrders > 0 && (
-                  <Button onClick={this.handleConfirm} basic animated="fade" positive="true" size="mini">
+                  <Button onClick={this.handleConfirm} basic animated="fade" positive={true} size="mini">
                     <Button.Content visible>
                       <Icon name="check" />
                     </Button.Content>

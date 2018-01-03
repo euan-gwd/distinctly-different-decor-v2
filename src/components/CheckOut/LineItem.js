@@ -21,7 +21,7 @@ class LineItem extends Component {
               removeFromOrder(id);
             }}
             basic
-            negative="true"
+            negative={true}
             animated="fade"
             size="mini"
           >
