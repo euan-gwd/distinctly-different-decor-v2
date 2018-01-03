@@ -31,8 +31,6 @@ class ContactForm extends Component {
     if (emailInputError === '') {
       this.setState({ emailFieldError: true });
     }
-
-    console.log(contactDetails);
   };
 
   render() {
