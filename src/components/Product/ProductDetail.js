@@ -54,13 +54,17 @@ class ProductDetail extends Component {
     if (sizeInputError === '') {
       this.setState({ sizeFieldError: true });
     }
+
     if (colorInputError === '') {
       this.setState({ colorFieldError: true });
     }
+
     if (qtyInputError === '') {
       this.setState({ qtyFieldError: true });
     }
+
     if (this.state.sizeFieldError && this.state.colorFieldError && this.state.qtyFieldError === false) {
+    } else if (this.state.orderSize && this.state.orderColor && this.state.orderQty !== '') {
       this.props.addToOrder(orderItem);
       this.setState({ orderQty: '', orderSize: '', orderColor: '' });
     }
