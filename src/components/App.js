@@ -40,7 +40,7 @@ class App extends Component {
       <AppContainer>
         <AppHeader>
           <Link to="/">
-            <Logo src={logo} alt="logo" onClick={this.handleLogoClick} />
+            <Logo src={logo} alt="logo" />
           </Link>
           <Title>Welcome to Distinctly Different Decor</Title>
           <Menu secondary>

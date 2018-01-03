@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import * as firebase from 'firebase';
 import styled from 'styled-components';
 import Overdrive from 'react-overdrive';
@@ -6,7 +7,15 @@ import { formatPrice } from '../helpers';
 import { Button, Form, Label, Header, Image } from 'semantic-ui-react';
 
 class ProductDetail extends Component {
-  state = { product: {}, orderQty: '', orderSize: '', orderColor: '' };
+  state = {
+    product: {},
+    orderQty: '',
+    orderSize: '',
+    orderColor: '',
+    sizeFieldError: false,
+    colorFieldError: false,
+    qtyFieldError: false
+  };
 
   async componentDidMount() {
     try {
@@ -23,11 +32,11 @@ class ProductDetail extends Component {
     }
   }
 
-  handleSizeChange = (e, { value }) => this.setState({ orderSize: value });
+  handleSizeChange = (e, { value }) => this.setState({ orderSize: value, sizeFieldError: false });
 
-  handleColorChange = (e, { value }) => this.setState({ orderColor: value });
+  handleColorChange = (e, { value }) => this.setState({ orderColor: value, colorFieldError: false });
 
-  handleQtyChange = (e, { value }) => this.setState({ orderQty: value });
+  handleQtyChange = (e, { value }) => this.setState({ orderQty: value, qtyFieldError: false });
 
   handleAddToCart = () => {
     const orderItem = {
@@ -37,17 +46,32 @@ class ProductDetail extends Component {
       orderItemTotal: this.state.product.price * this.state.orderQty,
       ...this.state.product
     };
+
+    const sizeInputError = orderItem.orderSize;
+    const colorInputError = orderItem.orderColor;
+    const qtyInputError = orderItem.orderQty;
+
+    if (sizeInputError === '') {
+      this.setState({ sizeFieldError: true });
+    }
+    if (colorInputError === '') {
+      this.setState({ colorFieldError: true });
+    }
+    if (qtyInputError === '') {
+      this.setState({ qtyFieldError: true });
+    }
+
     if (
-      (this.state.orderSize && this.state.orderColor && this.state.orderQty !== 'undefined') ||
+      (this.state.sizeFieldError && this.state.colorFieldError && this.state.qtyFieldError === false) ||
       (this.state.orderSize && this.state.orderColor && this.state.orderQty !== '')
     ) {
       this.props.addToOrder(orderItem);
+      this.setState({ orderQty: '', orderSize: '', orderColor: '' });
     }
-    this.setState({ orderQty: '', orderSize: '', orderColor: '' });
   };
 
   render() {
-    const { product, orderSize, orderColor, orderQty } = this.state;
+    const { product, orderSize, orderColor, orderQty, sizeFieldError, colorFieldError, qtyFieldError } = this.state;
 
     const sizeOptions = [
       { key: 'sm', text: 'Small', value: 'Small' },
@@ -102,49 +126,89 @@ class ProductDetail extends Component {
             <Header.Subheader>{product.description}</Header.Subheader>
             <FormWrapper>
               <Form unstackable>
-                <Form.Group inline required>
+                <Form.Group inline>
                   <Label size="large" color="violet" pointing="right">
                     Size
                   </Label>
-                  <Form.Select
-                    upward
-                    onChange={this.handleSizeChange}
-                    options={sizeOptions}
-                    placeholder="What size?"
-                    value={orderSize}
-                    required
-                  />
+                  {sizeFieldError ? (
+                    <Form.Select
+                      upward
+                      onChange={this.handleSizeChange}
+                      options={sizeOptions}
+                      placeholder="What size?"
+                      value={orderSize}
+                      error
+                    />
+                  ) : (
+                    <Form.Select
+                      upward
+                      onChange={this.handleSizeChange}
+                      options={sizeOptions}
+                      placeholder="What size?"
+                      value={orderSize}
+                      required
+                    />
+                  )}
                 </Form.Group>
                 <Form.Group inline>
                   <Label size="large" color="violet" pointing="right">
                     Color
                   </Label>
-                  <Form.Select
-                    upward
-                    onChange={this.handleColorChange}
-                    options={colorOptions}
-                    placeholder="What color?"
-                    value={orderColor}
-                    required
-                  />
+                  {colorFieldError ? (
+                    <Form.Select
+                      upward
+                      onChange={this.handleColorChange}
+                      options={colorOptions}
+                      placeholder="What color?"
+                      value={orderColor}
+                      error
+                    />
+                  ) : (
+                    <Form.Select
+                      upward
+                      onChange={this.handleColorChange}
+                      options={colorOptions}
+                      placeholder="What color?"
+                      value={orderColor}
+                      required
+                    />
+                  )}
                 </Form.Group>
                 <Form.Group inline>
                   <Label size="large" color="violet" pointing="right">
                     Quantity
                   </Label>
-                  <Form.Select
-                    upward
-                    onChange={this.handleQtyChange}
-                    options={qtyOptions}
-                    placeholder="How Many?"
-                    value={orderQty}
-                    required
-                  />
+                  {qtyFieldError ? (
+                    <Form.Select
+                      upward
+                      onChange={this.handleQtyChange}
+                      options={qtyOptions}
+                      placeholder="How Many?"
+                      value={orderQty}
+                      error
+                    />
+                  ) : (
+                    <Form.Select
+                      upward
+                      onChange={this.handleQtyChange}
+                      options={qtyOptions}
+                      placeholder="How Many?"
+                      value={orderQty}
+                      required
+                    />
+                  )}
                 </Form.Group>
-                <Form.Button onClick={this.handleAddToCart} basic color="violet" animated="fade">
-                  <Button.Content visible>Add Selected Item to Cart</Button.Content>
-                  <Button.Content hidden>{'Selected Total ' + formatPrice(product.price * orderQty)}</Button.Content>
-                </Form.Button>
+                <Form.Group inline>
+                  <Form.Button onClick={this.handleAddToCart} basic color="violet" animated="fade">
+                    <Button.Content visible>Add Selected Item to Cart</Button.Content>
+                    <Button.Content hidden>{'Selected Total ' + formatPrice(product.price * orderQty)}</Button.Content>
+                  </Form.Button>
+                  <Link to="/">
+                    <Form.Button basic color="grey">
+                      <Button.Content>Return to Listing</Button.Content>
+                    </Form.Button>
+                  </Link>
+                </Form.Group>
               </Form>
             </FormWrapper>
           </div>
