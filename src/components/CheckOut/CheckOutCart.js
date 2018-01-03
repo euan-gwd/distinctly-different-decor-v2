@@ -3,13 +3,15 @@ import styled from 'styled-components';
 import { formatPrice } from '../helpers';
 import { Table, Icon, Button } from 'semantic-ui-react';
 import LineItem from './LineItem';
+import ContactForm from './ContactForm';
 
 class Cart extends Component {
   constructor(props) {
     super(props);
     const ordersRef = localStorage.getItem(`CurrentOrder`);
     this.state = {
-      Orders: JSON.parse(ordersRef) || this.props.Orders
+      orders: JSON.parse(ordersRef) || this.props.Orders,
+      showForm: false
     };
   }
 
@@ -18,15 +20,19 @@ class Cart extends Component {
     nextState.Orders = JSON.parse(ordersRef);
   };
 
+  handleConfirm = () => {
+    this.setState({ showForm: true });
+  };
+
   render() {
-    const { Orders } = this.state;
-    const orderIds = Object.keys(Orders);
+    const { orders, showForm } = this.state;
+    const orderIds = Object.keys(orders);
     const totalCost = orderIds.reduce((total, orderId) => {
-      const lineItemTotal = Orders[orderId].orderItemTotal;
+      const lineItemTotal = orders[orderId].orderItemTotal;
       return total + lineItemTotal;
     }, 0);
 
-    const totalOrders = Object.keys(Orders).length;
+    const totalOrders = Object.keys(orders).length;
 
     return (
       <Wrapper>
@@ -45,8 +51,8 @@ class Cart extends Component {
           </Table.Header>
           {totalOrders > 0 ? (
             <Table.Body>
-              {Object.keys(Orders).map(key => (
-                <LineItem key={key} details={Orders[key]} id={key} removeFromOrder={this.props.removeFromOrder} />
+              {Object.keys(orders).map(key => (
+                <LineItem key={key} details={orders[key]} id={key} removeFromOrder={this.props.removeFromOrder} />
               ))}
             </Table.Body>
           ) : (
@@ -55,9 +61,9 @@ class Cart extends Component {
                 <Table.Cell />
                 <Table.Cell />
                 <Table.Cell>
-                  <Icon name="frown" size="huge" color="violet" />
+                  <Icon name="frown" size="huge" color="red" />
                 </Table.Cell>
-                <Table.Cell>Cart is Empty</Table.Cell>
+                <Table.Cell>No Orders here</Table.Cell>
                 <Table.Cell />
                 <Table.Cell />
                 <Table.Cell />
@@ -82,6 +88,7 @@ class Cart extends Component {
             </Table.Row>
           </Table.Footer>
         </Table>
+        {showForm && <ContactForm />}
       </Wrapper>
     );
   }
