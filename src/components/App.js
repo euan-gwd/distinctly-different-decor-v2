@@ -86,7 +86,7 @@ const AppHeader = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  position: fixed;
+  position: absolute;
   top: 0;
   width: 100%;
   z-index: 2;
@@ -97,7 +97,7 @@ const AppFooter = styled.div`
   padding: 0 20px;
   color: #131313;
   text-align: right;
-  position: fixed;
+  position: absolute;
   bottom: 0;
   width: 100%;
 `;

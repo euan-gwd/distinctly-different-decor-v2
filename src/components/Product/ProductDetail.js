@@ -60,11 +60,7 @@ class ProductDetail extends Component {
     if (qtyInputError === '') {
       this.setState({ qtyFieldError: true });
     }
-
-    if (
-      (this.state.sizeFieldError && this.state.colorFieldError && this.state.qtyFieldError === false) ||
-      (this.state.orderSize && this.state.orderColor && this.state.orderQty !== '')
-    ) {
+    if (this.state.sizeFieldError && this.state.colorFieldError && this.state.qtyFieldError === false) {
       this.props.addToOrder(orderItem);
       this.setState({ orderQty: '', orderSize: '', orderColor: '' });
     }
