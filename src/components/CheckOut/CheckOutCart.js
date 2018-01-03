@@ -5,9 +5,22 @@ import { Table, Icon } from 'semantic-ui-react';
 import LineItem from './LineItem';
 
 class Cart extends Component {
+  constructor(props) {
+    super(props);
+    const ordersRef = localStorage.getItem(`CurrentOrder`);
+    this.state = {
+      Orders: JSON.parse(ordersRef) || this.props.Orders
+    };
+  }
+
+  componentWillUpdate = (nextProps, nextState) => {
+    const ordersRef = localStorage.getItem(`CurrentOrder`);
+    nextState.Orders = JSON.parse(ordersRef);
+  };
+
   render() {
-    const { Orders, removeFromOrder } = this.props;
-    const orderIds = Object.keys(this.props.Orders);
+    const { Orders } = this.state;
+    const orderIds = Object.keys(Orders);
     const totalCost = orderIds.reduce((total, orderId) => {
       const lineItemTotal = Orders[orderId].orderItemTotal;
       return total + lineItemTotal;
@@ -33,7 +46,7 @@ class Cart extends Component {
           {totalOrders > 0 ? (
             <Table.Body>
               {Object.keys(Orders).map(key => (
-                <LineItem key={key} details={Orders[key]} id={key} removeFromOrder={removeFromOrder} />
+                <LineItem key={key} details={Orders[key]} id={key} removeFromOrder={this.props.removeFromOrder} />
               ))}
             </Table.Body>
           ) : (

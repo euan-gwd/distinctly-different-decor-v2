@@ -19,6 +19,7 @@ class App extends Component {
     this.state.orders ? (orders = { ...this.state.orders }) : (orders = {});
     const timestamp = Date.now();
     orders[`order-${timestamp}`] = orderItem;
+    localStorage.setItem(`CurrentOrder`, JSON.stringify(orders));
     this.setState({ orders });
   };
 
@@ -26,6 +27,10 @@ class App extends Component {
     const updateOrder = { ...this.state.orders };
     delete updateOrder[orderItem];
     this.setState({ orders: updateOrder });
+  };
+
+  componentWillUpdate = (nextProps, nextState) => {
+    localStorage.setItem(`CurrentOrder`, JSON.stringify(nextState.orders));
   };
 
   render() {
