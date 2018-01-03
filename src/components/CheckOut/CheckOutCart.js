@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { formatPrice } from '../helpers';
-import { Table } from 'semantic-ui-react';
+import { Table, Icon } from 'semantic-ui-react';
 import LineItem from './LineItem';
 
 class Cart extends Component {
@@ -13,10 +13,12 @@ class Cart extends Component {
       return total + lineItemTotal;
     }, 0);
 
+    const totalOrders = Object.keys(Orders).length;
+
     return (
       <Wrapper>
         <h3>Please Confirm Your Order</h3>
-        <Table selectable stackable color="violet">
+        <Table selectable stackable color="violet" columns={7}>
           <Table.Header fullWidth>
             <Table.Row textAlign="center">
               <Table.HeaderCell />
@@ -28,11 +30,25 @@ class Cart extends Component {
               <Table.HeaderCell />
             </Table.Row>
           </Table.Header>
-          {Orders && (
+          {totalOrders > 0 ? (
             <Table.Body>
               {Object.keys(Orders).map(key => (
                 <LineItem key={key} details={Orders[key]} id={key} removeFromOrder={removeFromOrder} />
               ))}
+            </Table.Body>
+          ) : (
+            <Table.Body>
+              <Table.Row textAlign="center">
+                <Table.Cell />
+                <Table.Cell />
+                <Table.Cell>
+                  <Icon name="frown" size="large" color="violet" />
+                </Table.Cell>
+                <Table.Cell>Cart is Empty</Table.Cell>
+                <Table.Cell />
+                <Table.Cell />
+                <Table.Cell />
+              </Table.Row>
             </Table.Body>
           )}
           <Table.Footer fullWidth>
