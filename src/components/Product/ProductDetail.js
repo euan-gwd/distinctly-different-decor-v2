@@ -204,8 +204,8 @@ class ProductDetail extends Component {
                     <Button.Content hidden>{'Selected Total ' + formatPrice(product.price * orderQty)}</Button.Content>
                   </Form.Button>
                   <Link to="/">
-                    <Form.Button basic color="grey">
-                      <Button.Content>Return to Listing</Button.Content>
+                    <Form.Button basic>
+                      <Button.Content color="grey">Return to Listing</Button.Content>
                     </Form.Button>
                   </Link>
                 </Form.Group>
