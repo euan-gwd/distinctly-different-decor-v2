@@ -8,12 +8,30 @@ class ContactForm extends Component {
     email: '',
     phone: '',
     nameFieldError: false,
-    emailFieldError: false
+    emailFieldError: false,
+    phoneFieldError: false
   };
 
-  handleNameChange = (e, { value }) => this.setState({ name: value, nameFieldError: false });
-  handlePhoneChange = (e, { value }) => this.setState({ phone: value });
-  handleEmailChange = (e, { value }) => this.setState({ email: value, emailFieldError: false });
+  handleNameInput = (e, { value }) => {
+    let nameInput = value;
+    /^[a-zA-Z-_ ]{3,30}$/.test(nameInput)
+      ? this.setState({ name: value, nameFieldError: false })
+      : this.setState({ name: value, nameFieldError: true });
+  };
+
+  handleEmailInput = (e, { value }) => {
+    let emailInput = value;
+    /[\w\-._]+@[\w\-._]+\.\w{2,10}/.test(emailInput)
+      ? this.setState({ email: value, emailFieldError: false })
+      : this.setState({ email: value, emailFieldError: true });
+  };
+
+  handlePhoneInput = (e, { value }) => {
+    let phoneInput = value;
+    /^\d{3}-\d{3}-\d{4}$/.test(phoneInput)
+      ? this.setState({ phone: value, phoneFieldError: false })
+      : this.setState({ phone: value, phoneFieldError: true });
+  };
 
   handleSubmit = () => {
     const contactDetails = {
@@ -22,19 +40,21 @@ class ContactForm extends Component {
       contactPhone: this.state.phone
     };
 
-    const nameInputError = contactDetails.contactName;
-    const emailInputError = contactDetails.contactEmail;
+    const nameInput = contactDetails.contactName;
+    const emailInput = contactDetails.contactEmail;
 
-    if (nameInputError === '') {
+    if (nameInput === '') {
       this.setState({ nameFieldError: true });
     }
-    if (emailInputError === '') {
+    if (emailInput === '') {
       this.setState({ emailFieldError: true });
     }
+
+    console.log(contactDetails);
   };
 
   render() {
-    const { nameFieldError, emailFieldError } = this.state;
+    const { nameFieldError, emailFieldError, phoneFieldError } = this.state;
     return (
       <FormWrapper>
         {nameFieldError ? (
@@ -44,7 +64,7 @@ class ContactForm extends Component {
             label={{ tag: true, content: 'Name' }}
             labelPosition="right"
             placeholder="Enter Contact Name"
-            onChange={this.handleNameChange}
+            onChange={this.handleNameInput}
             error
           />
         ) : (
@@ -54,7 +74,7 @@ class ContactForm extends Component {
             label={{ tag: true, content: 'Name' }}
             labelPosition="right"
             placeholder="Enter Contact Name"
-            onChange={this.handleNameChange}
+            onChange={this.handleNameInput}
           />
         )}
         {emailFieldError ? (
@@ -64,7 +84,7 @@ class ContactForm extends Component {
             label={{ tag: true, content: 'Email' }}
             labelPosition="right"
             placeholder="Enter Contact Email Address"
-            onChange={this.handleEmailChange}
+            onChange={this.handleEmailInput}
             error
           />
         ) : (
@@ -74,17 +94,29 @@ class ContactForm extends Component {
             label={{ tag: true, content: 'Email' }}
             labelPosition="right"
             placeholder="Enter Contact Email Address"
-            onChange={this.handleEmailChange}
+            onChange={this.handleEmailInput}
           />
         )}
-        <Input
-          icon="mobile"
-          iconPosition="left"
-          label={{ tag: true, content: 'Phone' }}
-          labelPosition="right"
-          placeholder="Enter Contact Number"
-          onChange={this.handlePhoneChange}
-        />
+        {phoneFieldError ? (
+          <Input
+            icon="mobile"
+            iconPosition="left"
+            label={{ tag: true, content: 'Phone' }}
+            labelPosition="right"
+            placeholder="Enter Contact Number"
+            onChange={this.handlePhoneInput}
+            error
+          />
+        ) : (
+          <Input
+            icon="mobile"
+            iconPosition="left"
+            label={{ tag: true, content: 'Phone' }}
+            labelPosition="right"
+            placeholder="Enter Contact Number xxx-xxx-xxxx"
+            onChange={this.handlePhoneInput}
+          />
+        )}
         <Button animated="fade" color="violet" onClick={this.handleSubmit}>
           <Button.Content visible>Place Order</Button.Content>
           <Button.Content hidden>
