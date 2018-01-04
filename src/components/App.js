@@ -42,7 +42,7 @@ class App extends Component {
           <Link to="/">
             <Logo src={logo} alt="logo" />
           </Link>
-          <Title>Welcome to Distinctly Different Decor</Title>
+
           <Menu secondary>
             <Link to="/cart">
               <Menu.Item>
@@ -73,17 +73,16 @@ export default App;
 
 const AppContainer = styled.div`
   text-align: center;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(0, 0, 255, 0.3));
-  min-height: 100vh;
+  height: fit-content;
 `;
 
 const AppHeader = styled.div`
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.25);
   height: 80px;
   padding: 0 20px;
   color: #131313;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   position: absolute;
   top: 0;
@@ -94,10 +93,4 @@ const AppHeader = styled.div`
 const Logo = styled.img`
   height: 65px;
   text-align: left;
-`;
-
-const Title = styled.h1`
-  font-size: 1.5em;
-  margin: 0;
-  flex-grow: 1;
 `;

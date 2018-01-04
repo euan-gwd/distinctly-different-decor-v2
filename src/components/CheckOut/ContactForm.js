@@ -34,20 +34,19 @@ class ContactForm extends Component {
   };
 
   handleSubmit = () => {
-    const contactDetails = {
-      contactName: this.state.name,
-      contactEmail: this.state.email,
-      contactPhone: this.state.phone
-    };
-
-    const nameInput = contactDetails.contactName;
-    const emailInput = contactDetails.contactEmail;
-
-    if (nameInput === '' || emailInput === '') {
+    if (this.state.name === '' || this.state.email === '') {
       this.setState({ nameFieldError: true });
-    }
+    } else {
+      const customerOrder = {
+        contactName: this.state.name,
+        contactEmail: this.state.email,
+        contactPhone: this.state.phone,
+        orders: this.props.confirmedOrder
+      };
 
-    localStorage.clear();
+      console.log(customerOrder);
+      localStorage.clear();
+    }
   };
 
   render() {
