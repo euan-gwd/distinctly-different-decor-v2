@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import * as firebase from 'firebase';
 import config from '../firebase.config';
 import { Switch, Route, Link } from 'react-router-dom';
@@ -37,7 +37,7 @@ class App extends Component {
     const totalItemsInCart = Object.keys(this.state.orders).length;
 
     return (
-      <AppContainer>
+      <Fragment>
         <AppHeader>
           <Link to="/">
             <Logo src={logo} alt="logo" />
@@ -64,17 +64,12 @@ class App extends Component {
             render={props => <Cart {...props} Orders={this.state.orders} removeFromOrder={this.removeFromOrder} />}
           />
         </Switch>
-      </AppContainer>
+      </Fragment>
     );
   }
 }
 
 export default App;
-
-const AppContainer = styled.div`
-  text-align: center;
-  height: fit-content;
-`;
 
 const AppHeader = styled.div`
   background-color: rgba(255, 255, 255, 0.25);

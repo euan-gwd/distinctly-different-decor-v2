@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { formatPrice } from '../helpers';
-import { Icon, Button } from 'semantic-ui-react';
+import { Table, Icon, Button } from 'semantic-ui-react';
 import LineItem from './LineItem';
 import ContactForm from './ContactForm';
 
