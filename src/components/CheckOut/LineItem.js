@@ -8,7 +8,7 @@ class LineItem extends Component {
     return (
       <Table.Row textAlign="center">
         <Table.Cell>
-          <Image src={details.thumbnail} alt={details.title} rounded size="tiny" />
+          <Image src={details.thumbnail} alt={details.title} size="mini" />
         </Table.Cell>
         <Table.Cell>{details.title}</Table.Cell>
         <Table.Cell>{details.orderSize}</Table.Cell>

@@ -46,6 +46,8 @@ class ContactForm extends Component {
     if (nameInput === '' || emailInput === '') {
       this.setState({ nameFieldError: true });
     }
+
+    localStorage.clear();
   };
 
   render() {
@@ -130,6 +132,7 @@ const FormWrapper = styled.div`
   grid-row-gap: 1rem;
   box-sizing: border-box;
   margin: 0;
-  padding: 0;
+  padding: 0 0 3rem;
   box-sizing: border-box;
+  justify-content: center;
 `;

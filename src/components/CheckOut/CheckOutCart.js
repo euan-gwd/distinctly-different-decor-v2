@@ -110,8 +110,9 @@ export default Cart;
 
 const Wrapper = styled.div`
   margin: 0 auto;
-  padding: 100px 0 0;
-  width: 75vw;
+  padding: 80px 0 0;
+  width: 85vw;
+  height: 100vh;
   box-sizing: border-box;
 `;
 
