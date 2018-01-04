@@ -48,7 +48,7 @@ class Cart extends Component {
     return (
       <Wrapper>
         <h3>Please Confirm Your Order</h3>
-        <Table selectable stackable color="violet" columns={7}>
+        <Table selectable unstackable color="violet" columns={7}>
           <Table.Header fullWidth>
             <Table.Row textAlign="center">
               <Table.HeaderCell />

@@ -55,61 +55,55 @@ class ContactForm extends Component {
       <FormWrapper>
         {nameFieldError ? (
           <Input
-            icon="user"
-            iconPosition="left"
-            label={{ tag: true, content: 'Name' }}
-            labelPosition="right"
-            placeholder="Enter Contact Name"
+            fluid
+            label={{ pointing: 'right', content: 'Name' }}
+            labelPosition="left"
+            placeholder="Name is Required"
             onChange={this.handleNameInput}
             error
           />
         ) : (
           <Input
-            icon="user"
-            iconPosition="left"
-            label={{ tag: true, content: 'Name' }}
-            labelPosition="right"
-            placeholder="Enter Contact Name"
+            fluid
+            label={{ pointing: 'right', content: 'Name' }}
+            labelPosition="left"
+            placeholder="Contact Name..."
             onChange={this.handleNameInput}
           />
         )}
         {emailFieldError ? (
           <Input
-            icon="envelope"
-            iconPosition="left"
-            label={{ tag: true, content: 'Email' }}
-            labelPosition="right"
-            placeholder="Enter Contact Email Address"
+            fluid
+            label={{ pointing: 'right', content: 'Email' }}
+            labelPosition="left"
+            placeholder="Valid Email Required"
             onChange={this.handleEmailInput}
             error
           />
         ) : (
           <Input
-            icon="envelope"
-            iconPosition="left"
-            label={{ tag: true, content: 'Email' }}
-            labelPosition="right"
-            placeholder="Enter Contact Email Address"
+            fluid
+            label={{ pointing: 'right', content: 'Email' }}
+            labelPosition="left"
+            placeholder="Contact Email..."
             onChange={this.handleEmailInput}
           />
         )}
         {phoneFieldError ? (
           <Input
-            icon="mobile"
-            iconPosition="left"
-            label={{ tag: true, content: 'Phone' }}
-            labelPosition="right"
-            placeholder="Enter Contact Number"
+            fluid
+            label={{ pointing: 'right', content: 'phone' }}
+            labelPosition="left"
+            placeholder="Valid Number 000-000-0000"
             onChange={this.handlePhoneInput}
             error
           />
         ) : (
           <Input
-            icon="mobile"
-            iconPosition="left"
-            label={{ tag: true, content: 'Phone' }}
-            labelPosition="right"
-            placeholder="Enter Contact Number xxx-xxx-xxxx"
+            fluid
+            label={{ pointing: 'right', content: 'phone' }}
+            labelPosition="left"
+            placeholder="123-456-7890"
             onChange={this.handlePhoneInput}
           />
         )}
@@ -128,10 +122,17 @@ export default ContactForm;
 
 const FormWrapper = styled.div`
   display: grid;
-  grid-row-gap: 1rem;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(4, 1fr);
+  grid-row-gap: 0.5rem;
   box-sizing: border-box;
   margin: 0;
   padding: 0 0 3rem;
   box-sizing: border-box;
-  justify-content: center;
+
+  @media screen and (min-width: 768px) {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 1rem;
+  }
 `;
