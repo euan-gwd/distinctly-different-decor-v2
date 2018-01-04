@@ -11,7 +11,9 @@ class Cart extends Component {
     const ordersRef = localStorage.getItem(`CurrentOrder`);
     this.state = {
       orders: JSON.parse(ordersRef) || this.props.Orders,
-      showForm: false
+      showForm: false,
+      confirmedOrder: {},
+      orderTotal: 0
     };
   }
 
@@ -20,19 +22,28 @@ class Cart extends Component {
     nextState.Orders = JSON.parse(ordersRef);
   };
 
-  handleConfirm = () => {
-    this.setState({ showForm: true });
-  };
-
-  render() {
-    const { orders, showForm } = this.state;
+  componentDidMount = () => {
+    const orders = { ...this.state.orders };
     const orderIds = Object.keys(orders);
     const totalCost = orderIds.reduce((total, orderId) => {
       const lineItemTotal = orders[orderId].orderItemTotal;
       return total + lineItemTotal;
     }, 0);
+    this.setState({ orderTotal: totalCost });
+  };
 
-    const totalOrders = Object.keys(orders).length;
+  handleConfirm = () => {
+    const ordersTotal = this.state.orderTotal;
+    const confirmedOrder = {
+      ordersTotal,
+      ...this.state.orders
+    };
+    this.setState({ showForm: true, confirmedOrder });
+  };
+
+  render() {
+    const { orders, orderTotal, showForm, confirmedOrder } = this.state;
+    const ordersLength = Object.keys(orders).length;
 
     return (
       <Wrapper>
@@ -49,7 +60,7 @@ class Cart extends Component {
               <Table.HeaderCell />
             </Table.Row>
           </Table.Header>
-          {totalOrders > 0 ? (
+          {ordersLength > 0 ? (
             <Table.Body>
               {Object.keys(orders).map(key => (
                 <LineItem key={key} details={orders[key]} id={key} removeFromOrder={this.props.removeFromOrder} />
@@ -74,9 +85,9 @@ class Cart extends Component {
             <Table.Row textAlign="center">
               <Table.HeaderCell colSpan="4" />
               <Table.HeaderCell>Total:</Table.HeaderCell>
-              <Table.HeaderCell>{formatPrice(totalCost)}</Table.HeaderCell>
+              <Table.HeaderCell>{formatPrice(orderTotal)}</Table.HeaderCell>
               <Table.HeaderCell>
-                {totalOrders > 0 && (
+                {ordersLength > 0 && (
                   <Button onClick={this.handleConfirm} basic animated="fade" positive={true} size="mini">
                     <Button.Content visible>
                       <Icon name="check" />
@@ -88,7 +99,7 @@ class Cart extends Component {
             </Table.Row>
           </Table.Footer>
         </Table>
-        {showForm && <ContactForm />}
+        {showForm && <ContactForm confirmedOrder={confirmedOrder} />}
         <AppFooter>&copy;2017 Distinctly Different Decor All Rights Reserved</AppFooter>
       </Wrapper>
     );

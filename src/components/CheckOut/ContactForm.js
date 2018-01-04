@@ -43,14 +43,9 @@ class ContactForm extends Component {
     const nameInput = contactDetails.contactName;
     const emailInput = contactDetails.contactEmail;
 
-    if (nameInput === '') {
+    if (nameInput === '' || emailInput === '') {
       this.setState({ nameFieldError: true });
     }
-    if (emailInput === '') {
-      this.setState({ emailFieldError: true });
-    }
-
-    console.log(contactDetails);
   };
 
   render() {
