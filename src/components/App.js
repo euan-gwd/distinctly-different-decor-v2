@@ -3,7 +3,7 @@ import * as firebase from 'firebase';
 import config from '../firebase.config';
 import { Switch, Route, Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { Icon, Label } from 'semantic-ui-react';
+import { Icon, Button } from 'semantic-ui-react';
 import logo from './logo.svg';
 import ProductsList from './Product/ProductsList';
 import ProductDetail from './Product/ProductDetail';
@@ -43,12 +43,13 @@ class App extends Component {
             <Logo src={logo} alt="logo" />
           </Link>
           <Link to="/cart">
-            <Icon size="large" name="shopping basket" color="violet" />
-            {totalItemsInCart > 0 && (
-              <Label circular color="red" attached="top right">
-                {totalItemsInCart}
-              </Label>
-            )}
+            <Button basic animated="vertical" color="violet">
+              <Button.Content hidden>Check Out</Button.Content>
+              <Button.Content visible>
+                <Icon name="shop" size="large" />
+                {totalItemsInCart > 0 ? <CartItems>{totalItemsInCart}</CartItems> : 'Cart'}
+              </Button.Content>
+            </Button>
           </Link>
         </AppHeader>
         <Switch>
@@ -83,4 +84,8 @@ const AppHeader = styled.div`
 const Logo = styled.img`
   height: 65px;
   text-align: left;
+`;
+
+const CartItems = styled.span`
+  color: red;
 `;
