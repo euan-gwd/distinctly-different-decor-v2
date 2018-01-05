@@ -56,7 +56,7 @@ class ContactForm extends Component {
         {nameFieldError ? (
           <Input
             fluid
-            label={{ pointing: 'right', content: 'Name' }}
+            label={{ pointing: 'right', content: 'Name', color: 'red' }}
             labelPosition="left"
             placeholder="Name is Required"
             onChange={this.handleNameInput}
@@ -65,7 +65,7 @@ class ContactForm extends Component {
         ) : (
           <Input
             fluid
-            label={{ pointing: 'right', content: 'Name' }}
+            label={{ pointing: 'right', content: 'Name', color: 'violet' }}
             labelPosition="left"
             placeholder="Contact Name..."
             onChange={this.handleNameInput}
@@ -74,7 +74,7 @@ class ContactForm extends Component {
         {emailFieldError ? (
           <Input
             fluid
-            label={{ pointing: 'right', content: 'Email' }}
+            label={{ pointing: 'right', content: 'Email', color: 'red' }}
             labelPosition="left"
             placeholder="Valid Email Required"
             onChange={this.handleEmailInput}
@@ -83,7 +83,7 @@ class ContactForm extends Component {
         ) : (
           <Input
             fluid
-            label={{ pointing: 'right', content: 'Email' }}
+            label={{ pointing: 'right', content: 'Email', color: 'violet' }}
             labelPosition="left"
             placeholder="Contact Email..."
             onChange={this.handleEmailInput}
@@ -92,7 +92,7 @@ class ContactForm extends Component {
         {phoneFieldError ? (
           <Input
             fluid
-            label={{ pointing: 'right', content: 'phone' }}
+            label={{ pointing: 'right', content: 'phone', color: 'red' }}
             labelPosition="left"
             placeholder="Valid Number 000-000-0000"
             onChange={this.handlePhoneInput}
@@ -101,7 +101,7 @@ class ContactForm extends Component {
         ) : (
           <Input
             fluid
-            label={{ pointing: 'right', content: 'phone' }}
+            label={{ pointing: 'right', content: 'phone', color: 'violet' }}
             labelPosition="left"
             placeholder="123-456-7890"
             onChange={this.handlePhoneInput}
