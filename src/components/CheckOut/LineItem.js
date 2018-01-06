@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import { formatPrice } from '../helpers';
 import { Image, Icon, Button } from 'semantic-ui-react';
@@ -7,7 +7,7 @@ class LineItem extends Component {
   render() {
     const { details, id, removeFromOrder } = this.props;
     return (
-      <Fragment>
+      <LineItemRow>
         <LineItemImage>
           <Image src={details.thumbnail} alt={details.title} size="mini" />
         </LineItemImage>
@@ -32,12 +32,41 @@ class LineItem extends Component {
             <Button.Content hidden>Delete</Button.Content>
           </Button>
         </LineItemActions>
-      </Fragment>
+      </LineItemRow>
     );
   }
 }
 
 export default LineItem;
+
+const LineItemRow = styled.div`
+  margin: 0;
+  padding: 0.25rem;
+  box-sizing: border-box;
+  min-height: 50px;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(35px, 1fr));
+  grid-row-gap: 1rem;
+  justify-items: center;
+  align-items: center;
+  border-bottom: 1px solid grey;
+
+  &:last-of-type {
+    border: 0;
+  }
+
+  &:hover {
+    background-color: whitesmoke;
+  }
+
+  @media screen and (min-width: 768px) {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    grid-template-columns: repeat(7, minmax(35px, 1fr));
+    align-items: center;
+  }
+`;
 
 const LineItemImage = styled.div`
   display: none;

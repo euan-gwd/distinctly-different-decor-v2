@@ -172,23 +172,8 @@ const ActionHeader = styled.div``;
 
 const TableBody = styled.div`
   grid-row: 2;
-  margin: 0;
-  padding: 0.25rem;
-  box-sizing: border-box;
-  display: grid;
-  grid-template-columns: repeat(6, minmax(35px, 1fr));
-  justify-items: center;
-  align-items: center;
   border-left: 1px solid grey;
   border-right: 1px solid grey;
-
-  @media screen and (min-width: 768px) {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    grid-template-columns: repeat(7, minmax(35px, 1fr));
-    align-items: center;
-  }
 `;
 
 const TableFooter = styled.div`
