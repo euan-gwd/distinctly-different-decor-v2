@@ -111,12 +111,21 @@ const Wrapper = styled.div`
 `;
 
 const Table = styled.div`
-  margin: 0;
+  margin: 0 0 0.5rem;
   padding: 0;
   min-width: 300px;
   box-sizing: border-box;
   display: grid;
   grid-template-rows: 50px auto 50px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 4px;
+
+  @media screen and (min-width: 768px) {
+    margin: 0 auto 1rem;
+    padding: 0;
+    max-width: 85vw;
+    box-sizing: border-box;
+  }
 `;
 
 const TableHeader = styled.div`
@@ -132,10 +141,7 @@ const TableHeader = styled.div`
   border-top: 3px solid #642bcc;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
-  border-left: 1px solid grey;
-  border-right: 1px solid grey;
-  border-bottom: 1px solid grey;
-  background-color: lightgrey;
+  background-color: rgba(255, 255, 255, 0.5);
 
   @media screen and (min-width: 768px) {
     grid-row: 1;
@@ -172,8 +178,6 @@ const ActionHeader = styled.div``;
 
 const TableBody = styled.div`
   grid-row: 2;
-  border-left: 1px solid grey;
-  border-right: 1px solid grey;
 `;
 
 const TableFooter = styled.div`
@@ -184,13 +188,8 @@ const TableFooter = styled.div`
   display: grid;
   grid-template-columns: repeat(6, minmax(35px, 1fr));
   align-items: center;
-  border-top: 1px solid grey;
-  border-bottom: 1px solid grey;
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
-  border-left: 1px solid grey;
-  border-right: 1px solid grey;
-  background-color: lightgrey;
+  color: #642bcc;
+  background-color: rgba(255, 255, 255, 0.5);
 
   @media screen and (min-width: 768px) {
     margin: 0;

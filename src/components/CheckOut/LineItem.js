@@ -49,7 +49,7 @@ const LineItemRow = styled.div`
   grid-row-gap: 1rem;
   justify-items: center;
   align-items: center;
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
 
   &:last-of-type {
     border: 0;

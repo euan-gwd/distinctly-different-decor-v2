@@ -134,5 +134,9 @@ const FormWrapper = styled.div`
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-column-gap: 1rem;
+    margin: 0 auto 1rem;
+    padding: 0;
+    max-width: 85vw;
+    box-sizing: border-box;
   }
 `;
