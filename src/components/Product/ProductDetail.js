@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import * as firebase from 'firebase';
+import { database } from '../../firebase/firebase';
 import styled from 'styled-components';
 import Overdrive from 'react-overdrive';
 import { formatPrice } from '../helpers';
-import { Button, Form, Header, Image } from 'semantic-ui-react';
+import Image from 'semantic-ui-react/dist/es/elements/Image';
+import Button from 'semantic-ui-react/dist/es/elements/Button';
+import Header from 'semantic-ui-react/dist/es/elements/Header';
+import Select from 'semantic-ui-react/dist/es/addons/Select';
 
 class ProductDetail extends Component {
   state = {
@@ -20,13 +23,10 @@ class ProductDetail extends Component {
   async componentDidMount() {
     try {
       //retrieve selected product from firebase
-      await firebase
-        .database()
-        .ref(`products/${this.props.match.params.id}`)
-        .on('value', res => {
-          const product = res.val();
-          this.setState({ product });
-        });
+      await database.ref(`products/${this.props.match.params.id}`).on('value', res => {
+        const product = res.val();
+        this.setState({ product });
+      });
     } catch (error) {
       console.log(error);
     }
@@ -124,87 +124,77 @@ class ProductDetail extends Component {
           <div>
             <Header as="h2">{product.title}</Header>
             <Header.Subheader>{product.description}</Header.Subheader>
-            <FormWrapper>
-              <Form unstackable>
+            <Form>
+              <FormSelectGroup>
                 {sizeFieldError ? (
-                  <Form.Select
+                  <Select
                     upward
                     onChange={this.handleSizeChange}
                     options={sizeOptions}
                     placeholder="What size?"
                     value={orderSize}
                     error
-                    fluid
                   />
                 ) : (
-                  <Form.Select
+                  <Select
                     upward
                     onChange={this.handleSizeChange}
                     options={sizeOptions}
                     placeholder="What size?"
                     value={orderSize}
-                    required
-                    fluid
                   />
                 )}
-
                 {colorFieldError ? (
-                  <Form.Select
+                  <Select
                     upward
                     onChange={this.handleColorChange}
                     options={colorOptions}
                     placeholder="What color?"
                     value={orderColor}
                     error
-                    fluid
                   />
                 ) : (
-                  <Form.Select
+                  <Select
                     upward
                     onChange={this.handleColorChange}
                     options={colorOptions}
                     placeholder="What color?"
                     value={orderColor}
                     required
-                    fluid
                   />
                 )}
-
                 {qtyFieldError ? (
-                  <Form.Select
+                  <Select
                     upward
                     onChange={this.handleQtyChange}
                     options={qtyOptions}
                     placeholder="How Many?"
                     value={orderQty}
                     error
-                    fluid
                   />
                 ) : (
-                  <Form.Select
+                  <Select
                     upward
                     onChange={this.handleQtyChange}
                     options={qtyOptions}
                     placeholder="How Many?"
                     value={orderQty}
                     required
-                    fluid
                   />
                 )}
-
-                <FormActions>
-                  <Form.Button onClick={this.handleAddToCart} basic color="violet" animated="fade">
-                    <Button.Content visible>Add Selected Item to Cart</Button.Content>
-                    <Button.Content hidden>{'Selected Total ' + formatPrice(product.price * orderQty)}</Button.Content>
-                  </Form.Button>
-                  <Link to="/">
-                    <Form.Button basic>
-                      <Button.Content color="grey">Return to Listing</Button.Content>
-                    </Form.Button>
-                  </Link>
-                </FormActions>
-              </Form>
-            </FormWrapper>
+              </FormSelectGroup>
+              <FormButtonGroup>
+                <Button onClick={this.handleAddToCart} basic color="violet" animated="fade">
+                  <Button.Content visible>Add Selected Item to Cart</Button.Content>
+                  <Button.Content hidden>{'Selected Total ' + formatPrice(product.price * orderQty)}</Button.Content>
+                </Button>
+                <Link to="/">
+                  <Button basic>
+                    <Button.Content color="grey">Return to Listing</Button.Content>
+                  </Button>
+                </Link>
+              </FormButtonGroup>
+            </Form>
           </div>
         </ProductInfo>
       </ProductWrapper>
@@ -247,15 +237,24 @@ const ProductInfo = styled.div`
   }
 `;
 
-const FormActions = styled.div`
+const Form = styled.div`
+  margin: 1rem 0 2rem;
+  box-sizing: border-box;
+`;
+
+const FormSelectGroup = styled.div`
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: grid;
+  grid-gap: 1rem 0;
+  flex-wrap: wrap;
+`;
+
+const FormButtonGroup = styled.div`
+  margin: 1rem 0;
   padding: 0;
   box-sizing: border-box;
   display: flex;
   flex-wrap: wrap;
-`;
-
-const FormWrapper = styled.div`
-  margin: 1rem 0 2rem;
-  box-sizing: border-box;
 `;

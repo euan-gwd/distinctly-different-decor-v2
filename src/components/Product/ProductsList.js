@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import styled from 'styled-components';
-import * as firebase from 'firebase';
+import { database } from '../../firebase/firebase';
 import Product from './Product';
 
 class ProductsList extends Component {
@@ -9,18 +9,15 @@ class ProductsList extends Component {
   async componentDidMount() {
     try {
       //retrieve product list from firebase
-      await firebase
-        .database()
-        .ref('products')
-        .on('value', res => {
-          const productsData = res.val();
-          const inventory = [];
-          for (let objKey in productsData) {
-            productsData[objKey].key = objKey;
-            inventory.push(productsData[objKey]);
-          }
-          this.setState({ inventory, loaded: true });
-        });
+      await database.ref('products').on('value', res => {
+        const productsData = res.val();
+        const inventory = [];
+        for (let objKey in productsData) {
+          productsData[objKey].key = objKey;
+          inventory.push(productsData[objKey]);
+        }
+        this.setState({ inventory, loaded: true });
+      });
     } catch (err) {
       console.log(err);
     }

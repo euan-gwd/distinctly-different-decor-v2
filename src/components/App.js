@@ -1,15 +1,11 @@
 import React, { Component, Fragment } from 'react';
-import * as firebase from 'firebase';
-import config from '../firebase.config';
 import { Switch, Route, Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { Icon } from 'semantic-ui-react';
+import Icon from 'semantic-ui-react/dist/es/elements/Icon';
 import logo from './logo.svg';
 import ProductsList from './Product/ProductsList';
 import ProductDetail from './Product/ProductDetail';
 import Cart from './CheckOut/CheckOutCart';
-
-firebase.initializeApp(config);
 
 class App extends Component {
   state = { orders: {}, cartTotal: 0 };

@@ -1,3 +1,5 @@
+import * as firebase from 'firebase';
+
 const config = {
   apiKey: 'AIzaSyAfTOlvuzNltnSEGi-gM_a15hoPk15WaOY',
   authDomain: 'distinctly-different-decor.firebaseapp.com',
@@ -7,4 +9,13 @@ const config = {
   messagingSenderId: '898117636789'
 };
 
-export default config;
+if (!firebase.apps.length) {
+  firebase.initializeApp(config);
+}
+
+const auth = firebase.auth();
+const database = firebase.database();
+const storage = firebase.storage();
+const messaging = firebase.messaging();
+
+export { auth, database, storage, messaging };
