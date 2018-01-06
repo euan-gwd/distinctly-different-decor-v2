@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { formatPrice } from '../helpers';
-import { Icon, Button, Header } from 'semantic-ui-react';
+import { Icon, Button } from 'semantic-ui-react';
 import LineItem from './LineItem';
 import ContactForm from './ContactForm';
 
@@ -48,7 +48,6 @@ class Cart extends Component {
 
     return (
       <Wrapper>
-        <Header>Please Confirm Your Order</Header>
         <Table>
           <TableHeader>
             <ImageHeader />
@@ -107,6 +106,7 @@ const Wrapper = styled.div`
   @media screen and (min-width: 768px) {
     margin: 0 auto;
     padding: 80px 20px 0;
+    max-width: 85vw;
   }
 `;
 
@@ -123,7 +123,6 @@ const Table = styled.div`
   @media screen and (min-width: 768px) {
     margin: 0 auto 1rem;
     padding: 0;
-    max-width: 85vw;
     box-sizing: border-box;
   }
 `;

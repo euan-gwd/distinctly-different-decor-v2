@@ -136,7 +136,6 @@ const FormWrapper = styled.div`
     grid-column-gap: 1rem;
     margin: 0 auto 1rem;
     padding: 0;
-    max-width: 85vw;
     box-sizing: border-box;
   }
 `;
