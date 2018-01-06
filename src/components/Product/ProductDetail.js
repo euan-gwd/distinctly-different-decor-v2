@@ -121,7 +121,7 @@ class ProductDetail extends Component {
               label={{ color: 'violet', ribbon: true, content: [Pricing] }}
             />
           </Overdrive>
-          <div>
+          <ProductSelection>
             <Header as="h2">{product.title}</Header>
             <Header.Subheader>{product.description}</Header.Subheader>
             <Form>
@@ -131,7 +131,7 @@ class ProductDetail extends Component {
                     upward
                     onChange={this.handleSizeChange}
                     options={sizeOptions}
-                    placeholder="What size?"
+                    placeholder="Please select a valid size!"
                     value={orderSize}
                     error
                   />
@@ -140,8 +140,9 @@ class ProductDetail extends Component {
                     upward
                     onChange={this.handleSizeChange}
                     options={sizeOptions}
-                    placeholder="What size?"
+                    placeholder="Choose size"
                     value={orderSize}
+                    required
                   />
                 )}
                 {colorFieldError ? (
@@ -149,7 +150,7 @@ class ProductDetail extends Component {
                     upward
                     onChange={this.handleColorChange}
                     options={colorOptions}
-                    placeholder="What color?"
+                    placeholder="Please select a valid Color!"
                     value={orderColor}
                     error
                   />
@@ -158,7 +159,7 @@ class ProductDetail extends Component {
                     upward
                     onChange={this.handleColorChange}
                     options={colorOptions}
-                    placeholder="What color?"
+                    placeholder="Choose a color"
                     value={orderColor}
                     required
                   />
@@ -168,7 +169,7 @@ class ProductDetail extends Component {
                     upward
                     onChange={this.handleQtyChange}
                     options={qtyOptions}
-                    placeholder="How Many?"
+                    placeholder="Please select a valid Qty!"
                     value={orderQty}
                     error
                   />
@@ -185,7 +186,7 @@ class ProductDetail extends Component {
               </FormSelectGroup>
               <FormButtonGroup>
                 <Button onClick={this.handleAddToCart} basic color="violet" animated="fade">
-                  <Button.Content visible>Add Selected Item to Cart</Button.Content>
+                  <Button.Content visible>Add Item to Cart</Button.Content>
                   <Button.Content hidden>{'Selected Total ' + formatPrice(product.price * orderQty)}</Button.Content>
                 </Button>
                 <Link to="/">
@@ -195,7 +196,7 @@ class ProductDetail extends Component {
                 </Link>
               </FormButtonGroup>
             </Form>
-          </div>
+          </ProductSelection>
         </ProductInfo>
       </ProductWrapper>
     );
@@ -237,8 +238,18 @@ const ProductInfo = styled.div`
   }
 `;
 
+const ProductSelection = styled.div`
+  margin-left: 1rem;
+  padding: 0;
+  box-sizing: border-box;
+`;
+
 const Form = styled.div`
-  margin: 1rem 0 2rem;
+  margin-top: 1rem;
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 2rem;
+  padding: 0;
   box-sizing: border-box;
 `;
 
@@ -248,6 +259,11 @@ const FormSelectGroup = styled.div`
   box-sizing: border-box;
   display: grid;
   grid-gap: 1rem 0;
+  width: 100%;
+
+  @media screen and (min-width: 641px) {
+    max-width: 450px;
+  }
 `;
 
 const FormButtonGroup = styled.div`
@@ -258,9 +274,10 @@ const FormButtonGroup = styled.div`
   grid-gap: 1rem 0;
   width: 100%;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 641px) {
+    display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 0 1rem;
-    width: 50%;
+    max-width: 450px;
   }
 `;
