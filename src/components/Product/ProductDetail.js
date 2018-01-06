@@ -189,7 +189,7 @@ class ProductDetail extends Component {
                   <Button.Content hidden>{'Selected Total ' + formatPrice(product.price * orderQty)}</Button.Content>
                 </Button>
                 <Link to="/">
-                  <Button basic>
+                  <Button basic fluid>
                     <Button.Content color="grey">Return to Listing</Button.Content>
                   </Button>
                 </Link>
@@ -248,13 +248,19 @@ const FormSelectGroup = styled.div`
   box-sizing: border-box;
   display: grid;
   grid-gap: 1rem 0;
-  flex-wrap: wrap;
 `;
 
 const FormButtonGroup = styled.div`
   margin: 1rem 0;
   padding: 0;
   box-sizing: border-box;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-gap: 1rem 0;
+  width: 100%;
+
+  @media screen and (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 0 1rem;
+    width: 50%;
+  }
 `;
