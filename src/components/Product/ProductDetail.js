@@ -74,9 +74,9 @@ class ProductDetail extends Component {
     const { product, orderSize, orderColor, orderQty, sizeFieldError, colorFieldError, qtyFieldError } = this.state;
 
     const sizeOptions = [
-      { key: 'sm', text: 'Small', value: 'Small' },
-      { key: 'md', text: 'Medium', value: 'Medium' },
-      { key: 'lg', text: 'Large', value: 'Large' }
+      { key: 'sm', text: 'Small', value: 'S' },
+      { key: 'md', text: 'Medium', value: 'M' },
+      { key: 'lg', text: 'Large', value: 'L' }
     ];
 
     const colorOptions = [
@@ -138,6 +138,7 @@ class ProductDetail extends Component {
                       placeholder="What size?"
                       value={orderSize}
                       error
+                      fluid
                     />
                   ) : (
                     <Form.Select
@@ -147,6 +148,7 @@ class ProductDetail extends Component {
                       placeholder="What size?"
                       value={orderSize}
                       required
+                      fluid
                     />
                   )}
                 </Form.Group>
@@ -162,6 +164,7 @@ class ProductDetail extends Component {
                       placeholder="What color?"
                       value={orderColor}
                       error
+                      fluid
                     />
                   ) : (
                     <Form.Select
@@ -171,6 +174,7 @@ class ProductDetail extends Component {
                       placeholder="What color?"
                       value={orderColor}
                       required
+                      fluid
                     />
                   )}
                 </Form.Group>
@@ -186,6 +190,7 @@ class ProductDetail extends Component {
                       placeholder="How Many?"
                       value={orderQty}
                       error
+                      fluid
                     />
                   ) : (
                     <Form.Select
@@ -195,6 +200,7 @@ class ProductDetail extends Component {
                       placeholder="How Many?"
                       value={orderQty}
                       required
+                      fluid
                     />
                   )}
                 </Form.Group>

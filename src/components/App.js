@@ -3,7 +3,7 @@ import * as firebase from 'firebase';
 import config from '../firebase.config';
 import { Switch, Route, Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { Icon, Button } from 'semantic-ui-react';
+import { Icon } from 'semantic-ui-react';
 import logo from './logo.svg';
 import ProductsList from './Product/ProductsList';
 import ProductDetail from './Product/ProductDetail';
@@ -12,7 +12,7 @@ import Cart from './CheckOut/CheckOutCart';
 firebase.initializeApp(config);
 
 class App extends Component {
-  state = { orders: {} };
+  state = { orders: {}, cartTotal: 0 };
 
   addToOrder = orderItem => {
     let orders = {};
@@ -20,7 +20,9 @@ class App extends Component {
     const timestamp = Date.now();
     orders[`order-${timestamp}`] = orderItem;
     localStorage.setItem(`CurrentOrder`, JSON.stringify(orders));
-    this.setState({ orders });
+    const totalItemsInCart = Object.keys(orders).length;
+    localStorage.setItem(`CartTotalItems`, JSON.stringify(totalItemsInCart));
+    this.setState({ orders, cartTotal: totalItemsInCart });
   };
 
   removeFromOrder = orderItem => {
@@ -34,8 +36,6 @@ class App extends Component {
   };
 
   render() {
-    const totalItemsInCart = Object.keys(this.state.orders).length;
-
     return (
       <Fragment>
         <AppHeader>
@@ -43,13 +43,10 @@ class App extends Component {
             <Logo src={logo} alt="logo" />
           </Link>
           <Link to="/cart">
-            <Button basic animated="vertical" color="violet">
-              <Button.Content hidden>Check Out</Button.Content>
-              <Button.Content visible>
-                <Icon name="shop" size="large" />
-                {totalItemsInCart > 0 ? <CartItems>{totalItemsInCart}</CartItems> : 'Cart'}
-              </Button.Content>
-            </Button>
+            <CartButton>
+              {this.state.cartTotal > 0 ? <CartCount>{this.state.cartTotal}</CartCount> : null}
+              <Icon name="shop" size="huge" color="violet" />
+            </CartButton>
           </Link>
         </AppHeader>
         <Switch>
@@ -57,7 +54,14 @@ class App extends Component {
           <Route path="/products/:id" render={props => <ProductDetail {...props} addToOrder={this.addToOrder} />} />
           <Route
             path="/cart"
-            render={props => <Cart {...props} Orders={this.state.orders} removeFromOrder={this.removeFromOrder} />}
+            render={props => (
+              <Cart
+                {...props}
+                orders={this.state.orders}
+                cartTotal={this.state.cartTotal}
+                removeFromOrder={this.removeFromOrder}
+              />
+            )}
           />
         </Switch>
       </Fragment>
@@ -68,17 +72,21 @@ class App extends Component {
 export default App;
 
 const AppHeader = styled.div`
-  background-color: rgba(255, 255, 255, 0.25);
+  background-color: rgba(255, 255, 255, 0.5);
   height: 80px;
-  padding: 0 20px;
+  padding: 0 5px;
   color: #131313;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: absolute;
+  position: fixed;
   top: 0;
   width: 100%;
   z-index: 2;
+
+  @media screen and (min-width: 768px) {
+    padding: 0 20px;
+  }
 `;
 
 const Logo = styled.img`
@@ -86,6 +94,24 @@ const Logo = styled.img`
   text-align: left;
 `;
 
-const CartItems = styled.span`
-  color: red;
+const CartButton = styled.div`
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+`;
+
+const CartCount = styled.span`
+  color: white;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  position: absolute;
+  top: 1.7rem;
+  right: 2.5rem;
+  z-index: 2;
+
+  @media screen and (min-width: 768px) {
+    top: 1.7rem;
+    right: 3.5rem;
+  }
 `;

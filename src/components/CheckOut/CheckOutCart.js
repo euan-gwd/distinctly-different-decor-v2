@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { formatPrice } from '../helpers';
-import { Table, Icon, Button } from 'semantic-ui-react';
+import { Icon, Button, Header } from 'semantic-ui-react';
 import LineItem from './LineItem';
 import ContactForm from './ContactForm';
 
@@ -9,11 +9,12 @@ class Cart extends Component {
   constructor(props) {
     super(props);
     const ordersRef = localStorage.getItem(`CurrentOrder`);
+    const orderTotalRef = localStorage.getItem(`CartTotalItems`);
     this.state = {
-      orders: JSON.parse(ordersRef) || this.props.Orders,
+      orders: JSON.parse(ordersRef) || this.props.orders,
       showForm: false,
       confirmedOrder: {},
-      orderTotal: 0
+      orderTotal: JSON.parse(orderTotalRef) || this.props.cartTotal
     };
   }
 
@@ -47,57 +48,45 @@ class Cart extends Component {
 
     return (
       <Wrapper>
-        <h3>Please Confirm Your Order</h3>
-        <Table selectable unstackable color="violet" columns={7}>
-          <Table.Header fullWidth>
-            <Table.Row textAlign="center">
-              <Table.HeaderCell />
-              <Table.HeaderCell>Description</Table.HeaderCell>
-              <Table.HeaderCell>Size</Table.HeaderCell>
-              <Table.HeaderCell>Color</Table.HeaderCell>
-              <Table.HeaderCell>Qty</Table.HeaderCell>
-              <Table.HeaderCell>Subtotal</Table.HeaderCell>
-              <Table.HeaderCell />
-            </Table.Row>
-          </Table.Header>
+        <Header>Please Confirm Your Order</Header>
+        <Table>
+          <TableHeader>
+            <ImageHeader />
+            <DesciptionHeader>Desc</DesciptionHeader>
+            <SizeHeader>Size</SizeHeader>
+            <ColorHeader>Color</ColorHeader>
+            <QtyHeader>Qty</QtyHeader>
+            <SubtotalHeader>Subtotal</SubtotalHeader>
+            <ActionHeader />
+          </TableHeader>
           {ordersLength > 0 ? (
-            <Table.Body>
+            <TableBody>
               {Object.keys(orders).map(key => (
                 <LineItem key={key} details={orders[key]} id={key} removeFromOrder={this.props.removeFromOrder} />
               ))}
-            </Table.Body>
+            </TableBody>
           ) : (
-            <Table.Body>
-              <Table.Row textAlign="center">
-                <Table.Cell />
-                <Table.Cell />
-                <Table.Cell>
-                  <Icon name="frown" size="huge" color="red" />
-                </Table.Cell>
-                <Table.Cell>No Orders here</Table.Cell>
-                <Table.Cell />
-                <Table.Cell />
-                <Table.Cell />
-              </Table.Row>
-            </Table.Body>
+            <TableBody>
+              <div>
+                <Icon name="frown" size="huge" color="red" />
+              </div>
+              <div>No Orders here</div>
+            </TableBody>
           )}
-          <Table.Footer fullWidth>
-            <Table.Row textAlign="center">
-              <Table.HeaderCell colSpan="4" />
-              <Table.HeaderCell>Total:</Table.HeaderCell>
-              <Table.HeaderCell>{formatPrice(orderTotal)}</Table.HeaderCell>
-              <Table.HeaderCell>
-                {ordersLength > 0 && (
-                  <Button onClick={this.handleConfirm} basic animated="fade" positive={true} size="mini">
-                    <Button.Content visible>
-                      <Icon name="check" />
-                    </Button.Content>
-                    <Button.Content hidden>Confirm</Button.Content>
-                  </Button>
-                )}
-              </Table.HeaderCell>
-            </Table.Row>
-          </Table.Footer>
+          <TableFooter>
+            <TableFooterTotalLabel>Total:</TableFooterTotalLabel>
+            <TableFooterTotalValue>{formatPrice(orderTotal)}</TableFooterTotalValue>
+            <TableFooterAction>
+              {ordersLength > 0 && (
+                <Button onClick={this.handleConfirm} basic animated="fade" positive={true} size="mini">
+                  <Button.Content visible>
+                    <Icon name="check" />
+                  </Button.Content>
+                  <Button.Content hidden>Confirm</Button.Content>
+                </Button>
+              )}
+            </TableFooterAction>
+          </TableFooter>
         </Table>
         {showForm && <ContactForm confirmedOrder={confirmedOrder} />}
         <AppFooter>&copy;2017 Distinctly Different Decor All Rights Reserved</AppFooter>
@@ -109,11 +98,151 @@ class Cart extends Component {
 export default Cart;
 
 const Wrapper = styled.div`
-  margin: 0 auto;
-  padding: 80px 0 0;
-  width: 85vw;
+  margin: 0;
+  padding: 80px 7.5px 0;
   height: 100vh;
+  min-width: 320px;
   box-sizing: border-box;
+
+  @media screen and (min-width: 768px) {
+    margin: 0 auto;
+    padding: 80px 20px 0;
+  }
+`;
+
+const Table = styled.div`
+  margin: 0;
+  padding: 0;
+  min-width: 300px;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-rows: 50px auto 50px;
+`;
+
+const TableHeader = styled.div`
+  grid-row: 1;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(35px, 1fr));
+  grid-column-gap: 0;
+  justify-items: center;
+  align-items: center;
+  border-top: 3px solid #642bcc;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  border-left: 1px solid grey;
+  border-right: 1px solid grey;
+  border-bottom: 1px solid grey;
+  background-color: lightgrey;
+
+  @media screen and (min-width: 768px) {
+    grid-row: 1;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(7, minmax(35px, 1fr));
+    grid-column-gap: 0.25rem;
+    align-items: center;
+  }
+`;
+
+const ImageHeader = styled.div`
+  display: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  @media screen and (min-width: 481px) {
+    justify-self: center;
+    display: block;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+`;
+const DesciptionHeader = styled.div``;
+const SizeHeader = styled.div``;
+const ColorHeader = styled.div``;
+const QtyHeader = styled.div``;
+const SubtotalHeader = styled.div``;
+const ActionHeader = styled.div``;
+
+const TableBody = styled.div`
+  grid-row: 2;
+  margin: 0;
+  padding: 0.25rem;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(35px, 1fr));
+  justify-items: center;
+  align-items: center;
+  border-left: 1px solid grey;
+  border-right: 1px solid grey;
+
+  @media screen and (min-width: 768px) {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    grid-template-columns: repeat(7, minmax(35px, 1fr));
+    align-items: center;
+  }
+`;
+
+const TableFooter = styled.div`
+  grid-row: 3;
+  margin: 0;
+  padding: 0 0.25rem;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(35px, 1fr));
+  align-items: center;
+  border-top: 1px solid grey;
+  border-bottom: 1px solid grey;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border-left: 1px solid grey;
+  border-right: 1px solid grey;
+  background-color: lightgrey;
+
+  @media screen and (min-width: 768px) {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    grid-template-columns: repeat(7, minmax(35px, 1fr));
+    align-items: center;
+  }
+`;
+
+const TableFooterTotalLabel = styled.div`
+  grid-column: 3;
+  justify-self: center;
+
+  @media screen and (min-width: 768px) {
+    grid-column: 4;
+    justify-self: center;
+  }
+`;
+const TableFooterTotalValue = styled.div`
+  grid-column: 5;
+  justify-self: center;
+
+  @media screen and (min-width: 768px) {
+    grid-column: 6;
+    justify-self: center;
+  }
+`;
+const TableFooterAction = styled.div`
+  grid-column: 6;
+  justify-self: center;
+  padding-left: 0.25rem;
+
+  @media screen and (min-width: 768px) {
+    grid-column: 7;
+    justify-self: center;
+  }
 `;
 
 const AppFooter = styled.div`
