@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { Icon, Button, Input } from 'semantic-ui-react';
+import Button from 'semantic-ui-react/dist/es/elements/Button';
+import Icon from 'semantic-ui-react/dist/es/elements/Icon';
+import Input from 'semantic-ui-react/dist/es/elements/Input';
 
 class ContactForm extends Component {
   state = {

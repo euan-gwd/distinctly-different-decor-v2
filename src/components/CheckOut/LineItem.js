@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { formatPrice } from '../helpers';
-import { Image, Icon, Button } from 'semantic-ui-react';
+import Image from 'semantic-ui-react/dist/es/elements/Image';
+import Button from 'semantic-ui-react/dist/es/elements/Button';
+import Icon from 'semantic-ui-react/dist/es/elements/Icon';
 
 class LineItem extends Component {
   render() {
