@@ -4,7 +4,7 @@ import * as firebase from 'firebase';
 import styled from 'styled-components';
 import Overdrive from 'react-overdrive';
 import { formatPrice } from '../helpers';
-import { Button, Form, Label, Header, Image } from 'semantic-ui-react';
+import { Button, Form, Header, Image } from 'semantic-ui-react';
 
 class ProductDetail extends Component {
   state = {
@@ -126,85 +126,73 @@ class ProductDetail extends Component {
             <Header.Subheader>{product.description}</Header.Subheader>
             <FormWrapper>
               <Form unstackable>
-                <Form.Group inline>
-                  <Label size="large" color="violet" pointing="right">
-                    Size
-                  </Label>
-                  {sizeFieldError ? (
-                    <Form.Select
-                      upward
-                      onChange={this.handleSizeChange}
-                      options={sizeOptions}
-                      placeholder="What size?"
-                      value={orderSize}
-                      error
-                      fluid
-                    />
-                  ) : (
-                    <Form.Select
-                      upward
-                      onChange={this.handleSizeChange}
-                      options={sizeOptions}
-                      placeholder="What size?"
-                      value={orderSize}
-                      required
-                      fluid
-                    />
-                  )}
-                </Form.Group>
-                <Form.Group inline>
-                  <Label size="large" color="violet" pointing="right">
-                    Color
-                  </Label>
-                  {colorFieldError ? (
-                    <Form.Select
-                      upward
-                      onChange={this.handleColorChange}
-                      options={colorOptions}
-                      placeholder="What color?"
-                      value={orderColor}
-                      error
-                      fluid
-                    />
-                  ) : (
-                    <Form.Select
-                      upward
-                      onChange={this.handleColorChange}
-                      options={colorOptions}
-                      placeholder="What color?"
-                      value={orderColor}
-                      required
-                      fluid
-                    />
-                  )}
-                </Form.Group>
-                <Form.Group inline>
-                  <Label size="large" color="violet" pointing="right">
-                    Quantity
-                  </Label>
-                  {qtyFieldError ? (
-                    <Form.Select
-                      upward
-                      onChange={this.handleQtyChange}
-                      options={qtyOptions}
-                      placeholder="How Many?"
-                      value={orderQty}
-                      error
-                      fluid
-                    />
-                  ) : (
-                    <Form.Select
-                      upward
-                      onChange={this.handleQtyChange}
-                      options={qtyOptions}
-                      placeholder="How Many?"
-                      value={orderQty}
-                      required
-                      fluid
-                    />
-                  )}
-                </Form.Group>
-                <Form.Group inline>
+                {sizeFieldError ? (
+                  <Form.Select
+                    upward
+                    onChange={this.handleSizeChange}
+                    options={sizeOptions}
+                    placeholder="What size?"
+                    value={orderSize}
+                    error
+                    fluid
+                  />
+                ) : (
+                  <Form.Select
+                    upward
+                    onChange={this.handleSizeChange}
+                    options={sizeOptions}
+                    placeholder="What size?"
+                    value={orderSize}
+                    required
+                    fluid
+                  />
+                )}
+
+                {colorFieldError ? (
+                  <Form.Select
+                    upward
+                    onChange={this.handleColorChange}
+                    options={colorOptions}
+                    placeholder="What color?"
+                    value={orderColor}
+                    error
+                    fluid
+                  />
+                ) : (
+                  <Form.Select
+                    upward
+                    onChange={this.handleColorChange}
+                    options={colorOptions}
+                    placeholder="What color?"
+                    value={orderColor}
+                    required
+                    fluid
+                  />
+                )}
+
+                {qtyFieldError ? (
+                  <Form.Select
+                    upward
+                    onChange={this.handleQtyChange}
+                    options={qtyOptions}
+                    placeholder="How Many?"
+                    value={orderQty}
+                    error
+                    fluid
+                  />
+                ) : (
+                  <Form.Select
+                    upward
+                    onChange={this.handleQtyChange}
+                    options={qtyOptions}
+                    placeholder="How Many?"
+                    value={orderQty}
+                    required
+                    fluid
+                  />
+                )}
+
+                <FormActions>
                   <Form.Button onClick={this.handleAddToCart} basic color="violet" animated="fade">
                     <Button.Content visible>Add Selected Item to Cart</Button.Content>
                     <Button.Content hidden>{'Selected Total ' + formatPrice(product.price * orderQty)}</Button.Content>
@@ -214,7 +202,7 @@ class ProductDetail extends Component {
                       <Button.Content color="grey">Return to Listing</Button.Content>
                     </Form.Button>
                   </Link>
-                </Form.Group>
+                </FormActions>
               </Form>
             </FormWrapper>
           </div>
@@ -259,7 +247,15 @@ const ProductInfo = styled.div`
   }
 `;
 
+const FormActions = styled.div`
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+`;
+
 const FormWrapper = styled.div`
-  margin: 1rem 0 0;
+  margin: 1rem 0 2rem;
   box-sizing: border-box;
 `;
