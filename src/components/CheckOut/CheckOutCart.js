@@ -68,12 +68,12 @@ class Cart extends Component {
                 ))}
               </TableBody>
             ) : (
-              <TableBody>
+              <EmptyCart>
                 <div>
                   <Icon name="frown" size="huge" color="red" />
                 </div>
                 <div>No Orders here</div>
-              </TableBody>
+              </EmptyCart>
             )}
             <TableFooter>
               <TableFooterTotalLabel>Total:</TableFooterTotalLabel>
@@ -89,8 +89,8 @@ class Cart extends Component {
                 )}
               </TableFooterAction>
             </TableFooter>
-            <Attached>{showForm && <ContactForm confirmedOrder={confirmedOrder} />}</Attached>
           </Table>
+          <AttachedForm>{showForm && <ContactForm confirmedOrder={confirmedOrder} />}</AttachedForm>
         </Container>
         <AppFooter>&copy;2017 Distinctly Different Decor All Rights Reserved</AppFooter>
       </Fragment>
@@ -124,7 +124,7 @@ const Table = styled.div`
   min-width: 300px;
   box-sizing: border-box;
   display: grid;
-  grid-template-rows: 50px auto 50px auto;
+  grid-template-rows: 50px 1fr 50px;
   border: 1px solid rgba(255, 255, 255, 0.5);
   box-shadow: 0px 2px 2.5px 0px rgba(50, 50, 50, 0.5);
 
@@ -132,7 +132,7 @@ const Table = styled.div`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    grid-template-rows: 50px auto 50px 50px;
+    grid-template-rows: 50px 1fr 50px;
   }
 `;
 
@@ -191,6 +191,13 @@ const TableBody = styled.div`
   }
 `;
 
+const EmptyCart = styled.div`
+  grid-row: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 const TableFooter = styled.div`
   grid-row: 3;
   margin: 0;
@@ -240,8 +247,8 @@ const TableFooterAction = styled.div`
   }
 `;
 
-const Attached = styled.div`
-  grid-row: 4;
-  padding: 0.5rem;
-  background-color: white;
+const AttachedForm = styled.div`
+  margin: 1rem 0 0;
+  padding: 0;
+  box-sizing: border-box;
 `;

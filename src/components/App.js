@@ -40,8 +40,7 @@ class App extends Component {
           </Link>
           <Link to="/cart">
             <CartButton>
-              {/* {this.state.cartTotal > 0 ? <CartCount>{this.state.cartTotal}</CartCount> : null} */}
-              <CartCount>{this.state.cartTotal}</CartCount>
+              {this.state.cartTotal > 0 ? <CartCount>{this.state.cartTotal}</CartCount> : null}
               <Icon name="shop" size="big" color="violet" />
             </CartButton>
           </Link>
