@@ -103,6 +103,8 @@ const Wrapper = styled.div`
   height: 100vh;
   min-width: 320px;
   box-sizing: border-box;
+  background-color: white;
+
 
   @media screen and (min-width: 768px) {
     margin: 0 auto;
