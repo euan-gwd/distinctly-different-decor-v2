@@ -15,9 +15,7 @@ class App extends Component {
     this.state.orders ? (orders = { ...this.state.orders }) : (orders = {});
     const timestamp = Date.now();
     orders[`order-${timestamp}`] = orderItem;
-    sessionStorage.setItem(`CurrentOrder`, JSON.stringify(orders));
     const totalItemsInCart = Object.keys(orders).length;
-    sessionStorage.setItem(`CartTotalItems`, JSON.stringify(totalItemsInCart));
     this.setState({ orders, cartTotal: totalItemsInCart });
   };
 
@@ -25,10 +23,6 @@ class App extends Component {
     const updateOrder = { ...this.state.orders };
     delete updateOrder[orderItem];
     this.setState({ orders: updateOrder });
-  };
-
-  componentWillUpdate = (nextProps, nextState) => {
-    sessionStorage.setItem(`CurrentOrder`, JSON.stringify(nextState.orders));
   };
 
   render() {
@@ -123,7 +117,7 @@ const CartCount = styled.span`
   font-size: 0.75rem;
 
   @media screen and (min-width: 768px) {
-    top: 0.85rem;
+    top: 0.95rem;
     right: 2.45rem;
   }
 `;

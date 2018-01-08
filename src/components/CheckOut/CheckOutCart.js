@@ -8,25 +8,19 @@ import ContactForm from './ContactForm';
 import { AppFooter } from '../Product/ProductsList';
 
 class Cart extends Component {
-  constructor(props) {
-    super(props);
-    const ordersRef = sessionStorage.getItem(`CurrentOrder`);
-    const orderTotalRef = sessionStorage.getItem(`CartTotalItems`);
-    this.state = {
-      orders: JSON.parse(ordersRef) || this.props.orders,
-      showForm: false,
-      confirmedOrder: {},
-      orderTotal: JSON.parse(orderTotalRef) || this.props.cartTotal
-    };
-  }
+  state = {
+    orders: this.props.orders,
+    showForm: false,
+    confirmedOrder: {},
+    orderTotal: this.props.cartTotal
+  };
 
   componentWillUpdate = (nextProps, nextState) => {
-    const ordersRef = sessionStorage.getItem(`CurrentOrder`);
-    nextState.Orders = JSON.parse(ordersRef);
+    console.log(nextProps, nextState);
   };
 
   componentDidMount = () => {
-    const orders = { ...this.state.orders };
+    const orders = { ...this.props.orders };
     const orderIds = Object.keys(orders);
     const totalCost = orderIds.reduce((total, orderId) => {
       const lineItemTotal = orders[orderId].orderItemTotal;
@@ -36,7 +30,7 @@ class Cart extends Component {
   };
 
   handleConfirm = () => {
-    const ordersTotal = this.state.orderTotal;
+    const ordersTotal = this.props.orderTotal;
     const confirmedOrder = {
       ordersTotal,
       ...this.state.orders
