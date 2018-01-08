@@ -112,7 +112,7 @@ class ProductDetail extends Component {
     const Pricing = formatPrice(product.price) + ' each';
 
     return (
-      <ProductWrapper backdrop={product.image}>
+      <ProductWrapper backdrop={product.thumbnail}>
         <ProductInfo>
           <Overdrive id={`${product.id}`}>
             <Image
