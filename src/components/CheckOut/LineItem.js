@@ -13,11 +13,11 @@ class LineItem extends Component {
         <LineItemImage>
           <Image src={details.thumbnail} alt={details.title} size="mini" />
         </LineItemImage>
-        <div>{details.title}</div>
-        <div>{details.orderSize}</div>
-        <div>{details.orderColor}</div>
-        <div>{details.orderQty}</div>
-        <div>{formatPrice(details.orderItemTotal)}</div>
+        <LineItemCell>{details.title}</LineItemCell>
+        <LineItemCell>{details.orderSize}</LineItemCell>
+        <LineItemCell>{details.orderColor}</LineItemCell>
+        <LineItemCell>{details.orderQty}</LineItemCell>
+        <LineItemCell>{formatPrice(details.orderItemTotal)}</LineItemCell>
         <LineItemActions>
           <Button
             onClick={() => {
@@ -43,23 +43,15 @@ export default LineItem;
 
 const LineItemRow = styled.div`
   margin: 0;
-  padding: 0.25rem;
+  padding: 0 0.125rem;
   box-sizing: border-box;
   min-height: 50px;
   display: grid;
-  grid-template-columns: repeat(6, minmax(35px, 1fr));
-  grid-row-gap: 1rem;
+  grid-template-columns: auto 15px auto 15px auto 50px;
+  grid-gap: 0.5rem 0.5rem;
   justify-items: center;
   align-items: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-
-  &:last-of-type {
-    border: 0;
-  }
-
-  &:hover {
-    background-color: whitesmoke;
-  }
+  border-bottom: 1px solid #642bcc50;
 
   @media screen and (min-width: 768px) {
     margin: 0;
@@ -67,6 +59,10 @@ const LineItemRow = styled.div`
     box-sizing: border-box;
     grid-template-columns: repeat(7, minmax(35px, 1fr));
     align-items: center;
+
+    &:hover {
+      background-color: ghostwhite;
+    }
   }
 `;
 
@@ -76,18 +72,38 @@ const LineItemImage = styled.div`
   padding: 0;
   box-sizing: border-box;
 
-  @media screen and (min-width: 481px) {
+  @media screen and (min-width: 768px) {
     justify-self: center;
     display: block;
     margin: 0;
     padding: 0.25rem 0;
+    height: 100%;
+    width: 100%;
     box-sizing: border-box;
+    display: grid;
+    justify-content: center;
+    align-items: center;
   }
+`;
+
+const LineItemCell = styled.div`
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  display: grid;
+  justify-content: center;
+  align-items: center;
 `;
 
 const LineItemActions = styled.div`
   margin: 0;
   padding: 0;
-  padding-left: 0.25rem;
+  height: 100%;
+  width: 100%;
   box-sizing: border-box;
+  display: grid;
+  justify-content: center;
+  align-items: center;
 `;

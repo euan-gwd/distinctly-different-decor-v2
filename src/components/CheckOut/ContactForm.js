@@ -47,7 +47,7 @@ class ContactForm extends Component {
       };
 
       console.log(customerOrder);
-      localStorage.clear();
+      sessionStorage.clear();
     }
 
     if (this.state.email === '') {
@@ -61,7 +61,7 @@ class ContactForm extends Component {
       };
 
       console.log(customerOrder);
-      localStorage.clear();
+      sessionStorage.clear();
     }
   };
 

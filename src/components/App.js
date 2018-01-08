@@ -15,9 +15,9 @@ class App extends Component {
     this.state.orders ? (orders = { ...this.state.orders }) : (orders = {});
     const timestamp = Date.now();
     orders[`order-${timestamp}`] = orderItem;
-    localStorage.setItem(`CurrentOrder`, JSON.stringify(orders));
+    sessionStorage.setItem(`CurrentOrder`, JSON.stringify(orders));
     const totalItemsInCart = Object.keys(orders).length;
-    localStorage.setItem(`CartTotalItems`, JSON.stringify(totalItemsInCart));
+    sessionStorage.setItem(`CartTotalItems`, JSON.stringify(totalItemsInCart));
     this.setState({ orders, cartTotal: totalItemsInCart });
   };
 
@@ -28,7 +28,7 @@ class App extends Component {
   };
 
   componentWillUpdate = (nextProps, nextState) => {
-    localStorage.setItem(`CurrentOrder`, JSON.stringify(nextState.orders));
+    sessionStorage.setItem(`CurrentOrder`, JSON.stringify(nextState.orders));
   };
 
   render() {
@@ -118,12 +118,12 @@ const CartCount = styled.span`
   box-sizing: border-box;
   position: absolute;
   top: 0.95rem;
-  right: 1.65rem;
+  right: 1.45rem;
   z-index: 2;
   font-size: 0.75rem;
 
   @media screen and (min-width: 768px) {
     top: 0.85rem;
-    right: 2.65rem;
+    right: 2.45rem;
   }
 `;
