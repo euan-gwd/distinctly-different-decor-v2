@@ -63,7 +63,8 @@ export const AppFooter = styled.div`
   font-size: 0.75rem;
   text-align: right;
   width: 100vw;
-  z-index: 0;
+  position: fixed;
+  bottom: 0;
 `;
 
 const Loader = styled.div`
