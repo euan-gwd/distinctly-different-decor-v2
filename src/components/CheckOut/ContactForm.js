@@ -36,8 +36,22 @@ class ContactForm extends Component {
   };
 
   handleSubmit = () => {
-    if (this.state.name === '' || this.state.email === '') {
+    if (this.state.name === '') {
       this.setState({ nameFieldError: true });
+    } else {
+      const customerOrder = {
+        contactName: this.state.name,
+        contactEmail: this.state.email,
+        contactPhone: this.state.phone,
+        orders: this.props.confirmedOrder
+      };
+
+      console.log(customerOrder);
+      localStorage.clear();
+    }
+
+    if (this.state.email === '') {
+      this.setState({ emailFieldError: true });
     } else {
       const customerOrder = {
         contactName: this.state.name,
