@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Switch, Route, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Icon from 'semantic-ui-react/dist/es/elements/Icon';
@@ -33,15 +33,16 @@ class App extends Component {
 
   render() {
     return (
-      <Fragment>
+      <AppContainer>
         <AppHeader>
           <Link to="/">
             <Logo src={logo} alt="logo" />
           </Link>
           <Link to="/cart">
             <CartButton>
-              {this.state.cartTotal > 0 ? <CartCount>{this.state.cartTotal}</CartCount> : null}
-              <Icon name="shop" size="huge" color="violet" />
+              {/* {this.state.cartTotal > 0 ? <CartCount>{this.state.cartTotal}</CartCount> : null} */}
+              <CartCount>{this.state.cartTotal}</CartCount>
+              <Icon name="shop" size="big" color="violet" />
             </CartButton>
           </Link>
         </AppHeader>
@@ -60,16 +61,31 @@ class App extends Component {
             )}
           />
         </Switch>
-      </Fragment>
+      </AppContainer>
     );
   }
 }
 
 export default App;
 
+const AppContainer = styled.div`
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  min-height: 100vh;
+  min-width: 100vw;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(0, 0, 255, 0.3));
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: grid;
+  grid-template-rows: 50px auto 20px;
+  grid-row-gap: 1rem;
+`;
+
 const AppHeader = styled.div`
+  grid-row: 1;
   background-color: rgba(255, 255, 255, 0.5);
-  height: 80px;
+  height: 50px;
   padding: 0 5px;
   color: #131313;
   display: flex;
@@ -86,7 +102,7 @@ const AppHeader = styled.div`
 `;
 
 const Logo = styled.img`
-  height: 65px;
+  height: 35px;
   text-align: left;
 `;
 
@@ -102,12 +118,13 @@ const CartCount = styled.span`
   padding: 0;
   box-sizing: border-box;
   position: absolute;
-  top: 1.7rem;
-  right: 2.5rem;
+  top: 0.95rem;
+  right: 1.65rem;
   z-index: 2;
+  font-size: 0.75rem;
 
   @media screen and (min-width: 768px) {
-    top: 1.7rem;
-    right: 3.5rem;
+    top: 0.85rem;
+    right: 2.65rem;
   }
 `;

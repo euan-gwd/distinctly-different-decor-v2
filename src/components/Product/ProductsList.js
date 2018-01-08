@@ -42,22 +42,26 @@ class ProductsList extends Component {
 export default ProductsList;
 
 const ProductGrid = styled.div`
+  grid-row: 2;
   display: grid;
   padding: 1rem;
   grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
-  grid-gap: 0.5rem;
-  padding-top: 100px;
+  grid-gap: 0.5rem 1rem;
+  height: auto;
+
+  @media screen and (min-width: 768px) {
+    max-height: 125px;
+  }
 `;
 
-const AppFooter = styled.div`
-  background-color: rgba(255, 255, 255, 0.5);
+export const AppFooter = styled.div`
+  grid-row: 3;
   height: 20px;
-  padding: 0 10px;
+  padding: 0 5px;
+  box-sizing: border-box;
   color: grey;
+  font-size: 0.75rem;
   text-align: right;
-  position: fixed;
-  bottom: 0;
-  left: 0;
   width: 100vw;
   z-index: 0;
 `;

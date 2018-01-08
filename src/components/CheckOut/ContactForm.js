@@ -125,18 +125,18 @@ export default ContactForm;
 const FormWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr) auto;
   grid-row-gap: 0.5rem;
   box-sizing: border-box;
   margin: 0;
-  padding: 0 0 3rem;
+  padding: 0;
   box-sizing: border-box;
 
   @media screen and (min-width: 768px) {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr) auto;
     grid-column-gap: 1rem;
-    margin: 0 auto 1rem;
+    margin: 0;
     padding: 0;
     box-sizing: border-box;
   }

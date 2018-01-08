@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import styled from 'styled-components';
 import { formatPrice } from '../helpers';
 import Icon from 'semantic-ui-react/dist/es/elements/Icon';
 import Button from 'semantic-ui-react/dist/es/elements/Button';
 import LineItem from './LineItem';
 import ContactForm from './ContactForm';
+import { AppFooter } from '../Product/ProductsList';
 
 class Cart extends Component {
   constructor(props) {
@@ -48,85 +49,90 @@ class Cart extends Component {
     const ordersLength = Object.keys(orders).length;
 
     return (
-      <Wrapper>
-        <Table>
-          <TableHeader>
-            <ImageHeader />
-            <DesciptionHeader>Desc</DesciptionHeader>
-            <SizeHeader>Size</SizeHeader>
-            <ColorHeader>Color</ColorHeader>
-            <QtyHeader>Qty</QtyHeader>
-            <SubtotalHeader>Subtotal</SubtotalHeader>
-            <ActionHeader />
-          </TableHeader>
-          {ordersLength > 0 ? (
-            <TableBody>
-              {Object.keys(orders).map(key => (
-                <LineItem key={key} details={orders[key]} id={key} removeFromOrder={this.props.removeFromOrder} />
-              ))}
-            </TableBody>
-          ) : (
-            <TableBody>
-              <div>
-                <Icon name="frown" size="huge" color="red" />
-              </div>
-              <div>No Orders here</div>
-            </TableBody>
-          )}
-          <TableFooter>
-            <TableFooterTotalLabel>Total:</TableFooterTotalLabel>
-            <TableFooterTotalValue>{formatPrice(orderTotal)}</TableFooterTotalValue>
-            <TableFooterAction>
-              {ordersLength > 0 && (
-                <Button onClick={this.handleConfirm} basic animated="fade" positive={true} size="mini">
-                  <Button.Content visible>
-                    <Icon name="check" />
-                  </Button.Content>
-                  <Button.Content hidden>Confirm</Button.Content>
-                </Button>
-              )}
-            </TableFooterAction>
-          </TableFooter>
-        </Table>
-        {showForm && <ContactForm confirmedOrder={confirmedOrder} />}
+      <Fragment>
+        <Container>
+          <Table>
+            <TableHeader>
+              <ImageHeader />
+              <DesciptionHeader>Desc</DesciptionHeader>
+              <SizeHeader>Size</SizeHeader>
+              <ColorHeader>Color</ColorHeader>
+              <QtyHeader>Qty</QtyHeader>
+              <SubtotalHeader>Subtotal</SubtotalHeader>
+              <ActionHeader />
+            </TableHeader>
+            {ordersLength > 0 ? (
+              <TableBody>
+                {Object.keys(orders).map(key => (
+                  <LineItem key={key} details={orders[key]} id={key} removeFromOrder={this.props.removeFromOrder} />
+                ))}
+              </TableBody>
+            ) : (
+              <TableBody>
+                <div>
+                  <Icon name="frown" size="huge" color="red" />
+                </div>
+                <div>No Orders here</div>
+              </TableBody>
+            )}
+            <TableFooter>
+              <TableFooterTotalLabel>Total:</TableFooterTotalLabel>
+              <TableFooterTotalValue>{formatPrice(orderTotal)}</TableFooterTotalValue>
+              <TableFooterAction>
+                {ordersLength > 0 && (
+                  <Button onClick={this.handleConfirm} basic animated="fade" positive={true} size="mini">
+                    <Button.Content visible>
+                      <Icon name="check" />
+                    </Button.Content>
+                    <Button.Content hidden>Confirm</Button.Content>
+                  </Button>
+                )}
+              </TableFooterAction>
+            </TableFooter>
+            <Attached>{showForm && <ContactForm confirmedOrder={confirmedOrder} />}</Attached>
+          </Table>
+        </Container>
         <AppFooter>&copy;2017 Distinctly Different Decor All Rights Reserved</AppFooter>
-      </Wrapper>
+      </Fragment>
     );
   }
 }
 
 export default Cart;
 
-const Wrapper = styled.div`
+const Container = styled.div`
+  grid-row: 2;
+  height: auto;
   margin: 0;
-  padding: 80px 7.5px 0;
-  height: 100vh;
+  padding: 0 7.5px;
   min-width: 320px;
   box-sizing: border-box;
-  background-color: white;
-
 
   @media screen and (min-width: 768px) {
-    margin: 0 auto;
-    padding: 80px 20px 0;
-    max-width: 85vw;
+    grid-row: 2;
+    justify-self: center;
+    margin: 0;
+    padding: 0 1rem;
+    box-sizing: border-box;
+    width: 85vw;
   }
 `;
 
 const Table = styled.div`
-  margin: 0 0 0.5rem;
+  margin: 0;
   padding: 0;
   min-width: 300px;
   box-sizing: border-box;
   display: grid;
-  grid-template-rows: 50px auto 50px;
+  grid-template-rows: 50px auto 50px auto;
   border: 1px solid rgba(255, 255, 255, 0.5);
-  border-radius: 4px;
+  box-shadow: 0px 2px 2.5px 0px rgba(50, 50, 50, 0.5);
 
   @media screen and (min-width: 768px) {
-    margin: 0 auto 1rem;
+    margin: 0;
     padding: 0;
     box-sizing: border-box;
+    grid-template-rows: 50px auto 50px 50px;
   }
 `;
 
@@ -140,10 +146,7 @@ const TableHeader = styled.div`
   grid-column-gap: 0;
   justify-items: center;
   align-items: center;
-  border-top: 3px solid #642bcc;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: white;
 
   @media screen and (min-width: 768px) {
     grid-row: 1;
@@ -180,6 +183,12 @@ const ActionHeader = styled.div``;
 
 const TableBody = styled.div`
   grid-row: 2;
+
+  @media screen and (min-width: 481px) {
+    max-height: 60vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
 `;
 
 const TableFooter = styled.div`
@@ -191,7 +200,7 @@ const TableFooter = styled.div`
   grid-template-columns: repeat(6, minmax(35px, 1fr));
   align-items: center;
   color: #642bcc;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: white;
 
   @media screen and (min-width: 768px) {
     margin: 0;
@@ -231,15 +240,8 @@ const TableFooterAction = styled.div`
   }
 `;
 
-const AppFooter = styled.div`
-  background-color: rgba(255, 255, 255, 0.5);
-  height: 20px;
-  padding: 0;
-  color: #131313;
-  text-align: right;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100vw;
-  z-index: 0;
+const Attached = styled.div`
+  grid-row: 4;
+  padding: 0.5rem;
+  background-color: white;
 `;
