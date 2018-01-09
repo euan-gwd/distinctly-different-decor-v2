@@ -80,11 +80,31 @@ class ProductDetail extends Component {
     ];
 
     const colorOptions = [
-      { key: 1, text: 'Red', value: 'Red' },
-      { key: 2, text: 'Green', value: 'Green' },
-      { key: 3, text: 'Blue', value: 'Blue' },
-      { key: 4, text: 'Yellow', value: 'Yellow' },
-      { key: 5, text: 'Black', value: 'Black' }
+      { key: 1, text: 'Red', value: 'Red', label: { color: 'red', empty: true, circular: true } },
+      {
+        key: 2,
+        text: 'Green',
+        value: 'Green',
+        label: { color: 'green', empty: true, circular: true }
+      },
+      {
+        key: 3,
+        text: 'Blue',
+        value: 'Blue',
+        label: { color: 'blue', empty: true, circular: true }
+      },
+      {
+        key: 4,
+        text: 'Yellow',
+        value: 'Yellow',
+        label: { color: 'yellow', empty: true, circular: true }
+      },
+      {
+        key: 5,
+        text: 'Black',
+        value: 'Black',
+        label: { color: 'black', empty: true, circular: true }
+      }
     ];
 
     const qtyOptions = [
@@ -131,7 +151,7 @@ class ProductDetail extends Component {
                     upward
                     onChange={this.handleSizeChange}
                     options={sizeOptions}
-                    placeholder="Please select a valid size!"
+                    placeholder="Size is Required!"
                     value={orderSize}
                     error
                   />
@@ -140,7 +160,7 @@ class ProductDetail extends Component {
                     upward
                     onChange={this.handleSizeChange}
                     options={sizeOptions}
-                    placeholder="Choose size"
+                    placeholder="Pick a size"
                     value={orderSize}
                     required
                   />
@@ -150,7 +170,7 @@ class ProductDetail extends Component {
                     upward
                     onChange={this.handleColorChange}
                     options={colorOptions}
-                    placeholder="Please select a valid Color!"
+                    placeholder="Color is Required!"
                     value={orderColor}
                     error
                   />
@@ -169,7 +189,7 @@ class ProductDetail extends Component {
                     upward
                     onChange={this.handleQtyChange}
                     options={qtyOptions}
-                    placeholder="Please select a valid Qty!"
+                    placeholder="Quantity is Required!"
                     value={orderQty}
                     error
                   />
@@ -185,9 +205,9 @@ class ProductDetail extends Component {
                 )}
               </FormSelectGroup>
               <FormButtonGroup>
-                <Button onClick={this.handleAddToCart} basic color="violet" animated="fade">
-                  <Button.Content visible>Add Item to Cart</Button.Content>
-                  <Button.Content hidden>{'Selected Total ' + formatPrice(product.price * orderQty)}</Button.Content>
+                <Button onClick={this.handleAddToCart} color="violet" animated="fade">
+                  <Button.Content visible>Add to Cart</Button.Content>
+                  <Button.Content hidden>{'SubTotal: ' + formatPrice(product.price * orderQty)}</Button.Content>
                 </Button>
                 <Link to="/">
                   <Button basic fluid>

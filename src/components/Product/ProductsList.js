@@ -29,9 +29,9 @@ class ProductsList extends Component {
         {this.state.loaded ? (
           <ProductGrid>{this.state.inventory.map(item => <Product key={item.id} product={item} />)}</ProductGrid>
         ) : (
-          <div>
-            <Loader>Loading...</Loader>
-          </div>
+          <Container>
+            <Loading />
+          </Container>
         )}
         <AppFooter>&copy;2017 Distinctly Different Decor All Rights Reserved</AppFooter>
       </Fragment>
@@ -67,52 +67,37 @@ export const AppFooter = styled.div`
   bottom: 0;
 `;
 
-const Loader = styled.div`
+const Container = styled.div`
+  grid-row: 2;
+  display: grid;
+  justify-self: center;
+  align-self: center;
+  width: 100vw;
+  height: auto;
+  box-sizing: border-box;
+`;
+
+const Loading = styled.div`
   border-radius: 50%;
-  width: 2.5em;
-  height: 2.5em;
-  animation-fill-mode: both;
-  animation: load7 1.8s infinite ease-in-out;
-  color: lightslategray;
+  width: 10em;
+  height: 10em;
+  margin: 60px auto;
   font-size: 10px;
-  margin: 80px auto;
   position: relative;
   text-indent: -9999em;
+  border-top: 1.1em solid transparent;
+  border-right: 1.1em solid transparent;
+  border-bottom: 1.1em solid transparent;
+  border-left: 1.1em solid #642bcc;
   transform: translateZ(0);
-  animation-delay: -0.16s;
+  animation: load8 1.1s infinite linear;
+  box-sizing: border-box;
 
-  &::before,
-  &::after {
-    border-radius: 50%;
-    width: 2.5em;
-    height: 2.5em;
-    animation-fill-mode: both;
-    animation: load7 1.8s infinite ease-in-out;
+@keyframes load8 {
+  0% {
+    transform: rotate(0deg);
   }
-
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-  }
-
-  &::before {
-    left: -3.5em;
-    animation-delay: -0.32s;
-  }
-
-  &::after {
-    left: 3.5em;
-  }
-
-  @keyframes load7 {
-  0%,
-  80%,
   100% {
-    box-shadow: 0 2.5em 0 -1.3em;
-  }
-  40% {
-    box-shadow: 0 2.5em 0 0;
+    transform: rotate(360deg);
   }
 `;
