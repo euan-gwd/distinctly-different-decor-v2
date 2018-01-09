@@ -228,7 +228,7 @@ export default ProductDetail;
 const ProductWrapper = styled.div`
   position: relative;
   padding-top: 45vh;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(0, 0, 255, 0.5)),
+  background: linear-gradient(bottom, rgba(255, 255, 255, 0.5), rgba(0, 0, 255, 0.5)),
     url(${props => props.backdrop}) center no-repeat;
   background-size: cover;
   background-origin: border-box;
