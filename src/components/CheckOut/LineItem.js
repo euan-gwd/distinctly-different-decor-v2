@@ -46,6 +46,7 @@ const LineItemRow = styled.div`
   padding: 0 0.125rem;
   box-sizing: border-box;
   min-height: 50px;
+  width: 100%;
   display: grid;
   grid-template-columns: auto 15px auto 15px auto 50px;
   grid-gap: 0.5rem 0.5rem;

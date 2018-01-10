@@ -9,7 +9,7 @@ import ProductDetail from './Product/ProductDetail';
 import Cart from './CheckOut/CheckOutCart';
 
 class App extends Component {
-  state = { orders: {}, cartTotal: 0 };
+  state = { orders: {}, totalItemsInCart: 0 };
 
   addToOrder = orderItem => {
     let orders = {};
@@ -17,13 +17,18 @@ class App extends Component {
     const timestamp = Date.now();
     orders[`order-${timestamp}`] = orderItem;
     const totalItemsInCart = Object.keys(orders).length;
-    this.setState({ orders, cartTotal: totalItemsInCart });
+    sessionStorage.setItem(`CurrentOrder`, JSON.stringify(orders));
+    this.setState({ orders, totalItemsInCart });
   };
 
   removeFromOrder = orderItem => {
     const updateOrder = { ...this.state.orders };
     delete updateOrder[orderItem];
-    this.setState({ orders: updateOrder });
+    const totalItemsInCart = Object.keys(updateOrder).length;
+    totalItemsInCart === 0
+      ? sessionStorage.clear()
+      : sessionStorage.setItem(`CurrentOrder`, JSON.stringify(updateOrder));
+    this.setState({ orders: updateOrder, totalItemsInCart });
   };
 
   render() {
@@ -35,7 +40,7 @@ class App extends Component {
           </Link>
           <Link to="/cart">
             <CartButton>
-              {this.state.cartTotal > 0 ? <CartCount>{this.state.cartTotal}</CartCount> : null}
+              {this.state.totalItemsInCart > 0 ? <CartCount>{this.state.totalItemsInCart}</CartCount> : null}
               <Icon name="shop" size="big" color="violet" />
             </CartButton>
           </Link>
@@ -45,14 +50,7 @@ class App extends Component {
           <Route path="/products/:id" render={props => <ProductDetail {...props} addToOrder={this.addToOrder} />} />
           <Route
             path="/cart"
-            render={props => (
-              <Cart
-                {...props}
-                orders={this.state.orders}
-                cartTotal={this.state.cartTotal}
-                removeFromOrder={this.removeFromOrder}
-              />
-            )}
+            render={props => <Cart {...props} orders={this.state.orders} removeFromOrder={this.removeFromOrder} />}
           />
         </Switch>
         <AppFooter>&copy;2017 Distinctly Different Decor All Rights Reserved</AppFooter>

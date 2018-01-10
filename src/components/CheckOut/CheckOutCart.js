@@ -8,14 +8,10 @@ import ContactForm from './ContactForm';
 
 class Cart extends Component {
   state = {
-    orders: this.props.orders,
+    orders: {},
     showForm: false,
     confirmedOrder: {},
-    orderTotal: this.props.cartTotal
-  };
-
-  componentWillUpdate = (nextProps, nextState) => {
-    console.log(nextProps, nextState);
+    orderTotalCost: 0
   };
 
   componentDidMount = () => {
@@ -25,7 +21,22 @@ class Cart extends Component {
       const lineItemTotal = orders[orderId].orderItemTotal;
       return total + lineItemTotal;
     }, 0);
-    this.setState({ orderTotal: totalCost });
+    this.setState({ orderTotalCost: totalCost, orders });
+  };
+
+  componentWillReceiveProps = nextProps => {
+    if (nextProps.order === undefined) {
+      this.setState({ orders: {}, orderTotalCost: 0 });
+    } else if (this.props !== nextProps) {
+      const ordersRef = sessionStorage.getItem(`CurrentOrder`);
+      const updatedOrders = JSON.parse(ordersRef);
+      const orderIds = Object.keys(updatedOrders);
+      const UpdatedTotal = orderIds.reduce((total, orderId) => {
+        const lineItemTotal = updatedOrders[orderId].orderItemTotal;
+        return total + lineItemTotal;
+      }, 0);
+      this.setState({ orders: updatedOrders, orderTotalCost: UpdatedTotal });
+    }
   };
 
   handleConfirm = () => {
@@ -38,7 +49,7 @@ class Cart extends Component {
   };
 
   render() {
-    const { orders, orderTotal, showForm, confirmedOrder } = this.state;
+    const { orders, orderTotalCost, showForm, confirmedOrder } = this.state;
     const ordersLength = Object.keys(orders).length;
 
     return (
@@ -69,7 +80,7 @@ class Cart extends Component {
           )}
           <TableFooter>
             <TableFooterTotalLabel>Total:</TableFooterTotalLabel>
-            <TableFooterTotalValue>{formatPrice(orderTotal)}</TableFooterTotalValue>
+            <TableFooterTotalValue>{formatPrice(orderTotalCost)}</TableFooterTotalValue>
             <TableFooterAction>
               {ordersLength > 0 && (
                 <Button onClick={this.handleConfirm} basic animated="fade" positive={true} size="mini">
