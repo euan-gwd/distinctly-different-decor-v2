@@ -92,9 +92,9 @@ export default Cart;
 
 const Container = styled.div`
   grid-row: 2;
-  min-height: 100vh;
+  min-height: 85vh;
   padding: 0 5px;
-  min-width: 320px;
+  min-width: 100%;
   box-sizing: border-box;
 
   @media screen and (min-width: 768px) {
@@ -107,7 +107,7 @@ const Container = styled.div`
 `;
 
 const Table = styled.div`
-  margin: 0;
+  margin: 1rem 0 0;
   padding: 0;
   min-width: 300px;
   box-sizing: border-box;
@@ -118,7 +118,7 @@ const Table = styled.div`
   border-top: 2px solid ${colors.border};
 
   @media screen and (min-width: 768px) {
-    margin: 0;
+    margin: 1rem 0 0;
     padding: 0;
     box-sizing: border-box;
     grid-template-rows: 50px 1fr 50px;
@@ -170,7 +170,7 @@ const TableColumnHeader = styled.div`
 
 const TableBody = styled.div`
   grid-row: 2;
-  background-color: ${colors.background};
+  background-color: white;
 
   @media screen and (min-width: 768px) {
     max-height: 60vh;
@@ -184,8 +184,9 @@ const EmptyCart = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 60vh;
-  background-color: ${colors.background};
+  height: 50vh;
+  background-color: ghostwhite;
+  border-bottom: 1px solid ${colors.border};
 `;
 
 const TableFooter = styled.div`

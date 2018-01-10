@@ -226,7 +226,7 @@ export default ProductDetail;
 
 const Backdrop = styled.div`
   grid-row: 2;
-  min-height: 100vh;
+  min-height: 85vh;
   background: ${colors.background};
   background-size: cover;
   background-origin: center center;
@@ -254,7 +254,7 @@ const Container = styled.div`
     margin: 0;
     padding: 1rem 20px;
     grid-template-columns: repeat(4, minmax(250px, 1fr));
-    grid-gap: 0;
+    grid-gap: 0 0;
     align-items: center;
     position: absolute;
     bottom: 0;
