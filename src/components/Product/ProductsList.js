@@ -34,7 +34,6 @@ class ProductsList extends Component {
             <Loading />
           </Container>
         )}
-        <AppFooter>&copy;2017 Distinctly Different Decor All Rights Reserved</AppFooter>
       </Fragment>
     );
   }
@@ -53,19 +52,6 @@ const ProductGrid = styled.div`
   @media screen and (min-width: 768px) {
     max-height: 125px;
   }
-`;
-
-export const AppFooter = styled.div`
-  grid-row: 3;
-  height: 20px;
-  padding: 0 5px;
-  box-sizing: border-box;
-  color: grey;
-  font-size: 0.75rem;
-  text-align: right;
-  width: 100vw;
-  position: fixed;
-  bottom: 0;
 `;
 
 const Container = styled.div`
