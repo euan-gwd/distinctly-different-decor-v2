@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route, Link } from 'react-router-dom';
+import { colors } from '../helpers';
 import styled from 'styled-components';
 import Icon from 'semantic-ui-react/dist/es/elements/Icon';
 import logo from './logo.svg';
@@ -78,7 +79,7 @@ const AppContainer = styled.div`
 
 const AppHeader = styled.div`
   grid-row: 1;
-  background-color: rgba(255, 255, 255, 0.5);
+  background: ${colors.background};
   height: 50px;
   padding: 0 5px;
   color: #131313;
