@@ -143,8 +143,8 @@ class ProductDetail extends Component {
             </Overdrive>
           </ProductImage>
           <Form>
-            <h1>{product.title}</h1>
-            <h3>{product.description}</h3>
+            <FormHeader>{product.title}</FormHeader>
+            <FormSubHeader>{product.description}</FormSubHeader>
             <FormSelectGroup>
               {sizeFieldError ? (
                 <Select
@@ -205,7 +205,7 @@ class ProductDetail extends Component {
               )}
             </FormSelectGroup>
             <FormButtonGroup>
-              <Button onClick={this.handleAddToCart} color="violet" animated="fade">
+              <Button onClick={this.handleAddToCart} basic color="violet" animated="fade">
                 <Button.Content visible>Add to Cart</Button.Content>
                 <Button.Content hidden>{'SubTotal: ' + formatPrice(product.price * orderQty)}</Button.Content>
               </Button>
@@ -229,9 +229,11 @@ const Backdrop = styled.div`
   background: ${colors.background};
   background-size: cover;
   background-origin: center center;
+  position: relative;
 
-  @media screen and (min-width: 482px) {
-    background: url(${props => props.image}) center no-repeat;
+  @media screen and (min-width: 768px) {
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(0, 0, 255, 0.3)),
+      url(${props => props.image}) center no-repeat;
     background-size: cover;
     background-origin: center center;
   }
@@ -242,18 +244,19 @@ const Container = styled.div`
   padding: 0;
   background: ${colors.background};
   background-size: cover;
-  background-origin: center center;
   display: grid;
   justify-content: center;
   grid-gap: 1rem 0;
   width: 100%;
 
-  @media screen and (min-width: 482px) {
+  @media screen and (min-width: 768px) {
     margin: 0;
     padding: 1rem 20px;
     grid-template-columns: repeat(4, minmax(250px, 1fr));
     grid-gap: 0;
     align-items: center;
+    position: absolute;
+    bottom: 0;
   }
 `;
 
@@ -262,16 +265,30 @@ const ProductImage = styled.div`
   display: grid;
   grid-template-columns: minmax(125px, 255px);
   justify-content: center;
-  @media screen and (min-width: 482px) {
+
+  @media screen and (min-width: 768px) {
     grid-column: 2;
   }
 `;
 
 const Form = styled.div`
   background: ${colors.background};
-  @media screen and (min-width: 482px) {
+  display: grid;
+  grid-row-gap: 1rem;
+  @media screen and (min-width: 768px) {
     grid-column: 3;
+    grid-row-gap: 0.5rem;
   }
+`;
+
+const FormHeader = styled.h1`
+  margin: 0;
+  padding: 0;
+`;
+
+const FormSubHeader = styled.h3`
+  margin: 0;
+  padding: 0;
 `;
 
 const FormSelectGroup = styled.div`
@@ -279,18 +296,17 @@ const FormSelectGroup = styled.div`
   grid-gap: 1rem 0;
   width: 100%;
 
-  @media screen and (min-width: 482px) {
-    max-width: 450px;
+  @media screen and (min-width: 768px) {
+    grid-gap: 0.5rem 0;
   }
 `;
 
 const FormButtonGroup = styled.div`
-  margin-top: 1rem;
   display: grid;
   grid-row-gap: 1rem;
   width: 100%;
 
-  @media screen and (min-width: 482px) {
+  @media screen and (min-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
     grid-column-gap: 1rem;
   }
