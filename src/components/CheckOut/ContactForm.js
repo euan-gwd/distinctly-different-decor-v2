@@ -63,6 +63,20 @@ class ContactForm extends Component {
       console.log(customerOrder);
       sessionStorage.clear();
     }
+
+    if (this.state.phone === '') {
+      this.setState({ phoneFieldError: true });
+    } else {
+      const customerOrder = {
+        contactName: this.state.name,
+        contactEmail: this.state.email,
+        contactPhone: this.state.phone,
+        orders: this.props.confirmedOrder
+      };
+
+      console.log(customerOrder);
+      sessionStorage.clear();
+    }
   };
 
   render() {
@@ -110,7 +124,7 @@ class ContactForm extends Component {
             fluid
             label={{ pointing: 'right', content: 'phone', color: 'red' }}
             labelPosition="left"
-            placeholder="Valid Number 000-000-0000"
+            placeholder="A Valid Number 000-000-0000 is required"
             onChange={this.handlePhoneInput}
             error
           />

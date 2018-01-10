@@ -11,7 +11,7 @@ class Cart extends Component {
     orders: {},
     showForm: false,
     confirmedOrder: {},
-    orderTotalCost: 0
+    totalCost: 0
   };
 
   componentDidMount = () => {
@@ -21,22 +21,19 @@ class Cart extends Component {
       const lineItemTotal = orders[orderId].orderItemTotal;
       return total + lineItemTotal;
     }, 0);
-    this.setState({ orderTotalCost: totalCost, orders });
+    this.setState({ totalCost, orders });
   };
 
-  componentWillReceiveProps = nextProps => {
-    if (nextProps.order === undefined) {
-      this.setState({ orders: {}, orderTotalCost: 0 });
-    } else if (this.props !== nextProps) {
-      const ordersRef = sessionStorage.getItem(`CurrentOrder`);
-      const updatedOrders = JSON.parse(ordersRef);
-      const orderIds = Object.keys(updatedOrders);
-      const UpdatedTotal = orderIds.reduce((total, orderId) => {
-        const lineItemTotal = updatedOrders[orderId].orderItemTotal;
-        return total + lineItemTotal;
-      }, 0);
-      this.setState({ orders: updatedOrders, orderTotalCost: UpdatedTotal });
-    }
+  componentWillUpdate = (nextProps, nextState) => {
+    const ordersRef = sessionStorage.getItem(`CurrentOrder`);
+    const updatedOrders = JSON.parse(ordersRef) || {};
+    const orderIds = Object.keys(updatedOrders);
+    const UpdatedTotal = orderIds.reduce((total, orderId) => {
+      const lineItemTotal = updatedOrders[orderId].orderItemTotal;
+      return total + lineItemTotal;
+    }, 0);
+    nextState.orders = updatedOrders;
+    nextState.totalCost = UpdatedTotal;
   };
 
   handleConfirm = () => {
@@ -49,7 +46,7 @@ class Cart extends Component {
   };
 
   render() {
-    const { orders, orderTotalCost, showForm, confirmedOrder } = this.state;
+    const { orders, totalCost, showForm, confirmedOrder } = this.state;
     const ordersLength = Object.keys(orders).length;
 
     return (
@@ -80,7 +77,7 @@ class Cart extends Component {
           )}
           <TableFooter>
             <TableFooterTotalLabel>Total:</TableFooterTotalLabel>
-            <TableFooterTotalValue>{formatPrice(orderTotalCost)}</TableFooterTotalValue>
+            <TableFooterTotalValue>{formatPrice(totalCost)}</TableFooterTotalValue>
             <TableFooterAction>
               {ordersLength > 0 && (
                 <Button onClick={this.handleConfirm} basic animated="fade" positive={true} size="mini">
