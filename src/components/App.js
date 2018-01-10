@@ -54,6 +54,7 @@ class App extends Component {
             )}
           />
         </Switch>
+        <AppFooter>&copy;2017 Distinctly Different Decor All Rights Reserved</AppFooter>
       </AppContainer>
     );
   }
@@ -65,14 +66,13 @@ const AppContainer = styled.div`
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  min-height: 100vh;
-  min-width: 100vw;
+  height: 100vh;
+  width: 100vw;
   background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(0, 0, 255, 0.3));
   background-size: cover;
   background-repeat: no-repeat;
   display: grid;
   grid-template-rows: 50px auto 20px;
-  grid-row-gap: 1rem;
 `;
 
 const AppHeader = styled.div`
@@ -120,4 +120,17 @@ const CartCount = styled.span`
     top: 0.95rem;
     right: 2.45rem;
   }
+`;
+
+const AppFooter = styled.div`
+  grid-row: 3;
+  height: 20px;
+  padding: 0 5px;
+  box-sizing: border-box;
+  color: grey;
+  font-size: 0.75rem;
+  text-align: right;
+  width: 100vw;
+  position: fixed;
+  bottom: 0;
 `;

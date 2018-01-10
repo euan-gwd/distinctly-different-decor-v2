@@ -3,10 +3,9 @@ import { Link } from 'react-router-dom';
 import { database } from '../../firebase/firebase';
 import styled from 'styled-components';
 import Overdrive from 'react-overdrive';
-import { formatPrice } from '../helpers';
+import { formatPrice, colors } from '../helpers';
 import Image from 'semantic-ui-react/dist/es/elements/Image';
 import Button from 'semantic-ui-react/dist/es/elements/Button';
-import Header from 'semantic-ui-react/dist/es/elements/Header';
 import Select from 'semantic-ui-react/dist/es/addons/Select';
 
 class ProductDetail extends Component {
@@ -132,172 +131,167 @@ class ProductDetail extends Component {
     const Pricing = formatPrice(product.price) + ' each';
 
     return (
-      <ProductWrapper backdrop={product.thumbnail}>
-        <ProductInfo>
-          <Overdrive id={`${product.id}`}>
-            <Image
-              src={product.thumbnail}
-              alt={product.title}
-              label={{ color: 'violet', ribbon: true, content: [Pricing] }}
-            />
-          </Overdrive>
-          <ProductSelection>
-            <Header as="h2">{product.title}</Header>
-            <Header.Subheader>{product.description}</Header.Subheader>
-            <Form>
-              <FormSelectGroup>
-                {sizeFieldError ? (
-                  <Select
-                    upward
-                    onChange={this.handleSizeChange}
-                    options={sizeOptions}
-                    placeholder="Size is Required!"
-                    value={orderSize}
-                    error
-                  />
-                ) : (
-                  <Select
-                    upward
-                    onChange={this.handleSizeChange}
-                    options={sizeOptions}
-                    placeholder="Pick a size"
-                    value={orderSize}
-                    required
-                  />
-                )}
-                {colorFieldError ? (
-                  <Select
-                    upward
-                    onChange={this.handleColorChange}
-                    options={colorOptions}
-                    placeholder="Color is Required!"
-                    value={orderColor}
-                    error
-                  />
-                ) : (
-                  <Select
-                    upward
-                    onChange={this.handleColorChange}
-                    options={colorOptions}
-                    placeholder="Choose a color"
-                    value={orderColor}
-                    required
-                  />
-                )}
-                {qtyFieldError ? (
-                  <Select
-                    upward
-                    onChange={this.handleQtyChange}
-                    options={qtyOptions}
-                    placeholder="Quantity is Required!"
-                    value={orderQty}
-                    error
-                  />
-                ) : (
-                  <Select
-                    upward
-                    onChange={this.handleQtyChange}
-                    options={qtyOptions}
-                    placeholder="How Many?"
-                    value={orderQty}
-                    required
-                  />
-                )}
-              </FormSelectGroup>
-              <FormButtonGroup>
-                <Button onClick={this.handleAddToCart} color="violet" animated="fade">
-                  <Button.Content visible>Add to Cart</Button.Content>
-                  <Button.Content hidden>{'SubTotal: ' + formatPrice(product.price * orderQty)}</Button.Content>
+      <Backdrop image={product.thumbnail}>
+        <Container>
+          <ProductImage>
+            <Overdrive id={`${product.id}`}>
+              <Image
+                src={product.thumbnail}
+                alt={product.title}
+                label={{ color: 'violet', ribbon: true, content: [Pricing] }}
+              />
+            </Overdrive>
+          </ProductImage>
+          <Form>
+            <h1>{product.title}</h1>
+            <h3>{product.description}</h3>
+            <FormSelectGroup>
+              {sizeFieldError ? (
+                <Select
+                  upward
+                  onChange={this.handleSizeChange}
+                  options={sizeOptions}
+                  placeholder="Size is Required!"
+                  value={orderSize}
+                  error
+                />
+              ) : (
+                <Select
+                  upward
+                  onChange={this.handleSizeChange}
+                  options={sizeOptions}
+                  placeholder="Pick a size"
+                  value={orderSize}
+                  required
+                />
+              )}
+              {colorFieldError ? (
+                <Select
+                  upward
+                  onChange={this.handleColorChange}
+                  options={colorOptions}
+                  placeholder="Color is Required!"
+                  value={orderColor}
+                  error
+                />
+              ) : (
+                <Select
+                  upward
+                  onChange={this.handleColorChange}
+                  options={colorOptions}
+                  placeholder="Choose a color"
+                  value={orderColor}
+                  required
+                />
+              )}
+              {qtyFieldError ? (
+                <Select
+                  upward
+                  onChange={this.handleQtyChange}
+                  options={qtyOptions}
+                  placeholder="Quantity is Required!"
+                  value={orderQty}
+                  error
+                />
+              ) : (
+                <Select
+                  upward
+                  onChange={this.handleQtyChange}
+                  options={qtyOptions}
+                  placeholder="How Many?"
+                  value={orderQty}
+                  required
+                />
+              )}
+            </FormSelectGroup>
+            <FormButtonGroup>
+              <Button onClick={this.handleAddToCart} color="violet" animated="fade">
+                <Button.Content visible>Add to Cart</Button.Content>
+                <Button.Content hidden>{'SubTotal: ' + formatPrice(product.price * orderQty)}</Button.Content>
+              </Button>
+              <Link to="/">
+                <Button basic fluid>
+                  <Button.Content color="grey">Return to Listing</Button.Content>
                 </Button>
-                <Link to="/">
-                  <Button basic fluid>
-                    <Button.Content color="grey">Return to Listing</Button.Content>
-                  </Button>
-                </Link>
-              </FormButtonGroup>
-            </Form>
-          </ProductSelection>
-        </ProductInfo>
-      </ProductWrapper>
+              </Link>
+            </FormButtonGroup>
+          </Form>
+        </Container>
+      </Backdrop>
     );
   }
 }
 
 export default ProductDetail;
 
-const ProductWrapper = styled.div`
-  position: relative;
-  padding-top: 45vh;
-  background: linear-gradient(bottom, rgba(255, 255, 255, 0.5), rgba(0, 0, 255, 0.5)),
-    url(${props => props.backdrop}) center no-repeat;
+const Backdrop = styled.div`
+  grid-row: 2;
+  background: ${colors.background};
   background-size: cover;
-  background-origin: border-box;
-  min-height: 100vh;
-`;
+  background-origin: center center;
 
-const ProductInfo = styled.div`
-  display: grid;
-  background: white;
-  text-align: left;
-  margin: 0;
-  padding: 1rem 1rem 3rem;
-  grid-template-columns: minmax(125px, 255px);
-  grid-template-rows: 1fr 1fr;
-  justify-content: center;
-  height: 85vh;
-  min-height: 85vh;
-
-  @media screen and (min-width: 641px) {
-    margin: 0 0 3rem;
-    padding: 1rem 1rem 1rem 10%;
-    grid-template-columns: minmax(125px, 255px) 1fr;
-    grid-template-rows: 0;
-    grid-column-gap: 1rem;
-    min-height: 47vh;
-    height: 285px;
+  @media screen and (min-width: 482px) {
+    background: url(${props => props.image}) center no-repeat;
+    background-size: cover;
+    background-origin: center center;
   }
 `;
 
-const ProductSelection = styled.div`
-  margin-left: 1rem;
+const Container = styled.div`
+  margin: 1rem 0 2rem;
   padding: 0;
-  box-sizing: border-box;
+  background: ${colors.background};
+  background-size: cover;
+  background-origin: center center;
+  display: grid;
+  justify-content: center;
+  grid-gap: 1rem 0;
+  width: 100%;
+
+  @media screen and (min-width: 482px) {
+    margin: 0;
+    padding: 1rem 20px;
+    grid-template-columns: repeat(4, minmax(250px, 1fr));
+    grid-gap: 0;
+    align-items: center;
+  }
+`;
+
+const ProductImage = styled.div`
+  background: ${colors.background};
+  display: grid;
+  grid-template-columns: minmax(125px, 255px);
+  justify-content: center;
+  @media screen and (min-width: 482px) {
+    grid-column: 2;
+  }
 `;
 
 const Form = styled.div`
-  margin-top: 1rem;
-  margin-left: 0;
-  margin-right: 0;
-  margin-bottom: 2rem;
-  padding: 0;
-  box-sizing: border-box;
+  background: ${colors.background};
+  @media screen and (min-width: 482px) {
+    grid-column: 3;
+  }
 `;
 
 const FormSelectGroup = styled.div`
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
   display: grid;
   grid-gap: 1rem 0;
   width: 100%;
 
-  @media screen and (min-width: 641px) {
+  @media screen and (min-width: 482px) {
     max-width: 450px;
   }
 `;
 
 const FormButtonGroup = styled.div`
-  margin: 1rem 0;
-  padding: 0;
-  box-sizing: border-box;
+  margin-top: 1rem;
   display: grid;
-  grid-gap: 1rem 0;
+  grid-row-gap: 1rem;
   width: 100%;
 
-  @media screen and (min-width: 641px) {
-    display: grid;
+  @media screen and (min-width: 482px) {
     grid-template-columns: repeat(2, 1fr);
-    grid-gap: 0 1rem;
-    max-width: 450px;
+    grid-column-gap: 1rem;
   }
 `;

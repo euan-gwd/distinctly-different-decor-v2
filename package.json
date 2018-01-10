@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "amwic-react-scripts": "1.2.20",
+    "amwic-react-scripts": "1.2.21",
     "eslint-config-prettier": "^2.9.0",
     "eslint-config-react-app": "^2.0.1",
     "firebase": "^4.8.1",

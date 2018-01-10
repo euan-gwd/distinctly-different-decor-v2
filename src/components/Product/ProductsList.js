@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import styled from 'styled-components';
+import { colors } from '../helpers';
 import { database } from '../../firebase/firebase';
 import Product from './Product';
 
@@ -47,7 +48,7 @@ const ProductGrid = styled.div`
   padding: 1rem;
   grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
   grid-gap: 0.5rem 1rem;
-  height: auto;
+  height: fit-content;
 
   @media screen and (min-width: 768px) {
     max-height: 125px;
@@ -88,7 +89,7 @@ const Loading = styled.div`
   border-top: 1.1em solid transparent;
   border-right: 1.1em solid transparent;
   border-bottom: 1.1em solid transparent;
-  border-left: 1.1em solid #642bcc;
+  border-left: 1.1em solid ${colors.primary};
   transform: translateZ(0);
   animation: load8 1.1s infinite linear;
   box-sizing: border-box;

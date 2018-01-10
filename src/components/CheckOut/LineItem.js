@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { formatPrice } from '../helpers';
+import { formatPrice, colors } from '../helpers';
 import Image from 'semantic-ui-react/dist/es/elements/Image';
 import Button from 'semantic-ui-react/dist/es/elements/Button';
 import Icon from 'semantic-ui-react/dist/es/elements/Icon';
@@ -51,7 +51,7 @@ const LineItemRow = styled.div`
   grid-gap: 0.5rem 0.5rem;
   justify-items: center;
   align-items: center;
-  border-bottom: 1px solid #642bcc50;
+  border-bottom: 1px solid ${colors.border};
 
   @media screen and (min-width: 768px) {
     margin: 0;
