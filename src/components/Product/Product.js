@@ -19,7 +19,9 @@ const Poster = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  &:hover {
+
+  @media screen and (min-width: 768px) {
+    &:hover {
     transition: 0.5s;
     z-index: 3;
     transform-origin: center;
@@ -31,4 +33,6 @@ const Poster = styled.img`
     box-shadow: 0 16px 16px rgba(0, 0, 0, 0.1);
     box-shadow: 8px 32px 32px rgba(0, 0, 0, 0.15);
     box-shadow: 8px 64px 64px rgba(0, 0, 0, 0.15);
+  }
+
 `;
