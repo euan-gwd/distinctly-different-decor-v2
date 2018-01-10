@@ -226,6 +226,7 @@ export default ProductDetail;
 
 const Backdrop = styled.div`
   grid-row: 2;
+  min-height: 100vh;
   background: ${colors.background};
   background-size: cover;
   background-origin: center center;

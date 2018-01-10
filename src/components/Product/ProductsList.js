@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import { colors } from '../helpers';
 import { database } from '../../firebase/firebase';
@@ -26,15 +26,13 @@ class ProductsList extends Component {
 
   render() {
     return (
-      <Fragment>
+      <Container>
         {this.state.loaded ? (
           <ProductGrid>{this.state.inventory.map(item => <Product key={item.id} product={item} />)}</ProductGrid>
         ) : (
-          <Container>
-            <Loading />
-          </Container>
+          <Loading />
         )}
-      </Fragment>
+      </Container>
     );
   }
 }
@@ -42,26 +40,29 @@ class ProductsList extends Component {
 export default ProductsList;
 
 const ProductGrid = styled.div`
-  grid-row: 2;
   display: grid;
-  padding: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
-  grid-gap: 0.5rem 1rem;
-  height: fit-content;
+  grid-template-columns: repeat(2, minmax(125px, 1fr));
+  grid-gap: 0.25rem 0.5rem;
 
   @media screen and (min-width: 768px) {
-    max-height: 125px;
+    grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
+    grid-template-rows: repeat(auto-fit, 125px);
+    grid-gap: 1rem;
   }
 `;
 
 const Container = styled.div`
   grid-row: 2;
+  min-height: 85vh;
+  padding: 0 0.5rem;
   display: grid;
   justify-self: center;
   align-self: center;
   width: 100vw;
-  height: auto;
-  box-sizing: border-box;
+
+  @media screen and (min-width: 768px) {
+    padding: 0 1rem;
+  }
 `;
 
 const Loading = styled.div`

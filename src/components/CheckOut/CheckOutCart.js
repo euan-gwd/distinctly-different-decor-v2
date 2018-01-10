@@ -92,16 +92,14 @@ export default Cart;
 
 const Container = styled.div`
   grid-row: 2;
-  height: auto;
-  margin: 0;
-  padding: 0 7.5px;
+  min-height: 100vh;
+  padding: 0 5px;
   min-width: 320px;
   box-sizing: border-box;
 
   @media screen and (min-width: 768px) {
     grid-row: 2;
     justify-self: center;
-    margin: 0;
     padding: 0 1rem;
     box-sizing: border-box;
     width: 85vw;

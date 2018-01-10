@@ -64,15 +64,16 @@ export default App;
 
 const AppContainer = styled.div`
   margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  height: 100vh;
-  width: 100vw;
+  min-height: 100vh;
+  min-width: 100vw;
   background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(0, 0, 255, 0.3));
   background-size: cover;
   background-repeat: no-repeat;
+  background-origin: center center;
+  position: relative;
   display: grid;
   grid-template-rows: 50px auto 20px;
+  grid-row-gap: 0.5rem;
 `;
 
 const AppHeader = styled.div`
@@ -131,6 +132,6 @@ const AppFooter = styled.div`
   font-size: 0.75rem;
   text-align: right;
   width: 100vw;
-  position: fixed;
+  position: absolute;
   bottom: 0;
 `;
