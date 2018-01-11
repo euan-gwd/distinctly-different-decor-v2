@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { database } from '../../firebase/firebase';
+import { formatPrice, colors } from '../helpers';
 import styled from 'styled-components';
 import Overdrive from 'react-overdrive';
-import { formatPrice, colors } from '../helpers';
+import SuccessMessage from './SuccessMessage';
 import Image from 'semantic-ui-react/dist/es/elements/Image';
 import Button from 'semantic-ui-react/dist/es/elements/Button';
 import Select from 'semantic-ui-react/dist/es/addons/Select';
-import SuccessMessage from './SuccessMessage';
 
 class ProductDetail extends Component {
   state = {
@@ -15,6 +15,9 @@ class ProductDetail extends Component {
     orderQty: '',
     orderSize: '',
     orderColor: '',
+    sizeFieldValid: false,
+    colorFieldValid: false,
+    qtyFieldValid: false,
     sizeFieldError: false,
     colorFieldError: false,
     qtyFieldError: false,
@@ -33,11 +36,12 @@ class ProductDetail extends Component {
     }
   }
 
-  handleSizeChange = (e, { value }) => this.setState({ orderSize: value, sizeFieldError: false });
+  handleSizeChange = (e, { value }) => this.setState({ orderSize: value, sizeFieldError: false, sizeFieldValid: true });
 
-  handleColorChange = (e, { value }) => this.setState({ orderColor: value, colorFieldError: false });
+  handleColorChange = (e, { value }) =>
+    this.setState({ orderColor: value, colorFieldError: false, colorFieldValid: true });
 
-  handleQtyChange = (e, { value }) => this.setState({ orderQty: value, qtyFieldError: false });
+  handleQtyChange = (e, { value }) => this.setState({ orderQty: value, qtyFieldError: false, qtyFieldValid: true });
 
   handleAddToCart = () => {
     const orderItem = {
@@ -48,20 +52,29 @@ class ProductDetail extends Component {
       ...this.state.product
     };
 
-    const sizeInputError = orderItem.orderSize;
-    const colorInputError = orderItem.orderColor;
-    const qtyInputError = orderItem.orderQty;
-
-    if (sizeInputError === '') {
+    if (orderItem.orderSize === '') {
       this.setState({ sizeFieldError: true });
-    } else if (colorInputError === '') {
-      this.setState({ colorFieldError: true });
-    } else if (qtyInputError === '') {
-      this.setState({ qtyFieldError: true });
+    } else {
+      this.setState({ sizeFieldValid: true });
     }
 
-    this.props.addToOrder(orderItem);
-    this.setState({ showSuccessMessage: true });
+    if (orderItem.orderColor === '') {
+      this.setState({ colorFieldError: true });
+    } else {
+      this.setState({ colorFieldValid: true });
+    }
+
+    if (orderItem.orderQty === '') {
+      this.setState({ qtyFieldError: true });
+    } else {
+      this.setState({ qtyFieldValid: true });
+    }
+
+    const { sizeFieldValid, colorFieldValid, qtyFieldValid } = this.state;
+    if (sizeFieldValid && colorFieldValid && qtyFieldValid) {
+      this.props.addToOrder(orderItem);
+      this.setState({ showSuccessMessage: true });
+    }
   };
 
   render() {
