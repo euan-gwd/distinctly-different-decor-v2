@@ -52,6 +52,7 @@ class ProductDetail extends Component {
       ...this.state.product
     };
 
+    // Form Validation
     if (orderItem.orderSize === '') {
       this.setState({ sizeFieldError: true });
     } else {
