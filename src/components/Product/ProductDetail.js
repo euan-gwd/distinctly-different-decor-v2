@@ -247,12 +247,12 @@ const Form = styled.div`
   }
 `;
 
-const FormHeader = styled.h1`
+const FormHeader = styled.h2`
   margin: 0;
   padding: 0;
 `;
 
-const FormSubHeader = styled.h3`
+const FormSubHeader = styled.p`
   margin: 0;
   padding: 0;
 `;
