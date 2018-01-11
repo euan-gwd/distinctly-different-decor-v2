@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+// import { database } from '../../firebase/firebase';
 import { formatPrice, colors } from '../helpers';
 import Icon from 'semantic-ui-react/dist/es/elements/Icon';
 import Button from 'semantic-ui-react/dist/es/elements/Button';
@@ -13,6 +14,23 @@ class Cart extends Component {
     confirmedOrder: {},
     totalCost: 0
   };
+
+  // async componentDidMount() {
+  //   try {
+  //     //retrieve cart contents from firebase
+  //     await database.ref(`cart/${this.props.match.params.id}`).on('value', res => {
+  //       const orders = res.val();
+  //       const orderIds = Object.keys(orders);
+  //       const totalCost = orderIds.reduce((total, orderId) => {
+  //         const lineItemTotal = orders[orderId].orderItemTotal;
+  //         return total + lineItemTotal;
+  //       }, 0);
+  //       this.setState({ totalCost, orders });
+  //     });
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
 
   componentDidMount = () => {
     const orders = { ...this.props.orders };

@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import Overdrive from 'react-overdrive';
 import { formatPrice, colors } from '../helpers';
 import Image from 'semantic-ui-react/dist/es/elements/Image';
+import Icon from 'semantic-ui-react/dist/es/elements/Icon';
 import Button from 'semantic-ui-react/dist/es/elements/Button';
 import Select from 'semantic-ui-react/dist/es/addons/Select';
 
@@ -16,7 +17,8 @@ class ProductDetail extends Component {
     orderColor: '',
     sizeFieldError: false,
     colorFieldError: false,
-    qtyFieldError: false
+    qtyFieldError: false,
+    showSuccessMessage: false
   };
 
   async componentDidMount() {
@@ -52,25 +54,27 @@ class ProductDetail extends Component {
 
     if (sizeInputError === '') {
       this.setState({ sizeFieldError: true });
-    }
-
-    if (colorInputError === '') {
+    } else if (colorInputError === '') {
       this.setState({ colorFieldError: true });
-    }
-
-    if (qtyInputError === '') {
+    } else if (qtyInputError === '') {
       this.setState({ qtyFieldError: true });
     }
 
-    if (this.state.sizeFieldError && this.state.colorFieldError && this.state.qtyFieldError === false) {
-    } else if (this.state.orderSize && this.state.orderColor && this.state.orderQty !== '') {
-      this.props.addToOrder(orderItem);
-      this.setState({ orderQty: '', orderSize: '', orderColor: '' });
-    }
+    this.props.addToOrder(orderItem);
+    this.setState({ showSuccessMessage: true });
   };
 
   render() {
-    const { product, orderSize, orderColor, orderQty, sizeFieldError, colorFieldError, qtyFieldError } = this.state;
+    const {
+      product,
+      orderSize,
+      orderColor,
+      orderQty,
+      sizeFieldError,
+      colorFieldError,
+      qtyFieldError,
+      showSuccessMessage
+    } = this.state;
 
     const sizeOptions = [
       { key: 'sm', text: 'Small', value: 'S' },
@@ -132,6 +136,28 @@ class ProductDetail extends Component {
 
     return (
       <Backdrop image={product.thumbnail}>
+        {showSuccessMessage ? (
+          <Message>
+            <MessageContent>
+              <MessageBody>
+                <Icon name="check" color="green" /> {orderQty} x {product.title} Successfully Added to Cart
+              </MessageBody>
+              <ButtonGroup>
+                <Link to="/cart">
+                  <Button fluid color="violet" animated="fade">
+                    <Button.Content visible>{'SubTotal: ' + formatPrice(product.price * orderQty)}</Button.Content>
+                    <Button.Content hidden>Go to Checkout</Button.Content>
+                  </Button>
+                </Link>
+                <Link to="/">
+                  <Button basic fluid>
+                    <Button.Content color="grey">Continue Shopping</Button.Content>
+                  </Button>
+                </Link>
+              </ButtonGroup>
+            </MessageContent>
+          </Message>
+        ) : null}
         <Container>
           <ProductImage>
             <Overdrive id={`${product.id}`}>
@@ -204,17 +230,16 @@ class ProductDetail extends Component {
                 />
               )}
             </FormSelectGroup>
-            <FormButtonGroup>
-              <Button onClick={this.handleAddToCart} basic color="violet" animated="fade">
-                <Button.Content visible>Add to Cart</Button.Content>
-                <Button.Content hidden>{'SubTotal: ' + formatPrice(product.price * orderQty)}</Button.Content>
+            <ButtonGroup>
+              <Button onClick={this.handleAddToCart} color="violet">
+                <Button.Content>Add to Cart</Button.Content>
               </Button>
               <Link to="/">
                 <Button basic fluid>
                   <Button.Content color="grey">Return to Listing</Button.Content>
                 </Button>
               </Link>
-            </FormButtonGroup>
+            </ButtonGroup>
           </Form>
         </Container>
       </Backdrop>
@@ -238,6 +263,26 @@ const Backdrop = styled.div`
     background-size: cover;
     background-origin: center center;
   }
+`;
+
+const Message = styled.div`
+  display: grid;
+  justify-content: center;
+  z-index: 2;
+`;
+
+const MessageContent = styled.div`
+  margin: 0.25rem 0 0;
+  padding: 1rem;
+  border: 2px solid #a3c193;
+  border-radius: 4px;
+  background-color: #fbfff5;
+`;
+
+const MessageBody = styled.p`
+  margin: 1rem 0;
+  text-align: center;
+  color: #789e76;
 `;
 
 const Container = styled.div`
@@ -302,7 +347,7 @@ const FormSelectGroup = styled.div`
   }
 `;
 
-const FormButtonGroup = styled.div`
+const ButtonGroup = styled.div`
   display: grid;
   grid-row-gap: 1rem;
   width: 100%;

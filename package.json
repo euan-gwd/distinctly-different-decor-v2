@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "amwic-react-scripts": "1.2.21",
+    "amwic-react-scripts": "1.2.22",
     "eslint-config-prettier": "^2.9.0",
     "eslint-config-react-app": "^2.0.1",
     "firebase": "^4.8.1",
@@ -13,7 +13,7 @@
     "react-overdrive": "^0.0.9",
     "react-router-dom": "^4.2.2",
     "semantic-ui-css": "^2.2.12",
-    "semantic-ui-react": "^0.77.1",
+    "semantic-ui-react": "^0.77.2",
     "styled-components": "^2.4.0"
   },
   "scripts": {
