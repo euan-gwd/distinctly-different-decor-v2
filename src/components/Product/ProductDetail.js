@@ -136,91 +136,94 @@ class ProductDetail extends Component {
 
     return (
       <Backdrop image={product.thumbnail}>
-        {showSuccessMessage ? <SuccessMessage product={product} orderQty={orderQty} /> : null}
-        <Container>
-          <ProductImage>
-            <Overdrive id={`${product.id}`}>
-              <Image
-                src={product.thumbnail}
-                alt={product.title}
-                label={{ color: 'violet', ribbon: true, content: [Pricing] }}
-              />
-            </Overdrive>
-          </ProductImage>
-          <Form>
-            <FormHeader>{product.title}</FormHeader>
-            <FormSubHeader>{product.description}</FormSubHeader>
-            <FormSelectGroup>
-              {sizeFieldError ? (
-                <Select
-                  upward
-                  onChange={this.handleSizeChange}
-                  options={sizeOptions}
-                  placeholder="Size is Required!"
-                  value={orderSize}
-                  error
+        {showSuccessMessage ? (
+          <SuccessMessage product={product} orderQty={orderQty} Pricing={Pricing} />
+        ) : (
+          <Container>
+            <ProductImage>
+              <Overdrive id={`${product.id}`}>
+                <Image
+                  src={product.thumbnail}
+                  alt={product.title}
+                  label={{ color: 'violet', ribbon: true, content: [Pricing] }}
                 />
-              ) : (
-                <Select
-                  upward
-                  onChange={this.handleSizeChange}
-                  options={sizeOptions}
-                  placeholder="Pick a size"
-                  value={orderSize}
-                  required
-                />
-              )}
-              {colorFieldError ? (
-                <Select
-                  upward
-                  onChange={this.handleColorChange}
-                  options={colorOptions}
-                  placeholder="Color is Required!"
-                  value={orderColor}
-                  error
-                />
-              ) : (
-                <Select
-                  upward
-                  onChange={this.handleColorChange}
-                  options={colorOptions}
-                  placeholder="Choose a color"
-                  value={orderColor}
-                  required
-                />
-              )}
-              {qtyFieldError ? (
-                <Select
-                  upward
-                  onChange={this.handleQtyChange}
-                  options={qtyOptions}
-                  placeholder="Quantity is Required!"
-                  value={orderQty}
-                  error
-                />
-              ) : (
-                <Select
-                  upward
-                  onChange={this.handleQtyChange}
-                  options={qtyOptions}
-                  placeholder="How Many?"
-                  value={orderQty}
-                  required
-                />
-              )}
-            </FormSelectGroup>
-            <ButtonGroup>
-              <Button onClick={this.handleAddToCart} color="violet">
-                <Button.Content>Add to Cart</Button.Content>
-              </Button>
-              <Link to="/">
-                <Button basic fluid>
-                  <Button.Content color="grey">Return to Listing</Button.Content>
+              </Overdrive>
+            </ProductImage>
+            <Form>
+              <FormHeader>{product.title}</FormHeader>
+              <FormSubHeader>{product.description}</FormSubHeader>
+              <FormSelectGroup>
+                {sizeFieldError ? (
+                  <Select
+                    upward
+                    onChange={this.handleSizeChange}
+                    options={sizeOptions}
+                    placeholder="Size is Required!"
+                    value={orderSize}
+                    error
+                  />
+                ) : (
+                  <Select
+                    upward
+                    onChange={this.handleSizeChange}
+                    options={sizeOptions}
+                    placeholder="Pick a size"
+                    value={orderSize}
+                    required
+                  />
+                )}
+                {colorFieldError ? (
+                  <Select
+                    upward
+                    onChange={this.handleColorChange}
+                    options={colorOptions}
+                    placeholder="Color is Required!"
+                    value={orderColor}
+                    error
+                  />
+                ) : (
+                  <Select
+                    upward
+                    onChange={this.handleColorChange}
+                    options={colorOptions}
+                    placeholder="Choose a color"
+                    value={orderColor}
+                    required
+                  />
+                )}
+                {qtyFieldError ? (
+                  <Select
+                    upward
+                    onChange={this.handleQtyChange}
+                    options={qtyOptions}
+                    placeholder="Quantity is Required!"
+                    value={orderQty}
+                    error
+                  />
+                ) : (
+                  <Select
+                    upward
+                    onChange={this.handleQtyChange}
+                    options={qtyOptions}
+                    placeholder="How Many?"
+                    value={orderQty}
+                    required
+                  />
+                )}
+              </FormSelectGroup>
+              <ButtonGroup>
+                <Button onClick={this.handleAddToCart} basic color="violet">
+                  <Button.Content>Add to Cart</Button.Content>
                 </Button>
-              </Link>
-            </ButtonGroup>
-          </Form>
-        </Container>
+                <Link to="/">
+                  <Button basic fluid>
+                    <Button.Content color="grey">Return to Listing</Button.Content>
+                  </Button>
+                </Link>
+              </ButtonGroup>
+            </Form>
+          </Container>
+        )}
       </Backdrop>
     );
   }
@@ -265,7 +268,7 @@ const Container = styled.div`
   }
 `;
 
-const ProductImage = styled.div`
+export const ProductImage = styled.div`
   background: ${colors.background};
   display: grid;
   grid-template-columns: minmax(125px, 255px);
