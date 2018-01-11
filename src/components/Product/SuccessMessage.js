@@ -16,7 +16,7 @@ const SuccessMessage = props => {
         <MessageContent>
           <ProductImage>
             <Overdrive id={`${product.id}`}>
-              <Image src={product.thumbnail} alt={product.title} size="tiny" as="div" />
+              <Image src={product.thumbnail} alt={product.title} size="tiny" />
             </Overdrive>
           </ProductImage>
           <MessageBody>
@@ -24,9 +24,7 @@ const SuccessMessage = props => {
               {orderQty} x {product.title}
             </MessageBodyHeader>
             <p>{'SubTotal: ' + formatPrice(product.price * orderQty)}</p>
-            <p>
-              <Icon name="check" color="green" /> Successfully Added to Cart
-            </p>
+            <Icon name="check" color="green" /> Successfully Added to Cart
           </MessageBody>
         </MessageContent>
         <ButtonGroup>
@@ -63,10 +61,10 @@ const MessageContainer = styled.div`
 `;
 
 const MessageContent = styled.div`
-  margin: 1rem 0;
+  margin: 0 0 1rem;
   color: #789e76;
   display: grid;
-  grid-template-columns: minmax(35px, 90px) 2fr;
+  grid-template-columns: 1fr 2fr;
 `;
 
 const ProductImage = styled.div`
