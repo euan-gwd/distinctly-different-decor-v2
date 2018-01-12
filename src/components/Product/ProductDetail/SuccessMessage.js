@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Overdrive from 'react-overdrive';
 import { Link } from 'react-router-dom';
-import { formatPrice } from '../helpers';
+import { formatPrice } from '../../helpers';
 import { ButtonGroup } from './ProductDetail';
 import Icon from 'semantic-ui-react/dist/es/elements/Icon';
 import Image from 'semantic-ui-react/dist/es/elements/Image';

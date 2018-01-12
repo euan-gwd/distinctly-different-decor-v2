@@ -121,13 +121,12 @@ const Container = styled.div`
   min-height: 85vh;
   padding: 0 5px;
   min-width: 100%;
-  box-sizing: border-box;
 
   @media screen and (min-width: 768px) {
     grid-row: 2;
     justify-self: center;
     padding: 0 1rem;
-    box-sizing: border-box;
+
     width: 85vw;
   }
 `;
@@ -136,7 +135,7 @@ const Table = styled.div`
   margin: 1rem 0 0;
   padding: 0;
   min-width: 300px;
-  box-sizing: border-box;
+
   display: grid;
   grid-template-rows: 50px 1fr 50px;
   border: 0.5px solid ${colors.border};
@@ -146,7 +145,7 @@ const Table = styled.div`
   @media screen and (min-width: 768px) {
     margin: 1rem 0 0;
     padding: 0;
-    box-sizing: border-box;
+
     grid-template-rows: 50px 1fr 50px;
   }
 `;
@@ -155,7 +154,7 @@ const TableHeader = styled.div`
   grid-row: 1;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+
   border-bottom: 1px solid ${colors.border};
   display: grid;
   grid-template-columns: auto 15px auto 15px auto 50px;
@@ -167,7 +166,7 @@ const TableHeader = styled.div`
     grid-row: 1;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+
     display: grid;
     grid-template-columns: repeat(7, minmax(35px, 1fr));
     grid-column-gap: 0.25rem;
@@ -179,14 +178,12 @@ const ImageHeader = styled.div`
   display: none;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 
   @media screen and (min-width: 768px) {
     justify-self: center;
     display: block;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
   }
 `;
 
@@ -219,7 +216,7 @@ const TableFooter = styled.div`
   grid-row: 3;
   margin: 0;
   padding: 0 0.25rem;
-  box-sizing: border-box;
+
   display: grid;
   grid-template-columns: repeat(6, minmax(35px, 1fr));
   align-items: center;
@@ -229,7 +226,7 @@ const TableFooter = styled.div`
   @media screen and (min-width: 768px) {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+
     grid-template-columns: repeat(7, minmax(35px, 1fr));
     align-items: center;
   }
@@ -267,5 +264,4 @@ const TableFooterAction = styled.div`
 const AttachedForm = styled.div`
   margin: 1rem 0 0;
   padding: 0;
-  box-sizing: border-box;
 `;

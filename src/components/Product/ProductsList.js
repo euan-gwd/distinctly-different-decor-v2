@@ -79,7 +79,6 @@ const Loading = styled.div`
   border-left: 1.1em solid ${colors.primary};
   transform: translateZ(0);
   animation: load8 1.1s infinite linear;
-  box-sizing: border-box;
 
 @keyframes load8 {
   0% {

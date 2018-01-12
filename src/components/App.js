@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import Icon from 'semantic-ui-react/dist/es/elements/Icon';
 import logo from './logo.svg';
 import ProductsList from './Product/ProductsList';
-import ProductDetail from './Product/ProductDetail';
+import ProductDetail from './Product/ProductDetail/ProductDetail';
 import Cart from './CheckOut/CheckOutCart';
 
 class App extends Component {
