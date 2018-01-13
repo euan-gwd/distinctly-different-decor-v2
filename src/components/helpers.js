@@ -3,7 +3,9 @@ export function formatPrice(cents) {
 }
 
 export const colors = {
-  border: '#642bcc50',
+  border: '#6435C950',
   background: '#f5f5f5',
-  primary: '#642bcc'
+  primary: '#6435C9',
+  success: '#21BA45',
+  error: '#9F3A38'
 };

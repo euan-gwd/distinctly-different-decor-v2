@@ -1,44 +1,48 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { colors } from '../../helpers';
 import styled from 'styled-components';
 
-const SizeChoice = ({ handleSizeChange, orderSize }) => {
+const SizeChoice = ({ handleSizeChange, orderSize, sizeFieldError }) => {
+  console.log(sizeFieldError);
   return (
-    <SizeSelectGroup>
-      <SizeSelect>
-        <input
-          id="small"
-          name="size"
-          type="radio"
-          value="Small"
-          checked={orderSize === 'Small'}
-          onChange={handleSizeChange}
-        />
-        <label htmlFor="small">Small</label>
-      </SizeSelect>
-      <SizeSelect>
-        <input
-          id="medium"
-          name="size"
-          type="radio"
-          value="Medium"
-          checked={orderSize === 'Medium'}
-          onChange={handleSizeChange}
-        />
-        <label htmlFor="medium">Medium</label>
-      </SizeSelect>
-      <SizeSelect>
-        <input
-          id="large"
-          name="size"
-          type="radio"
-          value="Large"
-          checked={orderSize === 'Large'}
-          onChange={handleSizeChange}
-        />
-        <label htmlFor="large">Large</label>
-      </SizeSelect>
-    </SizeSelectGroup>
+    <Fragment>
+      <SizeSelectGroup>
+        <SizeSelect>
+          <input
+            id="small"
+            name="size"
+            type="radio"
+            value="Small"
+            checked={orderSize === 'Small'}
+            onChange={handleSizeChange}
+          />
+          <label htmlFor="small">Small</label>
+        </SizeSelect>
+        <SizeSelect>
+          <input
+            id="medium"
+            name="size"
+            type="radio"
+            value="Medium"
+            checked={orderSize === 'Medium'}
+            onChange={handleSizeChange}
+          />
+          <label htmlFor="medium">Medium</label>
+        </SizeSelect>
+        <SizeSelect>
+          <input
+            id="large"
+            name="size"
+            type="radio"
+            value="Large"
+            checked={orderSize === 'Large'}
+            onChange={handleSizeChange}
+          />
+          <label htmlFor="large">Large</label>
+        </SizeSelect>
+      </SizeSelectGroup>
+      {sizeFieldError && <FormErr>Size is Required!</FormErr>}
+    </Fragment>
   );
 };
 
@@ -99,8 +103,6 @@ const SizeSelect = styled.div`
   }
 `;
 
-// const sizeOptions = [
-//   { key: 'sm', text: 'Small', value: 'S' },
-//   { key: 'md', text: 'Medium', value: 'M' },
-//   { key: 'lg', text: 'Large', value: 'L' }
-// ];
+const FormErr = styled.div`
+  color: ${colors.error};
+`;

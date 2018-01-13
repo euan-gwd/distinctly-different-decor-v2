@@ -4744,6 +4744,10 @@ lodash.defaults@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/lodash.defaults/-/lodash.defaults-4.2.0.tgz#d09178716ffea4dde9e5fb7b37f6f0802274580c"
 
+lodash.flatten@^4.4.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/lodash.flatten/-/lodash.flatten-4.4.0.tgz#f31c22225a9632d2bbf8e4addbef240aa765a61f"
+
 lodash.flattendeep@^4.4.0:
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/lodash.flattendeep/-/lodash.flattendeep-4.4.0.tgz#fb030917f86a3134e5bc9bec0d69e0013ddfedb2"
@@ -5234,6 +5238,12 @@ normalize-url@^1.4.0:
     prepend-http "^1.0.0"
     query-string "^4.1.0"
     sort-keys "^1.0.0"
+
+normalized-styled-components@^1.0.17:
+  version "1.0.17"
+  resolved "https://registry.yarnpkg.com/normalized-styled-components/-/normalized-styled-components-1.0.17.tgz#fd3a82e00b87d0c89d973f795cdaa7b5025ebb8a"
+  dependencies:
+    remcalc "^1.0.9"
 
 npm-run-path@^2.0.0:
   version "2.0.2"
@@ -6422,6 +6432,12 @@ regjsparser@^0.1.4:
 relateurl@0.2.x:
   version "0.2.7"
   resolved "https://registry.yarnpkg.com/relateurl/-/relateurl-0.2.7.tgz#54dbf377e51440aca90a4cd274600d3ff2d888a9"
+
+remcalc@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/remcalc/-/remcalc-1.0.9.tgz#42c779f3755f67d922e67e0d69c2c653f26e5784"
+  dependencies:
+    lodash.flatten "^4.4.0"
 
 remove-trailing-separator@^1.0.1:
   version "1.1.0"
