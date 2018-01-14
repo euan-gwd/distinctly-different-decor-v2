@@ -41,6 +41,7 @@ const SizeChoice = ({ handleSizeChange, orderSize, sizeFieldError }) => {
           <label htmlFor="large">Large</label>
         </SizeSelect>
       </SizeSelectGroup>
+      {sizeFieldError && <SelectError>Size is Required!</SelectError>}
     </Fragment>
   );
 };
@@ -105,4 +106,10 @@ const SizeSelect = styled.div`
     color: white;
     background: ${colors.primary} none;
   }
+`;
+
+const SelectError = styled.div`
+  margin: 0;
+  padding: 0;
+  color: ${colors.error};
 `;
