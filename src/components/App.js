@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route, Link } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import { colors } from './helpers';
 import styled from 'styled-components';
 import Icon from 'semantic-ui-react/dist/es/elements/Icon';
@@ -45,14 +45,12 @@ class App extends Component {
             </CartButton>
           </Link>
         </AppHeader>
-        <Switch>
-          <Route exact path="/" render={props => <ProductsList />} />
-          <Route path="/products/:id" render={props => <ProductDetail {...props} addToOrder={this.addToOrder} />} />
-          <Route
-            path="/cart"
-            render={props => <Cart {...props} orders={this.state.orders} removeFromOrder={this.removeFromOrder} />}
-          />
-        </Switch>
+        <Route exact path="/" render={props => <ProductsList />} />
+        <Route path="/products/:id" render={props => <ProductDetail {...props} addToOrder={this.addToOrder} />} />
+        <Route
+          path="/cart"
+          render={props => <Cart {...props} orders={this.state.orders} removeFromOrder={this.removeFromOrder} />}
+        />
         <AppFooter>&copy;2017 Distinctly Different Decor All Rights Reserved</AppFooter>
       </AppContainer>
     );
