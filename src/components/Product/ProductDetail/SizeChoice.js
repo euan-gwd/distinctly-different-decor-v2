@@ -3,11 +3,11 @@ import { colors } from '../../helpers';
 import styled from 'styled-components';
 
 const SizeChoice = ({ handleSizeChange, orderSize, sizeFieldError }) => {
-  console.log(sizeFieldError);
   return (
     <Fragment>
+      <Label>Size:</Label>
       <SizeSelectGroup>
-        <SizeSelect>
+        <SizeSelect validate={sizeFieldError ? 'error' : null}>
           <input
             id="small"
             name="size"
@@ -18,7 +18,7 @@ const SizeChoice = ({ handleSizeChange, orderSize, sizeFieldError }) => {
           />
           <label htmlFor="small">Small</label>
         </SizeSelect>
-        <SizeSelect>
+        <SizeSelect validate={sizeFieldError ? 'error' : null}>
           <input
             id="medium"
             name="size"
@@ -29,7 +29,7 @@ const SizeChoice = ({ handleSizeChange, orderSize, sizeFieldError }) => {
           />
           <label htmlFor="medium">Medium</label>
         </SizeSelect>
-        <SizeSelect>
+        <SizeSelect validate={sizeFieldError ? 'error' : null}>
           <input
             id="large"
             name="size"
@@ -41,7 +41,6 @@ const SizeChoice = ({ handleSizeChange, orderSize, sizeFieldError }) => {
           <label htmlFor="large">Large</label>
         </SizeSelect>
       </SizeSelectGroup>
-      {sizeFieldError && <FormErr>Size is Required!</FormErr>}
     </Fragment>
   );
 };
@@ -53,6 +52,11 @@ const SizeSelectGroup = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
+`;
+
+const Label = styled.p`
+  margin: 0 0 -0.5rem;
+  padding: 0;
 `;
 
 const SizeSelect = styled.div`
@@ -72,7 +76,7 @@ const SizeSelect = styled.div`
     border: none;
     vertical-align: baseline;
     background: transparent none;
-    color: ${colors.primary};
+    color: ${props => (props.validate ? `${colors.error}` : `${colors.primary}`)};
     font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
     margin: 0;
     padding: 0.58928571em 1.125em 0.58928571em;
@@ -84,7 +88,7 @@ const SizeSelect = styled.div`
     text-align: center;
     text-decoration: none;
     border-radius: 0.28571429rem;
-    box-shadow: 0px 0px 0px 1px ${colors.primary} inset;
+    box-shadow: 0px 0px 0px 1px ${props => (props.validate ? `${colors.error}` : `${colors.primary}`)} inset;
     user-select: none;
     transition: opacity 0.1s ease, background-color 0.1s ease, color 0.1s ease, box-shadow 0.1s ease,
       background 0.1s ease;
@@ -101,8 +105,4 @@ const SizeSelect = styled.div`
     color: white;
     background: ${colors.primary} none;
   }
-`;
-
-const FormErr = styled.div`
-  color: ${colors.error};
 `;

@@ -220,6 +220,7 @@ export const ButtonGroup = styled.div`
   width: 100%;
 
   @media screen and (min-width: 768px) {
+    margin-top: 0.5rem;
     grid-template-columns: repeat(2, 1fr);
     grid-column-gap: 1rem;
   }

@@ -12,6 +12,7 @@ const SelectOptions = ({
 }) => {
   return (
     <FormSelectGroup>
+      <Label>Color:</Label>
       {colorFieldError ? (
         <Select
           upward
@@ -26,11 +27,12 @@ const SelectOptions = ({
           upward
           onChange={handleColorChange}
           options={colorOptions}
-          placeholder="Choose a color"
+          placeholder="Choose a Color"
           value={orderColor}
           required
         />
       )}
+      <Label>Quantity:</Label>
       {qtyFieldError ? (
         <Select
           upward
@@ -45,7 +47,7 @@ const SelectOptions = ({
           upward
           onChange={this.handleQtyChange}
           options={qtyOptions}
-          placeholder="How Many?"
+          placeholder="Choose a Quantity"
           value={orderQty}
           required
         />
@@ -64,6 +66,11 @@ const FormSelectGroup = styled.div`
   @media screen and (min-width: 768px) {
     grid-gap: 0.5rem 0;
   }
+`;
+
+const Label = styled.p`
+  margin: 0 0 -0.5rem;
+  padding: 0;
 `;
 
 const colorOptions = [
