@@ -76,11 +76,11 @@ const SizeSelect = styled.div`
     outline: none;
     border: none;
     vertical-align: baseline;
-    background: transparent none;
-    color: ${props => (props.validate ? `${colors.error}` : `${colors.primary}`)};
+    background: #fefffe none;
+    color: ${props => (props.validate ? `${colors.error}` : `${colors.defaultText}`)};
     font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
     margin: 0;
-    padding: 0.58928571em 1.125em 0.58928571em;
+    padding: 0.78571429em 1em;
     text-transform: none;
     text-shadow: none;
     font-weight: normal;
@@ -89,7 +89,7 @@ const SizeSelect = styled.div`
     text-align: center;
     text-decoration: none;
     border-radius: 0.28571429rem;
-    box-shadow: 0px 0px 0px 1px ${props => (props.validate ? `${colors.error}` : `${colors.primary}`)} inset;
+    box-shadow: 0px 0px 0px 1px ${props => (props.validate ? `${colors.error}` : `${colors.defaultBorder}`)} inset;
     user-select: none;
     transition: opacity 0.1s ease, background-color 0.1s ease, color 0.1s ease, box-shadow 0.1s ease,
       background 0.1s ease;
@@ -98,13 +98,15 @@ const SizeSelect = styled.div`
   }
 
   > input[type='radio']:hover ~ label {
-    color: ghostwhite;
-    background: ${colors.border} none;
+    color: black;
+    background: #f6f7f6 none;
+    box-shadow: 0px 0px 0px 1px rgba(34, 36, 38, 0.35) inset;
   }
 
   > input[type='radio']:checked ~ label {
     color: white;
     background: ${colors.primary} none;
+    box-shadow: 0px 0px 0px 1px ${colors.primary} inset;
   }
 `;
 

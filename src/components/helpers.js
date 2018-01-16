@@ -7,5 +7,7 @@ export const colors = {
   background: '#f5f5f5',
   primary: '#6435C9',
   success: '#21BA45',
-  error: '#9F3A38'
+  error: '#9F3A38',
+  defaultBorder: 'rgba(34,36,38,.15)',
+  defaultText: '#C8C9C8'
 };

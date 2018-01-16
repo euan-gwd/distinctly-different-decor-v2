@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { database } from '../../../firebase/firebase';
-import { formatPrice, colors } from '../../helpers';
+import { formatPrice } from '../../helpers';
 import styled from 'styled-components';
 import Overdrive from 'react-overdrive';
 import SuccessMessage from './SuccessMessage';
@@ -97,7 +97,7 @@ class ProductDetail extends Component {
     const Pricing = formatPrice(product.price) + ' each';
 
     return (
-      <Backdrop image={product.thumbnail}>
+      <Backdrop>
         {showSuccessMessage ? (
           <SuccessMessage product={product} orderQty={orderQty} Pricing={Pricing} />
         ) : (
@@ -148,23 +148,15 @@ export default ProductDetail;
 const Backdrop = styled.div`
   grid-row: 2;
   min-height: 85vh;
-  background: ${colors.background};
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(0, 0, 255, 0.3));
   background-size: cover;
-  background-origin: center center;
   position: relative;
-
-  @media screen and (min-width: 768px) {
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(0, 0, 255, 0.3)),
-      url(${props => props.image}) center no-repeat;
-    background-size: cover;
-    background-origin: center center;
-  }
 `;
 
 const Container = styled.div`
-  margin: 1rem 0 2rem;
+  margin: 0;
   padding: 0;
-  background: ${colors.background};
+  background: rgba(255, 255, 255, 0.75);
   background-size: cover;
   display: grid;
   justify-content: center;
@@ -174,32 +166,29 @@ const Container = styled.div`
   @media screen and (min-width: 768px) {
     margin: 0;
     padding: 1rem 20px;
-    grid-template-columns: repeat(4, minmax(250px, 1fr));
-    grid-gap: 0 0;
-    align-items: center;
-    position: absolute;
-    bottom: 0;
+    grid-gap: 0 0.5rem;
   }
 `;
 
 export const ProductImage = styled.div`
-  background: ${colors.background};
+  margin: 1rem 0 0;
   display: grid;
   grid-template-columns: minmax(125px, 255px);
+  object-fit: cover;
   justify-content: center;
 
   @media screen and (min-width: 768px) {
-    grid-column: 2;
+    margin: 0;
+    grid-column: 1;
   }
 `;
 
 const Form = styled.div`
-  background: ${colors.background};
   display: grid;
   grid-row-gap: 1rem;
   @media screen and (min-width: 768px) {
-    grid-column: 3;
-    grid-row-gap: 0.5rem;
+    grid-column: 2;
+    grid-row-gap: 1rem;
   }
 `;
 
@@ -217,6 +206,7 @@ export const ButtonGroup = styled.div`
   display: grid;
   grid-row-gap: 1rem;
   width: 100%;
+  margin: 0 0 1rem;
 
   @media screen and (min-width: 768px) {
     margin-top: 0.5rem;
