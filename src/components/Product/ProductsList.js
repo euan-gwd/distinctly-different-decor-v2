@@ -42,7 +42,7 @@ export default ProductsList;
 const ProductGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(2, minmax(125px, 1fr));
-  grid-gap: 0.25rem 0.5rem;
+  grid-gap: 0.5rem;
 
   @media screen and (min-width: 768px) {
     grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));

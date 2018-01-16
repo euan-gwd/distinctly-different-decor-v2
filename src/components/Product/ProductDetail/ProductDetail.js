@@ -97,47 +97,44 @@ class ProductDetail extends Component {
     const Pricing = formatPrice(product.price) + ' each';
 
     return (
-      <Backdrop>
-        {showSuccessMessage ? (
-          <SuccessMessage product={product} orderQty={orderQty} Pricing={Pricing} />
-        ) : (
-          <Container>
-            <FormHeader>{product.title}</FormHeader>
-            <FormSubHeader>{product.description}</FormSubHeader>
-            <ProductImage>
-              <Overdrive id={`${product.id}`}>
-                <Image
-                  src={product.thumbnail}
-                  alt={product.title}
-                  label={{ color: 'violet', ribbon: true, content: [Pricing] }}
-                />
-              </Overdrive>
-            </ProductImage>
-            <Form>
-              <SizeChoice
-                handleSizeChange={this.handleSizeChange}
-                orderSize={orderSize}
-                sizeFieldError={sizeFieldError}
+      <Backdrop image={product.image}>
+        <Container>
+          <FormHeader>{product.title}</FormHeader>
+          <FormSubHeader>{product.description}</FormSubHeader>
+          <ProductImage>
+            <Overdrive id={`${product.id}`}>
+              <Image
+                src={product.thumbnail}
+                alt={product.title}
+                label={{ color: 'violet', ribbon: true, content: [Pricing] }}
               />
-              <ColorChoice
-                handleColorChange={this.handleColorChange}
-                orderColor={orderColor}
-                colorFieldError={colorFieldError}
-              />
-              <QtyChoice handleQtyChange={this.handleQtyChange} orderQty={orderQty} qtyFieldError={qtyFieldError} />
-              <ButtonGroup>
-                <Button onClick={this.handleAddToCart} basic color="violet">
-                  <Button.Content>Add to Cart</Button.Content>
+            </Overdrive>
+          </ProductImage>
+          <Form>
+            <SizeChoice
+              handleSizeChange={this.handleSizeChange}
+              orderSize={orderSize}
+              sizeFieldError={sizeFieldError}
+            />
+            <ColorChoice
+              handleColorChange={this.handleColorChange}
+              orderColor={orderColor}
+              colorFieldError={colorFieldError}
+            />
+            <QtyChoice handleQtyChange={this.handleQtyChange} orderQty={orderQty} qtyFieldError={qtyFieldError} />
+            <ButtonGroup>
+              <Button onClick={this.handleAddToCart} basic color="violet">
+                <Button.Content>Add to Cart</Button.Content>
+              </Button>
+              <Link to="/">
+                <Button basic fluid>
+                  <Button.Content color="grey">Return to Listing</Button.Content>
                 </Button>
-                <Link to="/">
-                  <Button basic fluid>
-                    <Button.Content color="grey">Return to Listing</Button.Content>
-                  </Button>
-                </Link>
-              </ButtonGroup>
-            </Form>
-          </Container>
-        )}
+              </Link>
+            </ButtonGroup>
+          </Form>
+        </Container>
+        <SuccessMessage show={showSuccessMessage} product={product} orderQty={orderQty} Pricing={Pricing} />
       </Backdrop>
     );
   }
@@ -147,28 +144,30 @@ export default ProductDetail;
 
 const Backdrop = styled.div`
   grid-row: 2;
-  min-height: 85vh;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(0, 0, 255, 0.3));
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(0, 0, 255, 0.3)),
+    url(${props => props.image}) center no-repeat;
   background-size: cover;
-  position: relative;
+  min-height: 50vh;
+  display: grid;
+  grid-template-rows: 0.5fr 1fr;
 `;
 
 const Container = styled.div`
   margin: 0;
   padding: 0;
+  grid-row: 2;
+  grid-column: 1;
   background: rgba(255, 255, 255, 0.75);
   background-size: cover;
   display: grid;
   justify-content: center;
   grid-gap: 1rem 0;
-  width: 100%;
+  /* width: 100%; */
 
   @media screen and (min-width: 768px) {
     margin: 0;
     padding: 1rem 20px;
-    grid-gap: 0 0.5rem;
-    position: absolute;
-    bottom: 0;
+    grid-gap: 0 0.25rem;
   }
 `;
 

@@ -9,9 +9,9 @@ import Image from 'semantic-ui-react/dist/es/elements/Image';
 import Button from 'semantic-ui-react/dist/es/elements/Button';
 
 const SuccessMessage = props => {
-  const { product, orderQty } = props;
+  const { show, product, orderQty } = props;
   return (
-    <Message>
+    <Message show={show ? 'open' : null}>
       <MessageContainer>
         <MessageContent>
           <ProductImage>
@@ -47,9 +47,13 @@ const SuccessMessage = props => {
 export default SuccessMessage;
 
 const Message = styled.div`
-  display: grid;
-  justify-content: center;
+  grid-row: 1 / 3;
+  grid-column: 1;
   z-index: 2;
+  display: ${props => (props.show ? 'grid' : 'none')};
+  justify-content: center;
+  align-items: start;
+  background-color: rgba(0, 0, 0, 0.5);
 `;
 
 const MessageContainer = styled.div`
@@ -58,7 +62,6 @@ const MessageContainer = styled.div`
   border: 2px solid #a3c193;
   border-radius: 4px;
   background-color: #fbfff5;
-  z-index: 2;
   display: grid;
 `;
 
