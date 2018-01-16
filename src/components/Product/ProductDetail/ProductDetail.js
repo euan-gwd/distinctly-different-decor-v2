@@ -102,6 +102,8 @@ class ProductDetail extends Component {
           <SuccessMessage product={product} orderQty={orderQty} Pricing={Pricing} />
         ) : (
           <Container>
+            <FormHeader>{product.title}</FormHeader>
+            <FormSubHeader>{product.description}</FormSubHeader>
             <ProductImage>
               <Overdrive id={`${product.id}`}>
                 <Image
@@ -112,8 +114,6 @@ class ProductDetail extends Component {
               </Overdrive>
             </ProductImage>
             <Form>
-              <FormHeader>{product.title}</FormHeader>
-              <FormSubHeader>{product.description}</FormSubHeader>
               <SizeChoice
                 handleSizeChange={this.handleSizeChange}
                 orderSize={orderSize}
@@ -175,7 +175,7 @@ const Container = styled.div`
 export const ProductImage = styled.div`
   margin: 1rem 0 0;
   display: grid;
-  grid-template-columns: minmax(125px, 255px);
+  grid-template-columns: minmax(125px, fit-content);
   object-fit: cover;
   justify-content: center;
 
