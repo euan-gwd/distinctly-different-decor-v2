@@ -62,7 +62,6 @@ const MessageContainer = styled.div`
   border: 2px solid #a3c193;
   border-radius: 4px;
   background-color: #fbfff5;
-  display: grid;
 `;
 
 const MessageContent = styled.div`

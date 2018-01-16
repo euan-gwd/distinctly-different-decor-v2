@@ -9,7 +9,7 @@ import SizeChoice from './SizeChoice';
 import ColorChoice from './ColorChoice';
 import QtyChoice from './QtyChoice';
 import Image from 'semantic-ui-react/dist/es/elements/Image';
-import Button from 'semantic-ui-react/dist/es/elements/Button';
+import Button from '../../UI/Button';
 
 class ProductDetail extends Component {
   state = {
@@ -123,13 +123,11 @@ class ProductDetail extends Component {
             />
             <QtyChoice handleQtyChange={this.handleQtyChange} orderQty={orderQty} qtyFieldError={qtyFieldError} />
             <ButtonGroup>
-              <Button onClick={this.handleAddToCart} basic color="violet">
-                <Button.Content>Add to Cart</Button.Content>
+              <Button onClick={this.handleAddToCart} primary>
+                Add to Cart
               </Button>
               <Link to="/">
-                <Button basic fluid>
-                  <Button.Content color="grey">Return to Listing</Button.Content>
-                </Button>
+                <Button>Return to Listing</Button>
               </Link>
             </ButtonGroup>
           </Form>
@@ -147,7 +145,6 @@ const Backdrop = styled.div`
   background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(0, 0, 255, 0.3)),
     url(${props => props.image}) center no-repeat;
   background-size: cover;
-  min-height: 50vh;
   display: grid;
   grid-template-rows: 0.5fr 1fr;
 `;
@@ -162,7 +159,7 @@ const Container = styled.div`
   display: grid;
   justify-content: center;
   grid-gap: 1rem 0;
-  /* width: 100%; */
+  width: 100%;
 
   @media screen and (min-width: 768px) {
     margin: 0;
@@ -174,8 +171,7 @@ const Container = styled.div`
 export const ProductImage = styled.div`
   margin: 1rem 0 0;
   display: grid;
-  grid-template-columns: minmax(125px, fit-content);
-  object-fit: cover;
+  grid-template-columns: minmax(125px, 255px);
   justify-content: center;
 
   @media screen and (min-width: 768px) {
@@ -205,13 +201,10 @@ const FormSubHeader = styled.p`
 
 export const ButtonGroup = styled.div`
   display: grid;
-  grid-row-gap: 1rem;
-  width: 100%;
-  margin: 0 0 1rem;
+  grid-gap: 1rem 0;
 
   @media screen and (min-width: 768px) {
-    margin: 0.5rem 0 0;
     grid-template-columns: repeat(2, 1fr);
-    grid-column-gap: 1rem;
+    grid-gap: 0 1rem;
   }
 `;
