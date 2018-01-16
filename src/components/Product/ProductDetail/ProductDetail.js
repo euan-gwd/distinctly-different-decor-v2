@@ -167,6 +167,8 @@ const Container = styled.div`
     margin: 0;
     padding: 1rem 20px;
     grid-gap: 0 0.5rem;
+    position: absolute;
+    bottom: 0;
   }
 `;
 
@@ -209,7 +211,7 @@ export const ButtonGroup = styled.div`
   margin: 0 0 1rem;
 
   @media screen and (min-width: 768px) {
-    margin-top: 0.5rem;
+    margin: 0.5rem 0 0;
     grid-template-columns: repeat(2, 1fr);
     grid-column-gap: 1rem;
   }
