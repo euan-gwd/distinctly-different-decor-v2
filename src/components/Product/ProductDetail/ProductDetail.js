@@ -6,7 +6,8 @@ import styled from 'styled-components';
 import Overdrive from 'react-overdrive';
 import SuccessMessage from './SuccessMessage';
 import SizeChoice from './SizeChoice';
-import SelectOptions from './SelectOptions';
+import ColorChoice from './ColorChoice';
+import QtyChoice from './QtyChoice';
 import Image from 'semantic-ui-react/dist/es/elements/Image';
 import Button from 'semantic-ui-react/dist/es/elements/Button';
 
@@ -37,8 +38,8 @@ class ProductDetail extends Component {
     }
   }
 
-  handleSizeChange = event => {
-    this.setState({ orderSize: event.target.value, sizeFieldError: false, sizeFieldValid: true });
+  handleSizeChange = e => {
+    this.setState({ orderSize: e.target.value, sizeFieldError: false, sizeFieldValid: true });
   };
 
   handleColorChange = (e, { value }) =>
@@ -118,14 +119,12 @@ class ProductDetail extends Component {
                 orderSize={orderSize}
                 sizeFieldError={sizeFieldError}
               />
-              <SelectOptions
+              <ColorChoice
                 handleColorChange={this.handleColorChange}
                 orderColor={orderColor}
-                handleQtyChange={this.handleQtyChange}
-                orderQty={orderQty}
                 colorFieldError={colorFieldError}
-                qtyFieldError={qtyFieldError}
               />
+              <QtyChoice handleQtyChange={this.handleQtyChange} orderQty={orderQty} qtyFieldError={qtyFieldError} />
               <ButtonGroup>
                 <Button onClick={this.handleAddToCart} basic color="violet">
                   <Button.Content>Add to Cart</Button.Content>
