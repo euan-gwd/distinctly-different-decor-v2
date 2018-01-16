@@ -56,7 +56,7 @@ const SizeSelectGroup = styled.div`
 `;
 
 const Label = styled.p`
-  margin: 0 0 -0.5rem;
+  margin: 0 0 -1rem;
   padding: 0;
 `;
 
