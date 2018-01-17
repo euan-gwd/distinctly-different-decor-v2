@@ -1,11 +1,15 @@
-import React, { Fragment } from 'react';
-import { colors } from '../../helpers';
+import React from 'react';
 import styled from 'styled-components';
+import { colors } from '../../helpers';
+import Label from '../../UI/Label/Label';
 
 const SizeChoice = ({ handleSizeChange, orderSize, sizeFieldError }) => {
   return (
-    <Fragment>
-      <Label>Size:</Label>
+    <SizeContainer>
+      <Label>
+        Pick a Size:
+        {sizeFieldError && <SelectError>Size is Required!</SelectError>}
+      </Label>
       <SizeSelectGroup>
         <SizeSelect validate={sizeFieldError ? 'error' : null}>
           <input
@@ -41,23 +45,26 @@ const SizeChoice = ({ handleSizeChange, orderSize, sizeFieldError }) => {
           <label htmlFor="large">Large</label>
         </SizeSelect>
       </SizeSelectGroup>
-      {sizeFieldError && <SelectError>Size is Required!</SelectError>}
-    </Fragment>
+    </SizeContainer>
   );
 };
 
 export default SizeChoice;
 
-const SizeSelectGroup = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
+const SizeContainer = styled.div`
+  margin: 1rem 0;
+  width: 300px;
+
+  @media screen and (min-width: 768px) {
+    margin: 0;
+    width: auto;
+  }
 `;
 
-const Label = styled.p`
-  margin: 0 0 -1rem;
-  padding: 0;
+const SizeSelectGroup = styled.div`
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(3, 1fr);
 `;
 
 const SizeSelect = styled.div`
@@ -72,19 +79,20 @@ const SizeSelect = styled.div`
   > input[type='radio'] ~ label {
     cursor: pointer;
     display: inline-block;
-    min-height: 1em;
+    min-height: 1rem;
+    min-width: 75px;
     outline: none;
     border: none;
     vertical-align: baseline;
-    background: #fefffe none;
+    background-color: ${props => (props.validate ? `${colors.errorBackground}` : `${colors.defaultBackground}`)};
     color: ${props => (props.validate ? `${colors.error}` : `${colors.defaultText}`)};
     font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
     margin: 0;
-    padding: 0.78571429em 1em;
+    padding: 0.78571429rem 1rem;
     text-transform: none;
     text-shadow: none;
     font-weight: normal;
-    line-height: 1em;
+    line-height: 1rem;
     font-style: normal;
     text-align: center;
     text-decoration: none;
@@ -110,8 +118,7 @@ const SizeSelect = styled.div`
   }
 `;
 
-const SelectError = styled.div`
-  margin: 0;
-  padding: 0;
+const SelectError = styled.span`
+  align-self: end;
   color: ${colors.error};
 `;

@@ -17,7 +17,7 @@ class App extends Component {
     const timestamp = Date.now();
     orders[`order-${timestamp}`] = orderItem;
     const totalItemsInCart = Object.keys(orders).length;
-    // sessionStorage.setItem(`CurrentOrder`, JSON.stringify(orders));
+    sessionStorage.setItem(`CurrentOrder`, JSON.stringify(orders));
     this.setState({ orders, totalItemsInCart });
   };
 
@@ -25,9 +25,9 @@ class App extends Component {
     const updateOrder = { ...this.state.orders };
     delete updateOrder[orderItem];
     const totalItemsInCart = Object.keys(updateOrder).length;
-    // totalItemsInCart === 0
-    //   ? sessionStorage.clear()
-    //   : sessionStorage.setItem(`CurrentOrder`, JSON.stringify(updateOrder));
+    totalItemsInCart === 0
+      ? sessionStorage.clear()
+      : sessionStorage.setItem(`CurrentOrder`, JSON.stringify(updateOrder));
     this.setState({ orders: updateOrder, totalItemsInCart });
   };
 

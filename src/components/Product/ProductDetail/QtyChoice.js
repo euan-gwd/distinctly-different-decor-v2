@@ -1,49 +1,39 @@
 import React from 'react';
 import styled from 'styled-components';
+import { colors } from '../../helpers';
 import Select from 'semantic-ui-react/dist/es/addons/Select';
+import Label from '../../UI/Label/Label';
 
 const QtyChoice = ({ qtyFieldError, orderQty, handleQtyChange }) => {
   return (
-    <FormSelectGroup>
-      <Label>Quantity:</Label>
-      {qtyFieldError ? (
-        <Select
-          upward
-          onChange={handleQtyChange}
-          options={qtyOptions}
-          placeholder="Quantity is Required!"
-          value={orderQty}
-          error
-        />
-      ) : (
-        <Select
-          upward
-          onChange={handleQtyChange}
-          options={qtyOptions}
-          placeholder="Choose a Quantity"
-          value={orderQty}
-          required
-        />
-      )}
-    </FormSelectGroup>
+    <QtyContainer>
+      <Label>
+        Pick a Quantity:
+        {qtyFieldError && <SelectError>Quantity is Required!</SelectError>}
+      </Label>
+      <Select
+        upward
+        onChange={handleQtyChange}
+        options={qtyOptions}
+        placeholder="Choose a Quantity"
+        value={orderQty}
+        required
+        error={qtyFieldError ? 'error' : null}
+      />
+    </QtyContainer>
   );
 };
 
 export default QtyChoice;
 
-const FormSelectGroup = styled.div`
-  display: grid;
-  grid-gap: 1rem 0;
-  width: 100%;
-
-  @media screen and (min-width: 768px) {
-    grid-gap: 0.5rem 0;
-  }
+const QtyContainer = styled.div`
+  margin: 0 0 1rem;
+  width: 300px;
 `;
 
-const Label = styled.p`
-  margin: 0 0 -0.5rem;
-  padding: 0;
+const SelectError = styled.span`
+  align-self: end;
+  color: ${colors.error};
 `;
 
 const qtyOptions = [

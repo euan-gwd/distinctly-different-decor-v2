@@ -1,67 +1,85 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import Overdrive from 'react-overdrive';
-import { Link } from 'react-router-dom';
 import { formatPrice } from '../../helpers';
-import { ButtonGroup } from './ProductDetail';
 import Icon from 'semantic-ui-react/dist/es/elements/Icon';
 import Image from 'semantic-ui-react/dist/es/elements/Image';
-import Button from 'semantic-ui-react/dist/es/elements/Button';
+import Button from '../../UI/Button/Button';
+import ButtonGroup from '../../UI/Button/ButtonGroup';
 
-const SuccessMessage = props => {
-  const { show, product, orderQty } = props;
-  return (
-    <Message show={show ? 'open' : null}>
-      <MessageContainer>
-        <MessageContent>
-          <ProductImage>
-            <Overdrive id={`${product.id}`}>
-              <Image src={product.thumbnail} alt={product.title} size="tiny" />
-            </Overdrive>
-          </ProductImage>
-          <MessageBody>
-            <MessageBodyHeader>
-              {orderQty} x {product.title}
-            </MessageBodyHeader>
-            <p>{'SubTotal: ' + formatPrice(product.price * orderQty)}</p>
-            <Icon name="check" color="green" /> Successfully Added to Cart
-          </MessageBody>
-        </MessageContent>
-        <ButtonGroup>
-          <Link to="/cart">
-            <Button basic fluid color="violet">
-              <Button.Content>Proceed to Checkout</Button.Content>
-            </Button>
-          </Link>
-          <Link to="/">
-            <Button basic fluid>
-              <Button.Content color="grey">Continue Shopping</Button.Content>
-            </Button>
-          </Link>
-        </ButtonGroup>
-      </MessageContainer>
-    </Message>
-  );
-};
+class SuccessMessage extends Component {
+  handleGoToCart = () => {
+    this.props.history.push('/cart');
+  };
 
-export default SuccessMessage;
+  handleReturnToList = () => {
+    this.props.history.push('/');
+  };
+
+  render() {
+    const { show, product, orderQty } = this.props;
+    return (
+      <Message show={show ? 'open' : null}>
+        <MessageContainer>
+          <MessageContent>
+            <ProductImage>
+              <Overdrive id={`${product.id}`}>
+                <Image src={product.thumbnail} alt={product.title} size="tiny" />
+              </Overdrive>
+            </ProductImage>
+            <MessageBody>
+              <MessageBodyHeader>
+                <h3>
+                  {orderQty} x {product.title}
+                </h3>
+                <p>{'SubTotal: ' + formatPrice(product.price * orderQty)}</p>
+              </MessageBodyHeader>
+              <MessageBodyContent>
+                <Icon name="check" color="green" />Added to Cart
+              </MessageBodyContent>
+            </MessageBody>
+          </MessageContent>
+          <ButtonGroup>
+            <MessageButton primary onClick={this.handleGoToCart}>
+              Proceed to Checkout
+            </MessageButton>
+            <MessageButton onClick={this.handleReturnToList}>Continue Shopping</MessageButton>
+          </ButtonGroup>
+        </MessageContainer>
+      </Message>
+    );
+  }
+}
+
+export default withRouter(SuccessMessage);
 
 const Message = styled.div`
   grid-row: 1 / 3;
   grid-column: 1;
-  z-index: 2;
+  padding: 0 2.5vw;
   display: ${props => (props.show ? 'grid' : 'none')};
-  justify-content: center;
-  align-items: start;
+  align-items: center;
+  z-index: 2;
   background-color: rgba(0, 0, 0, 0.5);
+
+  @media screen and (min-width: 768px) {
+    padding: 0;
+    justify-content: center;
+  }
 `;
 
 const MessageContainer = styled.div`
-  margin: 0.25rem 0 0;
+  margin: 0.25rem 0;
   padding: 1rem;
   border: 2px solid #a3c193;
   border-radius: 4px;
   background-color: #fbfff5;
+  width: 300px;
+
+  @media screen and (min-width: 768px) {
+    width: auto;
+  }
 `;
 
 const MessageContent = styled.div`
@@ -76,11 +94,24 @@ const ProductImage = styled.div`
 `;
 
 const MessageBody = styled.div`
-  grid-column: 2;
   color: #789e76;
+  grid-column: 2;
 `;
 
-const MessageBodyHeader = styled.h3`
+const MessageBodyHeader = styled.div`
+  grid-column: 2;
+
+  > h3 {
+    margin: 0;
+    color: #1a521c;
+  }
+`;
+
+const MessageBodyContent = styled.div`
   margin: 0;
-  color: #1a521c;
+  grid-row: 2;
+`;
+
+const MessageButton = styled(Button)`
+  min-width: 75px;
 `;

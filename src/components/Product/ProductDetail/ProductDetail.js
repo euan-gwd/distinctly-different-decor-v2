@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { database } from '../../../firebase/firebase';
 import { formatPrice } from '../../helpers';
 import styled from 'styled-components';
@@ -9,7 +8,8 @@ import SizeChoice from './SizeChoice';
 import ColorChoice from './ColorChoice';
 import QtyChoice from './QtyChoice';
 import Image from 'semantic-ui-react/dist/es/elements/Image';
-import Button from '../../UI/Button';
+import Button from '../../UI/Button/Button';
+import ButtonGroup from '../../UI/Button/ButtonGroup';
 
 class ProductDetail extends Component {
   state = {
@@ -38,12 +38,9 @@ class ProductDetail extends Component {
     }
   }
 
-  handleSizeChange = e => {
-    this.setState({ orderSize: e.target.value, sizeFieldError: false, sizeFieldValid: true });
-  };
+  handleSizeChange = e => this.setState({ orderSize: e.target.value, sizeFieldError: false, sizeFieldValid: true });
 
-  handleColorChange = (e, { value }) =>
-    this.setState({ orderColor: value, colorFieldError: false, colorFieldValid: true });
+  handleColorChange = e => this.setState({ orderColor: e.target.value, colorFieldError: false, colorFieldValid: true });
 
   handleQtyChange = (e, { value }) => this.setState({ orderQty: value, qtyFieldError: false, qtyFieldValid: true });
 
@@ -82,6 +79,10 @@ class ProductDetail extends Component {
     }
   };
 
+  handleReturnToList = () => {
+    this.props.history.push('/');
+  };
+
   render() {
     const {
       product,
@@ -99,38 +100,40 @@ class ProductDetail extends Component {
     return (
       <Backdrop image={product.image}>
         <Container>
-          <FormHeader>{product.title}</FormHeader>
-          <FormSubHeader>{product.description}</FormSubHeader>
-          <ProductImage>
-            <Overdrive id={`${product.id}`}>
-              <Image
-                src={product.thumbnail}
-                alt={product.title}
-                label={{ color: 'violet', ribbon: true, content: [Pricing] }}
+          <Header>
+            <h2>{product.title}</h2>
+            <span>{product.description}</span>
+          </Header>
+          <Content>
+            <ProductImage>
+              <Overdrive id={`${product.id}`}>
+                <Image
+                  src={product.thumbnail}
+                  alt={product.title}
+                  label={{ color: 'violet', ribbon: true, content: [Pricing] }}
+                />
+              </Overdrive>
+            </ProductImage>
+            <Form>
+              <SizeChoice
+                handleSizeChange={this.handleSizeChange}
+                orderSize={orderSize}
+                sizeFieldError={sizeFieldError}
               />
-            </Overdrive>
-          </ProductImage>
-          <Form>
-            <SizeChoice
-              handleSizeChange={this.handleSizeChange}
-              orderSize={orderSize}
-              sizeFieldError={sizeFieldError}
-            />
-            <ColorChoice
-              handleColorChange={this.handleColorChange}
-              orderColor={orderColor}
-              colorFieldError={colorFieldError}
-            />
-            <QtyChoice handleQtyChange={this.handleQtyChange} orderQty={orderQty} qtyFieldError={qtyFieldError} />
-            <ButtonGroup>
-              <Button onClick={this.handleAddToCart} primary>
-                Add to Cart
-              </Button>
-              <Link to="/">
-                <Button>Return to Listing</Button>
-              </Link>
-            </ButtonGroup>
-          </Form>
+              <ColorChoice
+                handleColorChange={this.handleColorChange}
+                orderColor={orderColor}
+                colorFieldError={colorFieldError}
+              />
+              <QtyChoice handleQtyChange={this.handleQtyChange} orderQty={orderQty} qtyFieldError={qtyFieldError} />
+              <ButtonGroup>
+                <Button onClick={this.handleAddToCart} primary>
+                  Add to Cart
+                </Button>
+                <Button onClick={this.handleReturnToList}>Return to Listing</Button>
+              </ButtonGroup>
+            </Form>
+          </Content>
         </Container>
         <SuccessMessage show={showSuccessMessage} product={product} orderQty={orderQty} Pricing={Pricing} />
       </Backdrop>
@@ -146,65 +149,69 @@ const Backdrop = styled.div`
     url(${props => props.image}) center no-repeat;
   background-size: cover;
   display: grid;
-  grid-template-rows: 0.5fr 1fr;
-`;
-
-const Container = styled.div`
-  margin: 0;
-  padding: 0;
-  grid-row: 2;
-  grid-column: 1;
-  background: rgba(255, 255, 255, 0.75);
-  background-size: cover;
-  display: grid;
-  justify-content: center;
-  grid-gap: 1rem 0;
-  width: 100%;
 
   @media screen and (min-width: 768px) {
-    margin: 0;
-    padding: 1rem 20px;
-    grid-gap: 0 0.25rem;
+    grid-template-rows: 0.5fr 1fr;
   }
 `;
 
-export const ProductImage = styled.div`
-  margin: 1rem 0 0;
+const Container = styled.div`
+  grid-row: 2;
+  grid-column: 1;
+  padding: 0 1rem;
+  background: rgba(255, 255, 255, 0.75);
   display: grid;
-  grid-template-columns: minmax(125px, 255px);
-  justify-content: center;
 
   @media screen and (min-width: 768px) {
-    margin: 0;
+    grid-row: 2;
     grid-column: 1;
+    padding: 0 20px;
+  }
+`;
+
+const Header = styled.div`
+  margin: 1rem 0;
+  > h2 {
+    margin: 0;
+    display: block;
+  }
+
+  @media screen and (min-width: 768px) {
+    margin: 0 auto;
+    > h2 {
+      margin: 0 0.5rem 0 0;
+      display: inline-block;
+    }
+  }
+`;
+
+const Content = styled.div`
+  grid-row: 2;
+  grid-column: 1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(250px, 1fr));
+  grid-column-gap: 1rem;
+
+  @media screen and (min-width: 768px) {
+    grid-template-columns: repeat(4, minmax(250px, 1fr));
+  }
+`;
+
+const ProductImage = styled.div`
+  grid-column: span 2;
+  margin-left: 1rem;
+
+  @media screen and (min-width: 768px) {
+    grid-column: 2;
   }
 `;
 
 const Form = styled.div`
-  display: grid;
-  grid-row-gap: 1rem;
-  @media screen and (min-width: 768px) {
-    grid-column: 2;
-    grid-row-gap: 1rem;
-  }
-`;
-
-const FormHeader = styled.h2`
-  margin: 0;
-  padding: 0;
-`;
-
-const FormSubHeader = styled.p`
-  margin: 0;
-  padding: 0;
-`;
-
-export const ButtonGroup = styled.div`
-  display: grid;
-  grid-gap: 1rem 0;
+  grid-column: 1;
+  display: block;
 
   @media screen and (min-width: 768px) {
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 0 1rem;
+    grid-column: 3;
+    display: grid;
   }
 `;

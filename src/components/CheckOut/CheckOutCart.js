@@ -44,7 +44,7 @@ class Cart extends Component {
 
   componentWillUpdate = (nextProps, nextState) => {
     const ordersRef = sessionStorage.getItem(`CurrentOrder`);
-    const updatedOrders = JSON.parse(ordersRef) || {};
+    const updatedOrders = JSON.parse(ordersRef) || this.props.orders;
     const orderIds = Object.keys(updatedOrders);
     const UpdatedTotal = orderIds.reduce((total, orderId) => {
       const lineItemTotal = updatedOrders[orderId].orderItemTotal;
