@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { database } from '../../firebase/firebase';
 import styled from 'styled-components';
-import Icon from '../Elements/Icon/Icon';
+import Icon from '../Elements/Icon';
 
 class CartButton extends Component {
   state = { totalItemsInCart: 0 };

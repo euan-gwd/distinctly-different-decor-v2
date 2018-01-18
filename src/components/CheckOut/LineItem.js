@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { formatPrice, colors } from '../helpers';
-import Image from '../Elements/Image/Image';
+import Image from '../Elements/Image';
 import Button from '../Elements/Button/Button';
-import Icon from '../Elements/Icon/Icon';
+import Icon from '../Elements/Icon';
 
 class LineItem extends Component {
   render() {
