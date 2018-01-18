@@ -5,8 +5,8 @@ import Overdrive from 'react-overdrive';
 import { formatPrice } from '../../helpers';
 import Icon from 'semantic-ui-react/dist/es/elements/Icon';
 import Image from 'semantic-ui-react/dist/es/elements/Image';
-import Button from '../../UI/Button/Button';
-import ButtonGroup from '../../UI/Button/ButtonGroup';
+import Button from '../../Elements/Button/Button';
+import ButtonGroup from '../../Elements/Button/ButtonGroup';
 
 class SuccessMessage extends Component {
   handleGoToCart = () => {

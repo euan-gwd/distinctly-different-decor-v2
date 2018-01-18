@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-// import { database } from '../../firebase/firebase';
+import { database } from '../../firebase/firebase';
 import { formatPrice, colors } from '../helpers';
 import Icon from 'semantic-ui-react/dist/es/elements/Icon';
 import Button from 'semantic-ui-react/dist/es/elements/Button';
@@ -12,46 +12,37 @@ class Cart extends Component {
     orders: {},
     showForm: false,
     confirmedOrder: {},
-    totalCost: 0
+    totalCost: 0,
+    totalItemsInCart: 0
   };
 
-  // async componentDidMount() {
-  //   try {
-  //     //retrieve cart contents from firebase
-  //     await database.ref(`cart/${this.props.match.params.id}`).on('value', res => {
-  //       const orders = res.val();
-  //       const orderIds = Object.keys(orders);
-  //       const totalCost = orderIds.reduce((total, orderId) => {
-  //         const lineItemTotal = orders[orderId].orderItemTotal;
-  //         return total + lineItemTotal;
-  //       }, 0);
-  //       this.setState({ totalCost, orders });
-  //     });
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
+  async componentDidMount() {
+    try {
+      //retrieve cart contents from firebase
+      await database.ref(`cart`).on('value', res => {
+        const orders = res.val() || {};
+        const orderIds = Object.keys(orders);
 
-  componentDidMount = () => {
-    const orders = { ...this.props.orders };
-    const orderIds = Object.keys(orders);
-    const totalCost = orderIds.reduce((total, orderId) => {
-      const lineItemTotal = orders[orderId].orderItemTotal;
-      return total + lineItemTotal;
-    }, 0);
-    this.setState({ totalCost, orders });
-  };
+        const totalCost = orderIds.reduce((total, orderId) => {
+          const lineItemTotal = orders[orderId].orderItemTotal;
+          return total + lineItemTotal;
+        }, 0); // end calculate total Cost of all items in cart
 
-  componentWillUpdate = (nextProps, nextState) => {
-    const ordersRef = sessionStorage.getItem(`CurrentOrder`);
-    const updatedOrders = JSON.parse(ordersRef) || this.props.orders;
-    const orderIds = Object.keys(updatedOrders);
-    const UpdatedTotal = orderIds.reduce((total, orderId) => {
-      const lineItemTotal = updatedOrders[orderId].orderItemTotal;
-      return total + lineItemTotal;
-    }, 0);
-    nextState.orders = updatedOrders;
-    nextState.totalCost = UpdatedTotal;
+        const totalItemsInCart = orderIds.reduce((total, orderId) => {
+          const totalItems = orders[orderId].orderQty;
+          return total + totalItems;
+        }, 0); // end calculate total Number of all items in cart
+
+        this.setState({ totalCost, orders, totalItemsInCart });
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  handleRemoveFromOrder = id => {
+    const lineItemRef = database.ref(`/cart/${id}`);
+    lineItemRef.remove();
   };
 
   handleConfirm = () => {
@@ -63,8 +54,12 @@ class Cart extends Component {
     this.setState({ showForm: true, confirmedOrder });
   };
 
+  componentWillUnmount = () => {
+    database.ref(`cart`).off();
+  };
+
   render() {
-    const { orders, totalCost, showForm, confirmedOrder } = this.state;
+    const { orders, totalCost, showForm, confirmedOrder, totalItemsInCart } = this.state;
     const ordersLength = Object.keys(orders).length;
 
     return (
@@ -82,7 +77,7 @@ class Cart extends Component {
           {ordersLength > 0 ? (
             <TableBody>
               {Object.keys(orders).map(key => (
-                <LineItem key={key} details={orders[key]} id={key} removeFromOrder={this.props.removeFromOrder} />
+                <LineItem key={key} details={orders[key]} id={key} removeFromOrder={this.handleRemoveFromOrder} />
               ))}
             </TableBody>
           ) : (
@@ -95,6 +90,7 @@ class Cart extends Component {
           )}
           <TableFooter>
             <TableFooterTotalLabel>Total:</TableFooterTotalLabel>
+            <TableFooterTotalItems>{totalItemsInCart}</TableFooterTotalItems>
             <TableFooterTotalValue>{formatPrice(totalCost)}</TableFooterTotalValue>
             <TableFooterAction>
               {ordersLength > 0 && (
@@ -233,7 +229,7 @@ const TableFooter = styled.div`
 `;
 
 const TableFooterTotalLabel = styled.div`
-  grid-column: 2 / 4;
+  grid-column: 2;
   justify-self: center;
 
   @media screen and (min-width: 768px) {
@@ -241,6 +237,17 @@ const TableFooterTotalLabel = styled.div`
     justify-self: center;
   }
 `;
+
+const TableFooterTotalItems = styled.div`
+  grid-column: 3;
+  justify-self: center;
+
+  @media screen and (min-width: 768px) {
+    grid-column: 5;
+    justify-self: center;
+  }
+`;
+
 const TableFooterTotalValue = styled.div`
   grid-column: 4;
   justify-self: center;

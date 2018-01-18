@@ -8,8 +8,8 @@ import SizeChoice from './SizeChoice';
 import ColorChoice from './ColorChoice';
 import QtyChoice from './QtyChoice';
 import Image from 'semantic-ui-react/dist/es/elements/Image';
-import Button from '../../UI/Button/Button';
-import ButtonGroup from '../../UI/Button/ButtonGroup';
+import Button from '../../Elements/Button/Button';
+import ButtonGroup from '../../Elements/Button/ButtonGroup';
 
 class ProductDetail extends Component {
   state = {
@@ -73,14 +73,21 @@ class ProductDetail extends Component {
     }
 
     const { sizeFieldValid, colorFieldValid, qtyFieldValid } = this.state;
+
     if (sizeFieldValid && colorFieldValid && qtyFieldValid) {
-      this.props.addToOrder(orderItem);
+      const ordersRef = database.ref('cart');
+
+      ordersRef.push(orderItem);
       this.setState({ showSuccessMessage: true });
     }
   };
 
   handleReturnToList = () => {
     this.props.history.push('/');
+  };
+
+  componentWillUnmount = () => {
+    database.ref().off();
   };
 
   render() {

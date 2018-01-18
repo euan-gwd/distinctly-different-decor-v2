@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { colors } from '../../helpers';
-import Label from '../../UI/Label/Label';
+import Label from '../../Elements/Label/Label';
 
 const ColorChoice = ({ handleColorChange, orderColor, colorFieldError }) => {
   return (

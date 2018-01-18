@@ -2,35 +2,13 @@ import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom';
 import { colors } from './helpers';
 import styled from 'styled-components';
-import Icon from 'semantic-ui-react/dist/es/elements/Icon';
 import logo from './logo.svg';
 import ProductsList from './Product/ProductsList';
 import ProductDetail from './Product/ProductDetail/ProductDetail';
 import Cart from './CheckOut/CheckOutCart';
+import CartButton from './CheckOut/CartButton';
 
 class App extends Component {
-  state = { orders: {}, totalItemsInCart: 0 };
-
-  addToOrder = orderItem => {
-    let orders = {};
-    this.state.orders ? (orders = { ...this.state.orders }) : (orders = {});
-    const timestamp = Date.now();
-    orders[`order-${timestamp}`] = orderItem;
-    const totalItemsInCart = Object.keys(orders).length;
-    sessionStorage.setItem(`CurrentOrder`, JSON.stringify(orders));
-    this.setState({ orders, totalItemsInCart });
-  };
-
-  removeFromOrder = orderItem => {
-    const updateOrder = { ...this.state.orders };
-    delete updateOrder[orderItem];
-    const totalItemsInCart = Object.keys(updateOrder).length;
-    totalItemsInCart === 0
-      ? sessionStorage.clear()
-      : sessionStorage.setItem(`CurrentOrder`, JSON.stringify(updateOrder));
-    this.setState({ orders: updateOrder, totalItemsInCart });
-  };
-
   render() {
     return (
       <AppContainer>
@@ -39,18 +17,12 @@ class App extends Component {
             <Logo src={logo} alt="logo" />
           </Link>
           <Link to="/cart">
-            <CartButton>
-              {this.state.totalItemsInCart > 0 ? <CartCount>{this.state.totalItemsInCart}</CartCount> : null}
-              <Icon name="shop" size="big" color="violet" />
-            </CartButton>
+            <CartButton />
           </Link>
         </AppHeader>
-        <Route exact path="/" render={props => <ProductsList />} />
-        <Route path="/products/:id" render={props => <ProductDetail {...props} addToOrder={this.addToOrder} />} />
-        <Route
-          path="/cart"
-          render={props => <Cart {...props} orders={this.state.orders} removeFromOrder={this.removeFromOrder} />}
-        />
+        <Route exact path="/" render={props => <ProductsList {...props} />} />
+        <Route path="/products/:id" render={props => <ProductDetail {...props} />} />
+        <Route path="/cart" render={props => <Cart {...props} />} />
         <AppFooter>&copy;2017 Distinctly Different Decor All Rights Reserved</AppFooter>
       </AppContainer>
     );
@@ -94,29 +66,6 @@ const AppHeader = styled.div`
 const Logo = styled.img`
   height: 35px;
   text-align: left;
-`;
-
-const CartButton = styled.div`
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-`;
-
-const CartCount = styled.span`
-  color: white;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  position: absolute;
-  top: 0.95rem;
-  right: 1.45rem;
-  z-index: 2;
-  font-size: 0.75rem;
-
-  @media screen and (min-width: 768px) {
-    top: 0.95rem;
-    right: 2.45rem;
-  }
 `;
 
 const AppFooter = styled.div`

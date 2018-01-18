@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { formatPrice, colors } from '../helpers';
 import Image from 'semantic-ui-react/dist/es/elements/Image';
-import Button from 'semantic-ui-react/dist/es/elements/Button';
+import Button from '../Elements/Button/Button';
 import Icon from 'semantic-ui-react/dist/es/elements/Icon';
 
 class LineItem extends Component {
@@ -23,15 +23,11 @@ class LineItem extends Component {
             onClick={() => {
               removeFromOrder(id);
             }}
-            basic
-            negative={true}
-            animated="fade"
-            size="mini"
           >
-            <Button.Content visible>
+            <div visible>
               <Icon name="delete" />
-            </Button.Content>
-            <Button.Content hidden>Delete</Button.Content>
+            </div>
+            <div hidden>Delete</div>
           </Button>
         </LineItemActions>
       </LineItemRow>
