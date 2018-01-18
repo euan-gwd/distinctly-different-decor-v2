@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { colors } from '../../helpers';
 // import Select from 'semantic-ui-react/dist/es/addons/Select';
 import Label from '../../Elements/Label';
+import Select from '../../Elements/Select';
 
 const QtyChoice = ({ qtyFieldError, orderQty, handleQtyChange }) => {
   return (
@@ -20,6 +21,7 @@ const QtyChoice = ({ qtyFieldError, orderQty, handleQtyChange }) => {
         required
         error={qtyFieldError ? 'error' : null}
       /> */}
+      <Select />
     </QtyContainer>
   );
 };

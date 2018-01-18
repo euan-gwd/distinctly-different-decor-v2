@@ -5,8 +5,8 @@ import Overdrive from 'react-overdrive';
 import { formatPrice } from '../../helpers';
 import Icon from '../../Elements/Icon';
 import Image from '../../Elements/Image';
-import Button from '../../Elements/Button/Button';
-import ButtonGroup from '../../Elements/Button/ButtonGroup';
+import Button from '../../Elements/Button';
+import ButtonGroup from '../../Elements/ButtonGroup';
 
 class SuccessMessage extends Component {
   handleGoToCart = () => {

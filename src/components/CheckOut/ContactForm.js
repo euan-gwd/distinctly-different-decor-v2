@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import Button from '../Elements/Button/Button';
+import Button from '../Elements/Button';
 import Icon from '../Elements/Icon';
 import Input from '../Elements/Input';
 

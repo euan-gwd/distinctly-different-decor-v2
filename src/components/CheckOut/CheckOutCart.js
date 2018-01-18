@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { database } from '../../firebase/firebase';
 import { formatPrice, colors } from '../helpers';
 import Icon from '../Elements/Icon';
-import Button from '../Elements/Button/Button';
+import Button from '../Elements/Button';
 import LineItem from './LineItem';
 import ContactForm from './ContactForm';
 

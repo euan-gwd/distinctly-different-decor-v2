@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { colors } from '../../helpers';
+import { colors } from '../helpers';
 
 const Button = props => <Btn {...props}>{props.children}</Btn>;
 export default Button;

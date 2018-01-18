@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { formatPrice, colors } from '../helpers';
 import Image from '../Elements/Image';
-import Button from '../Elements/Button/Button';
+import Button from '../Elements/Button';
 import Icon from '../Elements/Icon';
 
 class LineItem extends Component {
@@ -19,14 +19,14 @@ class LineItem extends Component {
         <LineItemCell>{details.orderQty}</LineItemCell>
         <LineItemCell>{formatPrice(details.orderItemTotal)}</LineItemCell>
         <LineItemActions>
-          <RemoveButton
+          <Button
             onClick={() => {
               removeFromOrder(id);
             }}
           >
             <Icon name="delete" />
             <span>Delete</span>
-          </RemoveButton>
+          </Button>
         </LineItemActions>
       </LineItemRow>
     );
@@ -101,9 +101,4 @@ const LineItemActions = styled.div`
   display: grid;
   justify-content: center;
   align-items: center;
-`;
-
-const RemoveButton = styled(Button)`
-  min-width: 50px;
-  color: red;
 `;

@@ -8,8 +8,8 @@ import SizeChoice from './SizeChoice';
 import ColorChoice from './ColorChoice';
 import QtyChoice from './QtyChoice';
 import Image from '../../Elements/Image';
-import Button from '../../Elements/Button/Button';
-import ButtonGroup from '../../Elements/Button/ButtonGroup';
+import Button from '../../Elements/Button';
+import ButtonGroup from '../../Elements/ButtonGroup';
 
 class ProductDetail extends Component {
   state = {
