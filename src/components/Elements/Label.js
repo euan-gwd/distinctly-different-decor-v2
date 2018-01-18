@@ -1,4 +1,5 @@
 import React from 'react';
+import 'semantic-ui-label';
 import styled from 'styled-components';
 
 const FormLabel = props => <Label {...props}>{props.children}</Label>;
