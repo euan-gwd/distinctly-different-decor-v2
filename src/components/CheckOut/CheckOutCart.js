@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { database } from '../../firebase/firebase';
 import { formatPrice, colors } from '../helpers';
-import Icon from 'semantic-ui-react/dist/es/elements/Icon';
-import Button from 'semantic-ui-react/dist/es/elements/Button';
+import Icon from '../Elements/Icon/Icon';
+import Button from '../Elements/Button/Button';
 import LineItem from './LineItem';
 import ContactForm from './ContactForm';
 
@@ -94,12 +94,9 @@ class Cart extends Component {
             <TableFooterTotalValue>{formatPrice(totalCost)}</TableFooterTotalValue>
             <TableFooterAction>
               {ordersLength > 0 && (
-                <Button onClick={this.handleConfirm} basic animated="fade" positive={true} size="mini">
-                  <Button.Content visible>
-                    <Icon name="check" />
-                  </Button.Content>
-                  <Button.Content hidden>Confirm</Button.Content>
-                </Button>
+                <ConfirmButton onClick={this.handleConfirm}>
+                  <Icon name="check" />
+                </ConfirmButton>
               )}
             </TableFooterAction>
           </TableFooter>
@@ -266,6 +263,10 @@ const TableFooterAction = styled.div`
     grid-column: 7;
     justify-self: center;
   }
+`;
+
+const ConfirmButton = styled(Button)`
+  min-width: 50px;
 `;
 
 const AttachedForm = styled.div`

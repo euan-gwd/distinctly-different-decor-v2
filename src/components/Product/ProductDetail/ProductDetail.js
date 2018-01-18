@@ -7,7 +7,7 @@ import SuccessMessage from './SuccessMessage';
 import SizeChoice from './SizeChoice';
 import ColorChoice from './ColorChoice';
 import QtyChoice from './QtyChoice';
-import Image from 'semantic-ui-react/dist/es/elements/Image';
+import Image from '../../Elements/Image/Image';
 import Button from '../../Elements/Button/Button';
 import ButtonGroup from '../../Elements/Button/ButtonGroup';
 

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { formatPrice, colors } from '../helpers';
-import Image from 'semantic-ui-react/dist/es/elements/Image';
+import Image from '../Elements/Image/Image';
 import Button from '../Elements/Button/Button';
-import Icon from 'semantic-ui-react/dist/es/elements/Icon';
+import Icon from '../Elements/Icon/Icon';
 
 class LineItem extends Component {
   render() {
@@ -19,16 +19,13 @@ class LineItem extends Component {
         <LineItemCell>{details.orderQty}</LineItemCell>
         <LineItemCell>{formatPrice(details.orderItemTotal)}</LineItemCell>
         <LineItemActions>
-          <Button
+          <RemoveButton
             onClick={() => {
               removeFromOrder(id);
             }}
           >
-            <div visible>
-              <Icon name="delete" />
-            </div>
-            <div hidden>Delete</div>
-          </Button>
+            <Icon name="delete" />
+          </RemoveButton>
         </LineItemActions>
       </LineItemRow>
     );
@@ -103,4 +100,9 @@ const LineItemActions = styled.div`
   display: grid;
   justify-content: center;
   align-items: center;
+`;
+
+const RemoveButton = styled(Button)`
+  min-width: 50px;
+  color: red;
 `;

@@ -1,15 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
 
-const Image = props => <Img {...props}>{props.children}</Img>;
+const Image = props => {
+  return <img className={`ui  ${props.size} ${props.effect} image`} src={props.src} alt={props.alt} />;
+};
 
 export default Image;
-
-const Img = styled.img`
-  position: relative;
-  display: inline-block;
-  vertical-align: middle;
-  max-width: 100%;
-  background-color: transparent;
-  height: auto;
-`;

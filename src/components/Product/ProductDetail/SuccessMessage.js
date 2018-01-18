@@ -3,8 +3,8 @@ import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import Overdrive from 'react-overdrive';
 import { formatPrice } from '../../helpers';
-import Icon from 'semantic-ui-react/dist/es/elements/Icon';
-import Image from 'semantic-ui-react/dist/es/elements/Image';
+import Icon from '../../Elements/Icon/Icon';
+import Image from '../../Elements/Image/Image';
 import Button from '../../Elements/Button/Button';
 import ButtonGroup from '../../Elements/Button/ButtonGroup';
 
