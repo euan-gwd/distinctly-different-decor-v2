@@ -7,6 +7,7 @@ import ProductsList from './Product/ProductsList';
 import ProductDetail from './Product/ProductDetail/ProductDetail';
 import Cart from './CheckOut/CheckOutCart';
 import CartButton from './CheckOut/CartButton';
+import 'semantic-ui-css/semantic.min.css';
 
 class App extends Component {
   render() {
