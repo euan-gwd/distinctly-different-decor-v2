@@ -138,10 +138,10 @@ class ContactForm extends Component {
           />
         )}
         <Button animated="fade" color="violet" onClick={this.handleSubmit}>
-          <Button.Content visible>Place Order</Button.Content>
-          <Button.Content hidden>
+          <div>
             <Icon name="send" />
-          </Button.Content>
+            <span>Place Order</span>
+          </div>
         </Button>
       </FormWrapper>
     );

@@ -96,12 +96,17 @@ class Cart extends Component {
               {ordersLength > 0 && (
                 <ConfirmButton onClick={this.handleConfirm}>
                   <Icon name="check" />
+                  <span>Confirm</span>
                 </ConfirmButton>
               )}
             </TableFooterAction>
           </TableFooter>
         </Table>
-        <AttachedForm>{showForm && <ContactForm confirmedOrder={confirmedOrder} />}</AttachedForm>
+        {showForm && ordersLength > 0 ? (
+          <AttachedForm>
+            <ContactForm confirmedOrder={confirmedOrder} />
+          </AttachedForm>
+        ) : null}
       </Container>
     );
   }

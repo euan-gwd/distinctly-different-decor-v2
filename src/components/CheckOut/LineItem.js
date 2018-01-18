@@ -25,6 +25,7 @@ class LineItem extends Component {
             }}
           >
             <Icon name="delete" />
+            <span>Delete</span>
           </RemoveButton>
         </LineItemActions>
       </LineItemRow>
