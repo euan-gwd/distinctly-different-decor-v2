@@ -1,5 +1,5 @@
 import React from 'react';
-import 'semantic-ui-input';
+import 'semantic-ui-input/input.min.css';
 
 const Input = props => {
   return (

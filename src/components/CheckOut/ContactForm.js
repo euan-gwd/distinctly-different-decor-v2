@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import Button from '../Elements/Button/Button';
 import Icon from '../Elements/Icon';
-import Input from 'semantic-ui-react/dist/es/elements/Input';
+import Input from '../Elements/Input';
 
 class ContactForm extends Component {
   state = {

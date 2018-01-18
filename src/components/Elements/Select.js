@@ -1,8 +1,7 @@
 import React from 'react';
-import 'semantic-ui-dropdown';
 
-const Select = () => {
-  return <div />;
+const Select = props => {
+  return <select className={`ui ${props.status} ${props.direction} dropdown`}>{props.children}</select>;
 };
 
 export default Select;
