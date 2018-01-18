@@ -1,5 +1,4 @@
 import React from 'react';
-// import 'semantic-ui-button';
 import styled from 'styled-components';
 import { colors } from '../../helpers';
 
