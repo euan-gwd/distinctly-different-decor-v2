@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { colors } from '../../helpers';
-import Label from '../../Elements/Label/Label';
+import Label from '../../Elements/Label';
 
 const SizeChoice = ({ handleSizeChange, orderSize, sizeFieldError }) => {
   return (

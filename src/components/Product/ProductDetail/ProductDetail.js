@@ -6,7 +6,7 @@ import Overdrive from 'react-overdrive';
 import SuccessMessage from './SuccessMessage';
 import SizeChoice from './SizeChoice';
 import ColorChoice from './ColorChoice';
-// import QtyChoice from './QtyChoice';
+import QtyChoice from './QtyChoice';
 import Image from '../../Elements/Image';
 import Button from '../../Elements/Button/Button';
 import ButtonGroup from '../../Elements/Button/ButtonGroup';
@@ -132,9 +132,9 @@ class ProductDetail extends Component {
                 orderColor={orderColor}
                 colorFieldError={colorFieldError}
               />
-              {/* <QtyChoice handleQtyChange={this.handleQtyChange} orderQty={orderQty} qtyFieldError={qtyFieldError} /> */}
+              <QtyChoice handleQtyChange={this.handleQtyChange} orderQty={orderQty} qtyFieldError={qtyFieldError} />
               <ButtonGroup>
-                <Button onClick={this.handleAddToCart} primary>
+                <Button onClick={this.handleAddToCart} color="violet" effect="basic">
                   Add to Cart
                 </Button>
                 <Button onClick={this.handleReturnToList}>Return to Listing</Button>
