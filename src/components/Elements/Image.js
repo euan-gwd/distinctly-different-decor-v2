@@ -1,7 +1,13 @@
 import React from 'react';
+import styled from 'styled-components';
 
-const Image = props => {
-  return <img className={`ui  ${props.size} ${props.effect} image`} src={props.src} alt={props.alt} />;
+const Image = (props) => {
+  return <Img className={`${props.size} ${props.effect}`} src={props.src} alt={props.alt} />;
 };
 
 export default Image;
+
+const Img = styled.img`
+  display: block;
+  width: 100%;
+`;

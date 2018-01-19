@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
+    "@fortawesome/react-fontawesome": "^0.0.17",
     "amwic-react-scripts": "1.2.24",
     "bulma": "^0.6.2",
     "eslint-config-prettier": "^2.9.0",
@@ -13,7 +14,8 @@
     "react-dom": "^16.2.0",
     "react-overdrive": "^0.0.9",
     "react-router-dom": "^4.2.2",
-    "styled-components": "^2.4.0"
+    "styled-components": "^2.4.0",
+    "stylelint-config-standard": "^18.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

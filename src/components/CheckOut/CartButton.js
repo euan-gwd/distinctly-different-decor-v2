@@ -9,7 +9,7 @@ class CartButton extends Component {
   async componentDidMount() {
     try {
       //retrieve cart contents from firebase
-      await database.ref(`cart`).on('value', res => {
+      await database.ref(`cart`).on('value', (res) => {
         const orders = res.val() || {};
         const ordersLength = Object.keys(orders).length;
         this.setState({ totalItemsInCart: ordersLength });
@@ -22,7 +22,7 @@ class CartButton extends Component {
     return (
       <Button>
         {this.state.totalItemsInCart > 0 ? <CartCount>{this.state.totalItemsInCart}</CartCount> : null}
-        <Icon name="shop" size="big" color="violet" />
+        <Icon name="shopping-cart" />
       </Button>
     );
   }

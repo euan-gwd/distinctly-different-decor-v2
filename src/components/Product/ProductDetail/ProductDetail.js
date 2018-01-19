@@ -29,7 +29,7 @@ class ProductDetail extends Component {
   async componentDidMount() {
     try {
       //retrieve selected product from firebase
-      await database.ref(`products/${this.props.match.params.id}`).on('value', res => {
+      await database.ref(`products/${this.props.match.params.id}`).on('value', (res) => {
         const product = res.val();
         this.setState({ product });
       });
@@ -38,9 +38,13 @@ class ProductDetail extends Component {
     }
   }
 
-  handleSizeChange = e => this.setState({ orderSize: e.target.value, sizeFieldError: false, sizeFieldValid: true });
+  handleSizeChange = (e) => {
+    this.setState({ orderSize: e.target.value, sizeFieldError: false, sizeFieldValid: true });
+  };
 
-  handleColorChange = e => this.setState({ orderColor: e.target.value, colorFieldError: false, colorFieldValid: true });
+  handleColorChange = (e) => {
+    this.setState({ orderColor: e.target.value, colorFieldError: false, colorFieldValid: true });
+  };
 
   handleQtyChange = (e, { value }) => this.setState({ orderQty: value, qtyFieldError: false, qtyFieldValid: true });
 
@@ -117,7 +121,7 @@ class ProductDetail extends Component {
                 <Image
                   src={product.thumbnail}
                   alt={product.title}
-                  label={{ color: 'violet', ribbon: true, content: [Pricing] }}
+                  label={{ color: 'violet', ribbon: true, content: [ Pricing ] }}
                 />
               </Overdrive>
             </ProductImage>
@@ -153,7 +157,7 @@ export default ProductDetail;
 const Backdrop = styled.div`
   grid-row: 2;
   background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(0, 0, 255, 0.3)),
-    url(${props => props.image}) center no-repeat;
+    url(${(props) => props.image}) center no-repeat;
   background-size: cover;
   display: grid;
 

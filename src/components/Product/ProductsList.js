@@ -10,7 +10,7 @@ class ProductsList extends Component {
   async componentDidMount() {
     try {
       //retrieve product list from firebase
-      await database.ref('products').on('value', res => {
+      await database.ref('products').on('value', (res) => {
         const productsData = res.val();
         const inventory = [];
         for (let objKey in productsData) {
@@ -28,7 +28,7 @@ class ProductsList extends Component {
     return (
       <Container>
         {this.state.loaded ? (
-          <ProductGrid>{this.state.inventory.map(item => <Product key={item.id} product={item} />)}</ProductGrid>
+          <ProductGrid>{this.state.inventory.map((item) => <Product key={item.id} product={item} />)}</ProductGrid>
         ) : (
           <Loading />
         )}
@@ -40,15 +40,11 @@ class ProductsList extends Component {
 export default ProductsList;
 
 const ProductGrid = styled.div`
+  margin: 0;
+  box-sizing: border-box;
   display: grid;
-  grid-template-columns: repeat(2, minmax(125px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
   grid-gap: 1rem;
-
-  @media screen and (min-width: 768px) {
-    grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
-    grid-template-rows: repeat(auto-fit, 125px);
-    grid-gap: 1rem;
-  }
 `;
 
 const Container = styled.div`

@@ -1,0 +1,21 @@
+@font-face {
+  font-family: "Dosis";
+  src: url('./fonts/Dosis-Regular.ttf');
+}
+
+html {
+  box-sizing: border-box;
+  font-family: "Dosis";
+  font-weight: 400;
+  font-size: 16px;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+}

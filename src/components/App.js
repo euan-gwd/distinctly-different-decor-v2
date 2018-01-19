@@ -20,9 +20,9 @@ class App extends Component {
             <CartButton />
           </Link>
         </AppHeader>
-        <Route exact path="/" render={props => <ProductsList {...props} />} />
-        <Route path="/products/:id" render={props => <ProductDetail {...props} />} />
-        <Route path="/cart" render={props => <Cart {...props} />} />
+        <Route exact path="/" render={(props) => <ProductsList {...props} />} />
+        <Route path="/products/:id" render={(props) => <ProductDetail {...props} />} />
+        <Route path="/cart" render={(props) => <Cart {...props} />} />
         <AppFooter>&copy;2017 Distinctly Different Decor All Rights Reserved</AppFooter>
       </AppContainer>
     );
@@ -39,13 +39,15 @@ const AppContainer = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   background-origin: center center;
-  position: relative;
+  background-position: fixed;
+  /* position: relative; */
   display: grid;
-  grid-template-rows: 50px 1fr 20px;
+  grid-template-rows: 50px auto 20px;
 `;
 
 const AppHeader = styled.div`
   grid-row: 1;
+  grid-column: 1 / -1;
   background: ${colors.background};
   height: 50px;
   padding: 0 5px;
@@ -53,9 +55,6 @@ const AppHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: fixed;
-  top: 0;
-  width: 100%;
   z-index: 2;
 
   @media screen and (min-width: 768px) {
@@ -76,7 +75,4 @@ const AppFooter = styled.div`
   color: grey;
   font-size: 0.75rem;
   text-align: right;
-  width: 100vw;
-  position: absolute;
-  bottom: 0;
 `;
