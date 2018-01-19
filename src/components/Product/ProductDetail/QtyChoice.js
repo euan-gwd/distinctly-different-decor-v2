@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { colors } from '../../helpers';
-// import Select from 'semantic-ui-react/dist/es/addons/Select';
 import Label from '../../Elements/Label';
 import Select from '../../Elements/Select';
 
