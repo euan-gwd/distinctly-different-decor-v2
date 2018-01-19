@@ -58,12 +58,12 @@
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/@firebase/app-types/-/app-types-0.1.1.tgz#1b794e101c779310763b1bfce8c24e7728fb9a91"
 
-"@firebase/app@0.1.6":
-  version "0.1.6"
-  resolved "https://registry.yarnpkg.com/@firebase/app/-/app-0.1.6.tgz#0418c110a6155c19de57a433a59eeeba6feb224f"
+"@firebase/app@0.1.7":
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/@firebase/app/-/app-0.1.7.tgz#2fb780b583db48a0594ccb77e5e33018a59bb18e"
   dependencies:
     "@firebase/app-types" "0.1.1"
-    "@firebase/util" "0.1.6"
+    "@firebase/util" "0.1.7"
 
 "@firebase/auth-types@0.1.1":
   version "0.1.1"
@@ -79,23 +79,23 @@
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/@firebase/database-types/-/database-types-0.1.1.tgz#601b8040191766777b785c1675eac34ce57c669c"
 
-"@firebase/database@0.1.7":
-  version "0.1.7"
-  resolved "https://registry.yarnpkg.com/@firebase/database/-/database-0.1.7.tgz#ed7b964646c79fdcb175f59a6d38d632dd0354f1"
+"@firebase/database@0.1.8":
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/@firebase/database/-/database-0.1.8.tgz#96124078f2a1afeeb10e2dee085ebe4c07ad0551"
   dependencies:
     "@firebase/database-types" "0.1.1"
-    "@firebase/util" "0.1.6"
+    "@firebase/util" "0.1.7"
     faye-websocket "0.11.1"
 
-"@firebase/firestore-types@0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@firebase/firestore-types/-/firestore-types-0.1.1.tgz#c711a0dcc440cdc668662b6017b1f730cc124586"
+"@firebase/firestore-types@0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@firebase/firestore-types/-/firestore-types-0.2.1.tgz#f2f35856b283a521c64ac4fa45d140010037e046"
 
-"@firebase/firestore@0.2.3":
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/@firebase/firestore/-/firestore-0.2.3.tgz#1d0bc56319b9eb17db449d85d47cd46290604dc5"
+"@firebase/firestore@0.3.1":
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/@firebase/firestore/-/firestore-0.3.1.tgz#2fa3e78a6375335af4f4a2da55793ccc919c9296"
   dependencies:
-    "@firebase/firestore-types" "0.1.1"
+    "@firebase/firestore-types" "0.2.1"
     "@firebase/webchannel-wrapper" "0.2.6"
     grpc "^1.7.1"
 
@@ -103,12 +103,12 @@
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/@firebase/messaging-types/-/messaging-types-0.1.1.tgz#66d61d800081b3f7e4d26f1f8523f0a307e37730"
 
-"@firebase/messaging@0.1.7":
-  version "0.1.7"
-  resolved "https://registry.yarnpkg.com/@firebase/messaging/-/messaging-0.1.7.tgz#81e0b60ae74a890eafe85130047c28f2ba2ec55a"
+"@firebase/messaging@0.1.8":
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/@firebase/messaging/-/messaging-0.1.8.tgz#42a990d87f90c86b4ab1cefac1a5bbded2ecc9dd"
   dependencies:
     "@firebase/messaging-types" "0.1.1"
-    "@firebase/util" "0.1.6"
+    "@firebase/util" "0.1.7"
 
 "@firebase/polyfill@0.1.4":
   version "0.1.4"
@@ -126,9 +126,9 @@
   dependencies:
     "@firebase/storage-types" "0.1.1"
 
-"@firebase/util@0.1.6":
-  version "0.1.6"
-  resolved "https://registry.yarnpkg.com/@firebase/util/-/util-0.1.6.tgz#cfcb537f7ba46054f2aa2b06c6cc2b63ce754e4a"
+"@firebase/util@0.1.7":
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/@firebase/util/-/util-0.1.7.tgz#efe5f119ae6449f66dd286c7cbdccfed090ad274"
 
 "@firebase/webchannel-wrapper@0.2.6":
   version "0.2.6"
@@ -1141,7 +1141,7 @@ babel-register@^6.26.0:
     mkdirp "^0.5.1"
     source-map-support "^0.4.15"
 
-babel-runtime@6.26.0, babel-runtime@^6.18.0, babel-runtime@^6.22.0, babel-runtime@^6.25.0, babel-runtime@^6.26.0:
+babel-runtime@6.26.0, babel-runtime@^6.18.0, babel-runtime@^6.22.0, babel-runtime@^6.26.0:
   version "6.26.0"
   resolved "https://registry.yarnpkg.com/babel-runtime/-/babel-runtime-6.26.0.tgz#965c7058668e82b55d7bfe04ff2337bc8b5647fe"
   dependencies:
@@ -1464,6 +1464,10 @@ builtin-status-codes@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/builtin-status-codes/-/builtin-status-codes-3.0.0.tgz#85982878e21b98e1c66425e03d0174788f569ee8"
 
+bulma@^0.6.2:
+  version "0.6.2"
+  resolved "https://registry.yarnpkg.com/bulma/-/bulma-0.6.2.tgz#f4b1d11d5acc51a79644eb0a2b0b10649d3d71f5"
+
 bytebuffer@~5:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/bytebuffer/-/bytebuffer-5.0.1.tgz#582eea4b1a873b6d020a48d58df85f0bba6cfddd"
@@ -1670,10 +1674,6 @@ class-utils@^0.3.5:
     define-property "^0.2.5"
     isobject "^3.0.0"
     static-extend "^0.1.1"
-
-classnames@^2.2.5:
-  version "2.2.5"
-  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.5.tgz#fb3801d453467649ef3603c7d61a02bd129bde6d"
 
 clean-css@4.1.x:
   version "4.1.9"
@@ -3161,15 +3161,15 @@ find-up@^2.0.0, find-up@^2.1.0:
   dependencies:
     locate-path "^2.0.0"
 
-firebase@^4.8.2:
-  version "4.8.2"
-  resolved "https://registry.yarnpkg.com/firebase/-/firebase-4.8.2.tgz#5c6878afe2199c382b4a7bde56a21d1bcb4421d3"
+firebase@^4.9.0:
+  version "4.9.0"
+  resolved "https://registry.yarnpkg.com/firebase/-/firebase-4.9.0.tgz#b0e0345438fcd38bea9d0d7e5ac896fe09f4c80a"
   dependencies:
-    "@firebase/app" "0.1.6"
+    "@firebase/app" "0.1.7"
     "@firebase/auth" "0.3.2"
-    "@firebase/database" "0.1.7"
-    "@firebase/firestore" "0.2.3"
-    "@firebase/messaging" "0.1.7"
+    "@firebase/database" "0.1.8"
+    "@firebase/firestore" "0.3.1"
+    "@firebase/messaging" "0.1.8"
     "@firebase/polyfill" "0.1.4"
     "@firebase/storage" "0.1.6"
     dom-storage "^2.0.2"
@@ -4483,10 +4483,6 @@ jest@20.0.4:
   resolved "https://registry.yarnpkg.com/jest/-/jest-20.0.4.tgz#3dd260c2989d6dad678b1e9cc4d91944f6d602ac"
   dependencies:
     jest-cli "^20.0.4"
-
-jquery@x.*:
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.2.1.tgz#5c4d9de652af6cd0a770154a631bba12b015c787"
 
 js-base64@^2.1.9:
   version "2.4.0"
@@ -6049,7 +6045,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.6.0:
+prop-types@^15.5.4, prop-types@^15.6.0:
   version "15.6.0"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.0.tgz#ceaf083022fc46b4a35f69e13ef75aed0d639856"
   dependencies:
@@ -6683,22 +6679,6 @@ selfsigned@^1.9.1:
   resolved "https://registry.yarnpkg.com/selfsigned/-/selfsigned-1.10.1.tgz#bf8cb7b83256c4551e31347c6311778db99eec52"
   dependencies:
     node-forge "0.6.33"
-
-semantic-ui-css@^2.2.12:
-  version "2.2.12"
-  resolved "https://registry.yarnpkg.com/semantic-ui-css/-/semantic-ui-css-2.2.12.tgz#afc462e5bb4f8a0dcfe3dca11274499a997490dd"
-  dependencies:
-    jquery x.*
-
-semantic-ui-react@^0.77.2:
-  version "0.77.2"
-  resolved "https://registry.yarnpkg.com/semantic-ui-react/-/semantic-ui-react-0.77.2.tgz#c4cf0e3cd5590c906f4d655d163ac5969acd359b"
-  dependencies:
-    babel-runtime "^6.25.0"
-    classnames "^2.2.5"
-    fbjs "^0.8.16"
-    lodash "^4.17.4"
-    prop-types "^15.5.10"
 
 semver-diff@^2.0.0:
   version "2.1.0"
