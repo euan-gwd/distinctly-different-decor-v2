@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
-import { formatPrice, colors } from '../helpers';
-import Image from '../Elements/Image';
-import Button from '../Elements/Button';
-import Icon from '../Elements/Icon';
+import React, { Component } from "react";
+import styled from "styled-components";
+import { formatPrice, colors } from "../helpers";
+import Image from "../Elements/Image";
+import Button from "../Elements/Button";
+import { XSquare } from "react-feather";
 
 class LineItem extends Component {
   render() {
@@ -24,7 +24,7 @@ class LineItem extends Component {
               removeFromOrder(id);
             }}
           >
-            <Icon name="delete" />
+            <XSquare />
             <span>Delete</span>
           </Button>
         </LineItemActions>

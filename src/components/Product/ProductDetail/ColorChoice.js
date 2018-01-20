@@ -1,78 +1,77 @@
-import React from 'react';
-import styled from 'styled-components';
-import { colors } from '../../helpers';
-import Ribbon from '../../Elements/Ribbon';
+import React from "react";
+import styled from "styled-components";
+import { colors } from "../../helpers";
+import { SelectError } from "./SizeChoice";
+import Ribbon from "../../Elements/Ribbon";
 
 const ColorChoice = ({ handleColorChange, orderColor, colorFieldError }) => {
   return (
     <ColorContainer>
-      <Ribbon primary>
-        Choose Color:
-        {colorFieldError && <SelectError>Color is Required!</SelectError>}
-      </Ribbon>
+      <Ribbon primary>Choose Color:</Ribbon>
+      {colorFieldError && <SelectError>Color is Required!</SelectError>}
       <ColorSelectGroup>
-        <ColorSelect validate={colorFieldError ? 'error' : null}>
+        <ColorSelect validate={colorFieldError ? "error" : null}>
           <input
             id="Red"
             name="Color"
             type="radio"
             value="Red"
-            checked={orderColor === 'Red'}
+            checked={orderColor === "Red"}
             onChange={handleColorChange}
           />
           <label htmlFor="Red">Red</label>
         </ColorSelect>
-        <ColorSelect validate={colorFieldError ? 'error' : null}>
+        <ColorSelect validate={colorFieldError ? "error" : null}>
           <input
             id="Green"
             name="Color"
             type="radio"
             value="Green"
-            checked={orderColor === 'Green'}
+            checked={orderColor === "Green"}
             onChange={handleColorChange}
           />
           <label htmlFor="Green">Green</label>
         </ColorSelect>
-        <ColorSelect validate={colorFieldError ? 'error' : null}>
+        <ColorSelect validate={colorFieldError ? "error" : null}>
           <input
             id="Blue"
             name="Color"
             type="radio"
             value="Blue"
-            checked={orderColor === 'Blue'}
+            checked={orderColor === "Blue"}
             onChange={handleColorChange}
           />
           <label htmlFor="Blue">Blue</label>
         </ColorSelect>
-        <ColorSelect validate={colorFieldError ? 'error' : null}>
+        <ColorSelect validate={colorFieldError ? "error" : null}>
           <input
             id="Yellow"
             name="Color"
             type="radio"
             value="Yellow"
-            checked={orderColor === 'Yellow'}
+            checked={orderColor === "Yellow"}
             onChange={handleColorChange}
           />
           <label htmlFor="Yellow">Yellow</label>
         </ColorSelect>
-        <ColorSelect validate={colorFieldError ? 'error' : null}>
+        <ColorSelect validate={colorFieldError ? "error" : null}>
           <input
             id="Black"
             name="Color"
             type="radio"
             value="Black"
-            checked={orderColor === 'Black'}
+            checked={orderColor === "Black"}
             onChange={handleColorChange}
           />
           <label htmlFor="Black">Black</label>
         </ColorSelect>
-        <ColorSelect validate={colorFieldError ? 'error' : null}>
+        <ColorSelect validate={colorFieldError ? "error" : null}>
           <input
             id="White"
             name="Color"
             type="radio"
             value="White"
-            checked={orderColor === 'White'}
+            checked={orderColor === "White"}
             onChange={handleColorChange}
           />
           <label htmlFor="White">White</label>
@@ -85,7 +84,7 @@ const ColorChoice = ({ handleColorChange, orderColor, colorFieldError }) => {
 export default ColorChoice;
 
 const ColorContainer = styled.div`
-  margin: 0 0 .25rem 1rem;
+  margin: 0 0 0.25rem 1rem;
   width: 300px;
 `;
 
@@ -97,7 +96,7 @@ const ColorSelectGroup = styled.div`
 `;
 
 const ColorSelect = styled.div`
-  > input[type='radio'] {
+  > input[type="radio"] {
     opacity: 0;
     width: 0;
     margin: 0;
@@ -105,7 +104,7 @@ const ColorSelect = styled.div`
     display: none;
   }
 
-  > input[type='radio'] ~ label {
+  > input[type="radio"] ~ label {
     cursor: pointer;
     display: inline-block;
     min-height: 1rem;
@@ -113,8 +112,12 @@ const ColorSelect = styled.div`
     outline: none;
     border: none;
     vertical-align: baseline;
-    background-color: ${(props) => (props.validate ? `${colors.errorBackground}` : `${colors.defaultBackground}`)};
-    color: ${(props) => (props.validate ? `${colors.error}` : `${colors.default}`)};
+    background-color: ${props =>
+      props.validate
+        ? `${colors.errorBackground}`
+        : `${colors.defaultBackground}`};
+    color: ${props =>
+      props.validate ? `${colors.error}` : `${colors.default}`};
     margin: 0;
     padding: 0.78571429rem 1rem;
     text-transform: none;
@@ -125,28 +128,32 @@ const ColorSelect = styled.div`
     text-align: center;
     text-decoration: none;
     border-radius: 0.28571429rem;
-    box-shadow: 0px 0px 0px 1px ${(props) => (props.validate ? `${colors.error}` : `${colors.defaultBorder}`)} inset;
+    box-shadow: 0px 0px 0px 1px
+      ${props =>
+        props.validate ? `${colors.error}` : `${colors.defaultBorder}`}
+      inset;
     user-select: none;
-    transition: opacity 0.1s ease, background-color 0.1s ease, color 0.1s ease, box-shadow 0.1s ease,
-      background 0.1s ease;
-    will-change: '';
+    transition: opacity 0.1s ease, background-color 0.1s ease, color 0.1s ease,
+      box-shadow 0.1s ease, background 0.1s ease;
+    will-change: "";
     -webkit-tap-highlight-color: transparent;
   }
 
-  > input[type='radio']:hover ~ label {
+  > input[type="radio"]:hover ~ label {
     color: black;
     background: #f6f7f6 none;
-    box-shadow: 0px 0px 0px 1px rgba(34, 36, 38, 0.35) inset;
+    box-shadow: 1px 1px 1px 1px rgba(34, 36, 38, 0.35) inset;
   }
 
-  > input[type='radio']:checked ~ label {
+  > input[type="radio"]:checked ~ label {
     color: white;
     background: ${colors.primary} none;
     box-shadow: 0px 0px 0px 1px ${colors.primary} inset;
   }
 `;
 
-const SelectError = styled.span`
-  align-self: end;
-  color: ${colors.error};
-`;
+// const SelectError = styled.span`
+//   display: inline-block;
+//   margin-left: 1rem;
+//   color: ${colors.error};
+// `;

@@ -11,7 +11,7 @@ export default Input;
 const InputField = styled.input`
   display: block;
   min-height: 1rem;
-  min-width: 80px;
+  min-width: min-content;
   outline: none;
   border: none;
   background-color: ${(props) => (props.validate ? `${colors.errorBackground}` : `${colors.defaultBackground}`)};

@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { database } from '../../firebase/firebase';
-import styled from 'styled-components';
-import Icon from '../Elements/Icon';
+import React, { Component } from "react";
+import { database } from "../../firebase/firebase";
+import styled from "styled-components";
+import { ShoppingCart } from "react-feather";
 
 class CartButton extends Component {
   state = { totalItemsInCart: 0 };
@@ -9,7 +9,7 @@ class CartButton extends Component {
   async componentDidMount() {
     try {
       //retrieve cart contents from firebase
-      await database.ref(`cart`).on('value', (res) => {
+      await database.ref(`cart`).on("value", res => {
         const orders = res.val() || {};
         const ordersLength = Object.keys(orders).length;
         this.setState({ totalItemsInCart: ordersLength });
@@ -21,8 +21,10 @@ class CartButton extends Component {
   render() {
     return (
       <Button>
-        {this.state.totalItemsInCart > 0 ? <CartCount>{this.state.totalItemsInCart}</CartCount> : null}
-        <Icon name="shopping-cart" />
+        {this.state.totalItemsInCart > 0 ? (
+          <CartCount>{this.state.totalItemsInCart}</CartCount>
+        ) : null}
+        <ShoppingCart />
       </Button>
     );
   }

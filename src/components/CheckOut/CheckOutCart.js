@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
-import { database } from '../../firebase/firebase';
-import { formatPrice, colors } from '../helpers';
-import Icon from '../Elements/Icon';
-import Button from '../Elements/Button';
-import LineItem from './LineItem';
-import ContactForm from './ContactForm';
+import React, { Component } from "react";
+import styled from "styled-components";
+import { database } from "../../firebase/firebase";
+import { formatPrice, colors } from "../helpers";
+import { Check, AlertOctagon } from "react-feather";
+import Button from "../Elements/Button";
+import LineItem from "./LineItem";
+import ContactForm from "./ContactForm";
 
 class Cart extends Component {
   state = {
@@ -19,7 +19,7 @@ class Cart extends Component {
   async componentDidMount() {
     try {
       //retrieve cart contents from firebase
-      await database.ref(`cart`).on('value', res => {
+      await database.ref(`cart`).on("value", res => {
         const orders = res.val() || {};
         const orderIds = Object.keys(orders);
 
@@ -59,7 +59,13 @@ class Cart extends Component {
   };
 
   render() {
-    const { orders, totalCost, showForm, confirmedOrder, totalItemsInCart } = this.state;
+    const {
+      orders,
+      totalCost,
+      showForm,
+      confirmedOrder,
+      totalItemsInCart
+    } = this.state;
     const ordersLength = Object.keys(orders).length;
 
     return (
@@ -77,13 +83,18 @@ class Cart extends Component {
           {ordersLength > 0 ? (
             <TableBody>
               {Object.keys(orders).map(key => (
-                <LineItem key={key} details={orders[key]} id={key} removeFromOrder={this.handleRemoveFromOrder} />
+                <LineItem
+                  key={key}
+                  details={orders[key]}
+                  id={key}
+                  removeFromOrder={this.handleRemoveFromOrder}
+                />
               ))}
             </TableBody>
           ) : (
             <EmptyCart>
               <div>
-                <Icon name="frown" size="huge" color="red" />
+                <AlertOctagon />
               </div>
               <div>No Orders found, Cart is sad...</div>
             </EmptyCart>
@@ -91,11 +102,13 @@ class Cart extends Component {
           <TableFooter>
             <TableFooterTotalLabel>Total:</TableFooterTotalLabel>
             <TableFooterTotalItems>{totalItemsInCart}</TableFooterTotalItems>
-            <TableFooterTotalValue>{formatPrice(totalCost)}</TableFooterTotalValue>
+            <TableFooterTotalValue>
+              {formatPrice(totalCost)}
+            </TableFooterTotalValue>
             <TableFooterAction>
               {ordersLength > 0 && (
                 <ConfirmButton onClick={this.handleConfirm}>
-                  <Icon name="check" />
+                  <Check />
                   <span>Confirm</span>
                 </ConfirmButton>
               )}
