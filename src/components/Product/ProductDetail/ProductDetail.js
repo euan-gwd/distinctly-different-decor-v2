@@ -10,6 +10,7 @@ import QtyChoice from './QtyChoice';
 import Image from '../../Elements/Image';
 import Button from '../../Elements/Button';
 import ButtonGroup from '../../Elements/ButtonGroup';
+import Ribbon from '../../Elements/Ribbon';
 
 class ProductDetail extends Component {
   state = {
@@ -111,19 +112,16 @@ class ProductDetail extends Component {
     return (
       <Backdrop image={product.image}>
         <Container>
-          <Header>
-            <h2>{product.title}</h2>
-            <span>{product.description}</span>
-          </Header>
           <Content>
             <ProductImage>
+              <Ribbon primary>{Pricing}</Ribbon>
               <Overdrive id={`${product.id}`}>
-                <Image
-                  src={product.thumbnail}
-                  alt={product.title}
-                  label={{ color: 'violet', ribbon: true, content: [ Pricing ] }}
-                />
+                <Image src={product.thumbnail} alt={product.title} />
               </Overdrive>
+              <Header>
+                <h2>{product.title}</h2>
+                <span>{product.description}</span>
+              </Header>
             </ProductImage>
             <Form>
               <SizeChoice
@@ -180,22 +178,6 @@ const Container = styled.div`
   }
 `;
 
-const Header = styled.div`
-  margin: 1rem 0;
-  > h2 {
-    margin: 0;
-    display: block;
-  }
-
-  @media screen and (min-width: 768px) {
-    margin: 0 auto;
-    > h2 {
-      margin: 0 0.5rem 0 0;
-      display: inline-block;
-    }
-  }
-`;
-
 const Content = styled.div`
   grid-row: 2;
   grid-column: 1;
@@ -210,10 +192,20 @@ const Content = styled.div`
 
 const ProductImage = styled.div`
   grid-column: span 2;
-  margin-left: 1rem;
+  margin: 0 0 0 1rem;
+  display: inline-block;
+  position: relative;
 
   @media screen and (min-width: 768px) {
+    margin: 0;
     grid-column: 2;
+  }
+`;
+
+const Header = styled.div`
+  margin: .5rem 0;
+  > h2 {
+    margin: 0;
   }
 `;
 

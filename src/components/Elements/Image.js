@@ -8,6 +8,6 @@ const Image = (props) => {
 export default Image;
 
 const Img = styled.img`
-  display: block;
-  width: 100%;
+  display: inline-block;
+  max-width: 100%;
 `;

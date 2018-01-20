@@ -44,6 +44,7 @@ const ProductGrid = styled.div`
   box-sizing: border-box;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
+  grid-template-rows: repeat(auto-fill, minmax(125px, 250px));
   grid-gap: 1rem;
 `;
 

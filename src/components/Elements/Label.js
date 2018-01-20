@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const FormLabel = props => <Label {...props}>{props.children}</Label>;
+const FormLabel = (props) => <Label {...props}>{props.children}</Label>;
 
 export default FormLabel;
 
