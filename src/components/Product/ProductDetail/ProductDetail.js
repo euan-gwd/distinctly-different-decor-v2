@@ -165,6 +165,7 @@ const Backdrop = styled.div`
 const Container = styled.div`
   grid-row: 2;
   grid-column: 1;
+  margin: 0.5rem 0;
   padding: 0 1rem;
   background: rgba(255, 255, 255, 0.75);
   display: grid;
@@ -176,7 +177,10 @@ const Container = styled.div`
     grid-column: 1;
     padding: 0 20px;
     display: grid;
-    grid-template-columns: repeat(4, minmax(250px, 1fr));
+    /* grid-template-columns: repeat(4, minmax(250px, 1fr)); */
+    margin: 0.5rem 0;
+    grid-template-columns: 1fr 250px minmax(250px, max-content) 1fr;
+    grid-column-gap: 1rem;
   }
 `;
 

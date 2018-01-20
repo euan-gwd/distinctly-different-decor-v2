@@ -85,7 +85,7 @@ const ColorChoice = ({ handleColorChange, orderColor, colorFieldError }) => {
 export default ColorChoice;
 
 const ColorContainer = styled.div`
-  margin: 0 0 .25rem;
+  margin: 0 0 .25rem 1rem;
   width: 300px;
 `;
 
@@ -93,7 +93,7 @@ const ColorSelectGroup = styled.div`
   margin: 0;
   display: grid;
   grid-template-columns: repeat(auto-fit, 80px);
-  grid-gap: 0.5rem 0.25rem;
+  grid-gap: 0.5rem;
 `;
 
 const ColorSelect = styled.div`
@@ -109,7 +109,7 @@ const ColorSelect = styled.div`
     cursor: pointer;
     display: inline-block;
     min-height: 1rem;
-    min-width: 75px;
+    min-width: 80px;
     outline: none;
     border: none;
     vertical-align: baseline;

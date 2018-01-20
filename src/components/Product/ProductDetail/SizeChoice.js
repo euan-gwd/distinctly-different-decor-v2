@@ -52,14 +52,8 @@ const SizeChoice = ({ handleSizeChange, orderSize, sizeFieldError }) => {
 export default SizeChoice;
 
 const SizeContainer = styled.div`
-  margin: 1rem 0 0.25rem;
+  margin: 0 0 .25rem 1rem;
   width: 300px;
-  position: relative;
-
-  @media screen and (min-width: 768px) {
-    margin: 0;
-    width: auto;
-  }
 `;
 
 const SizeSelectGroup = styled.div`
