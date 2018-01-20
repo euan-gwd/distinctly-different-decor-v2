@@ -57,9 +57,9 @@ class ProductDetail extends Component {
     });
   };
 
-  handleQtyChange = (e, { value }) =>
+  handleQtyChange = e =>
     this.setState({
-      orderQty: value,
+      orderQty: e.target.value,
       qtyFieldError: false,
       qtyFieldValid: true
     });

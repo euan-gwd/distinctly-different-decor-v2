@@ -14,7 +14,7 @@ const QtyChoice = ({ qtyFieldError, orderQty, handleQtyChange }) => {
       {qtyFieldError && <RequiredLabel>Quantity is Required!</RequiredLabel>}
       <ButtonGroup>
         <QtyButton>-</QtyButton>
-        <Input placeholder="0" />
+        <Input placeholder="0" onChange={handleQtyChange} />
         <QtyButton>+</QtyButton>
       </ButtonGroup>
     </QtyContainer>
