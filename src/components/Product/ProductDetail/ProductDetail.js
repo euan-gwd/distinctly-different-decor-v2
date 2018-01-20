@@ -1,23 +1,23 @@
-import React, { Component } from 'react';
-import { database } from '../../../firebase/firebase';
-import { formatPrice } from '../../helpers';
-import styled from 'styled-components';
-import Overdrive from 'react-overdrive';
-import SuccessMessage from './SuccessMessage';
-import SizeChoice from './SizeChoice';
-import ColorChoice from './ColorChoice';
-import QtyChoice from './QtyChoice';
-import Image from '../../Elements/Image';
-import Button from '../../Elements/Button';
-import ButtonGroup from '../../Elements/ButtonGroup';
-import ImageRibbon from '../../Elements/ImageRibbon';
+import React, { Component } from "react";
+import { database } from "../../../firebase/firebase";
+import { formatPrice } from "../../helpers";
+import styled from "styled-components";
+import Overdrive from "react-overdrive";
+import SuccessMessage from "./SuccessMessage";
+import SizeChoice from "./SizeChoice";
+import ColorChoice from "./ColorChoice";
+import QtyChoice from "./QtyChoice";
+import Image from "../../Elements/Image";
+import Button from "../../Elements/Button";
+import ButtonGroup from "../../Elements/ButtonGroup";
+import ImageRibbon from "../../Elements/ImageRibbon";
 
 class ProductDetail extends Component {
   state = {
     product: {},
-    orderQty: '',
-    orderSize: '',
-    orderColor: '',
+    orderQty: "",
+    orderSize: "",
+    orderColor: "",
     sizeFieldValid: false,
     colorFieldValid: false,
     qtyFieldValid: false,
@@ -30,24 +30,39 @@ class ProductDetail extends Component {
   async componentDidMount() {
     try {
       //retrieve selected product from firebase
-      await database.ref(`products/${this.props.match.params.id}`).on('value', (res) => {
-        const product = res.val();
-        this.setState({ product });
-      });
+      await database
+        .ref(`products/${this.props.match.params.id}`)
+        .on("value", res => {
+          const product = res.val();
+          this.setState({ product });
+        });
     } catch (error) {
       console.log(error);
     }
   }
 
-  handleSizeChange = (e) => {
-    this.setState({ orderSize: e.target.value, sizeFieldError: false, sizeFieldValid: true });
+  handleSizeChange = e => {
+    this.setState({
+      orderSize: e.target.value,
+      sizeFieldError: false,
+      sizeFieldValid: true
+    });
   };
 
-  handleColorChange = (e) => {
-    this.setState({ orderColor: e.target.value, colorFieldError: false, colorFieldValid: true });
+  handleColorChange = e => {
+    this.setState({
+      orderColor: e.target.value,
+      colorFieldError: false,
+      colorFieldValid: true
+    });
   };
 
-  handleQtyChange = (e, { value }) => this.setState({ orderQty: value, qtyFieldError: false, qtyFieldValid: true });
+  handleQtyChange = (e, { value }) =>
+    this.setState({
+      orderQty: value,
+      qtyFieldError: false,
+      qtyFieldValid: true
+    });
 
   handleAddToCart = () => {
     const orderItem = {
@@ -59,19 +74,19 @@ class ProductDetail extends Component {
     };
 
     // Form Validation
-    if (orderItem.orderSize === '') {
+    if (orderItem.orderSize === "") {
       this.setState({ sizeFieldError: true });
     } else {
       this.setState({ sizeFieldValid: true });
     }
 
-    if (orderItem.orderColor === '') {
+    if (orderItem.orderColor === "") {
       this.setState({ colorFieldError: true });
     } else {
       this.setState({ colorFieldValid: true });
     }
 
-    if (orderItem.orderQty === '') {
+    if (orderItem.orderQty === "") {
       this.setState({ qtyFieldError: true });
     } else {
       this.setState({ qtyFieldValid: true });
@@ -80,7 +95,7 @@ class ProductDetail extends Component {
     const { sizeFieldValid, colorFieldValid, qtyFieldValid } = this.state;
 
     if (sizeFieldValid && colorFieldValid && qtyFieldValid) {
-      const ordersRef = database.ref('cart');
+      const ordersRef = database.ref("cart");
 
       ordersRef.push(orderItem);
       this.setState({ showSuccessMessage: true });
@@ -88,7 +103,7 @@ class ProductDetail extends Component {
   };
 
   handleReturnToList = () => {
-    this.props.history.push('/');
+    this.props.history.push("/");
   };
 
   componentWillUnmount = () => {
@@ -107,7 +122,7 @@ class ProductDetail extends Component {
       showSuccessMessage
     } = this.state;
 
-    const Pricing = formatPrice(product.price) + ' each';
+    const Pricing = formatPrice(product.price) + " each";
 
     return (
       <Backdrop image={product.image}>
@@ -133,16 +148,31 @@ class ProductDetail extends Component {
               orderColor={orderColor}
               colorFieldError={colorFieldError}
             />
-            <QtyChoice handleQtyChange={this.handleQtyChange} orderQty={orderQty} qtyFieldError={qtyFieldError} />
+            <QtyChoice
+              handleQtyChange={this.handleQtyChange}
+              orderQty={orderQty}
+              qtyFieldError={qtyFieldError}
+            />
             <ButtonGroup>
-              <Button onClick={this.handleAddToCart} color="violet" effect="basic">
+              <Button
+                onClick={this.handleAddToCart}
+                color="violet"
+                effect="basic"
+              >
                 Add to Cart
               </Button>
-              <Button onClick={this.handleReturnToList}>Return to Listing</Button>
+              <Button onClick={this.handleReturnToList}>
+                Return to Listing
+              </Button>
             </ButtonGroup>
           </Form>
         </Container>
-        <SuccessMessage show={showSuccessMessage} product={product} orderQty={orderQty} Pricing={Pricing} />
+        <SuccessMessage
+          show={showSuccessMessage}
+          product={product}
+          orderQty={orderQty}
+          Pricing={Pricing}
+        />
       </Backdrop>
     );
   }
@@ -152,8 +182,12 @@ export default ProductDetail;
 
 const Backdrop = styled.div`
   grid-row: 2;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(0, 0, 255, 0.3)),
-    url(${(props) => props.image}) center no-repeat;
+  background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.5),
+      rgba(0, 0, 255, 0.3)
+    ),
+    url(${props => props.image}) center no-repeat;
   background-size: cover;
   display: grid;
 
@@ -170,14 +204,13 @@ const Container = styled.div`
   background: rgba(255, 255, 255, 0.75);
   display: grid;
   grid-template-columns: repeat(2, minmax(250px, 1fr));
-  grid-column-gap: .5rem;
+  grid-column-gap: 0.5rem;
 
   @media screen and (min-width: 768px) {
     grid-row: 2;
     grid-column: 1;
     padding: 0 20px;
     display: grid;
-    /* grid-template-columns: repeat(4, minmax(250px, 1fr)); */
     margin: 0.5rem 0;
     grid-template-columns: 1fr 250px minmax(250px, max-content) 1fr;
     grid-column-gap: 1rem;
@@ -197,7 +230,7 @@ const ProductImage = styled.div`
 `;
 
 const Header = styled.div`
-  margin: .5rem 0;
+  margin: 0.5rem 0;
   > h2 {
     margin: 0;
   }
