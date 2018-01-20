@@ -31,10 +31,10 @@ const RibbonLabel = styled.div`
     left: 0;
     background-color: transparent;
     border-style: solid;
-    border-width: 0em 1.2em 1.2em 0em;
+    border-width: 0em 1.2rem 1.2rem 0em;
     border-color: transparent;
     border-right-color: inherit;
-    width: 0em;
-    height: 0em;
+    width: 0;
+    height: 0;
   }
 `;
