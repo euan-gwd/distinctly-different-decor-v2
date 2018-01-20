@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import { colors } from "../../helpers";
-import Input from "../../Elements/Input";
-import Ribbon from "../../Elements/Ribbon";
-import Button from "../../Elements/Button";
-import ButtonGroup from "../../Elements/ButtonGroup";
-import RequiredLabel from "../../Elements/RequiredLabel";
+import Input from "../../uiElements/Input";
+import Ribbon from "../../uiElements/Ribbon";
+import Button from "../../uiElements/Button";
+import ButtonGroup from "../../uiElements/ButtonGroup";
+import RequiredLabel from "../../uiElements/RequiredLabel";
 
 const QtyChoice = ({ qtyFieldError, orderQty, handleQtyChange }) => {
   return (

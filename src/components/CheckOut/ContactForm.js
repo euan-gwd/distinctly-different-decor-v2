@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import Button from '../Elements/Button';
-import Icon from '../Elements/Icon';
-import Input from '../Elements/Input';
+import Button from '../uiElements/Button';
+import Icon from '../uiElements/Icon';
+import Input from '../uiElements/Input';
 
 class ContactForm extends Component {
   state = {

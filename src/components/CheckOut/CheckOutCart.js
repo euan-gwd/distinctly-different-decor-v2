@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { database } from "../../firebase/firebase";
 import { formatPrice, colors } from "../helpers";
 import { Check, AlertOctagon } from "react-feather";
-import Button from "../Elements/Button";
+import Button from "../uiElements/Button";
 import LineItem from "./LineItem";
 import ContactForm from "./ContactForm";
 

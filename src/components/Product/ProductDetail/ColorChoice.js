@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { colors } from "../../helpers";
-import Ribbon from "../../Elements/Ribbon";
-import RadioButton from "../../Elements/RadioButton";
-import RequiredLabel from "../../Elements/RequiredLabel";
+import Ribbon from "../../uiElements/Ribbon";
+import RadioButton from "../../uiElements/RadioButton";
+import RequiredLabel from "../../uiElements/RequiredLabel";
 
 const ColorChoice = ({ handleColorChange, orderColor, colorFieldError }) => {
   return (

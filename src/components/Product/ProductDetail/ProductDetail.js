@@ -7,10 +7,10 @@ import SuccessMessage from "./SuccessMessage";
 import SizeChoice from "./SizeChoice";
 import ColorChoice from "./ColorChoice";
 import QtyChoice from "./QtyChoice";
-import Image from "../../Elements/Image";
-import Button from "../../Elements/Button";
-import ButtonGroup from "../../Elements/ButtonGroup";
-import ImageRibbon from "../../Elements/ImageRibbon";
+import Image from "../../uiElements/Image";
+import Button from "../../uiElements/Button";
+import ButtonGroup from "../../uiElements/ButtonGroup";
+import ImageRibbon from "../../uiElements/ImageRibbon";
 
 class ProductDetail extends Component {
   state = {

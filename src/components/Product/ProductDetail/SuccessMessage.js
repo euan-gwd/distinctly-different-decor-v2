@@ -3,10 +3,10 @@ import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import Overdrive from 'react-overdrive';
 import { formatPrice } from '../../helpers';
-import Icon from '../../Elements/Icon';
-import Image from '../../Elements/Image';
-import Button from '../../Elements/Button';
-import ButtonGroup from '../../Elements/ButtonGroup';
+import Icon from '../../uiElements/Icon';
+import Image from '../../uiElements/Image';
+import Button from '../../uiElements/Button';
+import ButtonGroup from '../../uiElements/ButtonGroup';
 
 class SuccessMessage extends Component {
   handleGoToCart = () => {

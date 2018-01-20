@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { formatPrice, colors } from "../helpers";
-import Image from "../Elements/Image";
-import Button from "../Elements/Button";
+import Image from "../uiElements/Image";
+import Button from "../uiElements/Button";
 import { XSquare } from "react-feather";
 
 class LineItem extends Component {
