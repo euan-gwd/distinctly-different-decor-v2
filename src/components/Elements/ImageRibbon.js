@@ -2,21 +2,20 @@ import React from 'react';
 import styled from 'styled-components';
 import { colors } from '../helpers';
 
-const Ribbon = (props) => {
-  return <Label {...props}>{props.children}</Label>;
+const ImageRibbon = (props) => {
+  return <Ribbon {...props}>{props.children}</Ribbon>;
 };
 
-export default Ribbon;
+export default ImageRibbon;
 
-const Label = styled.div`
-  position: relative;
+const Ribbon = styled.div`
+  position: absolute;
   display: inline-block;
   line-height: 1;
-  font-size: .75rem;
-  margin: 1rem 0 0.25rem -1.17rem;
+  margin: 1rem 0 0 -1.17rem;
   background-color: ${(props) => (props.primary ? `${colors.primary}` : `${colors.default}`)};
   background-image: none;
-  padding: calc(0.5rem/2) calc(0.8rem/2);
+  padding: 0.5rem 0.8rem;
   color: ${(props) => (props.primary ? `${colors.white}` : `${colors.black}`)};
   text-transform: none;
   font-weight: bold;
@@ -29,7 +28,7 @@ const Label = styled.div`
     left: 0;
     background-color: transparent;
     border-style: solid;
-    border-width: 0em 1.2rem calc(1.2rem*2) 0em;
+    border-width: 0em 1.2rem 1.2rem 0em;
     border-color: transparent;
     border-right-color: inherit;
     width: 0;

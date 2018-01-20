@@ -1,16 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 import { colors } from '../../helpers';
-import Label from '../../Elements/Label';
 import Select from '../../Elements/Select';
+import Ribbon from '../../Elements/Ribbon';
 
 const QtyChoice = ({ qtyFieldError, orderQty, handleQtyChange }) => {
   return (
     <QtyContainer>
-      <Label>
-        Pick a Quantity:
+      <Ribbon primary>
+        Choose Quantity:
         {qtyFieldError && <SelectError>Quantity is Required!</SelectError>}
-      </Label>
+      </Ribbon>
       {/* <Select
         upward
         onChange={handleQtyChange}

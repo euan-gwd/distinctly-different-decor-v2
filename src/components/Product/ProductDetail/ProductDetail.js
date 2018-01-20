@@ -10,7 +10,7 @@ import QtyChoice from './QtyChoice';
 import Image from '../../Elements/Image';
 import Button from '../../Elements/Button';
 import ButtonGroup from '../../Elements/ButtonGroup';
-import Ribbon from '../../Elements/Ribbon';
+import ImageRibbon from '../../Elements/ImageRibbon';
 
 class ProductDetail extends Component {
   state = {
@@ -114,7 +114,7 @@ class ProductDetail extends Component {
         <Container>
           <Content>
             <ProductImage>
-              <Ribbon primary>{Pricing}</Ribbon>
+              <ImageRibbon primary>{Pricing}</ImageRibbon>
               <Overdrive id={`${product.id}`}>
                 <Image src={product.thumbnail} alt={product.title} />
               </Overdrive>
@@ -192,12 +192,12 @@ const Content = styled.div`
 
 const ProductImage = styled.div`
   grid-column: span 2;
-  margin: 0 0 0 1rem;
+  margin: 1rem 0 0 1rem;
   display: inline-block;
   position: relative;
 
   @media screen and (min-width: 768px) {
-    margin: 0;
+    margin: 1rem 0 0;
     grid-column: 2;
   }
 `;

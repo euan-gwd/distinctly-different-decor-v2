@@ -1,15 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 import { colors } from '../../helpers';
-import Label from '../../Elements/Label';
+import Ribbon from '../../Elements/Ribbon';
 
 const ColorChoice = ({ handleColorChange, orderColor, colorFieldError }) => {
   return (
     <ColorContainer>
-      <Label>
-        Pick a Color:
+      <Ribbon primary>
+        Choose Color:
         {colorFieldError && <SelectError>Color is Required!</SelectError>}
-      </Label>
+      </Ribbon>
       <ColorSelectGroup>
         <ColorSelect validate={colorFieldError ? 'error' : null}>
           <input
@@ -85,7 +85,7 @@ const ColorChoice = ({ handleColorChange, orderColor, colorFieldError }) => {
 export default ColorChoice;
 
 const ColorContainer = styled.div`
-  margin: 0 0 1rem;
+  margin: 0 0 .25rem;
   width: 300px;
 `;
 
@@ -113,9 +113,8 @@ const ColorSelect = styled.div`
     outline: none;
     border: none;
     vertical-align: baseline;
-    background-color: ${props => (props.validate ? `${colors.errorBackground}` : `${colors.defaultBackground}`)};
-    color: ${props => (props.validate ? `${colors.error}` : `${colors.defaultText}`)};
-    font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    background-color: ${(props) => (props.validate ? `${colors.errorBackground}` : `${colors.defaultBackground}`)};
+    color: ${(props) => (props.validate ? `${colors.error}` : `${colors.default}`)};
     margin: 0;
     padding: 0.78571429rem 1rem;
     text-transform: none;
@@ -126,7 +125,7 @@ const ColorSelect = styled.div`
     text-align: center;
     text-decoration: none;
     border-radius: 0.28571429rem;
-    box-shadow: 0px 0px 0px 1px ${props => (props.validate ? `${colors.error}` : `${colors.defaultBorder}`)} inset;
+    box-shadow: 0px 0px 0px 1px ${(props) => (props.validate ? `${colors.error}` : `${colors.defaultBorder}`)} inset;
     user-select: none;
     transition: opacity 0.1s ease, background-color 0.1s ease, color 0.1s ease, box-shadow 0.1s ease,
       background 0.1s ease;

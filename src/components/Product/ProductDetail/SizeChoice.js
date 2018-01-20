@@ -1,15 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 import { colors } from '../../helpers';
-import Label from '../../Elements/Label';
+import Ribbon from '../../Elements/Ribbon';
 
 const SizeChoice = ({ handleSizeChange, orderSize, sizeFieldError }) => {
   return (
     <SizeContainer>
-      <Label>
-        Pick a Size:
+      <Ribbon primary>
+        Choose Size:
         {sizeFieldError && <SelectError>Size is Required!</SelectError>}
-      </Label>
+      </Ribbon>
       <SizeSelectGroup>
         <SizeSelect validate={sizeFieldError ? 'error' : null}>
           <input
@@ -52,8 +52,9 @@ const SizeChoice = ({ handleSizeChange, orderSize, sizeFieldError }) => {
 export default SizeChoice;
 
 const SizeContainer = styled.div`
-  margin: 1rem 0;
+  margin: 1rem 0 .25rem;
   width: 300px;
+  position: relative;
 
   @media screen and (min-width: 768px) {
     margin: 0;
@@ -84,9 +85,8 @@ const SizeSelect = styled.div`
     outline: none;
     border: none;
     vertical-align: baseline;
-    background-color: ${props => (props.validate ? `${colors.errorBackground}` : `${colors.defaultBackground}`)};
-    color: ${props => (props.validate ? `${colors.error}` : `${colors.defaultText}`)};
-    font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    background-color: ${(props) => (props.validate ? `${colors.errorBackground}` : `${colors.defaultBackground}`)};
+    color: ${(props) => (props.validate ? `${colors.error}` : `${colors.default}`)};
     margin: 0;
     padding: 0.78571429rem 1rem;
     text-transform: none;
@@ -97,7 +97,7 @@ const SizeSelect = styled.div`
     text-align: center;
     text-decoration: none;
     border-radius: 0.28571429rem;
-    box-shadow: 0px 0px 0px 1px ${props => (props.validate ? `${colors.error}` : `${colors.defaultBorder}`)} inset;
+    box-shadow: 0px 0px 0px 1px ${(props) => (props.validate ? `${colors.error}` : `${colors.defaultBorder}`)} inset;
     user-select: none;
     transition: opacity 0.1s ease, background-color 0.1s ease, color 0.1s ease, box-shadow 0.1s ease,
       background 0.1s ease;
