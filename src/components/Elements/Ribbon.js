@@ -22,7 +22,7 @@ const Label = styled.div`
   text-transform: none;
   font-weight: bold;
   border: 0px solid #00000060;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
 
   &:after {
     position: absolute;

@@ -1,81 +1,70 @@
 import React from "react";
 import styled from "styled-components";
 import { colors } from "../../helpers";
-import { SelectError } from "./SizeChoice";
 import Ribbon from "../../Elements/Ribbon";
+import RadioButton from "../../Elements/RadioButton";
+import RequiredLabel from "../../Elements/RequiredLabel";
 
 const ColorChoice = ({ handleColorChange, orderColor, colorFieldError }) => {
   return (
     <ColorContainer>
       <Ribbon primary>Choose Color:</Ribbon>
-      {colorFieldError && <SelectError>Color is Required!</SelectError>}
+      {colorFieldError && <RequiredLabel>Color is Required!</RequiredLabel>}
       <ColorSelectGroup>
-        <ColorSelect validate={colorFieldError ? "error" : null}>
-          <input
-            id="Red"
-            name="Color"
-            type="radio"
-            value="Red"
-            checked={orderColor === "Red"}
-            onChange={handleColorChange}
-          />
-          <label htmlFor="Red">Red</label>
-        </ColorSelect>
-        <ColorSelect validate={colorFieldError ? "error" : null}>
-          <input
-            id="Green"
-            name="Color"
-            type="radio"
-            value="Green"
-            checked={orderColor === "Green"}
-            onChange={handleColorChange}
-          />
-          <label htmlFor="Green">Green</label>
-        </ColorSelect>
-        <ColorSelect validate={colorFieldError ? "error" : null}>
-          <input
-            id="Blue"
-            name="Color"
-            type="radio"
-            value="Blue"
-            checked={orderColor === "Blue"}
-            onChange={handleColorChange}
-          />
-          <label htmlFor="Blue">Blue</label>
-        </ColorSelect>
-        <ColorSelect validate={colorFieldError ? "error" : null}>
-          <input
-            id="Yellow"
-            name="Color"
-            type="radio"
-            value="Yellow"
-            checked={orderColor === "Yellow"}
-            onChange={handleColorChange}
-          />
-          <label htmlFor="Yellow">Yellow</label>
-        </ColorSelect>
-        <ColorSelect validate={colorFieldError ? "error" : null}>
-          <input
-            id="Black"
-            name="Color"
-            type="radio"
-            value="Black"
-            checked={orderColor === "Black"}
-            onChange={handleColorChange}
-          />
-          <label htmlFor="Black">Black</label>
-        </ColorSelect>
-        <ColorSelect validate={colorFieldError ? "error" : null}>
-          <input
-            id="White"
-            name="Color"
-            type="radio"
-            value="White"
-            checked={orderColor === "White"}
-            onChange={handleColorChange}
-          />
-          <label htmlFor="White">White</label>
-        </ColorSelect>
+        <RadioButton
+          id="Red"
+          name="Color"
+          type="radio"
+          value="Red"
+          checked={orderColor === "Red"}
+          onChange={handleColorChange}
+          validate={colorFieldError ? "error" : null}
+        />
+        <RadioButton
+          id="Green"
+          name="Color"
+          type="radio"
+          value="Green"
+          checked={orderColor === "Green"}
+          onChange={handleColorChange}
+          validate={colorFieldError ? "error" : null}
+        />
+        <RadioButton
+          id="Blue"
+          name="Color"
+          type="radio"
+          value="Blue"
+          checked={orderColor === "Blue"}
+          onChange={handleColorChange}
+          validate={colorFieldError ? "error" : null}
+        />
+        <RadioButton
+          id="Yellow"
+          name="Color"
+          type="radio"
+          value="Yellow"
+          checked={orderColor === "Yellow"}
+          onChange={handleColorChange}
+          validate={colorFieldError ? "error" : null}
+        />
+        <RadioButton
+          id="Black"
+          name="Color"
+          type="radio"
+          value="Black"
+          checked={orderColor === "Black"}
+          onChange={handleColorChange}
+          validate={colorFieldError ? "error" : null}
+        />
+        <RadioButton
+          id="White"
+          name="Color"
+          type="radio"
+          value="White"
+          checked={orderColor === "White"}
+          onChange={handleColorChange}
+          validate={colorFieldError ? "error" : null}
+        />
       </ColorSelectGroup>
     </ColorContainer>
   );
@@ -151,9 +140,3 @@ const ColorSelect = styled.div`
     box-shadow: 0px 0px 0px 1px ${colors.primary} inset;
   }
 `;
-
-// const SelectError = styled.span`
-//   display: inline-block;
-//   margin-left: 1rem;
-//   color: ${colors.error};
-// `;

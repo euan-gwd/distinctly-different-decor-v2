@@ -1,17 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 import { colors } from "../../helpers";
-import { SelectError } from "./SizeChoice";
 import Input from "../../Elements/Input";
 import Ribbon from "../../Elements/Ribbon";
 import Button from "../../Elements/Button";
 import ButtonGroup from "../../Elements/ButtonGroup";
+import RequiredLabel from "../../Elements/RequiredLabel";
 
 const QtyChoice = ({ qtyFieldError, orderQty, handleQtyChange }) => {
   return (
     <QtyContainer>
       <Ribbon primary>Choose Quantity:</Ribbon>
-      {qtyFieldError && <SelectError>Quantity is Required!</SelectError>}
+      {qtyFieldError && <RequiredLabel>Quantity is Required!</RequiredLabel>}
       <ButtonGroup>
         <QtyButton>-</QtyButton>
         <Input placeholder="0" />
@@ -72,9 +72,3 @@ const QtyButton = styled(Button)`
     box-shadow: 0px 0px 0px 1px ${colors.primary} inset;
   }
 `;
-
-// const SelectError = styled.span`
-//   display: inline-block;
-//   margin-left: 1rem;
-//   color: ${colors.error};
-// `;
