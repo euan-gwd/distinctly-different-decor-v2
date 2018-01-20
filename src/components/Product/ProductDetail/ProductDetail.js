@@ -112,37 +112,35 @@ class ProductDetail extends Component {
     return (
       <Backdrop image={product.image}>
         <Container>
-          <Content>
-            <ProductImage>
-              <ImageRibbon primary>{Pricing}</ImageRibbon>
-              <Overdrive id={`${product.id}`}>
-                <Image src={product.thumbnail} alt={product.title} />
-              </Overdrive>
-              <Header>
-                <h2>{product.title}</h2>
-                <span>{product.description}</span>
-              </Header>
-            </ProductImage>
-            <Form>
-              <SizeChoice
-                handleSizeChange={this.handleSizeChange}
-                orderSize={orderSize}
-                sizeFieldError={sizeFieldError}
-              />
-              <ColorChoice
-                handleColorChange={this.handleColorChange}
-                orderColor={orderColor}
-                colorFieldError={colorFieldError}
-              />
-              <QtyChoice handleQtyChange={this.handleQtyChange} orderQty={orderQty} qtyFieldError={qtyFieldError} />
-              <ButtonGroup>
-                <Button onClick={this.handleAddToCart} color="violet" effect="basic">
-                  Add to Cart
-                </Button>
-                <Button onClick={this.handleReturnToList}>Return to Listing</Button>
-              </ButtonGroup>
-            </Form>
-          </Content>
+          <ProductImage>
+            <ImageRibbon primary>{Pricing}</ImageRibbon>
+            <Overdrive id={`${product.id}`}>
+              <Image src={product.thumbnail} alt={product.title} />
+            </Overdrive>
+            <Header>
+              <h2>{product.title}</h2>
+              <span>{product.description}</span>
+            </Header>
+          </ProductImage>
+          <Form>
+            <SizeChoice
+              handleSizeChange={this.handleSizeChange}
+              orderSize={orderSize}
+              sizeFieldError={sizeFieldError}
+            />
+            <ColorChoice
+              handleColorChange={this.handleColorChange}
+              orderColor={orderColor}
+              colorFieldError={colorFieldError}
+            />
+            <QtyChoice handleQtyChange={this.handleQtyChange} orderQty={orderQty} qtyFieldError={qtyFieldError} />
+            <ButtonGroup>
+              <Button onClick={this.handleAddToCart} color="violet" effect="basic">
+                Add to Cart
+              </Button>
+              <Button onClick={this.handleReturnToList}>Return to Listing</Button>
+            </ButtonGroup>
+          </Form>
         </Container>
         <SuccessMessage show={showSuccessMessage} product={product} orderQty={orderQty} Pricing={Pricing} />
       </Backdrop>
@@ -170,22 +168,14 @@ const Container = styled.div`
   padding: 0 1rem;
   background: rgba(255, 255, 255, 0.75);
   display: grid;
+  grid-template-columns: repeat(2, minmax(250px, 1fr));
+  grid-column-gap: .5rem;
 
   @media screen and (min-width: 768px) {
     grid-row: 2;
     grid-column: 1;
     padding: 0 20px;
-  }
-`;
-
-const Content = styled.div`
-  grid-row: 2;
-  grid-column: 1;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(250px, 1fr));
-  grid-column-gap: 1rem;
-
-  @media screen and (min-width: 768px) {
+    display: grid;
     grid-template-columns: repeat(4, minmax(250px, 1fr));
   }
 `;

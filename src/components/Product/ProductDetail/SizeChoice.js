@@ -52,7 +52,7 @@ const SizeChoice = ({ handleSizeChange, orderSize, sizeFieldError }) => {
 export default SizeChoice;
 
 const SizeContainer = styled.div`
-  margin: 1rem 0 .25rem;
+  margin: 1rem 0 0.25rem;
   width: 300px;
   position: relative;
 
@@ -63,9 +63,10 @@ const SizeContainer = styled.div`
 `;
 
 const SizeSelectGroup = styled.div`
+  margin: 0;
   display: grid;
-  align-items: center;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, 80px);
+  grid-column-gap: 0.5rem;
 `;
 
 const SizeSelect = styled.div`
@@ -81,7 +82,7 @@ const SizeSelect = styled.div`
     cursor: pointer;
     display: inline-block;
     min-height: 1rem;
-    min-width: 75px;
+    min-width: 80px;
     outline: none;
     border: none;
     vertical-align: baseline;

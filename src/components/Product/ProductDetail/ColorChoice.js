@@ -90,10 +90,10 @@ const ColorContainer = styled.div`
 `;
 
 const ColorSelectGroup = styled.div`
+  margin: 0;
   display: grid;
-  align-items: center;
-  grid-template-columns: repeat(3, 1fr);
-  grid-row-gap: 1rem;
+  grid-template-columns: repeat(auto-fit, 80px);
+  grid-gap: 0.5rem 0.25rem;
 `;
 
 const ColorSelect = styled.div`

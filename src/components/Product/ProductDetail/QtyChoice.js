@@ -19,8 +19,8 @@ const QtyChoice = ({ qtyFieldError, orderQty, handleQtyChange }) => {
         value={orderQty}
         required
         error={qtyFieldError ? 'error' : null}
-      /> */}
-      <Select />
+      />
+      <Select /> */}
     </QtyContainer>
   );
 };
