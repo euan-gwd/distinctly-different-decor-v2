@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { database } from "../../firebase/firebase";
 import { formatPrice, colors } from "../helpers";
-import { Check, AlertOctagon } from "react-feather";
+import { CheckSquare, AlertOctagon } from "react-feather";
 import Button from "../uiElements/Button";
 import LineItem from "./LineItem";
 import ContactForm from "./ContactForm";
@@ -108,7 +108,7 @@ class Cart extends Component {
             <TableFooterAction>
               {ordersLength > 0 && (
                 <ConfirmButton onClick={this.handleConfirm}>
-                  <Check />
+                  <CheckSquare />
                   <span>Confirm</span>
                 </ConfirmButton>
               )}

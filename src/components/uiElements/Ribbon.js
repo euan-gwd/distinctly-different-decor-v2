@@ -20,7 +20,8 @@ const Label = styled.div`
   padding: calc(0.5rem/2) calc(0.8rem/2);
   color: ${props => (props.primary ? `${colors.white}` : `${colors.black}`)};
   text-transform: none;
-  font-weight: bold;
+  font-weight: normal;
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.07);
   border: 0px solid #00000060;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
 

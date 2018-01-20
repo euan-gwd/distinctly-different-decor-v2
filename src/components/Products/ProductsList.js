@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
-import { colors } from '../helpers';
-import { database } from '../../firebase/firebase';
-import Product from './Product';
+import React, { Component } from "react";
+import styled from "styled-components";
+import { colors } from "../helpers";
+import { database } from "../../firebase/firebase";
+import Product from "./Product";
 
 class ProductsList extends Component {
   state = { inventory: [], loaded: false };
@@ -10,7 +10,7 @@ class ProductsList extends Component {
   async componentDidMount() {
     try {
       //retrieve product list from firebase
-      await database.ref('products').on('value', (res) => {
+      await database.ref("products").on("value", res => {
         const productsData = res.val();
         const inventory = [];
         for (let objKey in productsData) {
@@ -28,7 +28,11 @@ class ProductsList extends Component {
     return (
       <Container>
         {this.state.loaded ? (
-          <ProductGrid>{this.state.inventory.map((item) => <Product key={item.id} product={item} />)}</ProductGrid>
+          <ProductGrid>
+            {this.state.inventory.map(item => (
+              <Product key={item.id} product={item} />
+            ))}
+          </ProductGrid>
         ) : (
           <Loading />
         )}
@@ -39,27 +43,21 @@ class ProductsList extends Component {
 
 export default ProductsList;
 
+const Container = styled.div`
+  grid-row: 2;
+  padding: 0 1rem;
+  display: grid;
+
+  @media screen and (min-width: 768px) {
+    padding: 0 20px;
+  }
+`;
+
 const ProductGrid = styled.div`
   margin: 0;
   box-sizing: border-box;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
-  grid-template-rows: repeat(auto-fill, minmax(125px, 250px));
-  grid-gap: 1rem;
-`;
-
-const Container = styled.div`
-  grid-row: 2;
-  min-height: 85vh;
-  padding: 0 0.5rem;
-  display: grid;
-  justify-self: center;
-  align-self: center;
-  width: 100vw;
-
-  @media screen and (min-width: 768px) {
-    padding: 0 1rem;
-  }
 `;
 
 const Loading = styled.div`

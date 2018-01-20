@@ -19,7 +19,8 @@ const Ribbon = styled.div`
   padding: 0.5rem 0.8rem;
   color: ${props => (props.primary ? `${colors.white}` : `${colors.black}`)};
   text-transform: none;
-  font-weight: bold;
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.07);
+  font-weight: normal;
   border: 0px solid #00000060;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
 

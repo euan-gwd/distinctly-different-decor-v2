@@ -58,7 +58,7 @@ const InputGroup = styled.div`
   }
 
   > input[type="radio"]:hover ~ label {
-    color: black;
+    color: ${colors.primary};
     background: #f6f7f6 none;
     box-shadow: 1px 1px 1px 1px rgba(34, 36, 38, 0.35) inset;
   }
@@ -67,5 +67,6 @@ const InputGroup = styled.div`
     color: white;
     background: ${colors.primary} none;
     box-shadow: 0px 0px 0px 1px ${colors.primary} inset;
+    text-shadow: 0 2px 0 rgba(0, 0, 0, 0.07);
   }
 `;
