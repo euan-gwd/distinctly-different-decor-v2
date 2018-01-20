@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
-import Button from '../uiElements/Button';
-import Icon from '../uiElements/Icon';
-import Input from '../uiElements/Input';
+import React, { Component } from "react";
+import styled from "styled-components";
+import Button from "../uiElements/Button";
+import { Check } from "react-feather";
+import Input from "../uiElements/Input";
 
 class ContactForm extends Component {
   state = {
-    name: '',
-    email: '',
-    phone: '',
+    name: "",
+    email: "",
+    phone: "",
     nameFieldError: false,
     emailFieldError: false,
     phoneFieldError: false
@@ -36,7 +36,7 @@ class ContactForm extends Component {
   };
 
   handleSubmit = () => {
-    if (this.state.name === '') {
+    if (this.state.name === "") {
       this.setState({ nameFieldError: true });
     } else {
       const customerOrder = {
@@ -50,7 +50,7 @@ class ContactForm extends Component {
       sessionStorage.clear();
     }
 
-    if (this.state.email === '') {
+    if (this.state.email === "") {
       this.setState({ emailFieldError: true });
     } else {
       const customerOrder = {
@@ -64,7 +64,7 @@ class ContactForm extends Component {
       sessionStorage.clear();
     }
 
-    if (this.state.phone === '') {
+    if (this.state.phone === "") {
       this.setState({ phoneFieldError: true });
     } else {
       const customerOrder = {
@@ -86,7 +86,7 @@ class ContactForm extends Component {
         {nameFieldError ? (
           <Input
             fluid
-            label={{ pointing: 'right', content: 'Name', color: 'red' }}
+            label={{ pointing: "right", content: "Name", color: "red" }}
             labelPosition="left"
             placeholder="Name is Required"
             onChange={this.handleNameInput}
@@ -95,7 +95,7 @@ class ContactForm extends Component {
         ) : (
           <Input
             fluid
-            label={{ pointing: 'right', content: 'Name', color: 'violet' }}
+            label={{ pointing: "right", content: "Name", color: "violet" }}
             labelPosition="left"
             placeholder="Contact Name..."
             onChange={this.handleNameInput}
@@ -104,7 +104,7 @@ class ContactForm extends Component {
         {emailFieldError ? (
           <Input
             fluid
-            label={{ pointing: 'right', content: 'Email', color: 'red' }}
+            label={{ pointing: "right", content: "Email", color: "red" }}
             labelPosition="left"
             placeholder="Valid Email Required"
             onChange={this.handleEmailInput}
@@ -113,7 +113,7 @@ class ContactForm extends Component {
         ) : (
           <Input
             fluid
-            label={{ pointing: 'right', content: 'Email', color: 'violet' }}
+            label={{ pointing: "right", content: "Email", color: "violet" }}
             labelPosition="left"
             placeholder="Contact Email..."
             onChange={this.handleEmailInput}
@@ -122,7 +122,7 @@ class ContactForm extends Component {
         {phoneFieldError ? (
           <Input
             fluid
-            label={{ pointing: 'right', content: 'phone', color: 'red' }}
+            label={{ pointing: "right", content: "phone", color: "red" }}
             labelPosition="left"
             placeholder="A Valid Number 000-000-0000 is required"
             onChange={this.handlePhoneInput}
@@ -131,7 +131,7 @@ class ContactForm extends Component {
         ) : (
           <Input
             fluid
-            label={{ pointing: 'right', content: 'phone', color: 'violet' }}
+            label={{ pointing: "right", content: "phone", color: "violet" }}
             labelPosition="left"
             placeholder="123-456-7890"
             onChange={this.handlePhoneInput}
@@ -139,7 +139,7 @@ class ContactForm extends Component {
         )}
         <Button animated="fade" color="violet" onClick={this.handleSubmit}>
           <div>
-            <Icon name="send" />
+            <Check />
             <span>Place Order</span>
           </div>
         </Button>

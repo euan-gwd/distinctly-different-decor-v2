@@ -3,8 +3,8 @@ import { Route, Link } from 'react-router-dom';
 import { colors } from './helpers';
 import styled from 'styled-components';
 import logo from './logo.svg';
-import ProductsList from './Product/ProductsList';
-import ProductDetail from './Product/ProductDetail/ProductDetail';
+import ProductsList from './Products/ProductsList';
+import ProductDetail from './Products/ProductDetail/ProductDetail';
 import Cart from './CheckOut/CheckOutCart';
 import CartButton from './CheckOut/CartButton';
 

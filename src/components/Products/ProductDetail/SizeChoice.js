@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-// import { colors } from "../../helpers";
 import Ribbon from "../../uiElements/Ribbon";
 import RadioButton from "../../uiElements/RadioButton";
 import RequiredLabel from "../../uiElements/RequiredLabel";

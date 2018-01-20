@@ -1,31 +1,35 @@
-import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
-import styled from 'styled-components';
-import Overdrive from 'react-overdrive';
-import { formatPrice } from '../../helpers';
-import Icon from '../../uiElements/Icon';
-import Image from '../../uiElements/Image';
-import Button from '../../uiElements/Button';
-import ButtonGroup from '../../uiElements/ButtonGroup';
+import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
+import styled from "styled-components";
+import Overdrive from "react-overdrive";
+import { formatPrice } from "../../helpers";
+import { CheckSquare } from "react-feather";
+import Image from "../../uiElements/Image";
+import Button from "../../uiElements/Button";
+import ButtonGroup from "../../uiElements/ButtonGroup";
 
 class SuccessMessage extends Component {
   handleGoToCart = () => {
-    this.props.history.push('/cart');
+    this.props.history.push("/cart");
   };
 
   handleReturnToList = () => {
-    this.props.history.push('/');
+    this.props.history.push("/");
   };
 
   render() {
     const { show, product, orderQty } = this.props;
     return (
-      <Message show={show ? 'open' : null}>
+      <Message show={show ? "open" : null}>
         <MessageContainer>
           <MessageContent>
             <ProductImage>
               <Overdrive id={`${product.id}`}>
-                <Image src={product.thumbnail} alt={product.title} size="tiny" />
+                <Image
+                  src={product.thumbnail}
+                  alt={product.title}
+                  size="tiny"
+                />
               </Overdrive>
             </ProductImage>
             <MessageBody>
@@ -33,10 +37,10 @@ class SuccessMessage extends Component {
                 <h3>
                   {orderQty} x {product.title}
                 </h3>
-                <p>{'SubTotal: ' + formatPrice(product.price * orderQty)}</p>
+                <p>{"SubTotal: " + formatPrice(product.price * orderQty)}</p>
               </MessageBodyHeader>
               <MessageBodyContent>
-                <Icon name="check" color="green" />Added to Cart
+                <CheckSquare />Added to Cart
               </MessageBodyContent>
             </MessageBody>
           </MessageContent>
@@ -44,7 +48,9 @@ class SuccessMessage extends Component {
             <MessageButton primary onClick={this.handleGoToCart}>
               Proceed to Checkout
             </MessageButton>
-            <MessageButton onClick={this.handleReturnToList}>Continue Shopping</MessageButton>
+            <MessageButton onClick={this.handleReturnToList}>
+              Continue Shopping
+            </MessageButton>
           </ButtonGroup>
         </MessageContainer>
       </Message>
@@ -58,7 +64,7 @@ const Message = styled.div`
   grid-row: 1 / 3;
   grid-column: 1;
   padding: 0 2.5vw;
-  display: ${props => (props.show ? 'grid' : 'none')};
+  display: ${props => (props.show ? "grid" : "none")};
   align-items: center;
   z-index: 2;
   background-color: rgba(0, 0, 0, 0.5);
