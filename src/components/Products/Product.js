@@ -34,5 +34,4 @@ const Poster = styled.img`
     box-shadow: 8px 32px 32px rgba(0, 0, 0, 0.15);
     box-shadow: 8px 64px 64px rgba(0, 0, 0, 0.15);
   }
-
 `;
