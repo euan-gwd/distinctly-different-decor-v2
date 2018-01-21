@@ -44,9 +44,8 @@ class ProductsList extends Component {
 export default ProductsList;
 
 const Container = styled.div`
-  grid-row: 2;
-  padding: 0 1rem;
-  display: grid;
+  grid-area: main;
+  padding: 0 5px;
 
   @media screen and (min-width: 768px) {
     padding: 0 20px;
@@ -54,10 +53,10 @@ const Container = styled.div`
 `;
 
 const ProductGrid = styled.div`
-  margin: 0;
-  box-sizing: border-box;
+  margin: 1rem 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(125px, 1fr));
+  grid-gap: 10px;
 `;
 
 const Loading = styled.div`

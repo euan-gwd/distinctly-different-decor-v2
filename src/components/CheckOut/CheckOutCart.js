@@ -128,17 +128,11 @@ class Cart extends Component {
 export default Cart;
 
 const Container = styled.div`
-  grid-row: 2;
-  min-height: 85vh;
+  grid-area: main;
   padding: 0 5px;
-  min-width: 100%;
 
   @media screen and (min-width: 768px) {
-    grid-row: 2;
-    justify-self: center;
-    padding: 0 1rem;
-
-    width: 85vw;
+    padding: 0 20px;
   }
 `;
 
@@ -152,13 +146,6 @@ const Table = styled.div`
   border: 0.5px solid ${colors.border};
   box-shadow: 0px 2px 2.5px 0px rgba(50, 50, 50, 0.5);
   border-top: 2px solid ${colors.border};
-
-  @media screen and (min-width: 768px) {
-    margin: 1rem 0 0;
-    padding: 0;
-
-    grid-template-rows: 50px 1fr 50px;
-  }
 `;
 
 const TableHeader = styled.div`
