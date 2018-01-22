@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { database } from "../../firebase/firebase";
 import styled from "styled-components";
+import { colors } from "../helpers";
 import { ShoppingCart } from "react-feather";
 
 class CartButton extends Component {
@@ -21,10 +22,8 @@ class CartButton extends Component {
   render() {
     return (
       <Button>
-        {this.state.totalItemsInCart > 0 ? (
-          <CartCount>{this.state.totalItemsInCart}</CartCount>
-        ) : null}
-        <ShoppingCart />
+        <CartCount>{this.state.totalItemsInCart}</CartCount>
+        <ShoppingCart size={35} />
       </Button>
     );
   }
@@ -39,18 +38,14 @@ const Button = styled.div`
 `;
 
 const CartCount = styled.span`
-  color: white;
+  color: ${colors.primary};
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   position: absolute;
   top: 0.95rem;
-  right: 1.45rem;
+  right: 1.95rem;
   z-index: 2;
-  font-size: 0.75rem;
-
-  @media screen and (min-width: 768px) {
-    top: 0.95rem;
-    right: 2.45rem;
-  }
+  font-size: 0.6rem;
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.07);
 `;

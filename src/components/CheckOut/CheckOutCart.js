@@ -93,10 +93,10 @@ class Cart extends Component {
             </TableBody>
           ) : (
             <EmptyCart>
-              <div>
-                <AlertOctagon />
-              </div>
-              <div>No Orders found, Cart is sad...</div>
+              <EmptyCartBody>
+                <AlertOctagon size={48} />
+                No Orders found...
+              </EmptyCartBody>
             </EmptyCart>
           )}
           <TableFooter>
@@ -202,12 +202,22 @@ const TableBody = styled.div`
 
 const EmptyCart = styled.div`
   grid-row: 2;
-  display: flex;
+  display: grid;
   justify-content: center;
   align-items: center;
   height: 50vh;
   background-color: ghostwhite;
   border-bottom: 1px solid ${colors.border};
+`;
+
+const EmptyCartBody = styled.div`
+  display: grid;
+  grid-auto-flow: column;
+  justify-items: center;
+  align-items: center;
+  grid-gap: 10px;
+  color: ${colors.error};
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.07);
 `;
 
 const TableFooter = styled.div`
