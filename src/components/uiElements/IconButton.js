@@ -40,12 +40,16 @@ const Button = styled.a`
     box-shadow 0.1s ease, background 0.1s ease;
   will-change: "";
   -webkit-tap-highlight-color: transparent;
+  border-radius: 0.28571429rem;
 
   &:hover {
-    color: ${props =>
-      (props.color === "primary" ? "#6435e9" : null) ||
-      (props.color === "success" ? "#16ab39" : null) ||
-      (props.color === "danger" ? "#d01919" : null)};
+    color: white;
+    background-color: ${props =>
+      (props.color === "primary" ? "#6435e950" : null) ||
+      (props.color === "success" ? "#16ab3950" : null) ||
+      (props.color === "danger" ? "#d0191950" : null)};
+    border-radius: 0.28571429rem;
+    box-shadow: 1px 1px 1px 1px rgba(34, 36, 38, 0.35) inset;
   }
 
   &:active {

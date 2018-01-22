@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { colors } from "../helpers";
-import { Check } from "react-feather";
+import { Send } from "react-feather";
 import Input from "../uiElements/Input";
 import IconButton from "../uiElements/IconButton";
 
@@ -139,10 +138,8 @@ class ContactForm extends Component {
           />
         )}
         <IconButton color="primary" onClick={this.handleSubmit}>
-          <div>
-            <Check />
-            <span>Place Order</span>
-          </div>
+          <Send />
+          <span>Place Order</span>
         </IconButton>
       </FormWrapper>
     );

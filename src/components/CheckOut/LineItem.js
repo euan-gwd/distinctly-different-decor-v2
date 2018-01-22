@@ -26,7 +26,6 @@ class LineItem extends Component {
             }}
           >
             <XSquare />
-            <span>Delete</span>
           </IconButton>
         </LineItemCell>
       </LineItemRow>

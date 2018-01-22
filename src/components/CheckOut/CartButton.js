@@ -45,8 +45,6 @@ const CartCount = styled.span`
   position: absolute;
   top: 0.95rem;
   right: 2rem;
-  z-index: 2;
   font-size: 0.6rem;
-  font-weight: bolder;
-  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.07);
+  font-weight: bold;
 `;
