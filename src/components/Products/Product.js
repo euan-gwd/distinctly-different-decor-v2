@@ -34,7 +34,7 @@ const PosterOverlay = styled.div`
 const PosterButton = styled(NavLink)`
   outline: none;
   border: none;
-  color: ${colors.default};
+  color: ${colors.grey};
   margin: 0;
   padding: calc(0.78571429rem/2) 1rem;
   box-sizing: border-box;
@@ -49,8 +49,7 @@ const PosterButton = styled(NavLink)`
   background-color: ${colors.primaryBorder};
   border-radius: 0.28571429rem;
   box-shadow: 0px 0px 0px 1px
-    ${props => (props.primary ? `${colors.primary}` : `${colors.default}`)}
-    inset;
+    ${props => (props.primary ? `${colors.primary}` : `${colors.grey}`)} inset;
 `;
 
 const PosterImage = styled.img`

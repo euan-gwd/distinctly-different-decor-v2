@@ -14,10 +14,10 @@ const Ribbon = styled.div`
   line-height: 1;
   margin: 1rem 0 0 -1.17rem;
   background-color: ${props =>
-    props.primary ? `${colors.primary}` : `${colors.default}`};
+    props.primary ? `${colors.primary}` : `${colors.grey}`};
   background-image: none;
   padding: 0.5rem 0.8rem;
-  color: ${props => (props.primary ? `${colors.white}` : `${colors.black}`)};
+  color: ${props => (props.primary ? `${colors.white}` : `${colors.default}`)};
   text-transform: none;
   text-shadow: 0 2px 0 rgba(0, 0, 0, 0.07);
   font-weight: normal;

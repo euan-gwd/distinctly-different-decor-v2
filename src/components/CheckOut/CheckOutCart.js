@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { database } from "../../firebase/firebase";
 import { formatPrice, colors } from "../helpers";
 import { CheckSquare, AlertOctagon } from "react-feather";
-import Button from "../uiElements/Button";
+import IconButton from "../uiElements/IconButton";
 import LineItem from "./LineItem";
 import ContactForm from "./ContactForm";
 
@@ -107,10 +107,10 @@ class Cart extends Component {
             </TableFooterTotalValue>
             <TableFooterAction>
               {ordersLength > 0 && (
-                <ConfirmButton onClick={this.handleConfirm}>
+                <IconButton color="success" onClick={this.handleConfirm}>
                   <CheckSquare />
                   <span>Confirm</span>
-                </ConfirmButton>
+                </IconButton>
               )}
             </TableFooterAction>
           </TableFooter>
@@ -143,9 +143,9 @@ const Table = styled.div`
 
   display: grid;
   grid-template-rows: 50px 1fr 50px;
-  border: 0.5px solid ${colors.border};
+  border: 0.5px solid ${colors.primaryBorder};
   box-shadow: 0px 2px 2.5px 0px rgba(50, 50, 50, 0.5);
-  border-top: 2px solid ${colors.border};
+  border-top: 2px solid ${colors.primary};
 `;
 
 const TableHeader = styled.div`
@@ -153,7 +153,7 @@ const TableHeader = styled.div`
   margin: 0;
   padding: 0;
 
-  border-bottom: 1px solid ${colors.border};
+  border-bottom: 1px solid ${colors.primaryBorder};
   display: grid;
   grid-template-columns: auto 15px auto 15px auto 50px;
   align-items: center;
@@ -207,7 +207,7 @@ const EmptyCart = styled.div`
   align-content: center;
   height: 50vh;
   background-color: ghostwhite;
-  border-bottom: 1px solid ${colors.border};
+  border-bottom: 1px solid ${colors.primaryBorder};
 `;
 
 const EmptyCartBody = styled.div`
@@ -217,7 +217,7 @@ const EmptyCartBody = styled.div`
   align-items: center;
   grid-gap: 10px;
   color: ${colors.error};
-  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.07);
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.07);
 `;
 
 const TableFooter = styled.div`
@@ -271,17 +271,18 @@ const TableFooterTotalValue = styled.div`
 `;
 const TableFooterAction = styled.div`
   grid-column: 6;
-  justify-self: center;
-  padding-left: 0.25rem;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  display: grid;
+  justify-content: center;
+  align-items: center;
 
   @media screen and (min-width: 768px) {
     grid-column: 7;
-    justify-self: center;
   }
-`;
-
-const ConfirmButton = styled(Button)`
-  min-width: 50px;
 `;
 
 const AttachedForm = styled.div`

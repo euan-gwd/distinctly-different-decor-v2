@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import Button from "../uiElements/Button";
+import { colors } from "../helpers";
 import { Check } from "react-feather";
 import Input from "../uiElements/Input";
+import IconButton from "../uiElements/IconButton";
 
 class ContactForm extends Component {
   state = {
@@ -137,12 +138,12 @@ class ContactForm extends Component {
             onChange={this.handlePhoneInput}
           />
         )}
-        <Button animated="fade" color="violet" onClick={this.handleSubmit}>
+        <IconButton color="primary" onClick={this.handleSubmit}>
           <div>
             <Check />
             <span>Place Order</span>
           </div>
-        </Button>
+        </IconButton>
       </FormWrapper>
     );
   }

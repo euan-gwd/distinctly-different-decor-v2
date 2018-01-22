@@ -15,10 +15,10 @@ const Label = styled.div`
   font-size: 0.75rem;
   margin: 1rem 0 0.125rem -1.17rem;
   background-color: ${props =>
-    props.primary ? `${colors.primary}` : `${colors.default}`};
+    props.primary ? `${colors.primary}` : `${colors.grey}`};
   background-image: none;
   padding: calc(0.5rem/2) calc(0.8rem/2);
-  color: ${props => (props.primary ? `${colors.white}` : `${colors.black}`)};
+  color: ${props => (props.primary ? `${colors.white}` : `${colors.default}`)};
   text-transform: none;
   font-weight: normal;
   text-shadow: 0 2px 0 rgba(0, 0, 0, 0.07);

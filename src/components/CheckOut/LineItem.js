@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { formatPrice, colors } from "../helpers";
-import Image from "../uiElements/Image";
-import Button from "../uiElements/Button";
 import { XSquare } from "react-feather";
+import Image from "../uiElements/Image";
+import IconButton from "../uiElements/IconButton";
 
 class LineItem extends Component {
   render() {
@@ -18,16 +18,17 @@ class LineItem extends Component {
         <LineItemCell>{details.orderColor}</LineItemCell>
         <LineItemCell>{details.orderQty}</LineItemCell>
         <LineItemCell>{formatPrice(details.orderItemTotal)}</LineItemCell>
-        <LineItemActions>
-          <Button
+        <LineItemCell>
+          <IconButton
+            color="danger"
             onClick={() => {
               removeFromOrder(id);
             }}
           >
             <XSquare />
             <span>Delete</span>
-          </Button>
-        </LineItemActions>
+          </IconButton>
+        </LineItemCell>
       </LineItemRow>
     );
   }
@@ -46,7 +47,7 @@ const LineItemRow = styled.div`
   grid-gap: 0.5rem 0.5rem;
   justify-items: center;
   align-items: center;
-  border-bottom: 1px solid ${colors.border};
+  border-bottom: 1px solid ${colors.primaryBorder};
 
   @media screen and (min-width: 768px) {
     margin: 0;
@@ -82,17 +83,6 @@ const LineItemImage = styled.div`
 `;
 
 const LineItemCell = styled.div`
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  width: 100%;
-  box-sizing: border-box;
-  display: grid;
-  justify-content: center;
-  align-items: center;
-`;
-
-const LineItemActions = styled.div`
   margin: 0;
   padding: 0;
   height: 100%;

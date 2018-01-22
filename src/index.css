@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Dosis";
-  src: url('./fonts/Dosis-Regular.ttf');
+  src: url("./fonts/Dosis-Regular.ttf");
 }
 
 html {
@@ -18,4 +18,22 @@ html {
 
 body {
   margin: 0;
+}
+
+root {
+  --grey: #c8c9c8;
+  --white: #ffffff;
+  --primary: #6435c9;
+  --primaryHover: #6435e9;
+  --primaryBorder: #6435c950;
+  --success: #21ba45;
+  --successHover: #16ab39;
+  --danger: #db2828;
+  --dangerHover: #d01919;
+  --error: #9f3a38;
+  --errorBackground: #fff5f5;
+  --default: #00000099;
+  --defaultHover: #c8c9c8;
+  --defaultBackground: #f5f5f5;
+  --defaultBorder: #22242626;
 }
