@@ -32,12 +32,25 @@ const PosterOverlay = styled.div`
 `;
 
 const PosterButton = styled(NavLink)`
-  padding: 5px 7.5px;
-  text-decoration: none;
+  outline: none;
+  border: none;
   color: ${colors.default};
-  border: 1px solid ${colors.default};
-  border-radius: 0.28571429rem;
+  margin: 0;
+  padding: calc(0.78571429rem/2) 1rem;
+  box-sizing: border-box;
+  text-transform: none;
+  text-shadow: none;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: normal;
+  line-height: 1rem;
+  font-style: normal;
+  text-align: center;
   background-color: ${colors.primaryBorder};
+  border-radius: 0.28571429rem;
+  box-shadow: 0px 0px 0px 1px
+    ${props => (props.primary ? `${colors.primary}` : `${colors.default}`)}
+    inset;
 `;
 
 const PosterImage = styled.img`

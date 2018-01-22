@@ -31,11 +31,8 @@ const InputGroup = styled.div`
     border: none;
     vertical-align: baseline;
     background-color: ${props =>
-      props.validate
-        ? `${colors.errorBackground}`
-        : `${colors.defaultBackground}`};
-    color: ${props =>
-      props.validate ? `${colors.error}` : `${colors.default}`};
+      props.validate ? `${colors.errorBackground}` : `transparent`};
+    color: ${props => (props.validate ? `${colors.error}` : `${colors.black}`)};
     margin: 0;
     padding: 0.78571429rem 1rem;
     text-transform: none;
@@ -48,7 +45,7 @@ const InputGroup = styled.div`
     border-radius: 0.28571429rem;
     box-shadow: 0px 0px 0px 1px
       ${props =>
-        props.validate ? `${colors.error}` : `${colors.defaultBorder}`}
+        props.validate ? `${colors.error}` : `${colors.primaryBorder}`}
       inset;
     user-select: none;
     transition: opacity 0.1s ease, background-color 0.1s ease, color 0.1s ease,
@@ -58,8 +55,8 @@ const InputGroup = styled.div`
   }
 
   > input[type="radio"]:hover ~ label {
-    color: ${colors.primary};
-    background: #f6f7f6 none;
+    color: ${colors.white};
+    background-color: ${colors.primaryBorder};
     box-shadow: 1px 1px 1px 1px rgba(34, 36, 38, 0.35) inset;
   }
 

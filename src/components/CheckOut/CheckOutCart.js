@@ -203,8 +203,8 @@ const TableBody = styled.div`
 const EmptyCart = styled.div`
   grid-row: 2;
   display: grid;
-  justify-content: center;
-  align-items: center;
+  justify-items: center;
+  align-content: center;
   height: 50vh;
   background-color: ghostwhite;
   border-bottom: 1px solid ${colors.border};
