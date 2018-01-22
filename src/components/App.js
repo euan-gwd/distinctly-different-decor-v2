@@ -16,9 +16,7 @@ class App extends Component {
           <Link to="/">
             <Logo src={logo} alt="logo" />
           </Link>
-          <Link to="/cart">
-            <CartButton />
-          </Link>
+          <CartButton />
         </AppHeader>
         <Route exact path="/" render={props => <ProductsList {...props} />} />
         <Route

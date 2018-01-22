@@ -87,6 +87,7 @@ class Cart extends Component {
             <TableFooterTotalValue>
               {formatPrice(totalCost)}
             </TableFooterTotalValue>
+            <TableFooterAction />
           </TableFooter>
         </Table>
         {ordersLength > 0 ? (

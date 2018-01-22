@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { database } from "../../firebase/firebase";
+import { Route } from "react-router-dom";
 import styled from "styled-components";
 import { colors } from "../helpers";
 import { ShoppingCart } from "react-feather";
@@ -22,10 +23,19 @@ class CartButton extends Component {
   }
   render() {
     return (
-      <Button color="primary">
-        <CartCount>{this.state.totalItemsInCart}</CartCount>
-        <ShoppingCart size={32} />
-      </Button>
+      <Route
+        render={props => (
+          <Button
+            color="primary"
+            onClick={() => {
+              props.history.push(`/cart`);
+            }}
+          >
+            <CartCount>{this.state.totalItemsInCart}</CartCount>
+            <ShoppingCart size={32} />
+          </Button>
+        )}
+      />
     );
   }
 }
