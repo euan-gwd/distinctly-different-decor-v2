@@ -1,10 +1,11 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "lib": ["es2015", "es2016", "es2017"]
   },
   "exclude": ["node_modules", "build"],
   "typeAcquisition": {
-    "include": ["react", "react-router-dom"]
+    "include": ["react", "react-router-dom", "css"]
   }
 }

@@ -8,7 +8,7 @@ const Image = props => {
 export default Image;
 
 const Img = styled.img`
-  display: inline-block;
+  display: block;
   max-width: 100%;
   object-fit: cover;
   /* width: ${props => (props.size ? "" : "100%")}; */
