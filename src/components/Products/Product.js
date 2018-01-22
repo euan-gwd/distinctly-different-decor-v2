@@ -34,7 +34,7 @@ const PosterOverlay = styled.div`
 const PosterButton = styled(NavLink)`
   outline: none;
   border: none;
-  color: ${colors.grey};
+  color: ${colors.white};
   margin: 0;
   padding: calc(0.78571429rem/2) 1rem;
   box-sizing: border-box;

@@ -3,6 +3,7 @@ import { database } from "../../firebase/firebase";
 import styled from "styled-components";
 import { colors } from "../helpers";
 import { ShoppingCart } from "react-feather";
+import IconButton from "../uiElements/IconButton";
 
 class CartButton extends Component {
   state = { totalItemsInCart: 0 };
@@ -21,9 +22,9 @@ class CartButton extends Component {
   }
   render() {
     return (
-      <Button>
+      <Button color="primary">
         <CartCount>{this.state.totalItemsInCart}</CartCount>
-        <ShoppingCart size={35} />
+        <ShoppingCart size={32} />
       </Button>
     );
   }
@@ -31,20 +32,24 @@ class CartButton extends Component {
 
 export default CartButton;
 
-const Button = styled.div`
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-`;
-
 const CartCount = styled.span`
-  color: ${colors.primary};
+  color: ${colors.danger};
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   position: absolute;
-  top: 0.95rem;
-  right: 2rem;
-  font-size: 0.6rem;
+  top: 0.8rem;
+  right: 1.15rem;
+  font-size: 0.7rem;
   font-weight: bold;
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.07);
+`;
+
+const Button = styled(IconButton)`
+  padding: calc(0.78571429rem/2);
+
+  &:hover {
+    background-color: transparent;
+    color: ${colors.primary};
+  }
 `;

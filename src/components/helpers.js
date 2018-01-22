@@ -4,7 +4,7 @@ export function formatPrice(cents) {
 
 export const colors = {
   grey: "#C8C9C8",
-  primary: "#6435C9",
+  primary: "#5E2EB3",
   primaryHover: "#6435C9",
   success: "#21BA45",
   successHover: "#16ab39",

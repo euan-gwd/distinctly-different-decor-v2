@@ -2,16 +2,13 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { database } from "../../firebase/firebase";
 import { formatPrice, colors } from "../helpers";
-import { CheckSquare, AlertOctagon } from "react-feather";
-import IconButton from "../uiElements/IconButton";
+import { AlertOctagon } from "react-feather";
 import LineItem from "./LineItem";
 import ContactForm from "./ContactForm";
 
 class Cart extends Component {
   state = {
     orders: {},
-    showForm: false,
-    confirmedOrder: {},
     totalCost: 0,
     totalItemsInCart: 0
   };
@@ -45,27 +42,12 @@ class Cart extends Component {
     lineItemRef.remove();
   };
 
-  handleConfirm = () => {
-    const ordersTotal = this.props.orderTotal;
-    const confirmedOrder = {
-      ordersTotal,
-      ...this.state.orders
-    };
-    this.setState({ showForm: true, confirmedOrder });
-  };
-
   componentWillUnmount = () => {
     database.ref(`cart`).off();
   };
 
   render() {
-    const {
-      orders,
-      totalCost,
-      showForm,
-      confirmedOrder,
-      totalItemsInCart
-    } = this.state;
+    const { orders, totalCost, totalItemsInCart } = this.state;
     const ordersLength = Object.keys(orders).length;
 
     return (
@@ -105,19 +87,11 @@ class Cart extends Component {
             <TableFooterTotalValue>
               {formatPrice(totalCost)}
             </TableFooterTotalValue>
-            <TableFooterAction>
-              {ordersLength > 0 && (
-                <IconButton color="success" onClick={this.handleConfirm}>
-                  <CheckSquare />
-                  <span>Confirm</span>
-                </IconButton>
-              )}
-            </TableFooterAction>
           </TableFooter>
         </Table>
-        {showForm && ordersLength > 0 ? (
+        {ordersLength > 0 ? (
           <AttachedForm>
-            <ContactForm confirmedOrder={confirmedOrder} />
+            <ContactForm confirmedOrder={orders} />
           </AttachedForm>
         ) : null}
       </Container>

@@ -16,7 +16,7 @@ const Button = styled.a`
   min-height: 1rem;
   background-color: transparent;
   color: ${props =>
-    (props.color === "primary" ? "#6435c9" : null) ||
+    (props.color === "primary" ? "#5E2EB3" : null) ||
     (props.color === "success" ? "#21ba45" : null) ||
     (props.color === "danger" ? "#db2828" : null)};
   margin: 0;
@@ -41,6 +41,7 @@ const Button = styled.a`
   will-change: "";
   -webkit-tap-highlight-color: transparent;
   border-radius: 0.28571429rem;
+  position: relative;
 
   &:hover {
     color: white;
@@ -54,7 +55,7 @@ const Button = styled.a`
 
   &:active {
     color: ${props =>
-      (props.color === "primary" ? "#6435c9" : null) ||
+      (props.color === "primary" ? "#5E2EB3" : null) ||
       (props.color === "success" ? "#21ba45" : null) ||
       (props.color === "danger" ? "#db2828" : null)};
 `;
