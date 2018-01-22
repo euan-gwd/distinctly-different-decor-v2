@@ -8,16 +8,28 @@ const Product = ({ product }) => {
   return (
     <Overdrive id={`${product.id}`}>
       <Poster>
-        <div className="Poster__Overlay">
+        <PosterOverlay>
           <PosterButton to={`/products/${product.id}`}>View</PosterButton>
-        </div>
-        <img src={product.thumbnail} alt={product.title} />
+        </PosterOverlay>
+        <PosterImage src={product.thumbnail} alt={product.title} />
       </Poster>
     </Overdrive>
   );
 };
 
 export default Product;
+
+const PosterOverlay = styled.div`
+  display: grid;
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
+  justify-items: center;
+  align-items: center;
+  background-color: #00000032;
+  position: relative;
+  opacity: 0;
+  transition: opacity 0.5s;
+`;
 
 const PosterButton = styled(NavLink)`
   padding: 5px 7.5px;
@@ -28,31 +40,19 @@ const PosterButton = styled(NavLink)`
   background-color: ${colors.primaryBorder};
 `;
 
+const PosterImage = styled.img`
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
+  width: 100%;
+  height: 100;
+  object-fit: cover;
+`;
+
 const Poster = styled.div`
   overflow: hidden;
   display: grid;
   grid-template: 1 / 1;
   transition: 0.5s;
-
-  img {
-    grid-column: 1 / -1;
-    grid-row: 1 / -1;
-    width: 100%;
-    height: 100;
-    object-fit: cover;
-  }
-
-  .Poster__Overlay {
-    display: grid;
-    grid-column: 1 / -1;
-    grid-row: 1 / -1;
-    justify-items: center;
-    align-items: center;
-    background-color: #00000032;
-    position: relative;
-    opacity: 0;
-    transition: opacity 0.5s;
-  }
 
   @media screen and (min-width: 768px) {
     &:hover {
@@ -67,10 +67,10 @@ const Poster = styled.div`
     box-shadow: 8px 32px 32px rgba(0, 0, 0, 0.15);
     box-shadow: 8px 64px 64px rgba(0, 0, 0, 0.15);
 
-    .Poster__Overlay {
-      opacity: 1;
-      transition: opacity 0.5s;
-     }
+    ${PosterOverlay} {
+    opacity: 1;
+    transition: opacity 0.5s;
+    }
 
   }
 `;
