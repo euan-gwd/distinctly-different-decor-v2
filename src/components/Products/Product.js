@@ -20,20 +20,18 @@ const Product = ({ product }) => {
 export default Product;
 
 const PosterButton = styled(NavLink)`
-  border: 1px solid ${colors.default};
-  color: ${colors.default};
-  background-color: ${colors.primaryBorder};
-  text-transform: uppercase;
-  text-decoration: none;
   padding: 5px 7.5px;
+  text-decoration: none;
+  color: ${colors.default};
+  border: 1px solid ${colors.default};
   border-radius: 0.28571429rem;
+  background-color: ${colors.primaryBorder};
 `;
 
 const Poster = styled.div`
   overflow: hidden;
   display: grid;
   grid-template: 1 / 1;
-  box-shadow: -1px 0px 0px rgba(0, 0, 0, 0.06);
   transition: 0.5s;
 
   img {
@@ -60,8 +58,8 @@ const Poster = styled.div`
     &:hover {
     z-index: 3;
     transition: 0.5s;
-    transform-origin: center;
     transform: scale(1.15);
+    transform-origin: center;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
     box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1);
