@@ -60,7 +60,9 @@ const AppHeader = styled.div`
   background: ${colors.background};
   padding: 0 5px;
   color: #131313;
-  display: flex;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
+  display: grid;
+  grid-auto-flow: column;
   justify-content: space-between;
   align-items: center;
   z-index: 2;
