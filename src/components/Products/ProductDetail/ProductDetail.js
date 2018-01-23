@@ -130,7 +130,11 @@ class ProductDetail extends Component {
           <ProductImage>
             <ImageRibbon primary>{Pricing}</ImageRibbon>
             <Overdrive id={`${product.id}`}>
-              <Image src={product.thumbnail} alt={product.title} />
+              <Image
+                size="medium"
+                src={product.thumbnail}
+                alt={product.title}
+              />
             </Overdrive>
             <Header>
               <h2>{product.title}</h2>
@@ -220,7 +224,7 @@ const Container = styled.div`
 const ProductImage = styled.div`
   grid-column: span 2;
   margin: 1rem 0 0 1rem;
-  display: inline-block;
+  display: block;
   position: relative;
 
   @media screen and (min-width: 768px) {

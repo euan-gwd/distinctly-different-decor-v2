@@ -12,8 +12,9 @@ const Img = styled.img`
   max-width: 100%;
   object-fit: cover;
   width: ${props =>
-    (props.size === "mini" ? "35px" : "100%") ||
-    (props.size === "small" ? "150px" : "100%") ||
-    (props.size === "medium" ? "300px" : "100%") ||
-    (props.size === "Large" ? "450px" : "100%")};
+    (props.size === "mini" ? "50px" : null) ||
+    (props.size === "small" ? "125px" : null) ||
+    (props.size === "medium" ? "250px" : null) ||
+    (props.size === "Large" ? "500px" : null)};
+  height: auto;
 `;
