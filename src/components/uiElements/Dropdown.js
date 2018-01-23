@@ -1,14 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 import { colors } from "../helpers.js";
+import { ArrowDown } from "react-feather";
 // import "./DropDown.css";
 
 const SelectDropDown = props => {
   return (
     <Select>
       <label>
-        {/* <input type="checkbox" name="placeholder" /> */}
         <input type="radio" name="option" />
+        <OpenArrow size={16} />
         <span className="placeholder">Choose...</span>
         <label className="option">
           <input type="radio" name="option" />
@@ -37,6 +38,14 @@ const SelectDropDown = props => {
 
 export default SelectDropDown;
 
+const OpenArrow = styled(ArrowDown)`
+  position: absolute;
+  z-index: 4;
+  right: 0.25rem;
+  bottom: 0.75rem;
+  color: #ccc;
+`;
+
 const Select = styled.div`
   display: block;
   position: relative;
@@ -51,12 +60,12 @@ const Select = styled.div`
   color: ${props => (props.validate ? `${colors.error}` : `${colors.black}`)};
   min-height: 1rem;
   font-size: 1rem;
-  max-width: 80px;
+  /* max-width: 80px; */
 
   .title,
   .placeholder {
     position: relative;
-    display: block;
+    display: grid;
     width: 100%;
     height: 100%;
     padding: 0.78571429rem;
@@ -75,10 +84,14 @@ const Select = styled.div`
     display: block;
     opacity: 0;
     cursor: pointer;
+
     &:checked {
       z-index: 2;
+      border: 1px solid green;
     }
+
     &:not(:checked) {
+      z-index: 3;
       ~ label.option input:not(:checked) ~ .title {
         display: none !important;
       }
