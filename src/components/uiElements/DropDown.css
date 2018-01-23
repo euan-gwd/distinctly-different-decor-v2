@@ -30,6 +30,7 @@
   border-top: 1px solid rgba(0, 0, 0, 0.05);
   cursor: pointer;
 }
+
 .select2 > label > input {
   position: absolute;
   left: 0px;
@@ -42,7 +43,7 @@
   cursor: pointer;
 }
 .select2 > label > input:checked {
-  z-index: 3;
+  z-index: 2;
 }
 .select2 > label > input:checked ~ i.toggle.icon-plus {
   display: none;

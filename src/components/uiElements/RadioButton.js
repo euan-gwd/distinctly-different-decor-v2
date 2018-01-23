@@ -31,7 +31,9 @@ const InputGroup = styled.div`
     border: none;
     vertical-align: baseline;
     background-color: ${props =>
-      props.validate ? `${colors.errorBackground}` : `transparent`};
+      props.validate
+        ? `${colors.errorBackground}`
+        : `${colors.defaultBackground}`};
     color: ${props => (props.validate ? `${colors.error}` : `${colors.black}`)};
     margin: 0;
     padding: 0.78571429rem 1rem;
