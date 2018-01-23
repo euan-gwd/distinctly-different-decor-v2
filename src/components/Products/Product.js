@@ -7,9 +7,9 @@ import Overdrive from "react-overdrive";
 const Product = ({ product }) => {
   return (
     <Overdrive id={`${product.id}`}>
-      <Poster>
+      <Poster to={`/products/${product.id}`}>
         <PosterOverlay>
-          <PosterButton to={`/products/${product.id}`}>View</PosterButton>
+          <PosterButton>View</PosterButton>
         </PosterOverlay>
         <PosterImage src={product.thumbnail} alt={product.title} />
       </Poster>
@@ -31,7 +31,7 @@ const PosterOverlay = styled.div`
   transition: opacity 0.5s;
 `;
 
-const PosterButton = styled(NavLink)`
+const PosterButton = styled.a`
   outline: none;
   border: none;
   color: ${colors.white};
@@ -60,11 +60,27 @@ const PosterImage = styled.img`
   object-fit: cover;
 `;
 
-const Poster = styled.div`
+const Poster = styled(NavLink)`
   overflow: hidden;
   display: grid;
   grid-template: 1 / 1;
   transition: 0.5s;
+  text-decoration: none;
+
+  &:hover {
+    z-index: 3;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 16px 16px rgba(0, 0, 0, 0.1);
+    box-shadow: 8px 32px 32px rgba(0, 0, 0, 0.15);
+    box-shadow: 8px 64px 64px rgba(0, 0, 0, 0.15);
+
+    ${PosterOverlay} {
+    opacity: 1;
+    transition: opacity 0.5s;
+    }
+  }
 
   @media screen and (min-width: 768px) {
     &:hover {

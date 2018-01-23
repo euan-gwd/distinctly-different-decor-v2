@@ -6,7 +6,7 @@ export default ButtonGroup;
 
 const BtnGroup = styled.div`
   display: grid;
-  grid-auto-flow: column;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  grid-gap: 1rem;
   align-items: center;
-  grid-gap: 5px;
 `;

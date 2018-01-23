@@ -16,7 +16,7 @@ const Btn = styled.button`
   color: ${props =>
     props.primary ? `${colors.primary}` : `${colors.default}`};
   margin: 0;
-  padding: 0.78571429rem 1rem;
+  padding: 0.78571429rem;
   box-sizing: border-box;
   text-transform: none;
   text-shadow: none;
@@ -32,6 +32,7 @@ const Btn = styled.button`
   font-style: normal;
   text-align: center;
   text-decoration: none;
+  white-space: nowrap;
   border-radius: 0.28571429rem;
   box-shadow: 0px 0px 0px 1px
     ${props =>

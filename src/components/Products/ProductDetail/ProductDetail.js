@@ -165,9 +165,7 @@ class ProductDetail extends Component {
               >
                 Add to Cart
               </Button>
-              <Button onClick={this.handleReturnToList}>
-                Return to Listing
-              </Button>
+              <Button onClick={this.handleReturnToList}>Back to Main</Button>
             </ButtonGroup>
           </Form>
         </Container>
@@ -203,34 +201,24 @@ const Backdrop = styled.div`
 const Container = styled.div`
   grid-row: 2;
   grid-column: 1;
-  margin: 0.5rem 0;
   padding: 0 1rem;
-  background: rgba(255, 255, 255, 0.75);
   display: grid;
-  grid-template-columns: repeat(2, minmax(250px, 1fr));
-  grid-column-gap: 0.5rem;
+  grid-template-columns: minmax(300px, 1fr);
+  justify-items: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.75);
 
   @media screen and (min-width: 768px) {
     grid-row: 2;
     grid-column: 1;
     padding: 0 20px;
-    display: grid;
-    margin: 0.5rem 0;
-    grid-template-columns: 1fr 250px minmax(250px, max-content) 1fr;
-    grid-column-gap: 1rem;
+    grid-template-columns: minmax(250px, 1fr) minmax(300px, 1fr);
   }
 `;
 
 const ProductImage = styled.div`
-  grid-column: span 2;
-  margin: 1rem 0 0 1rem;
-  display: block;
+  grid-column: 1;
   position: relative;
-
-  @media screen and (min-width: 768px) {
-    margin: 1rem 0 0;
-    grid-column: 2;
-  }
 `;
 
 const Header = styled.div`
@@ -242,10 +230,11 @@ const Header = styled.div`
 
 const Form = styled.div`
   grid-column: 1;
-  display: block;
+  grid-row: 2;
 
   @media screen and (min-width: 768px) {
-    grid-column: 3;
-    display: grid;
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: start;
   }
 `;
