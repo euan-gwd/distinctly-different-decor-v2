@@ -9,6 +9,7 @@ const Btn = styled.button`
   cursor: pointer;
   display: inline-block;
   min-height: 1rem;
+  min-width: fit-content;
   outline: none;
   border: none;
   vertical-align: baseline;

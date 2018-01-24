@@ -46,10 +46,10 @@ class SuccessMessage extends Component {
           </MessageContent>
           <ButtonGroup>
             <MessageButton primary onClick={this.handleGoToCart}>
-              Proceed to Checkout
+              Checkout
             </MessageButton>
             <MessageButton onClick={this.handleReturnToList}>
-              Continue Shopping
+              Back to Main
             </MessageButton>
           </ButtonGroup>
         </MessageContainer>
@@ -81,7 +81,7 @@ const MessageContainer = styled.div`
   border: 2px solid #a3c193;
   border-radius: 4px;
   background-color: #fbfff5;
-  width: 300px;
+  width: fit-content;
 
   @media screen and (min-width: 768px) {
     width: auto;
@@ -93,6 +93,7 @@ const MessageContent = styled.div`
   color: #789e76;
   display: grid;
   grid-template-columns: 1fr 2fr;
+  grid-column-gap: 1rem;
 `;
 
 const ProductImage = styled.div`
@@ -114,10 +115,13 @@ const MessageBodyHeader = styled.div`
 `;
 
 const MessageBodyContent = styled.div`
-  margin: 0;
   grid-row: 2;
+  display: grid;
+  grid-template-columns: max-content max-content;
+  align-items: end;
+  grid-gap: 2.5px;
 `;
 
 const MessageButton = styled(Button)`
-  min-width: 75px;
+  min-width: fit-content;
 `;
