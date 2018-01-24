@@ -77,5 +77,6 @@ const Input = styled.div`
   font-style: normal;
   text-align: center;
   text-decoration: none;
+  user-select: none;
   box-shadow: 0px 0px 0px 1px ${colors.primaryBorder} inset;
 `;

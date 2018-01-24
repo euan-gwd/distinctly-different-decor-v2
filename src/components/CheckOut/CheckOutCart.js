@@ -52,12 +52,18 @@ class Cart extends Component {
 
     return (
       <Container>
+        <h2>Check Out List</h2>
+        <p>
+          These are the items you indicated that you are interested in, please
+          confirm below. <br />
+          Then enter your contact details and I shall contact you.
+        </p>
         <Table>
           <TableHeader>
             <ImageHeader />
             <TableColumnHeader>Item</TableColumnHeader>
-            <TableColumnHeader>Size</TableColumnHeader>
-            <TableColumnHeader>Color</TableColumnHeader>
+            <TableColumnHeader />
+            <TableColumnHeader />
             <TableColumnHeader>Qty</TableColumnHeader>
             <TableColumnHeader>Subtotal</TableColumnHeader>
             <TableColumnHeader />
@@ -132,8 +138,8 @@ const TableHeader = styled.div`
   display: grid;
   grid-template-columns: auto 15px auto 15px auto 50px;
   align-items: center;
-  background-color: ${colors.background};
-  color: black;
+  background-color: ${colors.primaryBorder};
+  color: ${colors.white};
 
   @media screen and (min-width: 768px) {
     grid-row: 1;
@@ -203,8 +209,9 @@ const TableFooter = styled.div`
   display: grid;
   grid-template-columns: repeat(6, minmax(35px, 1fr));
   align-items: center;
-  background-color: ${colors.background};
-  color: ${colors.primary};
+  background-color: ${colors.primaryBorder};
+  color: ${colors.white};
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.07);
 
   @media screen and (min-width: 768px) {
     margin: 0;
@@ -215,7 +222,8 @@ const TableFooter = styled.div`
   }
 `;
 
-const TableFooterTotalLabel = styled.div`
+const TableFooterTotalLabel = styled.h2`
+  margin: 0;
   grid-column: 2;
   justify-self: center;
 
@@ -225,7 +233,8 @@ const TableFooterTotalLabel = styled.div`
   }
 `;
 
-const TableFooterTotalItems = styled.div`
+const TableFooterTotalItems = styled.h2`
+  margin: 0;
   grid-column: 3;
   justify-self: center;
 
@@ -235,7 +244,8 @@ const TableFooterTotalItems = styled.div`
   }
 `;
 
-const TableFooterTotalValue = styled.div`
+const TableFooterTotalValue = styled.h2`
+  margin: 0;
   grid-column: 4;
   justify-self: center;
 

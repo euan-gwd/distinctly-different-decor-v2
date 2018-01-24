@@ -12,10 +12,11 @@ const Img = styled.img`
   max-width: 100%;
   object-fit: cover;
   width: ${props =>
-    (props.size === "mini" ? "50px" : null) ||
+    (props.size === "avatar" ? "50px" : null) ||
     (props.size === "tiny" ? "100px" : null) ||
     (props.size === "small" ? "125px" : null) ||
     (props.size === "medium" ? "250px" : null) ||
     (props.size === "Large" ? "500px" : null)};
   height: auto;
+  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1);
 `;

@@ -14,7 +14,6 @@ export const colors = {
   white: "#ffffff",
   default: "#00000099",
   defaultHover: "#C8C9C8",
-  // background: "#f5f5f5",
   errorBackground: "#FFF5F5",
   primaryBorder: "#6435C950",
   defaultBorder: "rgba(34,36,38,.15)",

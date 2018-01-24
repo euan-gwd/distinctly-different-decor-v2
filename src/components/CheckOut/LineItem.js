@@ -11,12 +11,18 @@ class LineItem extends Component {
     return (
       <LineItemRow>
         <LineItemImage>
-          <Image src={details.thumbnail} alt={details.title} size="mini" />
+          <Image src={details.thumbnail} alt={details.title} size="avatar" />
         </LineItemImage>
-        <LineItemCell>{details.title}</LineItemCell>
-        <LineItemCell>{details.orderSize}</LineItemCell>
-        <LineItemCell>{details.orderColor}</LineItemCell>
-        <LineItemCell>{details.orderQty}</LineItemCell>
+        <LineItemDetails>
+          <ItemTitle>{details.title}</ItemTitle>
+          <ItemDescription>{details.description}</ItemDescription>
+          <ItemOptions>
+            <span>Option:</span>
+            <span>{details.orderSize}</span>
+            <span>{details.orderColor}</span>
+          </ItemOptions>
+        </LineItemDetails>
+        <LineItemQty>{details.orderQty}</LineItemQty>
         <LineItemCell>{formatPrice(details.orderItemTotal)}</LineItemCell>
         <LineItemCell>
           <IconButton
@@ -76,9 +82,54 @@ const LineItemImage = styled.div`
     width: 100%;
     box-sizing: border-box;
     display: grid;
-    justify-content: center;
+    justify-items: center;
     align-items: center;
   }
+`;
+
+const LineItemDetails = styled.div`
+  grid-column: span 3;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  display: grid;
+  align-items: center;
+`;
+
+const ItemTitle = styled.h3`
+  margin: 0;
+  color: ${colors.primary};
+`;
+
+const ItemDescription = styled.p`
+  margin: 0;
+  color: ${colors.default};
+`;
+
+const ItemOptions = styled.p`
+  margin: 0;
+  display: grid;
+  grid-template-columns: max-content max-content max-content;
+  grid-gap: 1rem;
+  font-weight: bold;
+
+  & span:first-of-type {
+    font-weight: normal;
+    color: ${colors.grey};
+  }
+`;
+
+const LineItemQty = styled.div`
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  display: grid;
+  justify-items: center;
+  align-items: center;
 `;
 
 const LineItemCell = styled.div`
@@ -88,6 +139,6 @@ const LineItemCell = styled.div`
   width: 100%;
   box-sizing: border-box;
   display: grid;
-  justify-content: center;
+  justify-items: center;
   align-items: center;
 `;

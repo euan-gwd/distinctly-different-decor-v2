@@ -49,7 +49,7 @@ const CartCount = styled.span`
   box-sizing: border-box;
   position: absolute;
   top: 0.8rem;
-  right: 1.15rem;
+  right: 1rem;
   font-size: 0.7rem;
   font-weight: bold;
   text-shadow: 0 2px 0 rgba(0, 0, 0, 0.07);

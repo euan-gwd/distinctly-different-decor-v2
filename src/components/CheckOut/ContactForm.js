@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import styled from "styled-components";
 import { Send } from "react-feather";
 import Input from "../uiElements/Input";
@@ -82,66 +82,69 @@ class ContactForm extends Component {
   render() {
     const { nameFieldError, emailFieldError, phoneFieldError } = this.state;
     return (
-      <FormWrapper>
-        {nameFieldError ? (
-          <Input
-            fluid
-            label={{ pointing: "right", content: "Name", color: "red" }}
-            labelPosition="left"
-            placeholder="Name is Required"
-            onChange={this.handleNameInput}
-            error
-          />
-        ) : (
-          <Input
-            fluid
-            label={{ pointing: "right", content: "Name", color: "violet" }}
-            labelPosition="left"
-            placeholder="Contact Name..."
-            onChange={this.handleNameInput}
-          />
-        )}
-        {emailFieldError ? (
-          <Input
-            fluid
-            label={{ pointing: "right", content: "Email", color: "red" }}
-            labelPosition="left"
-            placeholder="Valid Email Required"
-            onChange={this.handleEmailInput}
-            error
-          />
-        ) : (
-          <Input
-            fluid
-            label={{ pointing: "right", content: "Email", color: "violet" }}
-            labelPosition="left"
-            placeholder="Contact Email..."
-            onChange={this.handleEmailInput}
-          />
-        )}
-        {phoneFieldError ? (
-          <Input
-            fluid
-            label={{ pointing: "right", content: "phone", color: "red" }}
-            labelPosition="left"
-            placeholder="A Valid Number 000-000-0000 is required"
-            onChange={this.handlePhoneInput}
-            error
-          />
-        ) : (
-          <Input
-            fluid
-            label={{ pointing: "right", content: "phone", color: "violet" }}
-            labelPosition="left"
-            placeholder="123-456-7890"
-            onChange={this.handlePhoneInput}
-          />
-        )}
-        <IconButton color="primary" onClick={this.handleSubmit}>
-          <Send />
-          <span>Place Order</span>
-        </IconButton>
-      </FormWrapper>
+      <Fragment>
+        <h3>Contact Details:</h3>
+        <FormWrapper>
+          {nameFieldError ? (
+            <Input
+              fluid
+              label={{ pointing: "right", content: "Name", color: "red" }}
+              labelPosition="left"
+              placeholder="Name is Required"
+              onChange={this.handleNameInput}
+              error
+            />
+          ) : (
+            <Input
+              fluid
+              label={{ pointing: "right", content: "Name", color: "violet" }}
+              labelPosition="left"
+              placeholder="Contact Name..."
+              onChange={this.handleNameInput}
+            />
+          )}
+          {emailFieldError ? (
+            <Input
+              fluid
+              label={{ pointing: "right", content: "Email", color: "red" }}
+              labelPosition="left"
+              placeholder="Valid Email Required"
+              onChange={this.handleEmailInput}
+              error
+            />
+          ) : (
+            <Input
+              fluid
+              label={{ pointing: "right", content: "Email", color: "violet" }}
+              labelPosition="left"
+              placeholder="Contact Email..."
+              onChange={this.handleEmailInput}
+            />
+          )}
+          {phoneFieldError ? (
+            <Input
+              fluid
+              label={{ pointing: "right", content: "phone", color: "red" }}
+              labelPosition="left"
+              placeholder="A Valid Number 000-000-0000 is required"
+              onChange={this.handlePhoneInput}
+              error
+            />
+          ) : (
+            <Input
+              fluid
+              label={{ pointing: "right", content: "phone", color: "violet" }}
+              labelPosition="left"
+              placeholder="123-456-7890"
+              onChange={this.handlePhoneInput}
+            />
+          )}
+          <IconButton color="primary" onClick={this.handleSubmit}>
+            <Send />
+            <span>Place Order</span>
+          </IconButton>
+        </FormWrapper>
+      </Fragment>
     );
   }
 }
