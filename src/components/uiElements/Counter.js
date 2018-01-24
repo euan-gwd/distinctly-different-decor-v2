@@ -28,7 +28,9 @@ const Container = styled.div`
 `;
 
 const SubtractQty = styled(Button)`
-  margin: 0;
+  display: grid;
+  align-items: center;
+  justify-items: center;
   padding: calc(0.78571429rem/2);
   min-width: 50px;
   box-shadow: none;
@@ -40,7 +42,9 @@ const SubtractQty = styled(Button)`
 `;
 
 const AddQty = styled(Button)`
-  margin: 0;
+  display: grid;
+  align-items: center;
+  justify-items: center;
   min-width: 50px;
   padding: calc(0.78571429rem/2);
   box-shadow: none;
@@ -54,7 +58,10 @@ const AddQty = styled(Button)`
 const Input = styled.div`
   outline: none;
   border: none;
-  padding: 0.77571429rem 0.78571429rem;
+  padding: 0.715rem 0.78571429rem;
+  display: grid;
+  align-items: center;
+  justify-items: center;
   background-color: ${props =>
     props.fieldError
       ? `${colors.errorBackground}`
@@ -63,7 +70,7 @@ const Input = styled.div`
     props.fieldError ? `${colors.error}` : `${colors.primary}`};
   margin: 0;
   text-transform: none;
-  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.07);
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.07);
   font-size: 1rem;
   font-weight: normal;
   line-height: 1rem;
