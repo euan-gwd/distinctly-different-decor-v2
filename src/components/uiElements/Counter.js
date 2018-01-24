@@ -10,7 +10,7 @@ const Counter = props => {
       <SubtractQty onClick={() => props.handleRemove()}>
         <MinusSquare />
       </SubtractQty>
-      <Input>{props.orderQty}</Input>
+      <Input fieldError={props.qtyFieldError}>{props.orderQty}</Input>
       <AddQty onClick={() => props.handleAdd()}>
         <PlusSquare />
       </AddQty>
@@ -56,10 +56,11 @@ const Input = styled.div`
   border: none;
   padding: 0.77571429rem 0.78571429rem;
   background-color: ${props =>
-    props.validate
+    props.fieldError
       ? `${colors.errorBackground}`
       : `${colors.defaultBackground}`};
-  color: ${props => (props.validate ? `${colors.error}` : `${colors.primary}`)};
+  color: ${props =>
+    props.fieldError ? `${colors.error}` : `${colors.primary}`};
   margin: 0;
   text-transform: none;
   text-shadow: 0 2px 0 rgba(0, 0, 0, 0.07);

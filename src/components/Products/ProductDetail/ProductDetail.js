@@ -107,7 +107,7 @@ class ProductDetail extends Component {
       this.setState({ colorFieldValid: true });
     }
 
-    if (orderItem.orderQty === "") {
+    if (orderItem.orderQty === 0) {
       this.setState({ qtyFieldError: true });
     } else {
       this.setState({ qtyFieldValid: true });
@@ -176,7 +176,6 @@ class ProductDetail extends Component {
             <QtyChoice
               handleQtyAdd={this.handleQtyAdd}
               handleQtyRemove={this.handleQtyRemove}
-              handleQtyChange={this.handleQtyChange}
               orderQty={orderQty}
               qtyFieldError={qtyFieldError}
             />

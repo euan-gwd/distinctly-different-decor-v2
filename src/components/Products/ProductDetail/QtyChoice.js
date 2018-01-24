@@ -1,26 +1,21 @@
 import React from "react";
 import styled from "styled-components";
-// import Dropdown from "../../uiElements/Dropdown.js";
 import Counter from "../../uiElements/Counter";
 import Ribbon from "../../uiElements/Ribbon";
 import RequiredLabel from "../../uiElements/RequiredLabel";
 
-const QtyChoice = ({
-  qtyFieldError,
-  orderQty,
-  handleQtyChange,
-  handleQtyAdd,
-  handleQtyRemove
-}) => {
+const QtyChoice = props => {
   return (
     <QtyContainer>
       <Ribbon primary>Choose Quantity:</Ribbon>
-      {qtyFieldError && <RequiredLabel>Quantity is Required!</RequiredLabel>}
+      {props.qtyFieldError && (
+        <RequiredLabel>Quantity is Required!</RequiredLabel>
+      )}
       <Counter
-        orderQty={orderQty}
-        handleQtyChange={handleQtyChange}
-        handleAdd={handleQtyAdd}
-        handleRemove={handleQtyRemove}
+        orderQty={props.orderQty}
+        handleAdd={props.handleQtyAdd}
+        handleRemove={props.handleQtyRemove}
+        qtyFieldError={props.qtyFieldError}
       />
     </QtyContainer>
   );
