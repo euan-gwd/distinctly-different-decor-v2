@@ -31,10 +31,9 @@ const InputGroup = styled.div`
     border: none;
     vertical-align: baseline;
     background-color: ${props =>
-      props.validate
-        ? `${colors.errorBackground}`
-        : `${colors.defaultBackground}`};
-    color: ${props => (props.validate ? `${colors.error}` : `${colors.black}`)};
+      props.validate ? `${colors.errorBackground}` : `transparent`};
+    color: ${props =>
+      props.validate ? `${colors.error}` : `${colors.default}`};
     margin: 0;
     padding: 0.78571429rem 1rem;
     text-transform: none;
@@ -63,8 +62,8 @@ const InputGroup = styled.div`
   }
 
   > input[type="radio"]:checked ~ label {
-    color: white;
-    background: ${colors.primary} none;
+    color: ${colors.primary};
+    background: ${colors.defaultBackground} none;
     box-shadow: 0px 0px 0px 1px ${colors.primary} inset;
     text-shadow: 0 2px 0 rgba(0, 0, 0, 0.07);
   }

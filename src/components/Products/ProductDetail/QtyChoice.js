@@ -1,20 +1,27 @@
 import React from "react";
 import styled from "styled-components";
-// import Input from "../../uiElements/Input";
-import Dropdown from "../../uiElements/Dropdown.js";
-// import { ArrowDownCircle, ArrowUpCircle } from "react-feather";
+// import Dropdown from "../../uiElements/Dropdown.js";
+import Counter from "../../uiElements/Counter";
 import Ribbon from "../../uiElements/Ribbon";
-// import Button from "../../uiElements/Button";
-// import ButtonGroup from "../../uiElements/ButtonGroup";
 import RequiredLabel from "../../uiElements/RequiredLabel";
-import "./QtyChoice.css";
 
-const QtyChoice = ({ qtyFieldError, orderQty, handleQtyChange }) => {
+const QtyChoice = ({
+  qtyFieldError,
+  orderQty,
+  handleQtyChange,
+  handleQtyAdd,
+  handleQtyRemove
+}) => {
   return (
     <QtyContainer>
       <Ribbon primary>Choose Quantity:</Ribbon>
       {qtyFieldError && <RequiredLabel>Quantity is Required!</RequiredLabel>}
-      <Dropdown onChange={handleQtyChange} options={qtyOptions} />
+      <Counter
+        orderQty={orderQty}
+        handleQtyChange={handleQtyChange}
+        handleAdd={handleQtyAdd}
+        handleRemove={handleQtyRemove}
+      />
     </QtyContainer>
   );
 };
@@ -22,28 +29,5 @@ const QtyChoice = ({ qtyFieldError, orderQty, handleQtyChange }) => {
 export default QtyChoice;
 
 const QtyContainer = styled.div`
-  margin: 0 0 0.25rem 1rem;
-  width: 300px;
+  margin: 0 0 1rem 1rem;
 `;
-
-const qtyOptions = [
-  { key: 1, text: "1", value: 1 },
-  { key: 2, text: "2", value: 2 },
-  { key: 3, text: "3", value: 3 },
-  { key: 4, text: "4", value: 4 },
-  { key: 5, text: "5", value: 5 },
-  { key: 6, text: "6", value: 6 },
-  { key: 7, text: "7", value: 7 },
-  { key: 8, text: "8", value: 8 },
-  { key: 9, text: "9", value: 9 },
-  { key: 10, text: "10", value: 10 },
-  { key: 20, text: "20", value: 20 },
-  { key: 30, text: "30", value: 30 },
-  { key: 40, text: "40", value: 40 },
-  { key: 50, text: "50", value: 50 },
-  { key: 60, text: "60", value: 60 },
-  { key: 70, text: "70", value: 70 },
-  { key: 80, text: "80", value: 80 },
-  { key: 90, text: "90", value: 90 },
-  { key: 100, text: "100", value: 100 }
-];

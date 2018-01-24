@@ -31,7 +31,7 @@ const PosterOverlay = styled.div`
   transition: opacity 0.5s;
 `;
 
-const PosterButton = styled.a`
+const PosterButton = styled.div`
   outline: none;
   border: none;
   color: ${colors.white};

@@ -15,7 +15,7 @@ import ImageRibbon from "../../uiElements/ImageRibbon";
 class ProductDetail extends Component {
   state = {
     product: {},
-    orderQty: "",
+    orderQty: 0,
     orderSize: "",
     orderColor: "",
     sizeFieldValid: false,
@@ -57,12 +57,33 @@ class ProductDetail extends Component {
     });
   };
 
-  handleQtyChange = e =>
-    this.setState({
-      orderQty: e.target.value,
-      qtyFieldError: false,
-      qtyFieldValid: true
+  handleQtyAdd = () => {
+    this.setState((prevState, props) => {
+      return {
+        orderQty: prevState.orderQty + 1,
+        qtyFieldError: false,
+        qtyFieldValid: true
+      };
     });
+  };
+
+  handleQtyRemove = () => {
+    if (this.state.orderQty >= 1) {
+      this.setState((prevState, props) => {
+        return {
+          orderQty: prevState.orderQty - 1,
+          qtyFieldError: false,
+          qtyFieldValid: true
+        };
+      });
+    } else {
+      this.setState({
+        orderQty: 0,
+        qtyFieldError: true,
+        qtyFieldValid: false
+      });
+    }
+  };
 
   handleAddToCart = () => {
     const orderItem = {
@@ -153,6 +174,8 @@ class ProductDetail extends Component {
               colorFieldError={colorFieldError}
             />
             <QtyChoice
+              handleQtyAdd={this.handleQtyAdd}
+              handleQtyRemove={this.handleQtyRemove}
               handleQtyChange={this.handleQtyChange}
               orderQty={orderQty}
               qtyFieldError={qtyFieldError}
