@@ -1,50 +1,25 @@
 import React from "react";
 import styled from "styled-components";
 import { colors } from "../helpers.js";
-import { ArrowDown } from "react-feather";
-// import "./DropDown.css";
 
 const SelectDropDown = props => {
   return (
-    <Select>
+    <Select validate={props.validate}>
       <label>
         <input type="radio" name="option" />
-        <OpenArrow size={16} />
         <span className="placeholder">Choose...</span>
-        <label className="option">
-          <input type="radio" name="option" />
-          <span className="title">1</span>
-        </label>
-        <label className="option">
-          <input type="radio" name="option" />
-          <span className="title">2</span>
-        </label>
-        <label className="option">
-          <input type="radio" name="option" />
-          <span className="title">3</span>
-        </label>
-        <label className="option">
-          <input type="radio" name="option" />
-          <span className="title">4</span>
-        </label>
-        <label className="option">
-          <input type="radio" name="option" />
-          <span className="title">5</span>
-        </label>
+        {props.options.map(option => (
+          <label className="option" key={option.key}>
+            <input type="radio" name="option" value={option.value} {...props} />
+            <span className="title">{option.text}</span>
+          </label>
+        ))}
       </label>
     </Select>
   );
 };
 
 export default SelectDropDown;
-
-const OpenArrow = styled(ArrowDown)`
-  position: absolute;
-  z-index: 4;
-  right: 0.25rem;
-  bottom: 0.75rem;
-  color: #ccc;
-`;
 
 const Select = styled.div`
   display: block;
@@ -59,16 +34,16 @@ const Select = styled.div`
       : `${colors.defaultBackground}`};
   color: ${props => (props.validate ? `${colors.error}` : `${colors.black}`)};
   min-height: 1rem;
+  max-width: 80px;
   font-size: 1rem;
-  /* max-width: 80px; */
 
   .title,
   .placeholder {
     position: relative;
-    display: grid;
+    display: inline-block;
     width: 100%;
     height: 100%;
-    padding: 0.78571429rem;
+    padding: 0.78571429rem 1rem;
     background: white;
     border-top: 1px solid rgba(0, 0, 0, 0.05);
     cursor: pointer;
@@ -102,7 +77,7 @@ const Select = styled.div`
     position: relative;
     z-index: 0;
     display: inline-block;
-    width: 100%;
+    width: 80%;
     color: #999;
     border-top: 0px;
   }
@@ -110,12 +85,13 @@ const Select = styled.div`
   label.option {
     display: block;
     overflow: hidden;
-    z-index: 1;
+    z-index: 2;
     width: 100%;
     transition: all 1s ease-out;
     span.title {
       position: relative;
-      z-index: 2;
+      text-align: center;
+      z-index: 3;
       transition: background 0.3s ease-out;
       &:hover {
         color: #fff;
@@ -129,13 +105,14 @@ const Select = styled.div`
       &:checked ~ span.title {
         position: absolute;
         display: block;
-        z-index: 1;
+        z-index: 2;
         top: 0px;
         background: ${colors.primary};
         border-top: 0px;
         box-shadow: 0px 0px 0px 1px ${colors.primary} inset;
         color: ${colors.white};
         width: 100%;
+        text-align: center;
       }
     }
   }
