@@ -1,7 +1,6 @@
 {
   "name": "distinctly-different-decor",
   "version": "1.0.0",
-  "private": true,
   "dependencies": {
     "amwic-react-scripts": "1.2.29",
     "eslint-config-prettier": "^2.9.0",
