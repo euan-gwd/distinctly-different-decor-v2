@@ -25,11 +25,7 @@ class SuccessMessage extends Component {
           <MessageContent>
             <ProductImage>
               <Overdrive id={`${product.id}`}>
-                <Image
-                  src={product.thumbnail}
-                  alt={product.title}
-                  size="tiny"
-                />
+                <Image src={product.thumbnail} alt={product.title} size="tiny" />
               </Overdrive>
             </ProductImage>
             <MessageBody>
@@ -44,14 +40,12 @@ class SuccessMessage extends Component {
               </MessageBodyContent>
             </MessageBody>
           </MessageContent>
-          <ButtonGroup>
+          <MessageButtons>
             <MessageButton primary onClick={this.handleGoToCart}>
               Checkout
             </MessageButton>
-            <MessageButton onClick={this.handleReturnToList}>
-              Back to Main
-            </MessageButton>
-          </ButtonGroup>
+            <MessageButton onClick={this.handleReturnToList}>Back to Main</MessageButton>
+          </MessageButtons>
         </MessageContainer>
       </Message>
     );
@@ -63,16 +57,12 @@ export default withRouter(SuccessMessage);
 const Message = styled.div`
   grid-row: 1 / 3;
   grid-column: 1;
-  padding: 0 2.5vw;
+  padding: 0;
   display: ${props => (props.show ? "grid" : "none")};
-  align-items: center;
+  align-items: start;
+  justify-items: center;
   z-index: 2;
   background-color: rgba(0, 0, 0, 0.5);
-
-  @media screen and (min-width: 768px) {
-    padding: 0;
-    justify-content: center;
-  }
 `;
 
 const MessageContainer = styled.div`
@@ -81,7 +71,7 @@ const MessageContainer = styled.div`
   border: 2px solid #a3c193;
   border-radius: 4px;
   background-color: #fbfff5;
-  width: fit-content;
+  max-width: 300px;
 
   @media screen and (min-width: 768px) {
     width: auto;
@@ -116,10 +106,29 @@ const MessageBodyHeader = styled.div`
 
 const MessageBodyContent = styled.div`
   grid-row: 2;
-  display: grid;
-  grid-template-columns: max-content max-content;
-  align-items: end;
-  grid-gap: 2.5px;
+  grid-template-columns: 1fr;
+  align-items: center;
+
+  @media screen and (min-width: 768px) {
+    display: grid;
+    grid-template-columns: min-content max-content;
+    align-items: end;
+    grid-gap: 2.5px;
+  }
+`;
+
+const MessageButtons = styled(ButtonGroup)`
+  grid-template-columns: 1fr;
+  grid-row-gap: 1rem;
+  padding: 0 1rem;
+  max-width: 290px;
+
+  @media screen and (min-width: 768px) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    grid-column-gap: 1rem;
+    align-items: center;
+  }
 `;
 
 const MessageButton = styled(Button)`

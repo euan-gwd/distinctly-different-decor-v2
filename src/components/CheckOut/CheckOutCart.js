@@ -52,31 +52,23 @@ class Cart extends Component {
 
     return (
       <Container>
-        <h2>Check Out List</h2>
+        <h2>CheckOut</h2>
         <p>
-          These are the items you indicated that you are interested in, please
-          confirm below. <br />
+          These are the items you indicated that you are interested in, please confirm below. <br />
           Then enter your contact details and I shall contact you.
         </p>
         <Table>
           <TableHeader>
             <ImageHeader />
-            <TableColumnHeader>Item</TableColumnHeader>
-            <TableColumnHeader />
-            <TableColumnHeader />
-            <TableColumnHeader>Qty</TableColumnHeader>
-            <TableColumnHeader>Subtotal</TableColumnHeader>
-            <TableColumnHeader />
+            <TableColumnDescriptionHeader>Item</TableColumnDescriptionHeader>
+            <TableColumnQtyHeader>Qty</TableColumnQtyHeader>
+            <TableColumnSubTotalHeader>Subtotal</TableColumnSubTotalHeader>
+            <TableColumnActionHeader />
           </TableHeader>
           {ordersLength > 0 ? (
             <TableBody>
               {Object.keys(orders).map(key => (
-                <LineItem
-                  key={key}
-                  details={orders[key]}
-                  id={key}
-                  removeFromOrder={this.handleRemoveFromOrder}
-                />
+                <LineItem key={key} details={orders[key]} id={key} removeFromOrder={this.handleRemoveFromOrder} />
               ))}
             </TableBody>
           ) : (
@@ -90,9 +82,7 @@ class Cart extends Component {
           <TableFooter>
             <TableFooterTotalLabel>Total:</TableFooterTotalLabel>
             <TableFooterTotalItems>{totalItemsInCart}</TableFooterTotalItems>
-            <TableFooterTotalValue>
-              {formatPrice(totalCost)}
-            </TableFooterTotalValue>
+            <TableFooterTotalValue>{formatPrice(totalCost)}</TableFooterTotalValue>
             <TableFooterAction />
           </TableFooter>
         </Table>
@@ -133,21 +123,19 @@ const TableHeader = styled.div`
   grid-row: 1;
   margin: 0;
   padding: 0;
-
+  box-sizing: border-box;
   border-bottom: 1px solid ${colors.primaryBorder};
-  display: grid;
-  grid-template-columns: auto 15px auto 15px auto 50px;
-  align-items: center;
   background-color: ${colors.primaryBorder};
   color: ${colors.white};
 
-  @media screen and (min-width: 768px) {
-    grid-row: 1;
-    margin: 0;
-    padding: 0;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr minmax(50px, auto);
+  align-items: center;
+  justify-items: end;
 
+  @media screen and (min-width: 769px) {
     display: grid;
-    grid-template-columns: repeat(7, minmax(35px, 1fr));
+    grid-template-columns: 100px 1fr minmax(80px, max-content) 100px minmax(35px, auto);
     grid-column-gap: 0.25rem;
     align-items: center;
   }
@@ -166,9 +154,21 @@ const ImageHeader = styled.div`
   }
 `;
 
-const TableColumnHeader = styled.div`
+const TableColumnDescriptionHeader = styled.div`
   justify-self: center;
 `;
+
+const TableColumnQtyHeader = styled.div`
+  justify-self: center;
+`;
+
+const TableColumnSubTotalHeader = styled.div`
+  @media screen and (min-width: 769px) {
+    justify-self: center;
+  }
+`;
+
+const TableColumnActionHeader = styled.div``;
 
 const TableBody = styled.div`
   grid-row: 2;

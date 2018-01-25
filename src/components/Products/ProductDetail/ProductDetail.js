@@ -30,12 +30,10 @@ class ProductDetail extends Component {
   async componentDidMount() {
     try {
       //retrieve selected product from firebase
-      await database
-        .ref(`products/${this.props.match.params.id}`)
-        .on("value", res => {
-          const product = res.val();
-          this.setState({ product });
-        });
+      await database.ref(`products/${this.props.match.params.id}`).on("value", res => {
+        const product = res.val();
+        this.setState({ product });
+      });
     } catch (error) {
       console.log(error);
     }
@@ -151,11 +149,7 @@ class ProductDetail extends Component {
           <ProductImage>
             <ImageRibbon primary>{Pricing}</ImageRibbon>
             <Overdrive id={`${product.id}`}>
-              <Image
-                size="medium"
-                src={product.thumbnail}
-                alt={product.title}
-              />
+              <Image size="medium" src={product.thumbnail} alt={product.title} />
             </Overdrive>
             <Header>
               <h2>{product.title}</h2>
@@ -179,24 +173,15 @@ class ProductDetail extends Component {
               orderQty={orderQty}
               qtyFieldError={qtyFieldError}
             />
-            <ButtonGroup>
-              <Button
-                onClick={this.handleAddToCart}
-                color="violet"
-                effect="basic"
-              >
+            <FormButtons>
+              <Button onClick={this.handleAddToCart} color="violet" effect="basic">
                 Add to Cart
               </Button>
               <Button onClick={this.handleReturnToList}>Back to Main</Button>
-            </ButtonGroup>
+            </FormButtons>
           </Form>
         </Container>
-        <SuccessMessage
-          show={showSuccessMessage}
-          product={product}
-          orderQty={orderQty}
-          Pricing={Pricing}
-        />
+        <SuccessMessage show={showSuccessMessage} product={product} orderQty={orderQty} Pricing={Pricing} />
       </Backdrop>
     );
   }
@@ -206,11 +191,7 @@ export default ProductDetail;
 
 const Backdrop = styled.div`
   grid-row: 2;
-  background: linear-gradient(
-      to bottom,
-      rgba(255, 255, 255, 0.5),
-      rgba(0, 0, 255, 0.3)
-    ),
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(0, 0, 255, 0.3)),
     url(${props => props.image}) center no-repeat;
   background-size: cover;
   display: grid;
@@ -221,9 +202,9 @@ const Backdrop = styled.div`
 `;
 
 const Container = styled.div`
-  grid-row: 2;
+  grid-row: 1;
   grid-column: 1;
-  padding: 0 1rem;
+  padding: 1rem 1rem;
   display: grid;
   grid-template-columns: minmax(300px, 1fr);
   justify-items: center;
@@ -258,5 +239,19 @@ const Form = styled.div`
     grid-column: 2;
     grid-row: 1;
     justify-self: start;
+  }
+`;
+
+const FormButtons = styled(ButtonGroup)`
+  grid-template-columns: 1fr;
+  grid-row-gap: 1rem;
+  padding: 0 1rem;
+  max-width: 290px;
+
+  @media screen and (min-width: 768px) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    grid-column-gap: 1rem;
+    align-items: center;
   }
 `;

@@ -48,17 +48,16 @@ const LineItemRow = styled.div`
   min-height: 50px;
   width: 100%;
   display: grid;
-  grid-template-columns: auto 15px auto 15px auto 50px;
-  grid-gap: 0.5rem 0.5rem;
-  justify-items: center;
+  grid-template-columns: 2fr 1fr 1fr minmax(50px, auto);
   align-items: center;
+  /* grid-gap: 0.5rem 0.5rem; */
   border-bottom: 1px solid ${colors.primaryBorder};
 
   @media screen and (min-width: 768px) {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    grid-template-columns: repeat(7, minmax(35px, 1fr));
+    grid-template-columns: 100px 1fr minmax(80px, max-content) 100px minmax(35px, auto);
     align-items: center;
 
     &:hover {
@@ -88,14 +87,18 @@ const LineItemImage = styled.div`
 `;
 
 const LineItemDetails = styled.div`
-  grid-column: span 3;
-  margin: 0;
+  grid-column: 1;
+  margin: 5px 0 5px 5px;
   padding: 0;
-  height: 100%;
-  width: 100%;
   box-sizing: border-box;
   display: grid;
-  align-items: center;
+  align-items: start;
+
+  @media screen and (min-width: 768px) {
+    grid-column: 2;
+    display: grid;
+    align-items: center;
+  }
 `;
 
 const ItemTitle = styled.h3`
@@ -112,7 +115,7 @@ const ItemOptions = styled.p`
   margin: 0;
   display: grid;
   grid-template-columns: max-content max-content max-content;
-  grid-gap: 1rem;
+  grid-column-gap: 1rem;
   font-weight: bold;
 
   & span:first-of-type {

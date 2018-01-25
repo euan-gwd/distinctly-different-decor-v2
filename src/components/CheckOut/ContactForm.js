@@ -87,9 +87,7 @@ class ContactForm extends Component {
         <FormWrapper>
           <InputGroup>
             <Label primary>Name:</Label>
-            {nameFieldError && (
-              <RequiredLabel>A Valid Name is Required!</RequiredLabel>
-            )}
+            {nameFieldError && <RequiredLabel>A Valid Name is Required!</RequiredLabel>}
             <Input
               placeholder="Contact Name..."
               onChange={this.handleNameInput}
@@ -99,9 +97,7 @@ class ContactForm extends Component {
 
           <InputGroup>
             <Label primary>Email:</Label>
-            {emailFieldError && (
-              <RequiredLabel>A Valid Email is Required!</RequiredLabel>
-            )}
+            {emailFieldError && <RequiredLabel>A Valid Email is Required!</RequiredLabel>}
             <Input
               placeholder="Contact Email..."
               onChange={this.handleEmailInput}
@@ -110,9 +106,7 @@ class ContactForm extends Component {
           </InputGroup>
           <InputGroup>
             <Label primary>Phone:</Label>
-            {nameFieldError && (
-              <RequiredLabel>A Valid Number is Required!</RequiredLabel>
-            )}
+            {nameFieldError && <RequiredLabel>A Valid Number is Required!</RequiredLabel>}
             <Input
               placeholder="123-456-7890"
               onChange={this.handlePhoneInput}
@@ -135,14 +129,14 @@ export default ContactForm;
 
 const FormWrapper = styled.div`
   display: grid;
-  grid-template-rows: repeat(3, 1fr) 80px;
+  grid-template-rows: repeat(3, 1fr) 140px;
   grid-row-gap: 0.5rem;
   /* justify-items: center; */
 
   @media screen and (min-width: 768px) {
     grid-template-columns: repeat(3, 1fr) 140px;
     grid-column-gap: 1rem;
-    /* justify-items: start; */
+    justify-items: start;
     align-items: end;
   }
 `;
@@ -159,12 +153,13 @@ const SubmitGroup = styled.div`
 `;
 
 const SubmitButton = styled(IconButton)`
-  grid-template-columns: 1fr;
-  grid-auto-flow: column;
-  /* max-height: 4.25rem; */
-  /* max-width: 16.375rem; */
+  max-width: 12.55rem;
   padding: 0.78571429rem calc(0.78571429rem/2);
-  justify-items: start;
+  justify-items: center;
+
+  @media screen and (min-width: 768px) {
+    max-width: unset;
+  }
 `;
 
 const Label = styled(Ribbon)`
