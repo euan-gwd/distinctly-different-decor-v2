@@ -2,6 +2,7 @@
   "name": "distinctly-different-decor",
   "version": "1.0.0",
   "private": false,
+  "repository": "euan-gwd/distinctly-different-decor-v2",
   "license": "MIT",
   "dependencies": {
     "amwic-react-scripts": "1.2.29",
