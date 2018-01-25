@@ -28,7 +28,6 @@ const Container = styled.div`
 `;
 
 const SubtractQty = styled(Button)`
-  display: grid;
   align-items: center;
   justify-items: center;
   padding: calc(0.78571429rem/2);
@@ -42,7 +41,6 @@ const SubtractQty = styled(Button)`
 `;
 
 const AddQty = styled(Button)`
-  display: grid;
   align-items: center;
   justify-items: center;
   min-width: 50px;
@@ -58,7 +56,7 @@ const AddQty = styled(Button)`
 const Input = styled.div`
   outline: none;
   border: none;
-  padding: 0.715rem 0.78571429rem;
+  padding: 0.74571429rem 0.78571429rem;
   display: grid;
   align-items: center;
   justify-items: center;

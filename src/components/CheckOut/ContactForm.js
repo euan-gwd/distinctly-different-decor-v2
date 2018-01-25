@@ -2,6 +2,8 @@ import React, { Component, Fragment } from "react";
 import styled from "styled-components";
 import { Send } from "react-feather";
 import Input from "../uiElements/Input";
+import Ribbon from "../uiElements/Ribbon";
+import RequiredLabel from "../uiElements/RequiredLabel";
 import IconButton from "../uiElements/IconButton";
 
 class ContactForm extends Component {
@@ -61,7 +63,6 @@ class ContactForm extends Component {
       };
 
       console.log(customerOrder);
-      sessionStorage.clear();
     }
 
     if (this.state.phone === "") {
@@ -75,7 +76,6 @@ class ContactForm extends Component {
       };
 
       console.log(customerOrder);
-      sessionStorage.clear();
     }
   };
 
@@ -85,64 +85,46 @@ class ContactForm extends Component {
       <Fragment>
         <h3>Contact Details:</h3>
         <FormWrapper>
-          {nameFieldError ? (
+          <InputGroup>
+            <Label primary>Name:</Label>
+            {nameFieldError && (
+              <RequiredLabel>A Valid Name is Required!</RequiredLabel>
+            )}
             <Input
-              fluid
-              label={{ pointing: "right", content: "Name", color: "red" }}
-              labelPosition="left"
-              placeholder="Name is Required"
-              onChange={this.handleNameInput}
-              error
-            />
-          ) : (
-            <Input
-              fluid
-              label={{ pointing: "right", content: "Name", color: "violet" }}
-              labelPosition="left"
               placeholder="Contact Name..."
               onChange={this.handleNameInput}
+              validate={nameFieldError ? "error" : null}
             />
-          )}
-          {emailFieldError ? (
+          </InputGroup>
+
+          <InputGroup>
+            <Label primary>Email:</Label>
+            {emailFieldError && (
+              <RequiredLabel>A Valid Email is Required!</RequiredLabel>
+            )}
             <Input
-              fluid
-              label={{ pointing: "right", content: "Email", color: "red" }}
-              labelPosition="left"
-              placeholder="Valid Email Required"
-              onChange={this.handleEmailInput}
-              error
-            />
-          ) : (
-            <Input
-              fluid
-              label={{ pointing: "right", content: "Email", color: "violet" }}
-              labelPosition="left"
               placeholder="Contact Email..."
               onChange={this.handleEmailInput}
+              validate={emailFieldError ? "error" : null}
             />
-          )}
-          {phoneFieldError ? (
+          </InputGroup>
+          <InputGroup>
+            <Label primary>Phone:</Label>
+            {nameFieldError && (
+              <RequiredLabel>A Valid Number is Required!</RequiredLabel>
+            )}
             <Input
-              fluid
-              label={{ pointing: "right", content: "phone", color: "red" }}
-              labelPosition="left"
-              placeholder="A Valid Number 000-000-0000 is required"
-              onChange={this.handlePhoneInput}
-              error
-            />
-          ) : (
-            <Input
-              fluid
-              label={{ pointing: "right", content: "phone", color: "violet" }}
-              labelPosition="left"
               placeholder="123-456-7890"
               onChange={this.handlePhoneInput}
+              validate={phoneFieldError ? "error" : null}
             />
-          )}
-          <IconButton color="primary" onClick={this.handleSubmit}>
-            <Send />
-            <span>Place Order</span>
-          </IconButton>
+          </InputGroup>
+          <SubmitGroup>
+            <SubmitButton color="primary" onClick={this.handleSubmit}>
+              <span>Place Order</span>
+              <Send />
+            </SubmitButton>
+          </SubmitGroup>
         </FormWrapper>
       </Fragment>
     );
@@ -153,20 +135,39 @@ export default ContactForm;
 
 const FormWrapper = styled.div`
   display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: repeat(3, 1fr) auto;
+  grid-template-rows: repeat(3, 1fr) 80px;
   grid-row-gap: 0.5rem;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  /* justify-items: center; */
 
   @media screen and (min-width: 768px) {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr) auto;
+    grid-template-columns: repeat(3, 1fr) 140px;
     grid-column-gap: 1rem;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    /* justify-items: start; */
+    align-items: end;
   }
+`;
+
+const InputGroup = styled.div`
+  margin: 0;
+  padding: 0 0 0 1rem;
+  box-sizing: border-box;
+`;
+
+const SubmitGroup = styled.div`
+  margin: 1rem 0 0;
+  padding: 0 0 0 1rem;
+`;
+
+const SubmitButton = styled(IconButton)`
+  grid-template-columns: 1fr;
+  grid-auto-flow: column;
+  /* max-height: 4.25rem; */
+  /* max-width: 16.375rem; */
+  padding: 0.78571429rem calc(0.78571429rem/2);
+  justify-items: start;
+`;
+
+const Label = styled(Ribbon)`
+  font-size: 1rem;
+  margin: 0 0 0.125rem -1.17rem;
 `;

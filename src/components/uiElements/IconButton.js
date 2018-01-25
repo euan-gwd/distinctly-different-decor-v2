@@ -6,21 +6,22 @@ export default IconButton;
 
 const Button = styled.a`
   display: grid;
+  grid-template-columns: 1fr;
   grid-auto-flow: column;
-  justify-items: center;
   align-items: center;
-  grid-gap: 2.5px;
+  justify-items: center;
+  grid-column-gap: 0.25rem;
   cursor: pointer;
   outline: none;
   border: none;
-  min-height: 1rem;
+  min-height: fit-content;
   background-color: transparent;
   color: ${props =>
     (props.color === "primary" ? "#5E2EB3" : null) ||
     (props.color === "success" ? "#21ba45" : null) ||
     (props.color === "danger" ? "#db2828" : null)};
   margin: 0;
-  padding: calc(0.78571429rem/2) 0.78571429rem;
+  padding:0;
   box-sizing: border-box;
   text-transform: none;
   text-shadow: none;
