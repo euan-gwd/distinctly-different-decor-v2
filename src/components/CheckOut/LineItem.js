@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import { database } from "../../firebase/firebase";
 import { formatPrice, colors } from "../helpers";
 import { XSquare } from "react-feather";
 import Image from "../uiElements/Image";
@@ -14,13 +15,19 @@ class LineItem extends Component {
   };
 
   handleQtyChange = e => {
-    const Value = e.target.value;
-    if (Value > 0) {
+    const inputValue = e.target.value;
+    const { id } = this.props;
+    if (inputValue > 0) {
       this.setState({
-        orderQty: e.target.value,
+        orderQty: inputValue,
         qtyFieldError: false,
         qtyFieldValid: true
       });
+      const lineItemQtyRef = database.ref(`/cart/${id}`);
+      const updatedOrderQty = parseInt(inputValue, 10);
+      let updates = {};
+      updates["/orderQty"] = updatedOrderQty;
+      lineItemQtyRef.update(updates);
     } else {
       this.setState({
         orderQty: 0,

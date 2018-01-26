@@ -49,7 +49,6 @@ class ContactForm extends Component {
       };
 
       console.log(customerOrder);
-      sessionStorage.clear();
     }
 
     if (this.state.email === "") {
