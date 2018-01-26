@@ -16,22 +16,56 @@ class Cart extends Component {
   async componentDidMount() {
     try {
       //retrieve cart contents from firebase
-      await database.ref(`cart`).on("value", res => {
-        const orders = res.val() || {};
-        const orderIds = Object.keys(orders);
+      let fetchOrders = new Promise(async (resolve, reject) => {
+        await database.ref(`cart`).on("value", res => {
+          const orders = res.val() || {};
+          resolve(orders);
+        });
+      });
 
+      let generateTotalCost = fetchOrders.then(res => {
+        const orders = res;
+        const orderIds = Object.keys(orders);
         const totalCost = orderIds.reduce((total, orderId) => {
           const lineItemTotal = orders[orderId].orderItemTotal;
           return total + lineItemTotal;
         }, 0); // end calculate total Cost of all items in cart
+        return totalCost;
+      });
 
+      let generateTotalItemsInCart = fetchOrders.then(res => {
+        const orders = res;
+        const orderIds = Object.keys(orders);
         const totalItemsInCart = orderIds.reduce((total, orderId) => {
           const totalItems = orders[orderId].orderQty;
           return total + totalItems;
         }, 0); // end calculate total Number of all items in cart
-
-        this.setState({ totalCost, orders, totalItemsInCart });
+        return totalItemsInCart;
       });
+
+      this.setState({
+        orders: await fetchOrders,
+        totalCost: await generateTotalCost,
+        totalItemsInCart: await generateTotalItemsInCart
+      });
+
+      //retrieve cart contents from firebase
+      // database.ref(`cart`).on("value", res => {
+      //   const orders = res.val() || {};
+      //   const orderIds = Object.keys(orders);
+
+      //   const totalCost = orderIds.reduce((total, orderId) => {
+      //     const lineItemTotal = orders[orderId].orderItemTotal;
+      //     return total + lineItemTotal;
+      //   }, 0); // end calculate total Cost of all items in cart
+
+      //   const totalItemsInCart = orderIds.reduce((total, orderId) => {
+      //     const totalItems = orders[orderId].orderQty;
+      //     return total + totalItems;
+      //   }, 0); // end calculate total Number of all items in cart
+
+      //   this.setState({ totalCost, orders, totalItemsInCart });
+      // });
     } catch (error) {
       console.log(error);
     }
