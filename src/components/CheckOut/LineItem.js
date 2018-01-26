@@ -23,11 +23,16 @@ class LineItem extends Component {
         qtyFieldError: false,
         qtyFieldValid: true
       });
-      const lineItemQtyRef = database.ref(`/cart/${id}`);
+
+      const lineItemRef = database.ref(`/cart/${id}`);
       const updatedOrderQty = parseInt(inputValue, 10);
+      const updatedOrderItemTotal = this.props.details.price * updatedOrderQty;
+
       let updates = {};
       updates["/orderQty"] = updatedOrderQty;
-      lineItemQtyRef.update(updates);
+      updates["/orderItemTotal"] = updatedOrderItemTotal;
+
+      lineItemRef.update(updates);
     } else {
       this.setState({
         orderQty: 0,
