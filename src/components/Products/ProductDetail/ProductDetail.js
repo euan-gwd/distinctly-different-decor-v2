@@ -76,7 +76,7 @@ class ProductDetail extends Component {
     const orderItem = {
       orderSize: this.state.orderSize,
       orderColor: this.state.orderColor,
-      orderQty: this.state.orderQty,
+      orderQty: parseInt(this.state.orderQty, 10),
       orderItemTotal: this.state.product.price * this.state.orderQty,
       ...this.state.product
     };
@@ -103,9 +103,7 @@ class ProductDetail extends Component {
     const { sizeFieldValid, colorFieldValid, qtyFieldValid } = this.state;
 
     if (sizeFieldValid && colorFieldValid && qtyFieldValid) {
-      console.log(orderItem);
       const ordersRef = database.ref("cart");
-
       ordersRef.push(orderItem);
       this.setState({ showSuccessMessage: true });
     }
