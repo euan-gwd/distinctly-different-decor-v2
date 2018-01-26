@@ -55,24 +55,13 @@ class ProductDetail extends Component {
     });
   };
 
-  handleQtyAdd = () => {
-    this.setState((prevState, props) => {
-      return {
-        orderQty: prevState.orderQty + 1,
+  handleQtyChange = e => {
+    const Value = e.target.value;
+    if (Value > 0) {
+      this.setState({
+        orderQty: e.target.value,
         qtyFieldError: false,
         qtyFieldValid: true
-      };
-    });
-  };
-
-  handleQtyRemove = () => {
-    if (this.state.orderQty >= 1) {
-      this.setState((prevState, props) => {
-        return {
-          orderQty: prevState.orderQty - 1,
-          qtyFieldError: false,
-          qtyFieldValid: true
-        };
       });
     } else {
       this.setState({
@@ -114,6 +103,7 @@ class ProductDetail extends Component {
     const { sizeFieldValid, colorFieldValid, qtyFieldValid } = this.state;
 
     if (sizeFieldValid && colorFieldValid && qtyFieldValid) {
+      console.log(orderItem);
       const ordersRef = database.ref("cart");
 
       ordersRef.push(orderItem);
@@ -167,12 +157,7 @@ class ProductDetail extends Component {
               orderColor={orderColor}
               colorFieldError={colorFieldError}
             />
-            <QtyChoice
-              handleQtyAdd={this.handleQtyAdd}
-              handleQtyRemove={this.handleQtyRemove}
-              orderQty={orderQty}
-              qtyFieldError={qtyFieldError}
-            />
+            <QtyChoice handleQtyChange={this.handleQtyChange} orderQty={orderQty} qtyFieldError={qtyFieldError} />
             <FormButtons>
               <Button onClick={this.handleAddToCart} color="violet" effect="basic">
                 Add to Cart

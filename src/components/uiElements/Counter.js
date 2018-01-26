@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import Button from "./Button.js";
+import Button from "./Button";
 import { MinusSquare, PlusSquare } from "react-feather";
-import { colors } from "../helpers.js";
+import { colors } from "../helpers";
 
 const Counter = props => {
   return (
@@ -10,7 +10,7 @@ const Counter = props => {
       <SubtractQty onClick={() => props.handleRemove()}>
         <MinusSquare />
       </SubtractQty>
-      <Input type="number" fieldError={props.qtyFieldError}>{props.orderQty}</Input>
+      <Input type="number" fieldError={props.qtyFieldError} value={props.orderQty} />
       <AddQty onClick={() => props.handleAdd()}>
         <PlusSquare />
       </AddQty>
@@ -53,19 +53,15 @@ const AddQty = styled(Button)`
   border-right: 1px solid ${colors.primaryBorder};
 `;
 
-const Input = styled.div`
+const Input = styled.input`
   outline: none;
   border: none;
   padding: 0.74571429rem 0.78571429rem;
   display: grid;
   align-items: center;
   justify-items: center;
-  background-color: ${props =>
-    props.fieldError
-      ? `${colors.errorBackground}`
-      : `${colors.defaultBackground}`};
-  color: ${props =>
-    props.fieldError ? `${colors.error}` : `${colors.primary}`};
+  background-color: ${props => (props.fieldError ? `${colors.errorBackground}` : `${colors.defaultBackground}`)};
+  color: ${props => (props.fieldError ? `${colors.error}` : `${colors.primary}`)};
   margin: 0;
   text-transform: none;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.07);
@@ -75,6 +71,14 @@ const Input = styled.div`
   font-style: normal;
   text-align: center;
   text-decoration: none;
-  user-select: none;
   box-shadow: 0px 0px 0px 1px ${colors.primaryBorder} inset;
+
+  &:focus {
+    background-color: ${colors.defaultBackground};
+  }
+
+  &:visited {
+    color: white;
+    background-color: ${colors.primary};
+  }
 `;
