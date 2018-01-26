@@ -4,10 +4,34 @@ import { formatPrice, colors } from "../helpers";
 import { XSquare } from "react-feather";
 import Image from "../uiElements/Image";
 import IconButton from "../uiElements/IconButton";
+import InputCounter from "../uiElements/InputCounter.js";
 
 class LineItem extends Component {
+  state = {
+    orderQty: this.props.details.orderQty,
+    qtyFieldValid: false,
+    qtyFieldError: false
+  };
+
+  handleQtyChange = e => {
+    const Value = e.target.value;
+    if (Value > 0) {
+      this.setState({
+        orderQty: e.target.value,
+        qtyFieldError: false,
+        qtyFieldValid: true
+      });
+    } else {
+      this.setState({
+        orderQty: 0,
+        qtyFieldError: true,
+        qtyFieldValid: false
+      });
+    }
+  };
   render() {
     const { details, id, removeFromOrder } = this.props;
+    const { orderQty, qtyFieldError } = this.state;
     return (
       <LineItemRow>
         <LineItemImage>
@@ -22,7 +46,9 @@ class LineItem extends Component {
             <span>{details.orderColor}</span>
           </ItemOptions>
         </LineItemDetails>
-        <LineItemQty>{details.orderQty}</LineItemQty>
+        <LineItemQty>
+          <InputCounter orderQty={orderQty} handleChange={this.handleQtyChange} qtyFieldError={qtyFieldError} />
+        </LineItemQty>
         <LineItemCell>{formatPrice(details.orderItemTotal)}</LineItemCell>
         <LineItemCell>
           <IconButton
@@ -50,7 +76,6 @@ const LineItemRow = styled.div`
   display: grid;
   grid-template-columns: 2fr 1fr 1fr minmax(50px, auto);
   align-items: center;
-  /* grid-gap: 0.5rem 0.5rem; */
   border-bottom: 1px solid ${colors.primaryBorder};
 
   @media screen and (min-width: 768px) {

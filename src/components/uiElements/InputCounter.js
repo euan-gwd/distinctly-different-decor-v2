@@ -2,21 +2,15 @@ import React, { Fragment } from "react";
 import styled from "styled-components";
 import { colors } from "../helpers.js";
 
-const Counter = props => {
+const InputCounter = props => {
   return (
     <Fragment>
-      <Input
-        type="number"
-        fieldError={props.qtyFieldError}
-        placeholder="0"
-        value={props.orderQty}
-        onChange={props.handleChange}
-      />
+      <Input type="number" fieldError={props.qtyFieldError} value={props.orderQty} onChange={props.handleChange} />
     </Fragment>
   );
 };
 
-export default Counter;
+export default InputCounter;
 
 const Input = styled.input`
   outline: none;

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Counter from "../../uiElements/InputCounter";
+import InputCounter from "../../uiElements/InputCounter";
 import Ribbon from "../../uiElements/Ribbon";
 import RequiredLabel from "../../uiElements/RequiredLabel";
 
@@ -9,7 +9,11 @@ const QtyChoice = props => {
     <QtyContainer>
       <Ribbon primary>Choose Quantity:</Ribbon>
       {props.qtyFieldError && <RequiredLabel>Quantity is Required!</RequiredLabel>}
-      <Counter orderQty={props.orderQty} handleChange={props.handleQtyChange} qtyFieldError={props.qtyFieldError} />
+      <InputCounter
+        orderQty={props.orderQty}
+        handleChange={props.handleQtyChange}
+        qtyFieldError={props.qtyFieldError}
+      />
     </QtyContainer>
   );
 };
