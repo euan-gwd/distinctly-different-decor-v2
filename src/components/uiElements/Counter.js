@@ -10,7 +10,7 @@ const Counter = props => {
       <SubtractQty onClick={() => props.handleRemove()}>
         <MinusSquare />
       </SubtractQty>
-      <Input fieldError={props.qtyFieldError}>{props.orderQty}</Input>
+      <Input type="number" fieldError={props.qtyFieldError}>{props.orderQty}</Input>
       <AddQty onClick={() => props.handleAdd()}>
         <PlusSquare />
       </AddQty>
