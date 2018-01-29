@@ -59,7 +59,7 @@ class Cart extends Component {
     }
   }
 
-  fetchUpdatedOrder = inputValue => {
+  handleUpdateItemOrder = inputValue => {
     database.ref(`cart`).on("value", res => {
       const orders = res.val() || {};
       const orderIds = Object.keys(orders);
@@ -77,7 +77,7 @@ class Cart extends Component {
     });
   };
 
-  handleRemoveFromOrder = id => {
+  handleRemoveItemOrder = id => {
     const lineItemRef = database.ref(`/cart/${id}`);
     lineItemRef.remove();
     database.ref(`cart`).on("value", res => {
@@ -130,8 +130,8 @@ class Cart extends Component {
                   key={key}
                   details={orders[key]}
                   id={key}
-                  updateOrder={this.fetchUpdatedOrder}
-                  removeFromOrder={this.handleRemoveFromOrder}
+                  updateOrder={this.handleUpdateItemOrder}
+                  removeFromOrder={this.handleRemoveItemOrder}
                 />
               ))}
             </TableBody>
