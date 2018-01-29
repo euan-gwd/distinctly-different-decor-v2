@@ -10,55 +10,76 @@ class Cart extends Component {
   state = {
     orders: {},
     totalCost: 0,
-    totalItemsInCart: 0
+    totalItemsInCart: 0,
+    orderQty: 0,
+    qtyFieldValid: false,
+    qtyFieldError: false
   };
 
   async componentDidMount() {
-    // try {
-    //retrieve cart contents from firebase
-    let fetchOrders = new Promise(async (resolve, reject) => {
-      await database.ref(`cart`).on("value", res => {
-        const orders = res.val() || {};
-        resolve(orders);
-        reject(new Error("missing values, check firebase database"));
+    try {
+      //retrieve cart contents from firebase
+      let fetchOrders = new Promise(async (resolve, reject) => {
+        await database.ref(`cart`).on("value", res => {
+          const orders = res.val() || {};
+          resolve(orders);
+          reject(new Error("missing values, check firebase database"));
+        });
       });
-    });
 
-    // calculate total Cost of all items in cart
-    let generateTotalCost = fetchOrders.then(res => {
-      const orders = res;
-      const orderIds = Object.keys(orders);
-      const totalCost = orderIds.reduce((total, orderId) => {
-        const lineItemTotal = orders[orderId].orderItemTotal;
-        return total + lineItemTotal;
-      }, 0);
-      return totalCost;
-    });
+      // calculate total Cost of all items in cart
+      let generateTotalCost = fetchOrders.then(res => {
+        const orders = res;
+        const orderIds = Object.keys(orders);
+        const totalCost = orderIds.reduce((total, orderId) => {
+          const lineItemTotal = orders[orderId].orderItemTotal;
+          return total + lineItemTotal;
+        }, 0);
+        return totalCost;
+      });
 
-    // calculate total Number of all items in cart
-    let generateTotalItemsInCart = fetchOrders.then(res => {
-      const orders = res;
-      const orderIds = Object.keys(orders);
-      const totalItemsInCart = orderIds.reduce((total, orderId) => {
-        const totalItems = orders[orderId].orderQty;
-        return total + totalItems;
-      }, 0);
-      return totalItemsInCart;
-    });
+      // calculate total Number of all items in cart
+      let generateTotalItemsInCart = fetchOrders.then(res => {
+        const orders = res;
+        const orderIds = Object.keys(orders);
+        const totalItemsInCart = orderIds.reduce((total, orderId) => {
+          const totalItems = orders[orderId].orderQty;
+          return total + totalItems;
+        }, 0);
+        return totalItemsInCart;
+      });
 
-    this.setState({
-      orders: await fetchOrders,
-      totalCost: await generateTotalCost,
-      totalItemsInCart: await generateTotalItemsInCart
-    });
-    // } catch (error) {
-    //   console.log(error);
-    // }
+      this.setState({
+        orders: await fetchOrders,
+        totalCost: await generateTotalCost,
+        totalItemsInCart: await generateTotalItemsInCart
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   handleRemoveFromOrder = id => {
     const lineItemRef = database.ref(`/cart/${id}`);
     lineItemRef.remove();
+  };
+
+  fetchUpdatedOrder = inputValue => {
+    database.ref(`cart`).on("value", res => {
+      const orders = res.val() || {};
+      const orderIds = Object.keys(orders);
+      const totalCost = orderIds.reduce((total, orderId) => {
+        const lineItemTotal = orders[orderId].orderItemTotal;
+        return total + lineItemTotal;
+      }, 0);
+      const totalItemsInCart = orderIds.reduce((total, orderId) => {
+        const totalItems = orders[orderId].orderQty;
+        return total + totalItems;
+      }, 0);
+      if (inputValue >= 1) {
+        this.setState({ orders, totalCost, totalItemsInCart });
+      }
+    });
   };
 
   componentWillUnmount = () => {
@@ -87,7 +108,13 @@ class Cart extends Component {
           {ordersLength > 0 ? (
             <TableBody>
               {Object.keys(orders).map(key => (
-                <LineItem key={key} details={orders[key]} id={key} removeFromOrder={this.handleRemoveFromOrder} />
+                <LineItem
+                  key={key}
+                  details={orders[key]}
+                  id={key}
+                  removeFromOrder={this.handleRemoveFromOrder}
+                  updateOrder={this.fetchUpdatedOrder}
+                />
               ))}
             </TableBody>
           ) : (

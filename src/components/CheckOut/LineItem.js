@@ -17,7 +17,7 @@ class LineItem extends Component {
   handleQtyChange = e => {
     const inputValue = e.target.value;
     const { id } = this.props;
-    if (inputValue > 0) {
+    if (inputValue >= 1) {
       this.setState({
         orderQty: inputValue,
         qtyFieldError: false,
@@ -31,16 +31,16 @@ class LineItem extends Component {
       let updates = {};
       updates["/orderQty"] = updatedOrderQty;
       updates["/orderItemTotal"] = updatedOrderItemTotal;
-
       lineItemRef.update(updates);
+
+      this.props.updateOrder(inputValue);
     } else {
       this.setState({
-        orderQty: 0,
-        qtyFieldError: true,
-        qtyFieldValid: false
+        orderQty: 1
       });
     }
   };
+
   render() {
     const { details, id, removeFromOrder } = this.props;
     const { orderQty, qtyFieldError } = this.state;
