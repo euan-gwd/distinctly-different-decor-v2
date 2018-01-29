@@ -59,11 +59,6 @@ class Cart extends Component {
     }
   }
 
-  handleRemoveFromOrder = id => {
-    const lineItemRef = database.ref(`/cart/${id}`);
-    lineItemRef.remove();
-  };
-
   fetchUpdatedOrder = inputValue => {
     database.ref(`cart`).on("value", res => {
       const orders = res.val() || {};
@@ -78,6 +73,29 @@ class Cart extends Component {
       }, 0);
       if (inputValue >= 1) {
         this.setState({ orders, totalCost, totalItemsInCart });
+      }
+    });
+  };
+
+  handleRemoveFromOrder = id => {
+    const lineItemRef = database.ref(`/cart/${id}`);
+    lineItemRef.remove();
+    database.ref(`cart`).on("value", res => {
+      const orders = res.val() || {};
+      const orderIds = Object.keys(orders);
+      const ordersLength = Object.keys(orders).length;
+      const totalCost = orderIds.reduce((total, orderId) => {
+        const lineItemTotal = orders[orderId].orderItemTotal;
+        return total + lineItemTotal;
+      }, 0);
+      const totalItemsInCart = orderIds.reduce((total, orderId) => {
+        const totalItems = orders[orderId].orderQty;
+        return total + totalItems;
+      }, 0);
+      if (ordersLength >= 1) {
+        this.setState({ orders, totalCost, totalItemsInCart });
+      } else {
+        this.setState({ orders: 0, totalCost: 0, totalItemsInCart: 0 });
       }
     });
   };
@@ -112,8 +130,8 @@ class Cart extends Component {
                   key={key}
                   details={orders[key]}
                   id={key}
-                  removeFromOrder={this.handleRemoveFromOrder}
                   updateOrder={this.fetchUpdatedOrder}
+                  removeFromOrder={this.handleRemoveFromOrder}
                 />
               ))}
             </TableBody>
