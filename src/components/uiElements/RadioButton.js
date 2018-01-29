@@ -35,7 +35,7 @@ const InputGroup = styled.div`
     margin: 0;
     padding: 0.78571429rem 1rem;
     text-transform: none;
-    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.07);
+    text-shadow: none;
     font-weight: normal;
     line-height: 1rem;
     font-style: normal;
@@ -57,9 +57,8 @@ const InputGroup = styled.div`
   }
 
   > input[type="radio"]:checked ~ label {
-    color: ${colors.primary};
-    background: ${colors.defaultBackground} none;
+    color: ${colors.white};
+    background-color: ${colors.primaryBorder};
     box-shadow: 0px 0px 0px 1px ${colors.primary} inset;
-    text-shadow: 0 2px 0 rgba(0, 0, 0, 0.07);
   }
 `;

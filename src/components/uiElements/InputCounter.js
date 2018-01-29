@@ -24,15 +24,16 @@ const Input = styled.input`
   background-color: ${props => {
     if (props.fieldError) return `${colors.errorBackground}`;
     if (props.value < 1) return `transparent`;
-    if (props.value >= 1) return `${colors.defaultBackground}`;
+    if (props.value >= 1) return `${colors.primaryBorder}`;
   }};
   color: ${props => {
     if (props.fieldError) return `${colors.error}`;
     if (props.value < 1) return `${colors.default}`;
-    if (props.value >= 1) return `${colors.primary}`;
+    if (props.value >= 1) return `${colors.white}`;
   }};
   text-transform: none;
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.07);
+  text-shadow: none;
+  font-family: inherit;
   font-size: 1rem;
   font-weight: normal;
   line-height: 1rem;
@@ -43,10 +44,6 @@ const Input = styled.input`
   box-shadow: ${props => {
     if (props.value < 1) return `0px 0px 0px 1px ${colors.primaryBorder} inset`;
     if (props.value >= 1) return `0px 0px 0px 1px ${colors.primary} inset;`;
-  }};
-  text-shadow: ${props => {
-    if (props.value < 1) return `0 1px 0 rgba(0, 0, 0, 0.07)`;
-    if (props.value >= 1) return `0 2px 0 rgba(0, 0, 0, 0.07)`;
   }};
 
   &:focus {

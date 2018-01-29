@@ -194,7 +194,7 @@ const TableHeader = styled.div`
   padding: 0;
   box-sizing: border-box;
   border-bottom: 1px solid ${colors.primaryBorder};
-  background-color: ${colors.primaryBorder};
+  background-color: ${colors.primary};
   color: ${colors.white};
 
   display: grid;
@@ -280,7 +280,7 @@ const TableFooter = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr minmax(50px, auto);
   align-items: center;
-  background-color: ${colors.primaryBorder};
+  background-color: ${colors.primary};
   color: ${colors.white};
   text-shadow: 0 2px 0 rgba(0, 0, 0, 0.07);
 

@@ -172,6 +172,13 @@ const LineItemPrice = styled.div`
   display: grid;
   justify-items: center;
   align-items: center;
+  color: ${colors.primary};
+  text-transform: none;
+  text-shadow: none;
+  font-size: 1rem;
+  font-weight: normal;
+  line-height: 1rem;
+  font-style: normal;
 `;
 
 const LineItemQty = styled.div`
@@ -184,6 +191,13 @@ const LineItemSubTotal = styled.div`
   display: grid;
   justify-items: center;
   align-items: center;
+  color: ${colors.primary};
+  text-transform: none;
+  text-shadow: none;
+  font-size: 1rem;
+  font-weight: normal;
+  line-height: 1rem;
+  font-style: normal;
 `;
 
 const LineItemAction = styled.div`
