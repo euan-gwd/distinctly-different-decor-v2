@@ -21,6 +21,20 @@ class CartButton extends Component {
       console.log(error);
     }
   }
+
+  componentWillUpdate = (nextProps, nextState) => {
+    try {
+      //retrieve cart contents from firebase
+      database.ref(`cart`).on("value", res => {
+        const orders = res.val() || {};
+        const ordersLength = Object.keys(orders).length;
+        nextState.totalItemsInCart = ordersLength;
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   render() {
     return (
       <Route
