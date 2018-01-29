@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import styled from "styled-components";
 import { Send } from "react-feather";
 import Input from "../uiElements/Input";
@@ -81,8 +81,9 @@ class ContactForm extends Component {
   render() {
     const { nameFieldError, emailFieldError, phoneFieldError } = this.state;
     return (
-      <Fragment>
+      <Container>
         <h3>Contact Details:</h3>
+        <p> Please enter your contact details below and I shall contact you.</p>
         <FormWrapper>
           <InputGroup>
             <Label primary>Name:</Label>
@@ -119,18 +120,27 @@ class ContactForm extends Component {
             </SubmitButton>
           </SubmitGroup>
         </FormWrapper>
-      </Fragment>
+      </Container>
     );
   }
 }
 
 export default ContactForm;
 
+const Container = styled.div`
+  > h3 {
+    margin: 0;
+  }
+
+  > p {
+    margin: 0 0 1rem 0;
+  }
+`;
+
 const FormWrapper = styled.div`
   display: grid;
   grid-template-rows: repeat(3, 1fr) 140px;
   grid-row-gap: 0.5rem;
-  /* justify-items: center; */
 
   @media screen and (min-width: 768px) {
     grid-template-columns: repeat(3, 1fr) 140px;
@@ -138,6 +148,11 @@ const FormWrapper = styled.div`
     justify-items: start;
     align-items: end;
   }
+`;
+
+const Label = styled(Ribbon)`
+  font-size: 1rem;
+  margin: 0 0 0.125rem -1.17rem;
 `;
 
 const InputGroup = styled.div`
@@ -152,16 +167,11 @@ const SubmitGroup = styled.div`
 `;
 
 const SubmitButton = styled(IconButton)`
-  max-width: 12.55rem;
+  max-width: 15.1rem;
   padding: 0.78571429rem calc(0.78571429rem/2);
   justify-items: center;
 
   @media screen and (min-width: 768px) {
     max-width: unset;
   }
-`;
-
-const Label = styled(Ribbon)`
-  font-size: 1rem;
-  margin: 0 0 0.125rem -1.17rem;
 `;

@@ -58,6 +58,7 @@ class LineItem extends Component {
             <span>{details.orderColor}</span>
           </ItemOptions>
         </LineItemDetails>
+        <LineItemPrice>{formatPrice(details.price)}</LineItemPrice>
         <LineItemQty>
           <InputCounter orderQty={orderQty} handleChange={this.handleQtyChange} qtyFieldError={qtyFieldError} />
         </LineItemQty>
@@ -86,7 +87,7 @@ const LineItemRow = styled.div`
   min-height: 50px;
   width: 100%;
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr minmax(50px, auto);
+  grid-template-columns: 1fr 1fr 1fr 1fr minmax(50px, auto);
   align-items: center;
   border-bottom: 1px solid ${colors.primaryBorder};
 
@@ -94,7 +95,7 @@ const LineItemRow = styled.div`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    grid-template-columns: 100px 1fr minmax(80px, max-content) 100px minmax(35px, auto);
+    grid-template-columns: 100px 1fr minmax(80px, max-content) minmax(80px, max-content) 100px minmax(35px, auto);
     align-items: center;
 
     &:hover {
@@ -144,21 +145,36 @@ const ItemTitle = styled.h3`
 `;
 
 const ItemDescription = styled.p`
-  margin: 0;
-  color: ${colors.default};
+  display: none;
+  @media screen and (min-width: 768px) {
+    margin: 0;
+    color: ${colors.default};
+  }
 `;
 
 const ItemOptions = styled.p`
   margin: 0;
   display: grid;
-  grid-template-columns: max-content max-content max-content;
-  grid-column-gap: 1rem;
   font-weight: bold;
 
   & span:first-of-type {
     font-weight: normal;
     color: ${colors.grey};
   }
+  @media screen and (min-width: 768px) {
+    margin: 0;
+    grid-template-columns: max-content max-content max-content;
+    grid-column-gap: 1rem;
+  }
+`;
+
+const LineItemPrice = styled.div`
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: grid;
+  justify-items: start;
+  align-items: center;
 `;
 
 const LineItemQty = styled.div`

@@ -111,14 +111,12 @@ class Cart extends Component {
     return (
       <Container>
         <h2>CheckOut</h2>
-        <p>
-          These are the items you indicated that you are interested in, please confirm below. <br />
-          Then enter your contact details and I shall contact you.
-        </p>
+        <p>These are the items you indicated that you are interested in, please confirm below.</p>
         <Table>
           <TableHeader>
             <ImageHeader />
             <TableColumnDescriptionHeader>Item</TableColumnDescriptionHeader>
+            <TableColumnPriceHeader>Price</TableColumnPriceHeader>
             <TableColumnQtyHeader>Qty</TableColumnQtyHeader>
             <TableColumnSubTotalHeader>Subtotal</TableColumnSubTotalHeader>
             <TableColumnActionHeader />
@@ -165,6 +163,13 @@ export default Cart;
 const Container = styled.div`
   grid-area: main;
   padding: 0 5px;
+  > h2 {
+    margin: 1rem 0 0;
+  }
+
+  > p {
+    margin: 0 0 1rem 0;
+  }
 
   @media screen and (min-width: 768px) {
     padding: 0 20px;
@@ -193,14 +198,14 @@ const TableHeader = styled.div`
   color: ${colors.white};
 
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr minmax(50px, auto);
+  grid-template-columns: 1fr 1fr 1fr 1fr minmax(50px, auto);
   align-items: center;
   justify-items: end;
 
   @media screen and (min-width: 769px) {
     display: grid;
-    grid-template-columns: 100px 1fr minmax(80px, max-content) 100px minmax(35px, auto);
-    grid-column-gap: 0.25rem;
+    grid-template-columns: 100px 1fr minmax(80px, max-content) minmax(80px, max-content) 100px minmax(35px, auto);
+    align-items: center;
     align-items: center;
   }
 `;
@@ -220,6 +225,10 @@ const ImageHeader = styled.div`
 
 const TableColumnDescriptionHeader = styled.div`
   justify-self: center;
+`;
+
+const TableColumnPriceHeader = styled.div`
+  justify-self: start;
 `;
 
 const TableColumnQtyHeader = styled.div`
@@ -280,8 +289,8 @@ const TableFooter = styled.div`
   @media screen and (min-width: 768px) {
     margin: 0;
     padding: 0;
-
-    grid-template-columns: repeat(7, minmax(35px, 1fr));
+    grid-template-columns: 100px 1fr minmax(80px, max-content) minmax(80px, max-content) 100px minmax(35px, auto);
+    grid-column-gap: 0.25rem;
     align-items: center;
   }
 `;
@@ -292,7 +301,7 @@ const TableFooterTotalLabel = styled.h2`
   justify-self: center;
 
   @media screen and (min-width: 768px) {
-    grid-column: 4;
+    grid-column: 2;
     justify-self: center;
   }
 `;
@@ -303,7 +312,7 @@ const TableFooterTotalItems = styled.h2`
   justify-self: center;
 
   @media screen and (min-width: 768px) {
-    grid-column: 5;
+    grid-column: 4;
     justify-self: center;
   }
 `;
@@ -314,7 +323,7 @@ const TableFooterTotalValue = styled.h2`
   justify-self: end;
 
   @media screen and (min-width: 768px) {
-    grid-column: 6;
+    grid-column: 5;
     justify-self: center;
   }
 `;
@@ -330,7 +339,7 @@ const TableFooterAction = styled.div`
   align-items: center;
 
   @media screen and (min-width: 768px) {
-    grid-column: 7;
+    display: none;
   }
 `;
 
