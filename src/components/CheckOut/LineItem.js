@@ -62,8 +62,8 @@ class LineItem extends Component {
         <LineItemQty>
           <InputCounter orderQty={orderQty} handleChange={this.handleQtyChange} qtyFieldError={qtyFieldError} />
         </LineItemQty>
-        <LineItemCell>{formatPrice(details.orderItemTotal)}</LineItemCell>
-        <LineItemCell>
+        <LineItemSubTotal>{formatPrice(details.orderItemTotal)}</LineItemSubTotal>
+        <LineItemAction>
           <IconButton
             color="danger"
             onClick={() => {
@@ -72,7 +72,7 @@ class LineItem extends Component {
           >
             <XSquare />
           </IconButton>
-        </LineItemCell>
+        </LineItemAction>
       </LineItemRow>
     );
   }
@@ -169,31 +169,24 @@ const ItemOptions = styled.p`
 `;
 
 const LineItemPrice = styled.div`
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  display: grid;
-  justify-items: start;
-  align-items: center;
-`;
-
-const LineItemQty = styled.div`
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  width: 100%;
-  box-sizing: border-box;
   display: grid;
   justify-items: center;
   align-items: center;
 `;
 
-const LineItemCell = styled.div`
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  width: 100%;
-  box-sizing: border-box;
+const LineItemQty = styled.div`
+  display: grid;
+  justify-items: center;
+  align-items: center;
+`;
+
+const LineItemSubTotal = styled.div`
+  display: grid;
+  justify-items: center;
+  align-items: center;
+`;
+
+const LineItemAction = styled.div`
   display: grid;
   justify-items: center;
   align-items: center;

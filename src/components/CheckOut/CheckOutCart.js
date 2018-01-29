@@ -228,7 +228,7 @@ const TableColumnDescriptionHeader = styled.div`
 `;
 
 const TableColumnPriceHeader = styled.div`
-  justify-self: start;
+  justify-self: center;
 `;
 
 const TableColumnQtyHeader = styled.div`
@@ -236,9 +236,7 @@ const TableColumnQtyHeader = styled.div`
 `;
 
 const TableColumnSubTotalHeader = styled.div`
-  @media screen and (min-width: 769px) {
-    justify-self: center;
-  }
+  justify-self: center;
 `;
 
 const TableColumnActionHeader = styled.div``;
@@ -280,7 +278,7 @@ const TableFooter = styled.div`
   padding: 0 0.25rem;
 
   display: grid;
-  grid-template-columns: repeat(3, minmax(50px, 1fr));
+  grid-template-columns: 1fr 1fr 1fr 1fr minmax(50px, auto);
   align-items: center;
   background-color: ${colors.primaryBorder};
   color: ${colors.white};
@@ -308,7 +306,7 @@ const TableFooterTotalLabel = styled.h2`
 
 const TableFooterTotalItems = styled.h2`
   margin: 0;
-  grid-column: 2;
+  grid-column: 3;
   justify-self: center;
 
   @media screen and (min-width: 768px) {
@@ -319,8 +317,8 @@ const TableFooterTotalItems = styled.h2`
 
 const TableFooterTotalValue = styled.h2`
   margin: 0;
-  grid-column: 3 / -1;
-  justify-self: end;
+  grid-column: 4 / -1;
+  justify-self: center;
 
   @media screen and (min-width: 768px) {
     grid-column: 5;
