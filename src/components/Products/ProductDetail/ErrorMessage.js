@@ -12,9 +12,9 @@ class ErrorMessage extends Component {
   };
 
   render() {
-    const { show, close } = this.props;
+    const { showError, close } = this.props;
     return (
-      <Message show={show ? "open" : null}>
+      <Message showError={showError ? "open" : null}>
         <MessageContainer>
           <MessageContent>
             <MessageBody>
@@ -41,7 +41,7 @@ const Message = styled.div`
   grid-row: 1 / 3;
   grid-column: 1;
   padding: 0;
-  display: ${props => (props.show ? "grid" : "none")};
+  display: ${props => (props.showError ? "grid" : "none")};
   align-items: start;
   justify-items: center;
   z-index: 2;

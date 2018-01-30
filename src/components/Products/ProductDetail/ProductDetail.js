@@ -115,19 +115,25 @@ class ProductDetail extends Component {
       });
 
       // Check if each OrderItem in cart already exists in Cart
-      currentOrders.forEach(currentOrder => {
-        let checkSize = Object.is(currentOrder.orderSize, newOrder.orderSize);
-        let checkColor = Object.is(currentOrder.orderColor, newOrder.orderColor);
-        let checkQty = Object.is(currentOrder.orderQty, newOrder.orderQty);
+      if (currentOrders !== {}) {
+        currentOrders.forEach(currentOrder => {
+          let checkSize = Object.is(currentOrder.orderSize, newOrder.orderSize);
+          let checkColor = Object.is(currentOrder.orderColor, newOrder.orderColor);
+          let checkQty = Object.is(currentOrder.orderQty, newOrder.orderQty);
 
-        if (checkSize && checkColor && checkQty) {
-          this.setState({ showErrorMessage: true });
-        } else {
-          const ordersRef = database.ref("cart");
-          ordersRef.push(newOrder);
-          this.setState({ showSuccessMessage: true });
-        }
-      });
+          if (checkSize && checkColor && checkQty) {
+            this.setState({ showErrorMessage: true, showSuccessMessage: false });
+          } else {
+            const ordersRef = database.ref("cart");
+            ordersRef.push(newOrder);
+            this.setState({ showErrorMessage: false, showSuccessMessage: true });
+          }
+        });
+      } else {
+        const ordersRef = database.ref("cart");
+        ordersRef.push(newOrder);
+        this.setState({ showErrorMessage: false, showSuccessMessage: true });
+      }
     }
   };
 
@@ -191,8 +197,10 @@ class ProductDetail extends Component {
             </FormButtons>
           </Form>
         </Container>
-        <SuccessMessage show={showSuccessMessage} product={product} orderQty={orderQty} Pricing={Pricing} />
-        <ErrorMessage show={showErrorMessage} close={this.handleClose} />
+        {showSuccessMessage ? (
+          <SuccessMessage showSuccess={showSuccessMessage} product={product} orderQty={orderQty} Pricing={Pricing} />
+        ) : null}
+        {showErrorMessage ? <ErrorMessage showError={showErrorMessage} close={this.handleClose} /> : null}
       </Backdrop>
     );
   }

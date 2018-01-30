@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import styled from "styled-components";
-import Overdrive from "react-overdrive";
 import { formatPrice, colors } from "../../helpers";
 import { CheckSquare } from "react-feather";
+import styled from "styled-components";
+import Overdrive from "react-overdrive";
 import Image from "../../uiElements/Image";
 import Button from "../../uiElements/Button";
 import ButtonGroup from "../../uiElements/ButtonGroup";
@@ -18,9 +18,9 @@ class SuccessMessage extends Component {
   };
 
   render() {
-    const { show, product, orderQty } = this.props;
+    const { showSuccess, product, orderQty } = this.props;
     return (
-      <Message show={show ? "open" : null}>
+      <Message showSuccess={showSuccess ? "open" : null}>
         <MessageContainer>
           <MessageContent>
             <ProductImage>
@@ -58,7 +58,7 @@ const Message = styled.div`
   grid-row: 1 / 3;
   grid-column: 1;
   padding: 0;
-  display: ${props => (props.show ? "grid" : "none")};
+  display: ${props => (props.showSuccess ? "grid" : "none")};
   align-items: start;
   justify-items: center;
   z-index: 2;
