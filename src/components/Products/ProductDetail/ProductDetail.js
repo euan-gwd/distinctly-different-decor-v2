@@ -73,7 +73,7 @@ class ProductDetail extends Component {
   };
 
   handleAddToCart = () => {
-    const newOrderItem = {
+    const newOrder = {
       orderSize: this.state.orderSize,
       orderColor: this.state.orderColor,
       orderQty: parseInt(this.state.orderQty, 10),
@@ -82,19 +82,19 @@ class ProductDetail extends Component {
     };
 
     // Form Validation
-    if (newOrderItem.orderSize === "") {
+    if (newOrder.orderSize === "") {
       this.setState({ sizeFieldError: true });
     } else {
       this.setState({ sizeFieldValid: true });
     }
 
-    if (newOrderItem.orderColor === "") {
+    if (newOrder.orderColor === "") {
       this.setState({ colorFieldError: true });
     } else {
       this.setState({ colorFieldValid: true });
     }
 
-    if (newOrderItem.orderQty === 0) {
+    if (newOrder.orderQty === 0) {
       this.setState({ qtyFieldError: true });
     } else {
       this.setState({ qtyFieldValid: true });
@@ -103,26 +103,26 @@ class ProductDetail extends Component {
     const { sizeFieldValid, colorFieldValid, qtyFieldValid } = this.state;
 
     if (sizeFieldValid && colorFieldValid && qtyFieldValid) {
-      // Check if Item exists
+      // Check if Item already exists in Cart
+      let currentOrders = [];
 
+      // get Current Orders in Cart
       database.ref(`cart`).on("value", res => {
         const orders = res.val() || {};
-        const currentOrders = Object.values(orders);
+        currentOrders = Object.values(orders);
+      });
 
-        currentOrders.forEach(order => {
-          console.log(order);
-          if (
-            order.orderSize &&
-            order.orderColor &&
-            order.orderQty === newOrderItem.orderSize &&
-            newOrderItem.orderColor &&
-            newOrderItem.orderQty
-          ) {
-            return true;
-          }
-        });
-        // (order.orderSize && order.orderColor && order.orderQty) ===
-        // (newOrderItem.orderSize && newOrderItem.orderColor && newOrderItem.orderQty)
+      // Check if each OrderItem in cart already exists in Cart
+      currentOrders.forEach(currentOrder => {
+        let checkSize = Object.is(currentOrder.orderSize, newOrder.orderSize);
+        let checkColor = Object.is(currentOrder.orderColor, newOrder.orderColor);
+        let checkQty = Object.is(currentOrder.orderQty, newOrder.orderQty);
+
+        if (checkSize && checkColor && checkQty) {
+          console.log("Item Already in Cart");
+        } else {
+          console.log(newOrder);
+        }
       });
 
       // const ordersRef = database.ref("cart");
