@@ -107,15 +107,21 @@ class ProductDetail extends Component {
     if (sizeFieldValid && colorFieldValid && qtyFieldValid) {
       // Check if Item already exists in Cart
       let currentOrders = [];
+      let ordersLength = 0;
 
       // get Current Orders in Cart
       database.ref(`cart`).on("value", res => {
         const orders = res.val() || {};
         currentOrders = Object.values(orders);
+        ordersLength = Object.keys(orders).length;
       });
 
       // Check if each OrderItem in cart already exists in Cart
-      if (currentOrders !== {}) {
+      if (ordersLength === 0) {
+        const ordersRef = database.ref("cart");
+        ordersRef.push(newOrder);
+        this.setState({ showErrorMessage: false, showSuccessMessage: true });
+      } else {
         currentOrders.forEach(currentOrder => {
           let checkSize = Object.is(currentOrder.orderSize, newOrder.orderSize);
           let checkColor = Object.is(currentOrder.orderColor, newOrder.orderColor);
@@ -129,10 +135,6 @@ class ProductDetail extends Component {
             this.setState({ showErrorMessage: false, showSuccessMessage: true });
           }
         });
-      } else {
-        const ordersRef = database.ref("cart");
-        ordersRef.push(newOrder);
-        this.setState({ showErrorMessage: false, showSuccessMessage: true });
       }
     }
   };
