@@ -3,19 +3,22 @@ export function formatPrice(cents) {
 }
 
 export const colors = {
-  grey: "#C8C9C8",
   primary: "#5E2EB3",
   primaryHover: "#6435C9",
-  success: "#21BA45",
+  primaryBorder: "#6435C950",
+  success: "#60C796",
   successHover: "#16ab39",
+  successBorder: "#a3c193",
+  successBackground: "#F5FFF5",
   danger: "#DB2828",
   dangerHover: "#d01919",
   error: "#9F3A38",
-  white: "#ffffff",
+  errorBorder: "#C193A3",
+  errorBackground: "#FFF5F5",
   default: "#00000099",
   defaultHover: "#C8C9C8",
-  errorBackground: "#FFF5F5",
-  primaryBorder: "#6435C950",
+  defaultBackground: "#fefffe",
   defaultBorder: "rgba(34,36,38,.15)",
-  defaultBackground: "#fefffe"
+  grey: "#C8C9C8",
+  white: "#ffffff"
 };

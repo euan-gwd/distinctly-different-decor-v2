@@ -4,6 +4,7 @@ import { formatPrice } from "../../helpers";
 import styled from "styled-components";
 import Overdrive from "react-overdrive";
 import SuccessMessage from "./SuccessMessage";
+import ErrorMessage from "./ErrorMessage";
 import SizeChoice from "./SizeChoice";
 import ColorChoice from "./ColorChoice";
 import QtyChoice from "./QtyChoice";
@@ -24,7 +25,8 @@ class ProductDetail extends Component {
     sizeFieldError: false,
     colorFieldError: false,
     qtyFieldError: false,
-    showSuccessMessage: false
+    showSuccessMessage: false,
+    showErrorMessage: false
   };
 
   async componentDidMount() {
@@ -119,20 +121,22 @@ class ProductDetail extends Component {
         let checkQty = Object.is(currentOrder.orderQty, newOrder.orderQty);
 
         if (checkSize && checkColor && checkQty) {
-          console.log("Item Already in Cart");
+          this.setState({ showErrorMessage: true });
         } else {
-          console.log(newOrder);
+          const ordersRef = database.ref("cart");
+          ordersRef.push(newOrder);
+          this.setState({ showSuccessMessage: true });
         }
       });
-
-      // const ordersRef = database.ref("cart");
-      // ordersRef.push(newOrderItem);
-      // this.setState({ showSuccessMessage: true });
     }
   };
 
   handleReturnToList = () => {
     this.props.history.push("/");
+  };
+
+  handleClose = () => {
+    this.setState({ showErrorMessage: false });
   };
 
   componentWillUnmount = () => {
@@ -148,7 +152,8 @@ class ProductDetail extends Component {
       sizeFieldError,
       colorFieldError,
       qtyFieldError,
-      showSuccessMessage
+      showSuccessMessage,
+      showErrorMessage
     } = this.state;
 
     const Pricing = formatPrice(product.price) + " each";
@@ -187,6 +192,7 @@ class ProductDetail extends Component {
           </Form>
         </Container>
         <SuccessMessage show={showSuccessMessage} product={product} orderQty={orderQty} Pricing={Pricing} />
+        <ErrorMessage show={showErrorMessage} close={this.handleClose} />
       </Backdrop>
     );
   }

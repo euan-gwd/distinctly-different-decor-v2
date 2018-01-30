@@ -1,42 +1,25 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
+import { XSquare } from "react-feather";
+import { colors } from "../../helpers.js";
 import styled from "styled-components";
-import Overdrive from "react-overdrive";
-import { formatPrice, colors } from "../../helpers";
-import { CheckSquare } from "react-feather";
-import Image from "../../uiElements/Image";
 import Button from "../../uiElements/Button";
 import ButtonGroup from "../../uiElements/ButtonGroup";
 
-class SuccessMessage extends Component {
+class ErrorMessage extends Component {
   handleGoToCart = () => {
     this.props.history.push("/cart");
   };
 
-  handleReturnToList = () => {
-    this.props.history.push("/");
-  };
-
   render() {
-    const { show, product, orderQty } = this.props;
+    const { show, close } = this.props;
     return (
       <Message show={show ? "open" : null}>
         <MessageContainer>
           <MessageContent>
-            <ProductImage>
-              <Overdrive id={`${product.id}`}>
-                <Image src={product.thumbnail} alt={product.title} size="tiny" />
-              </Overdrive>
-            </ProductImage>
             <MessageBody>
-              <MessageBodyHeader>
-                <h3>
-                  {orderQty} x {product.title}
-                </h3>
-                <p>{"SubTotal: " + formatPrice(product.price * orderQty)}</p>
-              </MessageBodyHeader>
               <MessageBodyContent>
-                <CheckSquare />Added to Cart
+                <XSquare />Item Already Added to Cart
               </MessageBodyContent>
             </MessageBody>
           </MessageContent>
@@ -44,7 +27,7 @@ class SuccessMessage extends Component {
             <MessageButton primary onClick={this.handleGoToCart}>
               Checkout
             </MessageButton>
-            <MessageButton onClick={this.handleReturnToList}>Back to Main</MessageButton>
+            <MessageButton onClick={close}>Close</MessageButton>
           </MessageButtons>
         </MessageContainer>
       </Message>
@@ -52,7 +35,7 @@ class SuccessMessage extends Component {
   }
 }
 
-export default withRouter(SuccessMessage);
+export default withRouter(ErrorMessage);
 
 const Message = styled.div`
   grid-row: 1 / 3;
@@ -62,15 +45,14 @@ const Message = styled.div`
   align-items: start;
   justify-items: center;
   z-index: 2;
-  background-color: rgba(0, 0, 0, 0.5);
 `;
 
 const MessageContainer = styled.div`
   margin: 0.25rem 0;
   padding: 1rem;
-  border: 2px solid ${colors.successBorder};
+  border: 2px solid ${colors.errorBorder};
   border-radius: 4px;
-  background-color: ${colors.successBackground};
+  background-color: ${colors.errorBackground};
   max-width: 300px;
 
   @media screen and (min-width: 768px) {
@@ -80,28 +62,15 @@ const MessageContainer = styled.div`
 
 const MessageContent = styled.div`
   margin: 0 0 1rem;
-  color: ${colors.success};
+  color: ${colors.error};
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 1fr;
   grid-column-gap: 1rem;
 `;
 
-const ProductImage = styled.div`
-  grid-column: 1;
-`;
-
 const MessageBody = styled.div`
-  color: ${colors.success};
-  grid-column: 2;
-`;
-
-const MessageBodyHeader = styled.div`
-  grid-column: 2;
-
-  > h3 {
-    margin: 0;
-    color: #1a521c;
-  }
+  color: ${colors.error};
+  grid-column: 1;
 `;
 
 const MessageBodyContent = styled.div`
