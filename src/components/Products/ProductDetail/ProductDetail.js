@@ -73,7 +73,7 @@ class ProductDetail extends Component {
   };
 
   handleAddToCart = () => {
-    const orderItem = {
+    const newOrderItem = {
       orderSize: this.state.orderSize,
       orderColor: this.state.orderColor,
       orderQty: parseInt(this.state.orderQty, 10),
@@ -82,19 +82,19 @@ class ProductDetail extends Component {
     };
 
     // Form Validation
-    if (orderItem.orderSize === "") {
+    if (newOrderItem.orderSize === "") {
       this.setState({ sizeFieldError: true });
     } else {
       this.setState({ sizeFieldValid: true });
     }
 
-    if (orderItem.orderColor === "") {
+    if (newOrderItem.orderColor === "") {
       this.setState({ colorFieldError: true });
     } else {
       this.setState({ colorFieldValid: true });
     }
 
-    if (orderItem.orderQty === 0) {
+    if (newOrderItem.orderQty === 0) {
       this.setState({ qtyFieldError: true });
     } else {
       this.setState({ qtyFieldValid: true });
@@ -103,9 +103,31 @@ class ProductDetail extends Component {
     const { sizeFieldValid, colorFieldValid, qtyFieldValid } = this.state;
 
     if (sizeFieldValid && colorFieldValid && qtyFieldValid) {
-      const ordersRef = database.ref("cart");
-      ordersRef.push(orderItem);
-      this.setState({ showSuccessMessage: true });
+      // Check if Item exists
+
+      database.ref(`cart`).on("value", res => {
+        const orders = res.val() || {};
+        const currentOrders = Object.values(orders);
+
+        currentOrders.forEach(order => {
+          console.log(order);
+          if (
+            order.orderSize &&
+            order.orderColor &&
+            order.orderQty === newOrderItem.orderSize &&
+            newOrderItem.orderColor &&
+            newOrderItem.orderQty
+          ) {
+            return true;
+          }
+        });
+        // (order.orderSize && order.orderColor && order.orderQty) ===
+        // (newOrderItem.orderSize && newOrderItem.orderColor && newOrderItem.orderQty)
+      });
+
+      // const ordersRef = database.ref("cart");
+      // ordersRef.push(newOrderItem);
+      // this.setState({ showSuccessMessage: true });
     }
   };
 
